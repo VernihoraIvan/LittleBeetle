@@ -3,14 +3,16 @@ import Header from "./Header";
 
 const SharedLayout = () => {
   return (
-    <div>
-      <Header />
-
-      <main>
-        <div>
-          <Outlet />
-        </div>
-      </main>
+    <div className="">
+      <div>
+        <Header />
+        <main /*className="object-fit bg-cover bg-center w-screen h-screen bg-custom-image"*/
+        >
+          <div>
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

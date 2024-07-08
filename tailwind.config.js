@@ -21,13 +21,21 @@ export default {
         // => @media (min-width: 768px and max-width: 1023px) { ... }
         lg: { min: "1024px", max: "1279px" },
         // => @media (min-width: 1024px and max-width: 1279px) { ... }
-        xl: { min: "1200px" },
-        // => @media (min-width: 1280px and max-width: 1535px) { ... }
+        xl: { min: "1280px", max: "1563px" },
+        // => @media (min-width: 1280px and max-width: 1563px) { ... }
+        xxl: { min: "1564px" },
+        // => @media (min-width: 1564px ) { ... }
       },
       width: {
         fit: "fit-content",
       },
-      spacing: {},
+      spacing: {
+        contW: "1564px",
+        headerPad: "100px",
+        navPad: "70px",
+        navMar: "25%",
+        customPosition: "10% 60%",
+      },
       colors: {
         primWhite: "#FFFFFF",
         primBeige: "#FFFCF3",
@@ -41,6 +49,12 @@ export default {
         bgPurple: "#300B50",
       },
       animation: {},
+      backgroundImage: {
+        "custom-image": "url('src/assets/images/home-bg.jpg')",
+      },
+      backgroundPosition: {
+        "custom-50-150": "50% 50%",
+      },
     },
   },
   plugins: [],
