@@ -9,6 +9,12 @@
 }
 
 @font-face {
+  font-family: "pSBold";
+  src: local("Pretendard-SemiBold"),
+    url("./assets/fonts/Pretendard-SemiBold.otf") format("opentype");
+}
+
+@font-face {
   font-family: "pBold";
   src: local("Pretendard-Bold"),
     url("./assets/fonts/Pretendard-Bold.otf") format("opentype");

@@ -14,6 +14,7 @@ export default {
         primaryRegular: ["mRegular"],
         primaryBold: ["mBold"],
         secondaryRegular: ["pRegular"],
+        secondarySBold: ["pSBold"],
         secondaryBold: ["pBold"],
       },
       screens: {
@@ -43,6 +44,11 @@ export default {
         customPosition: "10% 60%",
         secH: "980px",
         secH2: "500px",
+        imgW: "300px",
+      },
+      fontSize: {
+        titleS: "38px",
+        linkS: "22px",
       },
       colors: {
         primWhite: "#FFFFFF",
