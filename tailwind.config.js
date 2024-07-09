@@ -10,6 +10,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        primaryRegular: ["mRegular"],
+        primaryBold: ["mBold"],
+        secondaryRegular: ["pRegular"],
+        secondaryBold: ["pBold"],
+      },
       screens: {
         xxs: { max: "460px" },
         // => @media (max-width: 460px) { ... }
