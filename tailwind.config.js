@@ -35,6 +35,8 @@ export default {
         navPad: "70px",
         navMar: "25%",
         customPosition: "10% 60%",
+        secH: "980px",
+        secH2: "500px",
       },
       colors: {
         primWhite: "#FFFFFF",
@@ -49,8 +51,16 @@ export default {
         bgPurple: "#300B50",
       },
       animation: {},
+      mixBlendMode: {
+        luminosity: "luminosity",
+      },
       backgroundImage: {
-        "custom-image": "url('src/assets/images/home-bg.jpg')",
+        "home-bg": "url('src/assets/images/home-bg.jpg')",
+        "about-bg": "url('src/assets/images/about-bg.png')",
+        "about-bg2": "url('src/assets/images/about-bg2.png')",
+        "donation-bg": "url('src/assets/images/donation-bg.png')",
+        "contacts-bg": "url('src/assets/images/contacts-bg.png')",
+        "creators-bg": "url('src/assets/images/creators-bg.png')",
       },
       backgroundPosition: {
         "custom-50-150": "50% 50%",

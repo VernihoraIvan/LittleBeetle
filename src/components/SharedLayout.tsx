@@ -6,11 +6,9 @@ const SharedLayout = () => {
     <div className="">
       <div>
         <Header />
-        <main /*className="object-fit bg-cover bg-center w-screen h-screen bg-custom-image"*/
+        <main /*className="object-fit bg-cover bg-center w-screen h-screen bg-home-bg"*/
         >
-          <div>
-            <Outlet />
-          </div>
+          <Outlet />
         </main>
       </div>
     </div>

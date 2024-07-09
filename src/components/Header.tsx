@@ -5,7 +5,7 @@ import Cart from "../assets/icons/shopping-cart.svg?react";
 
 const Header = () => {
   return (
-    <header className="flex flex-center justify-center absolute w-full pt-navPad">
+    <header className="z-10 flex flex-center justify-center absolute w-full pt-navPad">
       <nav className="w-contW flex flex-row  text-primWhite text-xl">
         <ul className="mr-navMar flex flex-row w-full justify-between">
           <li>
