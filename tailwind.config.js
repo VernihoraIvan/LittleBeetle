@@ -54,6 +54,7 @@ export default {
         titleS: "38px",
         buttonS: "28px",
         linkS: "22px",
+        copyS: "18px",
       },
       colors: {
         primWhite: "#FFFFFF",
