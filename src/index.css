@@ -27,6 +27,12 @@
 }
 
 @font-face {
+  font-family: "mSBold";
+  src: local("Montserrat-SemiBold"),
+    url("./assets/fonts/Montserrat-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "mBold";
   src: local("Montserrat-Bold"),
     url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");

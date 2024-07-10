@@ -1,3 +1,4 @@
+import BooksSection from "../components/BooksSection";
 import Description from "../components/Description";
 import Goal from "../components/Goal";
 
@@ -10,11 +11,12 @@ const About = () => {
       <section>
         <div className="bg-gradient-to-b from-primPurple to-primPurple h-secH">
           <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full ">
-            <div className="xxl:w-contW ">
-              <Goal />
-            </div>
+            <Goal />
           </div>
         </div>
+      </section>
+      <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB">
+        <BooksSection />
       </section>
     </>
   );

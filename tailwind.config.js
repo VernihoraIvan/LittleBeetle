@@ -13,6 +13,7 @@ export default {
       fontFamily: {
         primaryRegular: ["mRegular"],
         primaryBold: ["mBold"],
+        primarySBold: ["mSBold"],
         secondaryRegular: ["pRegular"],
         secondarySBold: ["pSBold"],
         secondaryBold: ["pBold"],
@@ -45,9 +46,13 @@ export default {
         secH: "980px",
         secH2: "500px",
         imgW: "300px",
+        buttonP: "140px",
+        bookPT: "110px",
+        bookPB: "85px",
       },
       fontSize: {
         titleS: "38px",
+        buttonS: "28px",
         linkS: "22px",
       },
       colors: {

@@ -4,8 +4,8 @@ const Goal = () => {
   return (
     <div className="flex justify-between  xxl:w-contW">
       <div className="  ">
-        <div className="mb-10 flex gap-2 justify-center align-center flex-col">
-          <h2 className="font-primaryBold text-primWhite  text-titleS">
+        <div className="mb-10 flex justify-center align-center flex-col">
+          <h2 className="mb-8 font-primaryBold text-primWhite  text-titleS">
             Our goal
           </h2>
           <p className="leading-relaxed text-primWhiteFaint w-[1110px] text-2xl font-secondaryRegular">
