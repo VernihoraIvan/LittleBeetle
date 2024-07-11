@@ -45,7 +45,7 @@ export default {
         priceL: "470px",
         prodPB: "430px",
         imgW: "300px",
-        titleM: "170px",
+        titleM: "160px",
         buttonP: "140px",
         bookPT: "110px",
         headerPad: "100px",
