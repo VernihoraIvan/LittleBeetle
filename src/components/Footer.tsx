@@ -1,6 +1,6 @@
-import LinkedInLogo from "../assets/icons/linkedIn.svg?react";
-import InstagramLogo from "../assets/icons/instagram.svg?react";
-import MailLogo from "../assets/icons/mail.svg?react";
+import LinkedInLogo from "@/assets/icons/linkedIn.svg?react";
+import InstagramLogo from "@/assets/icons/instagram.svg?react";
+import MailLogo from "@/assets/icons/mail.svg?react";
 
 const Footer = () => {
   return (

@@ -1,6 +1,6 @@
-import DonationGreet from "../components/DonationGreet";
-import Footer from "../components/Footer";
-import Products from "../components/Products";
+import DonationGreet from "@/components/DonationGreet";
+import Footer from "@/components/Footer";
+import Products from "@/components/Products";
 
 const Donation = () => {
   return (

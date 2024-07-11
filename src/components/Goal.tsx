@@ -1,4 +1,4 @@
-import LinkLogo from "../assets/icons/external-link.svg?react";
+import LinkLogo from "@/assets/icons/external-link.svg?react";
 
 const Goal = () => {
   return (

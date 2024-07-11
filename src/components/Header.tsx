@@ -1,7 +1,7 @@
 // / <reference types="vite-plugin-svgr/client" />
 import { NavLink } from "react-router-dom";
-import Chevron from "../assets/icons/chevron-down.svg?react";
-import Cart from "../assets/icons/shopping-cart.svg?react";
+import Chevron from "@/assets/icons/chevron-down.svg?react";
+import Cart from "@/assets/icons/shopping-cart.svg?react";
 
 const Header = () => {
   return (

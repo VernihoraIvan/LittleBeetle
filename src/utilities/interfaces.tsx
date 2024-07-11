@@ -1,3 +1,3 @@
 export interface OverlayProps {
-  handleOverlay: () => void;
+  isOverlay: boolean;
 }

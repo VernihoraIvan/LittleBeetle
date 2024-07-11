@@ -1,6 +1,4 @@
-// import Chevron from "../assets/icons/chevron.svg?react";
-
-import ProductEl from "./ProductEl";
+import ProductEl from "@/components/ProductEl";
 
 const Products = () => {
   return (

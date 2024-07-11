@@ -1,16 +1,10 @@
-// import { OverlayProps } from "../utilities/interfaces";
-export interface OverlayProps {
-  isOverlay: boolean;
-}
 import clsx from "clsx";
+import { OverlayProps } from "@/utilities/interfaces";
 
-const OverlayComp = (
-  /*handleOverlay: OverlayProps*/ { isOverlay }: OverlayProps
-) => {
+const OverlayComp = ({ isOverlay }: OverlayProps) => {
   return (
     <>
       <div className="absolute mt-16 overflow-hidden ">
-        {/* <div className=" -translate-y-full font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-priceL"> */}
         <div
           className={clsx(
             "bg-primWhite font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-priceL transition-transform duration-300",
