@@ -10,7 +10,9 @@ const ProductEl = () => {
 
   return (
     <li className="w-prodW">
-      <img src="/src/assets/images/product.png" alt="product photo" />
+      {/* <img src="/src/assets/images/product.png" alt="product photo" /> */}
+      <img src="/src/assets/images/book1.png" alt="image of a book" />
+
       <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
         The book
       </h3>
