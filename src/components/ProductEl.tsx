@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Chevron from "../assets/icons/chevron.svg?react";
-import OverlayComp from "./OverlayComp";
+import Chevron from "@/assets/icons/chevron.svg?react";
+// import OverlayComp from "./OverlayComp";
+import OverlayComp from "@/components/OverlayComp";
 
 const ProductEl = () => {
   const [isOverlay, setIsOverlay] = useState<boolean>(false);
