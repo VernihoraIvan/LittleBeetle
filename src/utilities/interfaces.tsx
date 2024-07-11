@@ -10,3 +10,10 @@ export interface ProductElProps {
 export interface TitleProps {
   title: string;
 }
+
+export interface PurchaseElProps {
+  name: string;
+  price: number;
+  quantity: number;
+  total: number;
+}
