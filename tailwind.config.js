@@ -43,6 +43,7 @@ export default {
         prodW: "740px",
         secH2: "500px",
         priceL: "470px",
+        sumW: "455px",
         prodPB: "430px",
         imgW: "300px",
         titleM: "160px",
