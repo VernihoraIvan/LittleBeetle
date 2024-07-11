@@ -4,7 +4,7 @@ import Title from "@/components/Title";
 
 const Cart = () => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col ">
       <Title title="Your Cart" />
       <Basket />
       <Footer />
