@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Chevron from "@/assets/icons/chevron.svg?react";
 import OverlayComp from "@/components/OverlayComp";
+import productImg from "@/assets/images/product.png";
 
 const ProductEl = () => {
   const [isOverlay, setIsOverlay] = useState<boolean>(false);
@@ -11,7 +12,7 @@ const ProductEl = () => {
   return (
     <li className="w-prodW">
       {/* <img src="/src/assets/images/product.png" alt="product photo" /> */}
-      <img src="/src/assets/images/book1.png" alt="image of a book" />
+      <img src={productImg} alt="image of a book" />
 
       <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
         The book

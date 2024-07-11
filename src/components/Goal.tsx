@@ -1,5 +1,5 @@
 import LinkLogo from "@/assets/icons/external-link.svg?react";
-
+import VoicesLogo from "@/assets/images/voices-logo.png";
 const Goal = () => {
   return (
     <section>
@@ -33,7 +33,7 @@ const Goal = () => {
             <div className="flex flex-col items-center ">
               <img
                 className="h-imgW w-imgW mb-2"
-                src="/src/assets/images/voices-logo.png"
+                src={VoicesLogo}
                 alt="Voices of children logo"
               />
               <p className="text-2xl font-secondarySBold text-primWhite">

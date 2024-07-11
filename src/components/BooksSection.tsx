@@ -1,3 +1,7 @@
+import book1 from "../assets/images/book1.png";
+import book2 from "../assets/images/book2.png";
+import book3 from "../assets/images/book3.png";
+
 const BooksSection = () => {
   return (
     <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB">
@@ -13,19 +17,13 @@ const BooksSection = () => {
         </p>
         <ul className="flex justify-between mt-14">
           <li>
-            <img src="/src/assets/images/book1.png" alt="image of a book" />
+            <img src={book1} alt="image of a book" />
           </li>
           <li>
-            <img
-              src="/src/assets/images/book2.png"
-              alt="little girl holds a book"
-            />
+            <img src={book2} alt="little girl holds a book" />
           </li>
           <li>
-            <img
-              src="/src/assets/images/book3.png"
-              alt="little girl reads a book"
-            />
+            <img src={book3} alt="little girl reads a book" />
           </li>
         </ul>
         <div className="flex justify-center mt-20">
