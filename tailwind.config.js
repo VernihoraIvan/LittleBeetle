@@ -12,8 +12,8 @@ export default {
     extend: {
       fontFamily: {
         primaryRegular: ["mRegular"],
-        primaryBold: ["mBold"],
         primarySBold: ["mSBold"],
+        primaryBold: ["mBold"],
         secondaryRegular: ["pRegular"],
         secondarySBold: ["pSBold"],
         secondaryBold: ["pBold"],
@@ -45,6 +45,7 @@ export default {
         priceL: "470px",
         prodPB: "430px",
         imgW: "300px",
+        titleM: "170px",
         buttonP: "140px",
         bookPT: "110px",
         headerPad: "100px",

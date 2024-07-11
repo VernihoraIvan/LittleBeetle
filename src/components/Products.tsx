@@ -10,10 +10,22 @@ const Products = () => {
         <div className="flex flex-col justify-between items-center">
           <div>
             <ul className="grid grid-cols-2 grid-rows-2 gap-x-20 gap-y-28">
-              <ProductEl />
-              <ProductEl />
-              <ProductEl />
-              <ProductEl />
+              <ProductEl
+                title="The book"
+                description="one sentence description one sentence description one sentence description one sentence description."
+              />
+              <ProductEl
+                title="The lullaby audio recording"
+                description="one sentence description one sentence description one sentence description one sentence description."
+              />
+              <ProductEl
+                title="Postcards"
+                description="one sentence description one sentence description one sentence description one sentence description."
+              />
+              <ProductEl
+                title="Poster"
+                description="one sentence description one sentence description one sentence description one sentence description."
+              />
             </ul>
           </div>
         </div>

@@ -1,7 +1,7 @@
 // / <reference types="vite-plugin-svgr/client" />
 import { NavLink } from "react-router-dom";
 import Chevron from "@/assets/icons/chevron-down.svg?react";
-import Cart from "@/assets/icons/shopping-cart.svg?react";
+import CartLogo from "@/assets/icons/shopping-cart.svg?react";
 
 const Header = () => {
   return (
@@ -23,7 +23,9 @@ const Header = () => {
         </ul>
         <ul className="flex flex-row">
           <li className="mr-10 fill-primWhite w-6 h-6">
-            <Cart />
+            <NavLink to={"/cart"}>
+              <CartLogo />
+            </NavLink>
           </li>
           <li className="mr-2">EN</li>
           <li className="w-6 h-6">
