@@ -10,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        "12px": "12px",
+      },
       height: {
         "fit-content": "fit-content",
       },
@@ -49,6 +52,7 @@ export default {
         priceL: "470px",
         sumW: "455px",
         prodPB: "430px",
+        contactH: "320px",
         imgW: "300px",
         purchElH: "200px",
         mainTitleM: "184px",
@@ -81,6 +85,7 @@ export default {
         primPurpleFaint: "rgba(48, 11, 80, 0.8)",
         primPurpleFaintM: "rgba(48, 11, 80, 0.5)",
         secPink: "rgba(158, 126, 183, 0.5)",
+        pinkGrey: "rgba(255, 252, 243, 0.7)",
         hovYellow: "#FFD036",
         textYellow: "#FCC513",
         bgPink: "#9E7EB7",
