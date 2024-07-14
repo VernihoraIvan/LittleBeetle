@@ -10,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {
+      height: {
+        "fit-content": "fit-content",
+      },
       fontFamily: {
         primaryRegular: ["mRegular"],
         primarySBold: ["mSBold"],
@@ -56,6 +59,7 @@ export default {
         headerPad: "100px",
         bookPB: "85px",
         navPad: "70px",
+        CreatorsElP: "50px",
         prodMar: "30px",
         gapS: "10px",
         customPosition: "10% 60%",
@@ -72,6 +76,7 @@ export default {
         primWhite: "#FFFFFF",
         primBeige: "#FFFCF3",
         primWhiteFaint: "rgba(255, 255, 255, 0.8)",
+        primWhiteFaintM: "rgba(255, 255, 255, 0.5)",
         primPurple: "#300B50",
         primPurpleFaint: "rgba(48, 11, 80, 0.8)",
         primPurpleFaintM: "rgba(48, 11, 80, 0.5)",
