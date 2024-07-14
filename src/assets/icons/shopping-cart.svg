@@ -1,12 +1,5 @@
 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="shopping-cart" clip-path="url(#clip0_82_536)">
-<path id="Vector" d="M9 22.9521C9.55228 22.9521 10 22.5044 10 21.9521C10 21.3999 9.55228 20.9521 9 20.9521C8.44772 20.9521 8 21.3999 8 21.9521C8 22.5044 8.44772 22.9521 9 22.9521Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M20 22.9521C20.5523 22.9521 21 22.5044 21 21.9521C21 21.3999 20.5523 20.9521 20 20.9521C19.4477 20.9521 19 21.3999 19 21.9521C19 22.5044 19.4477 22.9521 20 22.9521Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector" d="M9 22.9521C9.55228 22.9521 10 22.5044 10 21.9521C10 21.3999 9.55228 20.9521 9 20.9521C8.44772 20.9521 8 21.3999 8 21.9521C8 22.5044 8.44772 22.9521 9 22.9521Z" fill="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M20 22.9521C20.5523 22.9521 21 22.5044 21 21.9521C21 21.3999 20.5523 20.9521 20 20.9521C19.4477 20.9521 19 21.3999 19 21.9521C19 22.5044 19.4477 22.9521 20 22.9521Z" fill="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path id="Vector_3" d="M1 1.95215H5L7.68 15.3421C7.77144 15.8025 8.02191 16.2161 8.38755 16.5104C8.75318 16.8048 9.2107 16.9611 9.68 16.9521H19.4C19.8693 16.9611 20.3268 16.8048 20.6925 16.5104C21.0581 16.2161 21.3086 15.8025 21.4 15.3421L23 6.95215H6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_82_536">
-<rect width="24" height="24" fill="white" transform="translate(0 0.952148)"/>
-</clipPath>
-</defs>
 </svg>
