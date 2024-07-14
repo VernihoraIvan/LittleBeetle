@@ -18,6 +18,7 @@ const Creators = () => {
         <div className="xxl:w-contW ">
           {creatorsData.map((el) => (
             <CreatorsEl
+              key={el.name}
               name={el.name}
               location={el.location}
               description={el.description}
