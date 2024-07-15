@@ -2,6 +2,7 @@ import productImg from "@/assets/images/product.png";
 import Minus from "@/assets/icons/minus.svg?react";
 import Plus from "@/assets/icons/plus.svg?react";
 import Edit from "@/assets/icons/edit.svg?react";
+import CrossLogo from "@/assets/icons/cross.svg?react";
 import { PurchaseElProps } from "@/utilities/interfaces";
 import { useEffect, useState } from "react";
 import { useCart } from "@/zustand/store";
@@ -12,6 +13,7 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
   const products = useCart((state) => state.items);
   const increaseQuantity = useCart((state) => state.increaseQuantity);
   const reduceQuantity = useCart((state) => state.reduceQuantity);
+  const removeProduct = useCart((state) => state.removeFromCart);
 
   console.log(products);
   useEffect(() => {
@@ -31,6 +33,10 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
 
   return (
     <div className="mt-10 mb-prodMar flex justify-between w-full pr-6">
+      <CrossLogo
+        className="cursor-pointer absolute left-[4%]"
+        onClick={() => removeProduct(name, price)}
+      />
       <div className="flex items-center">
         <img
           className="h-purchImgH mr-12"
