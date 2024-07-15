@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { OverlayProps } from "@/utilities/interfaces";
 import { useCallback, useEffect, useRef } from "react";
-// import { useState } from "react";
 
 const OverlayComp = ({
   isOverlay,
@@ -10,8 +9,6 @@ const OverlayComp = ({
   price,
   setOverlay,
 }: OverlayProps) => {
-  // const [inputPrice, setInputPrice] = useState<number>(0);
-
   const elementRef = useRef<HTMLDivElement>(null);
 
   const handleKeydown = useCallback(

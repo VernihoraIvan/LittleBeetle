@@ -10,6 +10,9 @@ export default {
   ],
   theme: {
     extend: {
+      userSelect: {
+        none: "none",
+      },
       borderRadius: {
         "12px": "12px",
       },

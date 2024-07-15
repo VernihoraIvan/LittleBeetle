@@ -5,10 +5,17 @@ const DonationGreet = () => {
         <h2 className="font-primaryBold text-primWhite  text-titleS">
           Why Donate?
         </h2>
-        <p className="leading-relaxed text-primWhiteFaint w-[1110px] text-2xl font-secondaryRegular">
-          Why donate text Why donate text Why donate text Why donate text Why
-          donate text Why donate text Why donate text Why donate text Why donate
-          text Why donate text Why donate text Why donate text Why donate text
+        <p className="leading-relaxed text-primWhiteFaint h-purchImgH text-2xl font-secondaryRegular">
+          This project was born from a simple philosophy: whether you donate
+          your time, attention, or money, we value these contributions
+          immensely. We designed this initiative around the idea of resource
+          exchange with everyone involved, ensuring a tangible balance between
+          all forms of support. Your donation not only helps provide
+          psychological support to children affected by war but also honours the
+          collective effort of our global volunteer team. We also hope that the
+          products we crafted bring joy to your home and magic to a child who
+          will listen to the lullaby and explore the world we embodied in this
+          beautiful illustrated book.
         </p>
       </div>
     </section>

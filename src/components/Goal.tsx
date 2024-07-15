@@ -21,14 +21,20 @@ const Goal = () => {
                   this cause together.
                 </p>
               </div>
-              <button className="border border-white py-3.5 px-14 ">
-                <div className=" flex gap-2 items-center">
-                  <p className="text-primWhite text-linkS font-primaryRegular">
-                    Learn more
-                  </p>
-                  <LinkLogo />
-                </div>
-              </button>
+              <div className="border border-white py-3.5 px-14 flex justify-center inline-flex">
+                <a
+                  href="https://voices.org.ua/en/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className=" flex gap-2 items-center">
+                    <p className="text-primWhite text-linkS font-primaryRegular">
+                      Learn more
+                    </p>
+                    <LinkLogo />
+                  </div>
+                </a>
+              </div>
             </div>
             <div className="flex flex-col items-center ">
               <img

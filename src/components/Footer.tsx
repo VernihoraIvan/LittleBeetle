@@ -6,18 +6,16 @@ const Footer = () => {
   return (
     <footer className="flex justify-center h-40 bg-primPurple">
       <div className="xxl:w-contW flex justify-between items-center">
-        <div>
-          <ul className="flex gap-6">
-            <li>
-              <LinkedInLogo />
-            </li>
-            <li>
-              <InstagramLogo />
-            </li>
-            <li>
-              <MailLogo />
-            </li>
-          </ul>
+        <div className="flex gap-6">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+            <LinkedInLogo />
+          </a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <InstagramLogo />
+          </a>
+          <a href="mailto:tes@mail.com" target="_blank" rel="noreferrer">
+            <MailLogo />
+          </a>
         </div>
         <p className="text-primWhiteFaint text-copyS font-secondaryRegular">
           copyright © 2024 A Great Journey of a Little Beetle. all rights

@@ -16,7 +16,8 @@ const Contact = () => {
               />
               <div className="xxl:w-contW flex gap-[50px] h-contactH fill-primPurple ">
                 <a
-                  href=""
+                  href="https://www.linkedin.com/"
+                  target="_blank"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center"
                 >
                   <div className="flex flex-col justify-center items-center gap-5">
@@ -27,7 +28,8 @@ const Contact = () => {
                   </div>
                 </a>
                 <a
-                  href=""
+                  href="https://www.instagram.com/"
+                  target="_blank"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center"
                 >
                   <div className="flex flex-col justify-center items-center gap-5">
@@ -38,7 +40,8 @@ const Contact = () => {
                   </div>
                 </a>
                 <a
-                  href=""
+                  href="mailto:tes@mail.com"
+                  target="_blank"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center"
                 >
                   <div className="flex flex-col justify-center items-center gap-5">

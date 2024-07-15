@@ -10,12 +10,10 @@ import { useCart } from "@/zustand/store";
 const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
   const [quantityEl, setQuantity] = useState<number>(quantity);
   const [totalEl, setTotal] = useState<number>(total);
-  const products = useCart((state) => state.items);
   const increaseQuantity = useCart((state) => state.increaseQuantity);
   const reduceQuantity = useCart((state) => state.reduceQuantity);
   const removeProduct = useCart((state) => state.removeFromCart);
 
-  console.log(products);
   useEffect(() => {
     setTotal(price * quantityEl);
   }, [quantityEl, price]);
@@ -24,6 +22,7 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
     setQuantity(quantityEl + 1);
     increaseQuantity(name);
   };
+
   const decrementQuantity = (name: string) => {
     if (quantityEl > 0) {
       setQuantity(quantityEl - 1);
@@ -32,9 +31,9 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
   };
 
   return (
-    <div className="mt-10 mb-prodMar flex justify-between w-full pr-6">
+    <div className="relative mt-10 mb-prodMar flex justify-between w-full pr-6 ">
       <CrossLogo
-        className="cursor-pointer absolute left-[4%]"
+        className="cursor-pointer absolute left-[-60px]"
         onClick={() => removeProduct(name, price)}
       />
       <div className="flex items-center">
@@ -47,7 +46,7 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
           {name}
         </h3>
       </div>
-      <ul className="flex items-center justify-between ">
+      <ul className="flex items-center justify-between select-none">
         <li className="flex gap-gapS mr-[95px] items-center">
           <p>£{price}</p>
           <Edit className="cursor-pointer" />
