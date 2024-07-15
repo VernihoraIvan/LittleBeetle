@@ -4,21 +4,28 @@ import Plus from "@/assets/icons/plus.svg?react";
 import Edit from "@/assets/icons/edit.svg?react";
 import { PurchaseElProps } from "@/utilities/interfaces";
 import { useEffect, useState } from "react";
+import { useCart } from "@/zustand/store";
 
 const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
   const [quantityEl, setQuantity] = useState<number>(quantity);
   const [totalEl, setTotal] = useState<number>(total);
+  const products = useCart((state) => state.items);
+  const increaseQuantity = useCart((state) => state.increaseQuantity);
+  const reduceQuantity = useCart((state) => state.reduceQuantity);
 
+  console.log(products);
   useEffect(() => {
     setTotal(price * quantityEl);
   }, [quantityEl, price]);
 
-  const incrementQuantity = () => {
+  const incrementQuantity = (name: string) => {
     setQuantity(quantityEl + 1);
+    increaseQuantity(name);
   };
-  const decrementQuantity = () => {
+  const decrementQuantity = (name: string) => {
     if (quantityEl > 0) {
       setQuantity(quantityEl - 1);
+      reduceQuantity(name);
     }
   };
 
@@ -40,9 +47,15 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
           <Edit className="cursor-pointer" />
         </li>
         <li className="flex gap-gapS mr-[120px] items-center">
-          <Minus className="cursor-pointer" onClick={decrementQuantity} />
+          <Minus
+            className="cursor-pointer"
+            onClick={() => decrementQuantity(name)}
+          />
           <p>{quantityEl}</p>
-          <Plus className="cursor-pointer" onClick={incrementQuantity} />
+          <Plus
+            className="cursor-pointer"
+            onClick={() => incrementQuantity(name)}
+          />
         </li>
         <li className="items-center w-10">£{totalEl}</li>
       </ul>

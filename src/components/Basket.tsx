@@ -11,12 +11,16 @@ const Basket = () => {
       <div className="xxl:w-contW flex justify-between gap-bookPB">
         <div className="xxl:w-contW ">
           <TitleBar />
-          <PurchaseEl
-            name=" The lullaby audio recording"
-            price={5}
-            quantity={1}
-            total={5}
-          />
+          {products.length > 0 &&
+            products.map((product) => (
+              <PurchaseEl
+                key={product.name}
+                name={product.name}
+                price={product.price}
+                quantity={product.quantity}
+                total={product.price * product.quantity}
+              />
+            ))}
         </div>
         <Summary />
       </div>
