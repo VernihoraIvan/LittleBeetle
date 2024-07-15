@@ -4,7 +4,6 @@ import Plus from "@/assets/icons/plus.svg?react";
 import Edit from "@/assets/icons/edit.svg?react";
 import { PurchaseElProps } from "@/utilities/interfaces";
 import { useEffect, useState } from "react";
-import { useCart } from "@/zustand/store";
 
 const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
   const [quantityEl, setQuantity] = useState<number>(quantity);
@@ -23,7 +22,6 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
     }
   };
 
-  console.log(useCart);
   return (
     <div className="mt-10 mb-prodMar flex justify-between w-full pr-6">
       <div className="flex items-center">

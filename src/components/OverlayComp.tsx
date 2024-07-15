@@ -11,6 +11,7 @@ const OverlayComp = ({
   setOverlay,
 }: OverlayProps) => {
   // const [inputPrice, setInputPrice] = useState<number>(0);
+
   const elementRef = useRef<HTMLDivElement>(null);
 
   const handleKeydown = useCallback(

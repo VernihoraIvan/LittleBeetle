@@ -3,14 +3,18 @@ import Chevron from "@/assets/icons/chevron.svg?react";
 import OverlayComp from "@/components/OverlayComp";
 import productImg from "@/assets/images/product.png";
 import { ProductElProps } from "@/utilities/interfaces";
+import { useCart } from "@/zustand/store";
 
 const ProductEl = ({ title, description }: ProductElProps) => {
+  const products = useCart((state) => state.items);
+  const addProduct = useCart((state) => state.addToCart);
+
   const [isOverlay, setIsOverlay] = useState<boolean>(false);
   const [price, setPrice] = useState<number>(0);
   const handleOverlay = () => {
     setIsOverlay(!isOverlay);
   };
-
+  console.log(products);
   console.log(price);
   return (
     <li className="w-prodW">
@@ -36,7 +40,10 @@ const ProductEl = ({ title, description }: ProductElProps) => {
           isOverlay={isOverlay}
           price={price}
         />
-        <button className="font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
+        <button
+          onClick={() => addProduct(title, 1, price)}
+          className="font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
+        >
           Add to Cart
         </button>
       </div>
