@@ -1,5 +1,9 @@
 export interface OverlayProps {
   isOverlay: boolean;
+  setPrice: (price: number) => void;
+  handleOverlay: () => void;
+  price: number;
+  setOverlay: (isOverlay: boolean) => void;
 }
 
 export interface ProductElProps {
