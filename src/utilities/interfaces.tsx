@@ -32,3 +32,8 @@ export interface CreatorsElProps {
   location: string;
   description: string;
 }
+
+export interface SummaryProps {
+  subTotal: number;
+  shippingFee: number;
+}

@@ -6,6 +6,12 @@ import TitleBar from "./TitleBar";
 const Basket = () => {
   const products = useCart((state) => state.items);
   console.log(products);
+
+  const subTotal = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
+
   return (
     <section className="flex justify-center bg-primBeige  py-titleM">
       <div className="xxl:w-contW flex justify-between gap-bookPB">
@@ -22,7 +28,7 @@ const Basket = () => {
               />
             ))}
         </div>
-        <Summary />
+        <Summary subTotal={subTotal} shippingFee={5} />
       </div>
     </section>
   );

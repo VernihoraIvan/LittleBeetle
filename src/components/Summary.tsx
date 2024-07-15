@@ -1,4 +1,6 @@
-const Summary = () => {
+import { SummaryProps } from "@/utilities/interfaces";
+
+const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
   return (
     <div className="flex flex-col gap-prodMar">
       <div className="w-sumW border   border-primPurple">
@@ -9,15 +11,15 @@ const Summary = () => {
           <ul className="px-prodMar py-6">
             <li className="flex justify-between pb-5 text-linkS text-inputPink font-secondaryRegular">
               <p>Subtotal</p>
-              <p>£15</p>
+              <p>£{subTotal}</p>
             </li>
             <li className="flex justify-between pb-navPad text-linkS text-inputPink font-secondaryRegular">
               <p>Shipping fee</p>
-              <p>£5</p>
+              <p>£{shippingFee}</p>
             </li>
             <li className="flex justify-between border-t border-primPurple pt-4 text-2xl text-primPurple font-secondaryBold">
               <p>Total</p>
-              <p>£20</p>
+              <p>£{subTotal + shippingFee}</p>
             </li>
           </ul>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import book1 from "../assets/images/book1.png";
 import book2 from "../assets/images/book2.png";
 import book3 from "../assets/images/book3.png";
@@ -27,11 +28,14 @@ const BooksSection = () => {
           </li>
         </ul>
         <div className="flex justify-center mt-20">
-          <button className="border border-primPurple py-5 px-buttonP ">
+          <Link
+            to={"/creators"}
+            className="border border-primPurple py-5 px-buttonP "
+          >
             <p className="text-primPurple text-buttonS font-primarySBold">
               Creators
             </p>
-          </button>
+          </Link>
         </div>
       </div>
     </section>
