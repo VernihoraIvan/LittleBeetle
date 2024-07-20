@@ -5,7 +5,6 @@ import TitleBar from "./TitleBar";
 
 const Basket = () => {
   const products = useCart((state) => state.items);
-  console.log(products);
 
   const subTotal = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
