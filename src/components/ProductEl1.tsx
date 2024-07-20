@@ -4,7 +4,7 @@ import { ProductElProps } from "@/utilities/interfaces";
 // import { useCart } from "@/zustand/store";
 import { Link } from "react-router-dom";
 
-const ProductEl = ({ title }: ProductElProps) => {
+const ProductEl = ({ title, to }: ProductElProps) => {
   // const addProduct = useCart((state) => state.addToCart);
 
   // const [isOverlay, setIsOverlay] = useState<boolean>(false);
@@ -28,14 +28,8 @@ const ProductEl = ({ title }: ProductElProps) => {
         {title}
       </h3>
       <div className="flex justify-between mt-9">
-        {/* <a
-          className="font-secondarySBold border-primPurple text-primPurple text-addCartS  py-3 px-14"
-          href=""
-        >
-          Learn more
-        </a> */}
         <Link
-          to={"/creators"}
+          to={`${to}`}
           className="w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center"
         >
           Learn more

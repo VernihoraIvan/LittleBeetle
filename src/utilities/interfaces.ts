@@ -6,9 +6,30 @@ export interface OverlayProps {
   setOverlay: (isOverlay: boolean) => void;
 }
 
+export interface PopUpProps {
+  handleOverlay: () => void;
+  price: number;
+  setIsOverlay: () => void;
+  setPrice: () => void;
+  isOverlay: boolean;
+}
+
 export interface ProductElProps {
   title: string;
   description: string;
+  to: string;
+}
+
+// export interface SubDonationProps {
+//   title: string;
+//   description: string;
+//   to: string;
+// }
+
+export interface SubDonationProps {
+  title: string;
+  description: string;
+  imagePath: string;
 }
 
 export interface TitleProps {

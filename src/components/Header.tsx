@@ -6,7 +6,7 @@ import ActiveCartLogo from "@/assets/icons/shopping-cart-active.svg?react";
 
 const Header = () => {
   return (
-    <header className="font-primaryBold z-10 flex flex-center justify-center absolute w-full pt-navPad ">
+    <header className="font-primaryBold z-10 flex flex-center justify-center absolute w-full py-navPad ">
       <nav className="w-contW flex flex-row  text-primWhite text-xl">
         <ul className="mr-navMar flex flex-row w-full justify-between">
           <li>

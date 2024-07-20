@@ -1,3 +1,34 @@
+export const productDescriptions = [
+  {
+    title: "The book",
+    element: "book",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: "/src/assets/images/product.png",
+  },
+  {
+    title: "The digital book",
+    element: "digital-book",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: "/src/assets/images/product.png",
+  },
+  {
+    title: "The lullaby audio recording",
+    element: "lullaby",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: "/src/assets/images/product.png",
+  },
+  {
+    title: "Postcards",
+    element: "postcards",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: "/src/assets/images/product.png",
+  },
+];
+
 export const creatorsData = [
   {
     name: "Afrika Fuentes",
