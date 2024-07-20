@@ -22,7 +22,7 @@ const PopUp = ({
       </div>
       <OverlayComp
         handleOverlay={handleOverlay}
-        setOverlay={setIsOverlay}
+        setOverlay={() => setIsOverlay}
         setPrice={setPrice}
         isOverlay={isOverlay}
         price={price}

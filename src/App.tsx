@@ -9,7 +9,6 @@ import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
 import SubDonationPage from "./pages/SubDonationPage";
-// import SubDonationSection from "./components/SubDonationEl";
 
 function App() {
   return (
@@ -19,12 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/donation" element={<Donation />} />
 
-        <Route path="/donation/:product" element={<SubDonationPage />}>
-          {/* <Route path="book" element={<SubDonationSection />} />
-          <Route path="digital-book" element={<SubDonationSection />} />
-          <Route path="lullaby" element={<SubDonationSection />} />
-          <Route path="postcards" element={<SubDonationSection />} /> */}
-        </Route>
+        <Route path="/donation/:product" element={<SubDonationPage />} />
         <Route path="/creators" element={<Creators />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />

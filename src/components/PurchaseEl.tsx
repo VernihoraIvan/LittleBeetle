@@ -28,6 +28,9 @@ const PurchaseEl = ({ name, price, quantity, total }: PurchaseElProps) => {
       setQuantity(quantityEl - 1);
       reduceQuantity(name);
     }
+    if (quantityEl === 1) {
+      removeProduct(name, price);
+    }
   };
 
   return (

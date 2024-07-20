@@ -9,9 +9,11 @@ export interface OverlayProps {
 export interface PopUpProps {
   handleOverlay: () => void;
   price: number;
-  setIsOverlay: () => void;
-  setPrice: () => void;
+  // setIsOverlay: () => void;
+  // setPrice: () => void;
   isOverlay: boolean;
+  setPrice: React.Dispatch<React.SetStateAction<number>>;
+  setIsOverlay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ProductElProps {
@@ -19,12 +21,6 @@ export interface ProductElProps {
   description: string;
   to: string;
 }
-
-// export interface SubDonationProps {
-//   title: string;
-//   description: string;
-//   to: string;
-// }
 
 export interface SubDonationProps {
   title: string;

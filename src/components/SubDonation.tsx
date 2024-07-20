@@ -1,11 +1,7 @@
 import { useState } from "react";
-// import Chevron from "@/assets/icons/chevron.svg?react";
-// import OverlayComp from "@/components/OverlayComp";
-// import productImg from "@/assets/images/product.png";
 import { SubDonationProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/store";
 import PopUp from "./PopUp";
-// import { useParams } from "react-router-dom";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -21,12 +17,13 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     if (price > 2) {
       addProduct(title, 1, price);
       setPrice(0);
+      setIsOverlay(false);
     }
   };
 
   return (
     <>
-      <section className="h-headerPad bg-primPurple"></section>
+      <section className="h-headerPad bg-primPurple" />
       <section className="flex justify-center pt-bookPT bg-primBeige w-screen  h-secH ">
         <div className=" xxl:w-contW flex gap-8">
           <img
@@ -43,26 +40,10 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
               <PopUp
                 handleOverlay={handleOverlay}
                 price={price}
-                setIsOverlay={() => setIsOverlay}
-                setPrice={() => setPrice}
-                isOverlay={isOverlay}
-              />
-              {/* <div
-                onClick={handleOverlay}
-                className="cursor-pointer flex justify-between w-priceL border border-primPurpleFaintM py-3 px-4 bg-primWhite"
-              >
-                <p className="text-addCartS font-secondaryRegular text-inputPink">
-                  {price ? `£${price}` : "Choose a price"}
-                </p>
-                <Chevron />
-              </div>
-              <OverlayComp
-                handleOverlay={handleOverlay}
-                setOverlay={setIsOverlay}
+                setIsOverlay={setIsOverlay}
                 setPrice={setPrice}
                 isOverlay={isOverlay}
-                price={price}
-              /> */}
+              />
               <button
                 onClick={() => handleAddProduct(title, price)}
                 className="font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
