@@ -8,8 +8,9 @@ const OverlayComp = ({
   handleOverlay,
   price,
   setOverlay,
+  // isOverlayLang,
 }: OverlayProps) => {
-  const elementRef = useRef<HTMLDivElement>(null);
+  const elementRefPrice = useRef<HTMLDivElement>(null);
 
   const handleKeydown = useCallback(
     (e: KeyboardEvent) => {
@@ -22,8 +23,8 @@ const OverlayComp = ({
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
-      elementRef.current &&
-      !elementRef.current.contains(event.target as Node)
+      elementRefPrice.current &&
+      !elementRefPrice.current.contains(event.target as Node)
     ) {
       setOverlay(false);
     }
@@ -47,16 +48,16 @@ const OverlayComp = ({
   }, [handleKeydown, isOverlay]);
 
   return (
-    <>
-      <div className="absolute mt-16 overflow-hidden ">
+    <div className="">
+      <div className=" absolute /*pointer-events-none*/  overflow-hidden w-full ">
         <div
-          ref={elementRef}
+          ref={elementRefPrice}
           className={clsx(
-            "bg-primWhite font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-priceL transition-transform duration-300",
+            "  bg-primWhite font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-prodW  transition-transform duration-300",
             isOverlay ? "translate-y-0" : "-translate-y-full"
           )}
         >
-          <div className="overlay-container cursor-pointer">
+          <div className=" overlay-container cursor-pointer  w-full">
             <ul className="px-4 overlay  " onClick={() => handleOverlay()}>
               <li
                 value={3}
@@ -96,7 +97,7 @@ const OverlayComp = ({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ const SubDonationPage = () => {
   const productToDisplay = productDescriptions.find(
     (el) => el.element === product
   );
+
   return (
     <>
       {productToDisplay && (

@@ -1,23 +1,32 @@
 import { useState } from "react";
 import { SubDonationProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/store";
-import PopUp from "./PopUp";
+import PopUpPrice from "./PopUpPrice";
+import PopUpLang from "./PopUpLang";
+import clsx from "clsx";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
 
-  const [isOverlay, setIsOverlay] = useState<boolean>(false);
-  const [price, setPrice] = useState<number>(0);
+  const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
+  const [isOverlayLang, setIsOverlayLang] = useState<boolean>(false);
 
-  const handleOverlay = () => {
-    setIsOverlay(!isOverlay);
+  const [price, setPrice] = useState<number>(0);
+  const [lang, setLang] = useState<string>("en");
+
+  const handleOverlayPrice = () => {
+    setIsOverlayPrice(!isOverlayPrice);
+  };
+
+  const handleOverlayLang = () => {
+    setIsOverlayLang(!isOverlayLang);
   };
 
   const handleAddProduct = (title: string, price: number) => {
     if (price > 2) {
-      addProduct(title, 1, price);
+      addProduct(title, 1, price, lang);
       setPrice(0);
-      setIsOverlay(false);
+      setIsOverlayPrice(false);
     }
   };
 
@@ -36,20 +45,39 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
               {title}
             </h3>
             <p className="text-2xl font-secondaryRegular">{description}</p>
-            <div className="flex justify-between mt-9">
-              <PopUp
-                handleOverlay={handleOverlay}
-                price={price}
-                setIsOverlay={setIsOverlay}
-                setPrice={setPrice}
-                isOverlay={isOverlay}
+            <div className="flex flex-col justify-between mt-9 ">
+              <PopUpLang
+                handleOverlayLang={handleOverlayLang}
+                lang={lang}
+                setIsOverlayLang={setIsOverlayLang}
+                setLang={setLang}
+                isOverlayLang={isOverlayLang}
               />
-              <button
-                onClick={() => handleAddProduct(title, price)}
-                className="font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
+              <PopUpPrice
+                handleOverlay={handleOverlayPrice}
+                price={price}
+                setIsOverlay={setIsOverlayPrice}
+                setPrice={setPrice}
+                isOverlay={isOverlayPrice}
+                isOverlayLang={isOverlayLang}
+              />
+              {/* <div className="flex gap-5 mt-8"> */}
+              <div
+                className={clsx(
+                  "flex gap-5 mt-8",
+                  isOverlayPrice ? "" : "relative"
+                )}
               >
-                Add to Cart
-              </button>
+                <button
+                  onClick={() => handleAddProduct(title, price)}
+                  className="w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14"
+                >
+                  Add to Cart
+                </button>
+                <button className="w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
+                  Checkout
+                </button>
+              </div>
             </div>
           </div>
         </div>

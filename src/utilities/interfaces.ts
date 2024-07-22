@@ -4,9 +4,17 @@ export interface OverlayProps {
   handleOverlay: () => void;
   price: number;
   setOverlay: (isOverlay: boolean) => void;
+  isOverlayLang: boolean;
+}
+export interface OverlayLangProps {
+  isOverlayLang: boolean;
+  setLang: (price: string) => void;
+  handleOverlayLang: () => void;
+  lang: string;
+  setIsOverlayLang: (isOverlay: boolean) => void;
 }
 
-export interface PopUpProps {
+export interface PopUpPriceProps {
   handleOverlay: () => void;
   price: number;
   // setIsOverlay: () => void;
@@ -14,6 +22,16 @@ export interface PopUpProps {
   isOverlay: boolean;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setIsOverlay: React.Dispatch<React.SetStateAction<boolean>>;
+  isOverlayLang: boolean;
+}
+export interface PopUpLangProps {
+  handleOverlayLang: () => void;
+  lang: string;
+  // setIsOverlay: () => void;
+  // setPrice: () => void;
+  isOverlayLang: boolean;
+  setLang: React.Dispatch<React.SetStateAction<string>>;
+  setIsOverlayLang: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ProductElProps {
