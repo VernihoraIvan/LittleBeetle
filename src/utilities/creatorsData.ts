@@ -1,31 +1,32 @@
+import product from "@/assets/images/product.png";
 export const productDescriptions = [
   {
     title: "The book",
     element: "book",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: "/assets/images/product.png",
+    imagePath: product,
   },
   {
     title: "The digital book",
     element: "digital-book",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: "/assets/images/product.png",
+    imagePath: product,
   },
   {
     title: "The lullaby audio recording",
     element: "lullaby",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: "/assets/images/product.png",
+    imagePath: product,
   },
   {
     title: "Postcards",
     element: "postcards",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: "/assets/images/product.png",
+    imagePath: product,
   },
 ];
 
