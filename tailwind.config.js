@@ -99,6 +99,11 @@ export default {
         dropHover: "#F0F0F0",
         whiteHover: "rgba(190, 158, 217, 0.30)",
         purpleHover: "#711EB8",
+        pinkBar: "#D9D9D9",
+        barGrey: "#8C8C8C",
+      },
+      borderWidth: {
+        3: "3px",
       },
       animation: {},
       mixBlendMode: {

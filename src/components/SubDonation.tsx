@@ -5,6 +5,7 @@ import PopUpPrice from "./PopUpPrice";
 import PopUpLang from "./PopUpLang";
 import clsx from "clsx";
 import QuantityAdjuster from "./QuantityAdjusterWState";
+import { Link } from "react-router-dom";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -87,9 +88,15 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 >
                   Add to Cart
                 </button>
-                <button className="hover:bg-purpleHover transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
+                <Link
+                  className="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
+                  to="/checkout"
+                >
                   Checkout
-                </button>
+                </Link>
+                {/* <button className="hover:bg-purpleHover transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
+                  Checkout
+                </button> */}
               </div>
             </div>
           </div>
