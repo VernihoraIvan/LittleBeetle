@@ -1,32 +1,59 @@
 import product from "@/assets/images/product.png";
-export const productDescriptions = [
+import digitalBook from "@/assets/images/digital-book.png";
+import lullaby from "@/assets/images/lullaby.png";
+import poster from "@/assets/images/poster.png";
+import postcard from "@/assets/images/postcard.png";
+export const mainProducts = [
   {
     title: "The book",
     element: "book",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
     imagePath: product,
+    to: "/donation/book",
   },
   {
     title: "The digital book",
     element: "digital-book",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: product,
+    imagePath: digitalBook,
+    to: "/donation/digital-book",
   },
   {
     title: "The lullaby audio recording",
     element: "lullaby",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: lullaby,
+    to: "/donation/lullaby",
+  },
+];
+
+export const auxProducts = [
+  {
+    title: "Digital supporter's certificate",
+    element: "certificate",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
     imagePath: product,
+    to: "/donation/certificate",
+  },
+  {
+    title: "Poster",
+    element: "poster",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: poster,
+    to: "/donation/poster",
   },
   {
     title: "Postcards",
     element: "postcards",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: product,
+    imagePath: postcard,
+    to: "/donation/postcards",
   },
 ];
 

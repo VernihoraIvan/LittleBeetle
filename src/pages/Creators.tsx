@@ -1,7 +1,7 @@
 import CreatorsEl from "@/components/CreatorsEl";
 import Footer from "@/components/Footer";
 import TitleNDescription from "@/components/TitleNDescription";
-import { creatorsData } from "@/utilities/creatorsData";
+import { creatorsData } from "@/utilities/data";
 
 const Creators = () => {
   return (

@@ -39,6 +39,7 @@ export interface ProductElProps {
   title: string;
   description: string;
   to: string;
+  imgPath: string;
 }
 
 export interface SubDonationProps {
