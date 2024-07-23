@@ -16,7 +16,7 @@ const PopUpPrice = ({
       <div
         onClick={handleOverlay}
         className={clsx(
-          "cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite",
+          "hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite",
           isOverlayLang ? "" : "relative"
         )}
         // className=" cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite"

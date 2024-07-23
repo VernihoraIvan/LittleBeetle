@@ -30,7 +30,7 @@ const BooksSection = () => {
         <div className="flex justify-center mt-20">
           <Link
             to={"/creators"}
-            className="border border-primPurple py-5 px-buttonP "
+            className="hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP "
           >
             <p className="text-primPurple text-buttonS font-primarySBold">
               Creators

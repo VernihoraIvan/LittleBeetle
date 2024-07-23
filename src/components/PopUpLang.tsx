@@ -10,17 +10,14 @@ const PopUpLang = ({
   setLang,
   isOverlayLang,
 }: PopUpLangProps) => {
-  console.log(lang);
-  console.log(isOverlayLang);
-
   return (
     <>
       <div
         onClick={handleOverlayLang}
-        className="cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4 mb-5 bg-primWhite "
+        className="hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4 mb-5 bg-primWhite "
       >
         <p className="text-addCartS font-secondaryRegular text-inputPink">
-          {lang ? `${lang}` : "Choose a price"}
+          {lang ? `${lang}` : "Language"}
         </p>
         <Chevron />
       </div>

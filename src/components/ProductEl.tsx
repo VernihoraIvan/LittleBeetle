@@ -30,7 +30,7 @@ const ProductEl = ({ title, to }: ProductElProps) => {
       <div className="flex justify-between mt-9">
         <Link
           to={`${to}`}
-          className="w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center"
+          className="hover:bg-whiteHover transition duration-300 w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center"
         >
           Learn more
         </Link>

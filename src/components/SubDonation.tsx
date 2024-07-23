@@ -83,11 +83,11 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
               >
                 <button
                   onClick={() => handleAddProduct(title, price)}
-                  className="w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14"
+                  className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14"
                 >
                   Add to Cart
                 </button>
-                <button className="w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
+                <button className="hover:bg-purpleHover transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
                   Checkout
                 </button>
               </div>

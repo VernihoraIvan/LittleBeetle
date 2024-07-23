@@ -96,6 +96,9 @@ export default {
         bgPurple: "#300B50",
         secBlack: "#000000",
         inputPink: "#666",
+        dropHover: "#F0F0F0",
+        whiteHover: "rgba(190, 158, 217, 0.30)",
+        purpleHover: "#711EB8",
       },
       animation: {},
       mixBlendMode: {

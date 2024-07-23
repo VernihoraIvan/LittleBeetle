@@ -10,8 +10,6 @@ const SubDonationPage = () => {
     (el) => el.element === product
   );
 
-  console.log(productToDisplay);
-
   return (
     <>
       {productToDisplay && (

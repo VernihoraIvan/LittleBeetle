@@ -68,10 +68,10 @@ const OverlayCompLang = ({
           )}
         >
           <div className="overlay-container cursor-pointer  w-full">
-            <ul className="px-4 overlay  " onClick={() => handleOverlayLang()}>
+            <ul className=" overlay  " onClick={() => handleOverlayLang()}>
               <li
                 value={1}
-                className="py-2 "
+                className="py-2 hover:bg-dropHover transition duration-300 px-4"
                 // onClick={(event) =>
                 //   setLang(event.currentTarget.value.toString())
                 // }
@@ -81,7 +81,7 @@ const OverlayCompLang = ({
               </li>
               <li
                 value={2}
-                className="py-2 "
+                className="py-2 hover:bg-dropHover transition duration-300 px-4"
                 onClick={(event) => setTempLang(event.currentTarget.value)}
               >
                 Ukrainian

@@ -58,30 +58,30 @@ OverlayProps) => {
           )}
         >
           <div className=" overlay-container cursor-pointer  w-full">
-            <ul className="px-4 overlay  " onClick={() => handleOverlay()}>
+            <ul className=" overlay  " onClick={() => handleOverlay()}>
               <li
                 value={3}
-                className="py-2 "
+                className="py-2 px-4 hover:bg-dropHover transition duration-300"
                 onClick={(event) => setPrice(event.currentTarget.value)}
               >
                 £3
               </li>
               <li
                 value={5}
-                className="py-2 "
+                className="py-2 px-4 hover:bg-dropHover transition duration-300"
                 onClick={(event) => setPrice(event.currentTarget.value)}
               >
                 £5
               </li>
               <li
                 value={10}
-                className="py-2 "
+                className="py-2 px-4 hover:bg-dropHover transition duration-300"
                 onClick={(event) => setPrice(event.currentTarget.value)}
               >
                 £10
               </li>
             </ul>
-            <div className="flex justify-between py-2 px-4">
+            <div className="flex justify-between py-2 px-4 hover:bg-dropHover transition duration-300">
               <label>
                 Enter your own amount
                 <input
