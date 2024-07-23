@@ -1,4 +1,3 @@
-// import productImg from "@/assets/images/product.png";
 import { ProductElProps } from "@/utilities/interfaces";
 import { Link } from "react-router-dom";
 

@@ -1,5 +1,4 @@
 import Chevron from "@/assets/icons/chevron.svg?react";
-// import OverlayComp from "./OverlayComp";
 import { PopUpLangProps } from "@/utilities/interfaces";
 import OverlayCompLang from "./OverlayCompLang";
 

@@ -19,7 +19,6 @@ const PopUpPrice = ({
           "hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite",
           isOverlayLang ? "" : "relative"
         )}
-        // className=" cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite"
       >
         <p className="text-addCartS font-secondaryRegular text-inputPink">
           {price ? `£${price}` : "Choose a price"}
@@ -33,7 +32,6 @@ const PopUpPrice = ({
           setPrice={setPrice}
           isOverlay={isOverlay}
           price={price}
-          // isOverlayLang={isOverlayLang}
         />
       </div>
     </>

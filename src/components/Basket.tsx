@@ -2,6 +2,7 @@ import { useCart } from "@/zustand/store";
 import PurchaseEl from "./PurchaseEl";
 import Summary from "./Summary";
 import TitleBar from "./TitleBar";
+import { mainProducts, auxProducts } from "@/utilities/data";
 
 const Basket = () => {
   const products = useCart((state) => state.items);
@@ -10,6 +11,8 @@ const Basket = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+
+  const productToDisplay = mainProducts.concat(auxProducts);
 
   return (
     <section className="flex justify-center bg-primBeige  py-titleM">
@@ -24,6 +27,10 @@ const Basket = () => {
                 price={product.price}
                 quantity={product.quantity}
                 total={product.price * product.quantity}
+                imgPath={
+                  productToDisplay.find((p) => p.title === product.name)
+                    ?.imagePath
+                }
               />
             ))}
         </div>

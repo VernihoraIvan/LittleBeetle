@@ -16,7 +16,6 @@ const QuantityAdjuster = ({
     useCart(
       (state) => state.items.find((item) => item.name === name)?.quantity
     ) || 0;
-  console.log(quantity);
 
   const incrementQuantity = (name: string) => {
     increaseQuantity(name);
@@ -31,7 +30,6 @@ const QuantityAdjuster = ({
     }
   };
   return (
-    // <div className="flex gap-gapS mr-[120px] items-center">
     <div
       className={clsx(
         "flex gap-gapS mr-[120px] items-center",

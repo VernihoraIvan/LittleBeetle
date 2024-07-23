@@ -6,7 +6,6 @@ const OverlayCompLang = ({
   isOverlayLang,
   setLang,
   handleOverlayLang,
-  // lang,
   setIsOverlayLang,
 }: OverlayLangProps) => {
   const elementRef = useRef<HTMLDivElement>(null);
@@ -59,7 +58,6 @@ const OverlayCompLang = ({
     <>
       <div ref={elementRef} className="absolute  mt-16 overflow-hidden w-full">
         <div
-          //   ref={elementRef}
           className={clsx(
             "  bg-primWhite font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-prodW  transition-transform duration-0",
             isOverlayLang
@@ -72,9 +70,6 @@ const OverlayCompLang = ({
               <li
                 value={1}
                 className="py-2 hover:bg-dropHover transition duration-300 px-4"
-                // onClick={(event) =>
-                //   setLang(event.currentTarget.value.toString())
-                // }
                 onClick={(e) => setTempLang(e.currentTarget.value)}
               >
                 English
@@ -86,27 +81,7 @@ const OverlayCompLang = ({
               >
                 Ukrainian
               </li>
-              {/* <li
-                value={10}
-                className="py-2 "
-                onClick={(event) => setLang(event.currentTarget.value)}
-              >
-                £10
-              </li> */}
             </ul>
-            {/* <div className="flex justify-between py-2 px-4">
-              <label>
-                Enter your own amount
-                <input
-                  className="w-40 h-10 border border-primPurpleFaintM px-3 ml-4"
-                  type="text"
-                  name="priceInput"
-                  placeholder="£"
-                  value={lang ? lang : ""}
-                  onChange={(event) => setPrice(Number(event.target.value))}
-                ></input>
-              </label>
-            </div> */}
           </div>
         </div>
       </div>

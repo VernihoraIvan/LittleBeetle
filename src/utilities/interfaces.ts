@@ -71,6 +71,7 @@ export interface PurchaseElProps {
   price: number;
   quantity: number;
   total: number;
+  imgPath?: string;
 }
 
 export interface titleProps {

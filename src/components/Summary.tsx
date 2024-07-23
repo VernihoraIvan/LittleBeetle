@@ -24,8 +24,8 @@ const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
           </ul>
         </div>
       </div>
-      <button className="hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl">
-        CHECKOUT
+      <button className="uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl">
+        checkout
       </button>
     </div>
   );

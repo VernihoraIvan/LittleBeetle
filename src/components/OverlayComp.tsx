@@ -8,8 +8,7 @@ const OverlayComp = ({
   handleOverlay,
   price,
   setOverlay,
-}: // isOverlayLang,
-OverlayProps) => {
+}: OverlayProps) => {
   const elementRefPrice = useRef<HTMLDivElement>(null);
 
   const handleKeydown = useCallback(
