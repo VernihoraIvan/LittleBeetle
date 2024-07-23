@@ -58,6 +58,13 @@ export interface QuantityAdjusterProps {
   // quantityEl: number;
   // setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
+export interface QuantityAdjusterWStateProps {
+  name: string;
+  price: number;
+  isOverlay?: boolean;
+  quantity: number;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+}
 export interface PurchaseElProps {
   name: string;
   price: number;
