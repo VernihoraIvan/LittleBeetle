@@ -4,6 +4,7 @@ import { useCart } from "@/zustand/store";
 import PopUpPrice from "./PopUpPrice";
 import PopUpLang from "./PopUpLang";
 import clsx from "clsx";
+import QuantityAdjuster from "./QuantityAdjuster";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -61,7 +62,16 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 isOverlay={isOverlayPrice}
                 isOverlayLang={isOverlayLang}
               />
-              {/* <div className="flex gap-5 mt-8"> */}
+              <div className="flex gap-6 mt-6">
+                <p className="font-secondaryRegular text-addCartS text-inputPink">
+                  Quantity
+                </p>
+                <QuantityAdjuster
+                  isOverlay={isOverlayPrice}
+                  name={title}
+                  price={price}
+                />
+              </div>
               <div
                 className={clsx(
                   "flex gap-5 mt-8",

@@ -33,7 +33,7 @@ const PopUpPrice = ({
           setPrice={setPrice}
           isOverlay={isOverlay}
           price={price}
-          isOverlayLang={isOverlayLang}
+          // isOverlayLang={isOverlayLang}
         />
       </div>
     </>

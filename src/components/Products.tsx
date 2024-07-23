@@ -1,4 +1,4 @@
-import ProductEl from "@/components/ProductEl1";
+import ProductEl from "@/components/ProductEl";
 
 const Products = () => {
   return (

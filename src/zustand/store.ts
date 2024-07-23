@@ -18,6 +18,7 @@ export interface CartState {
   increaseQuantity: (name: string) => void;
   reduceQuantity: (name: string) => void;
   chooseItemLanguage: (itemLanguage: string) => void;
+  getQuantity: (name: string) => number;
 }
 
 export interface LanguageState {
@@ -32,7 +33,7 @@ export const useLanguage = create<LanguageState>((set) => ({
   },
 }));
 
-export const useCart = create<CartState>((set) => ({
+export const useCart = create<CartState>((set, get) => ({
   items: [],
   addToCart: (
     name: string,
@@ -79,5 +80,10 @@ export const useCart = create<CartState>((set) => ({
         itemLanguage,
       })),
     }));
+  },
+  getQuantity: (name: string) => {
+    const state = get();
+    const item = state.items.find((item) => item.name === name);
+    return item ? item.quantity : 0;
   },
 }));

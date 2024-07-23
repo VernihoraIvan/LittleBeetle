@@ -4,8 +4,9 @@ export interface OverlayProps {
   handleOverlay: () => void;
   price: number;
   setOverlay: (isOverlay: boolean) => void;
-  isOverlayLang: boolean;
+  // isOverlayLang: boolean;
 }
+
 export interface OverlayLangProps {
   isOverlayLang: boolean;
   setLang: (price: string) => void;
@@ -50,6 +51,13 @@ export interface TitleProps {
   title: string;
 }
 
+export interface QuantityAdjusterProps {
+  name: string;
+  price: number;
+  isOverlay?: boolean;
+  // quantityEl: number;
+  // setQuantity: React.Dispatch<React.SetStateAction<number>>;
+}
 export interface PurchaseElProps {
   name: string;
   price: number;
