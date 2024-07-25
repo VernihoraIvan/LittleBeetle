@@ -25,11 +25,13 @@ const PurchaseEl = ({ name, price, total, imgPath }: PurchaseElProps) => {
         onClick={() => removeProduct(name, price)}
       />
       <div className="flex items-center">
-        <img
-          className="h-purchImgH mr-12"
-          src={imgPath}
-          alt="image of a book"
-        />
+        {imgPath && (
+          <img
+            className="h-purchImgH mr-12"
+            src={imgPath[0]}
+            alt="image of a book"
+          />
+        )}
         <h3 className="w-[180px] text-secBlack text-linkS font-secondarySBold">
           {name}
         </h3>

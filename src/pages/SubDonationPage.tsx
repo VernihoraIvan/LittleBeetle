@@ -1,13 +1,13 @@
 import Footer from "@/components/Footer";
 import SubDonation from "@/components/SubDonation";
-import { mainProducts, auxProducts } from "@/utilities/data";
+import { includedProducts, extraProducts } from "@/utilities/data";
 import { useParams } from "react-router-dom";
 
 const SubDonationPage = () => {
   const { product } = useParams();
 
-  const productToDisplay = mainProducts
-    .concat(auxProducts)
+  const productToDisplay = includedProducts
+    .concat(extraProducts)
     .find((el) => el.element === product);
 
   return (

@@ -1,5 +1,5 @@
 import ProductEl from "@/components/ProductEl";
-import { auxProducts } from "@/utilities/data";
+import { extraProducts } from "@/utilities/data";
 
 const ProductsIncluded = () => {
   return (
@@ -11,8 +11,8 @@ const ProductsIncluded = () => {
         <div className="flex flex-col justify-between items-center">
           <div>
             <ul className="grid grid-cols-2 grid-rows-2 gap-x-20 gap-y-28">
-              {auxProducts &&
-                auxProducts.map((product) => (
+              {extraProducts &&
+                extraProducts.map((product) => (
                   <ProductEl
                     key={product.title}
                     to={product.to}

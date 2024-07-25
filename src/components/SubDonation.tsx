@@ -6,6 +6,7 @@ import PopUpLang from "./PopUpLang";
 import clsx from "clsx";
 import QuantityAdjuster from "./QuantityAdjusterWState";
 import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -38,11 +39,12 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
       <section className="h-headerPad bg-primPurple" />
       <section className="flex justify-center pt-bookPT bg-primBeige w-screen  h-secH ">
         <div className=" xxl:w-contW flex gap-8">
-          <img
+          {/* <img
             src={imagePath}
             alt="image of a book"
             className="w-prodW h-imgH"
-          />
+          /> */}
+          <Carousel images={imagePath} />
           <div className="w-prodW">
             <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
               {title}

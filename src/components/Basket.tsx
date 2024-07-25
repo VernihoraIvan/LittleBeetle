@@ -2,7 +2,7 @@ import { useCart } from "@/zustand/store";
 import PurchaseEl from "./PurchaseEl";
 import Summary from "./Summary";
 import TitleBar from "./TitleBar";
-import { mainProducts, auxProducts } from "@/utilities/data";
+import { includedProducts, extraProducts } from "@/utilities/data";
 
 const Basket = () => {
   const products = useCart((state) => state.items);
@@ -12,7 +12,7 @@ const Basket = () => {
     0
   );
 
-  const productToDisplay = mainProducts.concat(auxProducts);
+  const productToDisplay = includedProducts.concat(extraProducts);
 
   return (
     <section className="flex justify-center bg-primBeige  py-titleM">

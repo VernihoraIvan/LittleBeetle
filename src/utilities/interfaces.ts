@@ -39,13 +39,13 @@ export interface ProductElProps {
   title: string;
   description: string;
   to: string;
-  imgPath: string;
+  imgPath: string[];
 }
 
 export interface SubDonationProps {
   title: string;
   description: string;
-  imagePath: string;
+  imagePath: string[];
 }
 
 export interface TitleProps {
@@ -71,7 +71,7 @@ export interface PurchaseElProps {
   price: number;
   quantity: number;
   total: number;
-  imgPath?: string;
+  imgPath?: string[];
 }
 
 export interface titleProps {
@@ -88,4 +88,8 @@ export interface CreatorsElProps {
 export interface SummaryProps {
   subTotal: number;
   shippingFee: number;
+}
+
+export interface CarouselProps {
+  images: string[];
 }

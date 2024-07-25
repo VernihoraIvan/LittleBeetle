@@ -2,22 +2,22 @@ import product from "@/assets/images/product.png";
 import digitalBook from "@/assets/images/digital-book.png";
 import lullaby from "@/assets/images/lullaby.png";
 import poster from "@/assets/images/poster.png";
+import poster1 from "@/assets/images/poster1-min.png";
 import postcard from "@/assets/images/postcard.png";
-export const mainProducts = [
-  {
-    title: "The book",
-    element: "book",
-    description:
-      "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: product,
-    to: "/donation/book",
-  },
+import postcard1 from "@/assets/images/postcard-open1-min.png";
+import postcard2 from "@/assets/images/postcard-open2-min.png";
+import postcard3 from "@/assets/images/postcard-open3-min.png";
+import book1 from "@/assets/images/book-open1-min.png";
+import book2 from "@/assets/images/book-open2-min.png";
+import book3 from "@/assets/images/book-open3-min.png";
+// import
+export const includedProducts = [
   {
     title: "The digital book",
     element: "digital-book",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: digitalBook,
+    imagePath: [digitalBook],
     to: "/donation/digital-book",
   },
   {
@@ -25,26 +25,34 @@ export const mainProducts = [
     element: "lullaby",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: lullaby,
+    imagePath: [lullaby],
     to: "/donation/lullaby",
   },
-];
-
-export const auxProducts = [
   {
     title: "Digital supporter's certificate",
     element: "certificate",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: product,
+    imagePath: [product],
     to: "/donation/certificate",
+  },
+];
+
+export const extraProducts = [
+  {
+    title: "Printed Book",
+    element: "book",
+    description:
+      "one sentence description one sentence description one sentence description one sentence description.",
+    imagePath: [book1, book2, book3],
+    to: "/donation/book",
   },
   {
     title: "Poster",
     element: "poster",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: poster,
+    imagePath: [poster, poster1],
     to: "/donation/poster",
   },
   {
@@ -52,7 +60,7 @@ export const auxProducts = [
     element: "postcards",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: postcard,
+    imagePath: [postcard, postcard1, postcard2, postcard3],
     to: "/donation/postcards",
   },
 ];
