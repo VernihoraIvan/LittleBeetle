@@ -48,6 +48,7 @@ export default {
       },
       spacing: {
         contW: "1564px",
+        cartCont: "1024px",
         secH: "980px",
         prodW: "740px",
         titleW: "600px",

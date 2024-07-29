@@ -21,7 +21,7 @@ const Goal = () => {
                   this cause together.
                 </p>
               </div>
-              <div className="border border-white py-3.5 px-14 flex justify-center inline-flex">
+              <div className="hover:bg-whiteHover transition duration-300 border border-white py-3.5 px-14 flex justify-center inline-flex">
                 <a
                   href="https://voices.org.ua/en/"
                   target="_blank"

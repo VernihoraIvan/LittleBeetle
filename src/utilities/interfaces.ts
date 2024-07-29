@@ -37,8 +37,8 @@ export interface PopUpLangProps {
 
 export interface ProductElProps {
   title: string;
-  description: string;
-  to: string;
+  description?: string;
+  to?: string;
   imgPath: string[];
 }
 
