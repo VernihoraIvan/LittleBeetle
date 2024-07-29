@@ -10,7 +10,7 @@ const Products = () => {
         </h2>
         <div className="flex flex-col justify-between items-center">
           <div>
-            <ul className="grid grid-cols-2 grid-rows-2 gap-x-20 gap-y-28">
+            <ul className="flex gap-10">
               {includedProducts &&
                 includedProducts.map((product) => (
                   <ProductEl

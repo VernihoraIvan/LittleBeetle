@@ -57,6 +57,7 @@ export default {
         sumW: "455px",
         prodPB: "430px",
         contactH: "320px",
+        imgH2: "350px",
         imgW: "300px",
         purchElH: "200px",
         mainTitleM: "184px",

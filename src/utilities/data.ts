@@ -1,4 +1,3 @@
-import product from "@/assets/images/product.png";
 import digitalBook from "@/assets/images/digital-book.png";
 import lullaby from "@/assets/images/lullaby.png";
 import poster from "@/assets/images/poster.png";
@@ -10,30 +9,31 @@ import postcard3 from "@/assets/images/postcard-open3-min.png";
 import book1 from "@/assets/images/book-open1-min.png";
 import book2 from "@/assets/images/book-open2-min.png";
 import book3 from "@/assets/images/book-open3-min.png";
-// import
+import certificate from "@/assets/images/certificate.png";
+
 export const includedProducts = [
   {
-    title: "The digital book",
+    title: "Digital Illustrated Book",
     element: "digital-book",
     description:
-      "one sentence description one sentence description one sentence description one sentence description.",
+      "Crafted to inspire hope and bring joy to bedtime. You can read it together or explore the beautiful world our illustrator created, with exciting finds to discover with every reading.",
     imagePath: [digitalBook],
     to: "/donation/digital-book",
   },
   {
-    title: "The lullaby audio recording",
+    title: "Lullaby",
     element: "lullaby",
     description:
-      "one sentence description one sentence description one sentence description one sentence description.",
+      "A soothing lullaby recording, created to bring comfort to young hearts—both those who are safe at home and those whose homes are touched by conflict. It pairs perfectly with our illustrated book but is equally enchanting on its own.",
     imagePath: [lullaby],
     to: "/donation/lullaby",
   },
   {
-    title: "Digital supporter's certificate",
+    title: "Digital Donation Certificate",
     element: "certificate",
     description:
-      "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: [product],
+      "A personalised digital certificate acknowledging your support for children's psychological rehabilitation.",
+    imagePath: [certificate],
     to: "/donation/certificate",
   },
 ];

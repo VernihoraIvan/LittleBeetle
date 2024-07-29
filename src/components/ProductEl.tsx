@@ -1,21 +1,13 @@
 import { ProductElProps } from "@/utilities/interfaces";
-import { Link } from "react-router-dom";
 
-const ProductEl = ({ title, to, imgPath }: ProductElProps) => {
+const ProductEl = ({ title, imgPath, description }: ProductElProps) => {
   return (
-    <li className="w-prodW">
-      <img src={imgPath[0]} alt="image of a book" />
+    <li className="flex-1">
+      <img className="w-full h-imgH2" src={imgPath[0]} alt="image of a book" />
       <h3 className=" mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
         {title}
       </h3>
-      <div className="flex justify-between mt-9">
-        <Link
-          to={`${to}`}
-          className="hover:bg-whiteHover transition duration-300 w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center"
-        >
-          Learn more
-        </Link>
-      </div>
+      <p className="mt-4">{description}</p>
     </li>
   );
 };
