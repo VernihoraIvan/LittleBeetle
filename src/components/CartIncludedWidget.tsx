@@ -10,10 +10,14 @@ const CartIncludedWidget = () => {
           <h3 className="text-primPurple text-2xl font-secondaryBold uppercase mb-6">
             Included with every purchase
           </h3>
-          <ul className="flex gap-prodMar">
+          <ul className="flex justify-between">
             {includedProducts &&
               includedProducts.map((item) => (
-                <WidgetEl title={item.title} imgPath={item.imagePath} />
+                <WidgetEl
+                  key={item.element}
+                  title={item.title}
+                  imgPath={item.imagePath}
+                />
               ))}
           </ul>
           <div className="flex gap-gapS mt-7">

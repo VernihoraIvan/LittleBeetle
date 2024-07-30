@@ -10,6 +10,8 @@ import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
 import SubDonationPage from "./pages/SubDonationPage";
 import Checkout from "./pages/Checkout";
+import CheckoutSection from "./components/CheckoutSection";
+// import Checkout1stPage from "./components/Checkout1st";
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <Route path="/creators" element={<Creators />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout />}>
+          <Route path=":step" element={<CheckoutSection />} />
+        </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

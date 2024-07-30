@@ -1,15 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const ProgressBar = () => {
+  const { step } = useParams();
+  console.log(step);
   return (
-    <div>
-      <div className="relative pt-bookPT flex justify-center flex-col">
-        <div className="w-full h-2 bg-pinkBar"></div>
+    <section className="flex justify-center">
+      <div className="xxl:w-contW relative pt-bookPT flex justify-center flex-col">
+        <div className="w-full h-2 bg-pinkBar relative"></div>
+        <div className="w-full h-2 bg-bgPurple absolute"></div>
         <ul className="text-2xl font-secondaryBold  absolute w-full flex justify-between">
           <li className="relative">
             <NavLink
               className=" flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primPurple"
-              to={""}
+              to={"contribution"}
             >
               <p className="text-primWhite">1</p>
             </NavLink>
@@ -20,7 +23,7 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className=" text-bgPurple flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primWhite"
-              to={""}
+              to={"details"}
             >
               2
             </NavLink>
@@ -31,7 +34,7 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className="text-bgPurple flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primWhite"
-              to={""}
+              to={"shipment"}
             >
               3
             </NavLink>
@@ -42,7 +45,7 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className="text-bgPurple flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primWhite"
-              to={""}
+              to={"payment"}
             >
               4
             </NavLink>
@@ -58,7 +61,7 @@ const ProgressBar = () => {
         <li>Shipment</li>
         <li>Payment</li>
       </ul> */}
-    </div>
+    </section>
   );
 };
 

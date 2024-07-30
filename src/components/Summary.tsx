@@ -1,4 +1,5 @@
 import { SummaryProps } from "@/utilities/interfaces";
+import { Link } from "react-router-dom";
 
 const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
   return (
@@ -8,25 +9,25 @@ const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
           Summary
         </div>
         <div>
-          <ul className="px-prodMar py-6">
-            <li className="flex justify-between pb-5 text-linkS text-inputPink font-secondaryRegular">
-              <p>Subtotal</p>
-              <p>£{subTotal}</p>
-            </li>
-            <li className="flex justify-between pb-navPad text-linkS text-inputPink font-secondaryRegular">
-              <p>Shipping fee</p>
-              <p>£{shippingFee}</p>
-            </li>
-            <li className="flex justify-between border-t border-primPurple pt-4 text-2xl text-primPurple font-secondaryBold">
-              <p>Total</p>
-              <p>£{subTotal + shippingFee}</p>
-            </li>
-          </ul>
+          <div className="px-prodMar py-9">
+            <div className="flex justify-between  text-linkS text-primPurple ">
+              <p className="font-secondaryBold">Total</p>
+              <p className="font-secondaryRegular text-inputPink">
+                £{subTotal + shippingFee}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <button className="uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl">
+      {/* <button className="uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl">
         checkout
-      </button>
+      </button> */}
+      <Link
+        to="/checkout/contribution"
+        className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl"
+      >
+        checkout
+      </Link>
     </div>
   );
 };
