@@ -104,6 +104,11 @@ export interface SummaryProps {
   shippingFee: number;
 }
 
+export interface SummaryCheckoutProps {
+  subTotal: number;
+  shippingFee?: number;
+}
+
 export interface CarouselProps {
   images: string[];
 }
