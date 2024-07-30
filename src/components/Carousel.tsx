@@ -37,7 +37,7 @@ const Carousel = ({ images }: CarouselProps) => {
             key={index}
             src={image}
             alt={`Slide ${index}`}
-            className="w-full flex-shrink-0"
+            className="w-full flex-shrink-0 h-secH2"
           />
         ))}
       </div>
