@@ -74,6 +74,20 @@ export interface PurchaseElProps {
   imgPath?: string[];
 }
 
+export interface ButtonToProps {
+  to: string;
+  title: string;
+  style: string;
+}
+
+export interface CheckoutContributionElProps {
+  name: string;
+  quantity: number;
+  total: number;
+  language: string;
+  imgPath?: string[];
+}
+
 export interface titleProps {
   title: string;
   description: string;

@@ -3,7 +3,7 @@ import CrossLogo from "@/assets/icons/cross.svg?react";
 import { PurchaseElProps } from "@/utilities/interfaces";
 import { useEffect, useState } from "react";
 import { useCart } from "@/zustand/store";
-import QuantityAdjuster from "./QuantityAdjuster";
+import QuantityAdjuster from "@/components/QuantityAdjuster";
 
 const PurchaseEl = ({ name, price, total, imgPath }: PurchaseElProps) => {
   const [totalEl, setTotal] = useState<number>(total);

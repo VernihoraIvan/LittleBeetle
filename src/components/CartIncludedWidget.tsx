@@ -1,5 +1,5 @@
 import { includedProducts } from "@/utilities/data";
-import WidgetEl from "./WidgetEl";
+import WidgetEl from "./Elements/WidgetEl";
 import Alert from "@/assets/icons/alert-circle.svg?react";
 
 const CartIncludedWidget = () => {

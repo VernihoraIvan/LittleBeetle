@@ -1,5 +1,5 @@
 import { ProductElProps } from "@/utilities/interfaces";
-import { Link } from "react-router-dom";
+import ButtonTo from "../ButtonTo";
 
 const ProductElOptional = ({ title, imgPath, to }: ProductElProps) => {
   return (
@@ -9,12 +9,11 @@ const ProductElOptional = ({ title, imgPath, to }: ProductElProps) => {
         {title}
       </h3>
       <div className="flex justify-between mt-9">
-        <Link
+        <ButtonTo
           to={`${to}`}
-          className="hover:bg-whiteHover transition duration-300 w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center"
-        >
-          Learn more
-        </Link>
+          style="hover:bg-whiteHover transition duration-300 w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center"
+          title="Learn more"
+        />
       </div>
     </li>
   );

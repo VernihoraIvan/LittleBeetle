@@ -1,4 +1,4 @@
-import ProductEl from "@/components/ProductEl";
+import ProductEl from "@/components/Elements/ProductEl";
 import { includedProducts } from "@/utilities/data";
 
 const Products = () => {

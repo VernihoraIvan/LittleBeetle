@@ -1,5 +1,5 @@
 import { SummaryProps } from "@/utilities/interfaces";
-import { Link } from "react-router-dom";
+import ButtonTo from "./ButtonTo";
 
 const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
   return (
@@ -19,12 +19,11 @@ const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
           </div>
         </div>
       </div>
-      <Link
+      <ButtonTo
         to="/checkout/contribution"
-        className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl"
-      >
-        checkout
-      </Link>
+        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl"
+        title="checkout"
+      />
     </div>
   );
 };

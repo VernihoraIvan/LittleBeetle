@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import book1 from "../assets/images/book1.png";
 import book2 from "../assets/images/book2.png";
 import book3 from "../assets/images/book3.png";
+import ButtonTo from "./ButtonTo";
 
 const BooksSection = () => {
   return (
@@ -28,14 +28,11 @@ const BooksSection = () => {
           </li>
         </ul>
         <div className="flex justify-center mt-20">
-          <Link
+          <ButtonTo
             to={"/creators"}
-            className="hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP "
-          >
-            <p className="text-primPurple text-buttonS font-primarySBold">
-              Creators
-            </p>
-          </Link>
+            title="Creators"
+            style="text-primPurple text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP "
+          />
         </div>
       </div>
     </section>

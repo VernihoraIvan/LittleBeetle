@@ -1,4 +1,4 @@
-import CreatorsEl from "@/components/CreatorsEl";
+import CreatorsEl from "@/components/Elements/CreatorsEl";
 import Footer from "@/components/Footer";
 import TitleNDescription from "@/components/TitleNDescription";
 import { creatorsData } from "@/utilities/data";

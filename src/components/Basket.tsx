@@ -1,5 +1,5 @@
 import { useCart } from "@/zustand/store";
-import PurchaseEl from "./PurchaseEl";
+import PurchaseEl from "@/components/Elements/PurchaseEl";
 import Summary from "./Summary";
 import TitleBar from "./TitleBar";
 import { includedProducts, extraProducts } from "@/utilities/data";

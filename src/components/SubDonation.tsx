@@ -5,8 +5,8 @@ import PopUpPrice from "./PopUpPrice";
 import PopUpLang from "./PopUpLang";
 import clsx from "clsx";
 import QuantityAdjuster from "./QuantityAdjusterWState";
-import { Link } from "react-router-dom";
 import Carousel from "./Carousel";
+import ButtonTo from "./ButtonTo";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -39,11 +39,6 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
       <section className="h-headerPad bg-primPurple" />
       <section className="flex justify-center pt-bookPT bg-primBeige w-screen  h-secH ">
         <div className=" xxl:w-contW flex gap-8">
-          {/* <img
-            src={imagePath}
-            alt="image of a book"
-            className="w-prodW h-imgH"
-          /> */}
           <Carousel images={imagePath} />
           <div className="w-prodW">
             <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
@@ -90,12 +85,11 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 >
                   Add to Cart
                 </button>
-                <Link
-                  className="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
+                <ButtonTo
                   to="/checkout/contribution"
-                >
-                  Checkout
-                </Link>
+                  style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
+                  title="Checkout"
+                />
                 {/* <button className="hover:bg-purpleHover transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
                   Checkout
                 </button> */}

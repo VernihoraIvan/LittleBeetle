@@ -1,5 +1,5 @@
 import { extraProducts } from "@/utilities/data";
-import ProductElOptional from "./ProductElOptional";
+import ProductElOptional from "./Elements/ProductElOptional";
 
 const ProductsIncluded = () => {
   return (
