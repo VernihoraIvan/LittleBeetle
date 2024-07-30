@@ -19,9 +19,6 @@ const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
           </div>
         </div>
       </div>
-      {/* <button className="uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl">
-        checkout
-      </button> */}
       <Link
         to="/checkout/contribution"
         className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondaryBold bg-primPurple text-primWhite py-4 text-2xl"

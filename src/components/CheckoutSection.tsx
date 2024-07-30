@@ -7,7 +7,6 @@ import CheckoutPayment from "./CheckoutSections/CheckoutPayment";
 const CheckoutSection = () => {
   const { step } = useParams();
   const renderStep = () => {
-    console.log("test");
     switch (step) {
       case "contribution":
         return <CheckoutContribution />;

@@ -1,20 +1,28 @@
+import clsx from "clsx";
 import { NavLink, useParams } from "react-router-dom";
 
 const ProgressBar = () => {
   const { step } = useParams();
-  console.log(step);
+  const steps = ["contribution", "details", "shipment", "payment"];
+  const progressWidth = ["-", "1/3", "2/3", "full"];
+  const stage = steps.indexOf(step || "contribution");
   return (
     <section className="flex justify-center">
       <div className="xxl:w-contW relative pt-bookPT flex justify-center flex-col">
         <div className="w-full h-2 bg-pinkBar relative"></div>
-        <div className="w-full h-2 bg-bgPurple absolute"></div>
+        <div
+          className={clsx(
+            " h-2 bg-bgPurple absolute",
+            step && `w-${progressWidth[stage]}`
+          )}
+        ></div>
         <ul className="text-2xl font-secondaryBold  absolute w-full flex justify-between">
           <li className="relative">
             <NavLink
-              className=" flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primPurple"
+              className="  bg-primPurple border-primPurple  text-primWhite flex justify-center items-center w-16 h-16 rounded-full border-3 "
               to={"contribution"}
             >
-              <p className="text-primWhite">1</p>
+              <p className="">1</p>
             </NavLink>
             <p className="absolute w-max -left-full mt-4 text-bgPurple">
               Your contribution
@@ -22,7 +30,12 @@ const ProgressBar = () => {
           </li>
           <li className="relative">
             <NavLink
-              className=" text-bgPurple flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primWhite"
+              className={clsx(
+                "flex justify-center items-center w-16 h-16 rounded-full border-3",
+                stage > 0
+                  ? "bg-primPurple border-primPurple  text-primWhite"
+                  : "text-bgPurple border-primPurple bg-primWhite"
+              )}
               to={"details"}
             >
               2
@@ -33,7 +46,12 @@ const ProgressBar = () => {
           </li>
           <li className="relative">
             <NavLink
-              className="text-bgPurple flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primWhite"
+              className={clsx(
+                "flex justify-center items-center w-16 h-16 rounded-full border-3",
+                stage > 1
+                  ? "bg-primPurple border-primPurple  text-primWhite"
+                  : "text-bgPurple border-primPurple bg-primWhite"
+              )}
               to={"shipment"}
             >
               3
@@ -44,7 +62,12 @@ const ProgressBar = () => {
           </li>
           <li className="relative">
             <NavLink
-              className="text-bgPurple flex justify-center items-center w-16 h-16 rounded-full border-3 border-primPurple bg-primWhite"
+              className={clsx(
+                "flex justify-center items-center w-16 h-16 rounded-full border-3",
+                stage > 2
+                  ? "bg-primPurple border-primPurple  text-primWhite"
+                  : "text-bgPurple border-primPurple bg-primWhite"
+              )}
               to={"payment"}
             >
               4
@@ -55,12 +78,6 @@ const ProgressBar = () => {
           </li>
         </ul>
       </div>
-      {/* <ul className="flex justify-between">
-        <li>Your contribution</li>
-        <li>Your details</li>
-        <li>Shipment</li>
-        <li>Payment</li>
-      </ul> */}
     </section>
   );
 };
