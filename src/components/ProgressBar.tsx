@@ -7,7 +7,7 @@ const ProgressBar = () => {
   const progressWidth = ["-", "1/3", "2/3", "full"];
   const stage = steps.indexOf(step || "contribution");
   return (
-    <section className="flex justify-center">
+    <section className="flex justify-center bg-primBeige ">
       <div className="xxl:w-contW relative pt-bookPT flex justify-center flex-col">
         <div className="w-full h-2 bg-pinkBar relative"></div>
         <div
@@ -40,7 +40,12 @@ const ProgressBar = () => {
             >
               2
             </NavLink>
-            <p className="absolute w-max -left-1/2 mt-4 text-barGrey">
+            <p
+              className={clsx(
+                "absolute w-max -left-1/2 mt-4 ",
+                stage > 0 ? "text-bgPurple" : "text-barGrey"
+              )}
+            >
               Your details
             </p>
           </li>
@@ -56,7 +61,12 @@ const ProgressBar = () => {
             >
               3
             </NavLink>
-            <p className="absolute w-max -left-1/3 mt-4 text-barGrey">
+            <p
+              className={clsx(
+                "absolute w-max -left-1/2 mt-4 ",
+                stage > 1 ? "text-bgPurple" : "text-barGrey"
+              )}
+            >
               Shipment
             </p>
           </li>
@@ -72,7 +82,12 @@ const ProgressBar = () => {
             >
               4
             </NavLink>
-            <p className="absolute w-max -left-1/4 mt-4 text-barGrey">
+            <p
+              className={clsx(
+                "absolute w-max -left-1/2 mt-4 ",
+                stage > 2 ? "text-bgPurple" : "text-barGrey"
+              )}
+            >
               Payment
             </p>
           </li>

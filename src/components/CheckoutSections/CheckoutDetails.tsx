@@ -1,5 +1,11 @@
+import DetailsForm from "../DetailsForm";
+
 const CheckoutDetails = () => {
-  return <section className="py-10 bg-hovYellow">CheckoutDetails</section>;
+  return (
+    <>
+      <DetailsForm />
+    </>
+  );
 };
 
 export default CheckoutDetails;
