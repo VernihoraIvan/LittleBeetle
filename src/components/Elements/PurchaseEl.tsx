@@ -27,7 +27,7 @@ const PurchaseEl = ({ name, price, total, imgPath }: PurchaseElProps) => {
       <div className="flex items-center">
         {imgPath && (
           <img
-            className="h-purchImgH mr-12"
+            className="h-purchImgH mr-12 w-imgSW"
             src={imgPath[0]}
             alt="image of a book"
           />

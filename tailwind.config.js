@@ -61,6 +61,7 @@ export default {
         contactH: "320px",
         imgH2: "350px",
         imgW: "300px",
+        imgSW: "250px",
         purchElH: "200px",
         mainTitleM: "184px",
         purchImgH: "176px",
