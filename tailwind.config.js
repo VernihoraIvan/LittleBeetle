@@ -105,6 +105,7 @@ export default {
         purpleHover: "#711EB8",
         pinkBar: "#D9D9D9",
         barGrey: "#8C8C8C",
+        alertRed: "#F00",
       },
       borderWidth: {
         3: "3px",
