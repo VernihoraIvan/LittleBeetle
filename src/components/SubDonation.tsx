@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { SubDonationProps } from "@/utilities/interfaces";
-import { useCart } from "@/zustand/store";
+import { useCart } from "@/zustand/productStore";
 import PopUpPrice from "./PopUpPrice";
 import PopUpLang from "./PopUpLang";
 import clsx from "clsx";
@@ -90,9 +90,6 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
                   title="Checkout"
                 />
-                {/* <button className="hover:bg-purpleHover transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
-                  Checkout
-                </button> */}
               </div>
             </div>
           </div>

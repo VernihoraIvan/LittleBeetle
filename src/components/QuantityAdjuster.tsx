@@ -1,7 +1,7 @@
 import Minus from "@/assets/icons/minus.svg?react";
 import Plus from "@/assets/icons/plus.svg?react";
 import { QuantityAdjusterProps } from "@/utilities/interfaces";
-import { useCart } from "@/zustand/store";
+import { useCart } from "@/zustand/productStore";
 import clsx from "clsx";
 
 const QuantityAdjuster = ({

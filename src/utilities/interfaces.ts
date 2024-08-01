@@ -1,10 +1,11 @@
+import { FormikTouched } from "formik";
+
 export interface OverlayProps {
   isOverlay: boolean;
   setPrice: (price: number) => void;
   handleOverlay: () => void;
   price: number;
   setOverlay: (isOverlay: boolean) => void;
-  // isOverlayLang: boolean;
 }
 
 export interface OverlayLangProps {
@@ -18,8 +19,6 @@ export interface OverlayLangProps {
 export interface PopUpPriceProps {
   handleOverlay: () => void;
   price: number;
-  // setIsOverlay: () => void;
-  // setPrice: () => void;
   isOverlay: boolean;
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setIsOverlay: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,8 +27,6 @@ export interface PopUpPriceProps {
 export interface PopUpLangProps {
   handleOverlayLang: () => void;
   lang: string;
-  // setIsOverlay: () => void;
-  // setPrice: () => void;
   isOverlayLang: boolean;
   setLang: React.Dispatch<React.SetStateAction<string>>;
   setIsOverlayLang: React.Dispatch<React.SetStateAction<boolean>>;
@@ -56,8 +53,6 @@ export interface QuantityAdjusterProps {
   name: string;
   price: number;
   isOverlay?: boolean;
-  // quantityEl: number;
-  // setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 export interface QuantityAdjusterWStateProps {
   name: string;
@@ -111,4 +106,25 @@ export interface SummaryCheckoutProps {
 
 export interface CarouselProps {
   images: string[];
+}
+
+export interface MyFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  country: string;
+  streetAdress: string;
+  streetAdress2: string;
+  city: string;
+  postalCode: string;
+}
+
+export interface FormElProps {
+  // errors?: FormikErrors<MyFormValues>;
+  errors?: string;
+  touched: FormikTouched<MyFormValues>;
+  title: string;
+  element: string;
+  isRequired?: boolean;
 }

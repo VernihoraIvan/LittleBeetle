@@ -1,14 +1,6 @@
+import { FormElProps } from "@/utilities/interfaces";
 import clsx from "clsx";
-import { Field, FormikErrors, FormikTouched } from "formik";
-import { MyFormValues } from "../DetailsForm";
-
-interface FormElProps {
-  errors: FormikErrors<MyFormValues>;
-  touched: FormikTouched<MyFormValues>;
-  title: string;
-  element: string;
-  isRequired?: boolean;
-}
+import { Field } from "formik";
 
 const FormEl = ({
   errors,
@@ -28,15 +20,12 @@ const FormEl = ({
           name={element}
           className={clsx(
             "w-prodW outline-none  border border-primPurpleFaintM py-3 px-4 text-inputPink text-2xl font-secondaryRegular",
-            errors.firstName &&
-              isRequired &&
-              touched.firstName &&
-              "border-red-500"
+            errors && isRequired && touched.firstName && "border-red-500"
           )}
         />
-        {isRequired && errors.firstName && touched.firstName ? (
+        {isRequired && errors && touched.firstName ? (
           <div className="text-alertRed text-linkS font-secondaryRegular ml-4">
-            {errors.firstName}
+            {errors}
           </div>
         ) : null}
       </div>

@@ -1,4 +1,4 @@
-import { useCart } from "@/zustand/store";
+import { useCart } from "@/zustand/productStore";
 import { extraProducts } from "@/utilities/data";
 import CheckoutContributionEl from "../Elements/CheckoutContributionEl";
 import CartIncludedWidget from "../CartIncludedWidget";

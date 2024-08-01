@@ -2,7 +2,7 @@ import Edit from "@/assets/icons/edit.svg?react";
 import CrossLogo from "@/assets/icons/cross.svg?react";
 import { PurchaseElProps } from "@/utilities/interfaces";
 import { useEffect, useState } from "react";
-import { useCart } from "@/zustand/store";
+import { useCart } from "@/zustand/productStore";
 import QuantityAdjuster from "@/components/QuantityAdjuster";
 
 const PurchaseEl = ({ name, price, total, imgPath }: PurchaseElProps) => {
