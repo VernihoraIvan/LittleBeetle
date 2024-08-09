@@ -106,6 +106,7 @@ export default {
         pinkBar: "#D9D9D9",
         barGrey: "#8C8C8C",
         alertRed: "#F00",
+        adrButton: "#711EB8",
       },
       borderWidth: {
         3: "3px",

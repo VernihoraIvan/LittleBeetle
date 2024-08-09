@@ -7,9 +7,11 @@ import clsx from "clsx";
 import QuantityAdjuster from "./QuantityAdjusterWState";
 import Carousel from "./Carousel";
 import ButtonTo from "./ButtonTo";
+import { useShipment } from "@/zustand/shipmentStore";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
+  const setFee = useShipment((state) => state.setFee);
 
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
   const [isOverlayLang, setIsOverlayLang] = useState<boolean>(false);
@@ -31,6 +33,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
       addProduct(title, quantity, price, lang);
       setPrice(0);
       setIsOverlayPrice(false);
+      setFee(price);
     }
   };
 
