@@ -14,16 +14,24 @@ const CheckoutShipment = () => {
 
   // const setFee = useShipment((state) => state.setFee);
 
+  const filteredForMyself = products.filter(
+    (product) => product.isAGift === false
+  );
+  const filteredAsGift = products.filter((product) => product.isAGift === true);
+  console.log(filteredForMyself);
+  console.log(filteredAsGift);
   console.log(fee);
   return (
     <section className="py-10 flex">
       <div className="w-contW">
         <div className="flex flex-col">
-          <h2 className="font-secondaryBold text-buttonS">For myself</h2>
-          {products.length > 0 &&
-            products.map((product) => (
+          {filteredForMyself.length > 0 && (
+            <h2 className="font-secondaryBold text-buttonS">For myself</h2>
+          )}
+          {filteredForMyself.length > 0 && 
+            filteredForMyself.map((product) => (
               <ShipmentEl
-                key={product.name}
+                key={product.id}
                 title={product.name}
                 imgPath={
                   productToDisplay.find((p) => p.title === product.name)
@@ -33,7 +41,20 @@ const CheckoutShipment = () => {
             ))}
         </div>
         <div>
-          <h2 className="font-secondaryBold text-buttonS">As a gift</h2>
+        {filteredAsGift.length > 0 && (
+              <h2 className="font-secondaryBold text-buttonS">As a gift</h2>
+            )}
+          {filteredAsGift.length > 0 && 
+            filteredAsGift.map((product) => (
+              <ShipmentEl
+                key={product.id}
+                title={product.name}
+                imgPath={
+                  productToDisplay.find((p) => p.title === product.name)
+                    ?.imagePath
+                }
+              />
+            ))}
         </div>
       </div>
       <ShippingSummary subTotal={10} shippingFee={fee[0]} />

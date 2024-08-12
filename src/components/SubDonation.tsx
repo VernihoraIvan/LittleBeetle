@@ -8,10 +8,12 @@ import QuantityAdjuster from "./QuantityAdjusterWState";
 import Carousel from "./Carousel";
 import ButtonTo from "./ButtonTo";
 import { useShipment } from "@/zustand/shipmentStore";
+import { nanoid } from "nanoid";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
   const setFee = useShipment((state) => state.setFee);
+  const id = nanoid();
 
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
   const [isOverlayLang, setIsOverlayLang] = useState<boolean>(false);
@@ -28,9 +30,17 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     setIsOverlayLang(!isOverlayLang);
   };
 
-  const handleAddProduct = (title: string, price: number) => {
+  const handleAddProduct = (
+    title: string,
+    price: number,
+    quantity: number,
+    lang: string,
+    id: string
+  ) => {
     if (price > 2) {
-      addProduct(title, quantity, price, lang);
+      console.log(title, quantity, price, lang, false, id);
+      addProduct(title, quantity, price, lang, false, id);
+      console.log(id);
       setPrice(0);
       setIsOverlayPrice(false);
       setFee(price);
@@ -83,7 +93,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 )}
               >
                 <button
-                  onClick={() => handleAddProduct(title, price)}
+                  onClick={() => handleAddProduct(title, price, quantity, lang, id)}
                   className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14"
                 >
                   Add to Cart

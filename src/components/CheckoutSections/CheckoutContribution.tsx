@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 const CheckoutContribution = () => {
   const products = useCart((state) => state.items);
-
+  // console.log(products);
   return (
     <>
       <div
@@ -21,7 +21,8 @@ const CheckoutContribution = () => {
           {products.length > 0 &&
             products.map((product) => (
               <CheckoutContributionEl
-                key={product.name}
+                key={product.id}
+                id={product.id}
                 name={product.name}
                 quantity={product.quantity}
                 total={product.price * product.quantity}
