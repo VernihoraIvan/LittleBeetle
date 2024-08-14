@@ -1,9 +1,13 @@
+import clsx from "clsx";
+import { useState } from "react";
+
 export interface ShipmentElProps {
   title: string;
   imgPath?: string[];
 }
 
 const ShipmentEl = ({ title, imgPath }: ShipmentElProps) => {
+  const [isMyAdress, setIsMyAdress] = useState(true);
   return (
     <div className="mt-8">
       {imgPath && (
@@ -15,8 +19,28 @@ const ShipmentEl = ({ title, imgPath }: ShipmentElProps) => {
       )}
       <h3 className="text-xl font-secondarySBold mt-2">{title}</h3>
       <div className="w-imgH flex gap-5 mt-9 border border-primPurpleFaintM p-2">
-		<button className="bg-adrButton py-gapS px-2 text-primWhite w-1/2">Use my address</button>
-		<button className="py-gapS px-2 w-1/2">Use different address</button>
+        <button
+          onClick={() => setIsMyAdress(true)}
+          className={clsx(
+            "bg-adrButton py-gapS px-2 w-1/2",
+            isMyAdress === true
+              ? "bg-adrButton text-primWhite"
+              : "bg-primWhite text-primPurple"
+          )}
+        >
+          Use my address
+        </button>
+        <button
+          onClick={() => setIsMyAdress(false)}
+          className={clsx(
+            "bg-adrButton py-gapS px-2  w-1/2",
+            isMyAdress === true
+              ? "bg-primWhite text-primPurple"
+              : "bg-adrButton text-primWhite"
+          )}
+        >
+          Use different address
+        </button>
       </div>
     </div>
   );
