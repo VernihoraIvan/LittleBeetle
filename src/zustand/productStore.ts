@@ -24,7 +24,7 @@ export interface CartState {
   reduceQuantity: (name: string) => void;
   chooseItemLanguage: (itemLanguage: string) => void;
   getQuantity: (name: string) => number;
-  setAGift: (id: string) => void;
+  setAGift: (id: string, checked: boolean) => void;
 }
 
 export interface LanguageState {
@@ -49,10 +49,13 @@ export const useCart = create(
         price: number,
         itemLanguage: string,
         isAGift: boolean,
-        id: string,
+        id: string
       ) => {
         set((state: CartState) => ({
-          items: [...state.items, { name, quantity, price, itemLanguage, id, isAGift }],
+          items: [
+            ...state.items,
+            { name, quantity, price, itemLanguage, id, isAGift },
+          ],
         }));
       },
       removeFromCart: (name: string, price: number) => {
@@ -96,13 +99,13 @@ export const useCart = create(
         const item = state.items.find((item) => item.name === name);
         return item ? item.quantity : 0;
       },
-      setAGift: (id: string) => {
+      setAGift: (id: string, checked: boolean) => {
         set((state: CartState) => ({
           items: state.items.map((item) =>
-            item.id === id ? { ...item, isAGift: !item.isAGift } : item
+            item.id === id ? { ...item, isAGift: checked } : item
           ),
         }));
-      }
+      },
     }),
     {
       name: "cart-storage",

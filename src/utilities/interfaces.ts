@@ -81,6 +81,7 @@ export interface CheckoutContributionElProps {
   total: number;
   language: string;
   imgPath?: string[];
+  id: string;
 }
 
 export interface titleProps {

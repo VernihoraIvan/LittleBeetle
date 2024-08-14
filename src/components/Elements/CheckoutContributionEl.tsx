@@ -1,6 +1,6 @@
 import { CheckoutContributionElProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CheckoutContributionEl = ({
   name,
@@ -18,6 +18,13 @@ const CheckoutContributionEl = ({
   //   setAGift(event.target.value);
   //   setIsChecked(!isChecked);
   // };
+
+  useEffect(() => {
+    const gift = product.find((item) => item.id === id);
+    if (gift) {
+      setIsChecked(gift.isAGift);
+    }
+  }, [product, id]);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
@@ -61,7 +68,7 @@ const CheckoutContributionEl = ({
                 id={id}
                 name="option"
                 value={id}
-                checked={isChecked} 
+                checked={isChecked}
                 onChange={(e) => handleCheckboxChange(e)}
               />
               it's a gift
