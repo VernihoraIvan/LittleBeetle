@@ -5,9 +5,14 @@ import CartIncludedWidget from "../CartIncludedWidget";
 import ButtonTo from "../ButtonTo";
 import SummaryCheckout from "../SummaryCheckout";
 import clsx from "clsx";
+import { useShipment } from "@/zustand/shipmentStore";
 
 const CheckoutContribution = () => {
   const products = useCart((state) => state.items);
+  const totalFee = useShipment((state) => state.fee).reduce(
+    (acc, curr) => acc + curr,
+    0
+  );
   // console.log(products);
   return (
     <>
@@ -33,7 +38,7 @@ const CheckoutContribution = () => {
               />
             ))}
         </section>
-        <SummaryCheckout subTotal={33} shippingFee={22} />
+        <SummaryCheckout subTotal={totalFee} shippingFee={0} />
       </div>
       <CartIncludedWidget />
       <ButtonTo

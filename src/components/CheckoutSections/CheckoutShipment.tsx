@@ -8,20 +8,19 @@ import ButtonTo from "../ButtonTo";
 const CheckoutShipment = () => {
   const shipmentStore = useShipment((state) => state.shipment);
   console.log(shipmentStore);
-  const fee = useShipment((state) => state.fee);
   const products = useCart((state) => state.items);
+  const totalFee = useShipment((state) => state.fee).reduce(
+    (acc, curr) => acc + curr,
+    0
+  );
 
   const productToDisplay = includedProducts.concat(extraProducts);
-
-  // const setFee = useShipment((state) => state.setFee);
 
   const filteredForMyself = products.filter(
     (product) => product.isAGift === false
   );
   const filteredAsGift = products.filter((product) => product.isAGift === true);
-  console.log(filteredForMyself);
-  console.log(filteredAsGift);
-  console.log(fee);
+
   return (
     <section className="py-10 flex flex-col">
       <div className="flex ">
@@ -59,7 +58,7 @@ const CheckoutShipment = () => {
               ))}
           </div>
         </div>
-        <ShippingSummary subTotal={10} shippingFee={fee[0]} />
+        <ShippingSummary subTotal={totalFee} shippingFee={0} />
       </div>
       <ButtonTo
         to="/checkout/payment"
