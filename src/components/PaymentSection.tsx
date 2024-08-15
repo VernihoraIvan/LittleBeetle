@@ -3,6 +3,10 @@ import SummaryUniversal from "./SummaryUniversal";
 import { useState } from "react";
 import clsx from "clsx";
 import CardInfo from "./CardInfo";
+import mCardImg from "@/assets/images/mCard.png";
+import visaImg from "@/assets/images/visa.png";
+import gPayImg from "@/assets/images/gPay.png";
+import aPayImg from "@/assets/images/aPay.png";
 
 const PaymentSection = () => {
   const [isActive, setIsActive] = useState<number>(0);
@@ -18,30 +22,40 @@ const PaymentSection = () => {
           <ul className="flex flex-col gap-5   ">
             <li
               className={clsx(
-                "cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW pl-CreatorsElP py-5",
+                "flex justify-between cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                 isActive === 1 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(1)}
             >
-              Credit / Debit card
+              <p className="py-5">Credit / Debit card</p>
+              <div className="flex items-center gap-3">
+                <img
+                  className="w-20 h-[56px]"
+                  src={mCardImg}
+                  alt="Master card icon"
+                />
+                <img src={visaImg} alt="Visa icon" />
+              </div>
             </li>
             <li
               className={clsx(
-                "cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW pl-CreatorsElP py-5",
+                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                 isActive === 2 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(2)}
             >
-              Google pay
+              <p className="py-5">Google pay</p>
+              <img src={gPayImg} alt="Googlepay icon" />
             </li>
             <li
               className={clsx(
-                "cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW pl-CreatorsElP py-5",
+                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP",
                 isActive === 3 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(3)}
             >
-              Apple pay
+              <p className="py-5">Apple pay</p>
+              <img src={aPayImg} alt="Applepay icon" />
             </li>
           </ul>
         </div>
@@ -49,13 +63,15 @@ const PaymentSection = () => {
           <div className="">
             {isActive === 1 && <CardInfo />}
             {isActive === 2 && (
-              <div className="cursor-pointer text-bgPurple  w-payW py-5 font-secondarySBold text-xl border text-center border-bgPurple">
-                Continue at Google pay
+              <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
+                <img src={gPayImg} alt="Googlepay icon" />
+                <p className="py-5">Continue at Google pay</p>
               </div>
             )}
             {isActive === 3 && (
-              <div className="cursor-pointer text-bgPurple  w-payW py-5 font-secondarySBold text-xl border text-center border-bgPurple">
-                Continue at Apple pay
+              <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
+                <img src={aPayImg} alt="Applepay icon" />
+                <p className="py-5">Continue at Apple pay</p>
               </div>
             )}
           </div>
