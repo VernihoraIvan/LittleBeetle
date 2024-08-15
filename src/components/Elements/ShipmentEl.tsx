@@ -27,7 +27,7 @@ const ShipmentEl = ({ title, imgPath }: ShipmentElProps) => {
               "bg-adrButton py-gapS px-2 w-1/2",
               isMyAdress === true
                 ? "bg-adrButton text-primWhite"
-                : "bg-primWhite text-primPurple"
+                : "bg-primBeige text-primPurple"
             )}
           >
             Use my address
@@ -37,7 +37,7 @@ const ShipmentEl = ({ title, imgPath }: ShipmentElProps) => {
             className={clsx(
               "bg-adrButton py-gapS px-2  w-1/2",
               isMyAdress === true
-                ? "bg-primWhite text-primPurple"
+                ? "bg-primBeige text-primPurple"
                 : "bg-adrButton text-primWhite"
             )}
           >
