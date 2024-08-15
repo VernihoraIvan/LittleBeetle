@@ -1,5 +1,7 @@
+import PatmentSection from "../PaymentSection";
+
 const CheckoutPayment = () => {
-  return <section className="py-10 bg-hovYellow">CheckoutPayment</section>;
+  return <PatmentSection />;
 };
 
 export default CheckoutPayment;

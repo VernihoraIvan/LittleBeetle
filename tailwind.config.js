@@ -52,6 +52,7 @@ export default {
         cartCont: "1024px",
         secH: "980px",
         prodW: "740px",
+        payW: "680px",
         titleW: "600px",
         imgH: "520px",
         secH2: "500px",

@@ -22,7 +22,7 @@ const Basket = () => {
           {products.length > 0 &&
             products.map((product) => (
               <PurchaseEl
-                key={product.name}
+                key={product.id}
                 name={product.name}
                 price={product.price}
                 quantity={product.quantity}
@@ -34,7 +34,7 @@ const Basket = () => {
               />
             ))}
         </div>
-        <Summary subTotal={subTotal} shippingFee={5} />
+        <Summary subTotal={subTotal} shippingFee={0} />
       </div>
     </section>
   );
