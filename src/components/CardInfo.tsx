@@ -1,6 +1,6 @@
 const CardInfo = () => {
   return (
-    <section className="pt-navPad w-payW">
+    <section className="w-payW">
       <h2 className="font-secondaryBold text-buttonS mb-6">Card information</h2>
       <form className="flex flex-col gap-10" action="">
         <div className="flex flex-col gap-4">

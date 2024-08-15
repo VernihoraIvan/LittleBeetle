@@ -1,7 +1,7 @@
-import PatmentSection from "../PaymentSection";
+import PaymentSection from "../PaymentSection";
 
 const CheckoutPayment = () => {
-  return <PatmentSection />;
+  return <PaymentSection />;
 };
 
 export default CheckoutPayment;
