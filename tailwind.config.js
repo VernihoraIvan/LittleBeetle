@@ -108,6 +108,7 @@ export default {
         barGrey: "#8C8C8C",
         alertRed: "#F00",
         adrButton: "#711EB8",
+        payButtonActive: "#BE9ED9",
       },
       borderWidth: {
         3: "3px",
