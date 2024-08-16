@@ -53,6 +53,7 @@ export interface QuantityAdjusterProps {
   name: string;
   price: number;
   isOverlay?: boolean;
+  id: string;
 }
 export interface QuantityAdjusterWStateProps {
   name: string;
@@ -67,6 +68,7 @@ export interface PurchaseElProps {
   quantity: number;
   total: number;
   imgPath?: string[];
+  id: string;
 }
 
 export interface ButtonToProps {

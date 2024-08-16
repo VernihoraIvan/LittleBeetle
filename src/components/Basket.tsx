@@ -31,6 +31,7 @@ const Basket = () => {
                   productToDisplay.find((p) => p.title === product.name)
                     ?.imagePath
                 }
+                id={product.id}
               />
             ))}
         </div>

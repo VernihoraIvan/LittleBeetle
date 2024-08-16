@@ -11,9 +11,10 @@ import aPayImg from "@/assets/images/aPay.png";
 const PaymentSection = () => {
   const [isActive, setIsActive] = useState<number>(0);
   const totalFee = useShipment((state) => state.fee).reduce(
-    (acc, curr) => acc + curr,
+    (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
+  console.log(totalFee);
   return (
     <section className="flex justify-between pt-bookPB">
       <div>
@@ -22,7 +23,7 @@ const PaymentSection = () => {
           <ul className="flex flex-col gap-5   ">
             <li
               className={clsx(
-                "flex justify-between cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
+                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                 isActive === 1 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(1)}

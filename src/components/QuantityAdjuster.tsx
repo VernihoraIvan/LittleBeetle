@@ -2,12 +2,14 @@ import Minus from "@/assets/icons/minus.svg?react";
 import Plus from "@/assets/icons/plus.svg?react";
 import { QuantityAdjusterProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
+import { useShipment } from "@/zustand/shipmentStore";
 import clsx from "clsx";
 
 const QuantityAdjuster = ({
   name,
   price,
   isOverlay = false,
+  id,
 }: QuantityAdjusterProps) => {
   const increaseQuantity = useCart((state) => state.increaseQuantity);
   const reduceQuantity = useCart((state) => state.reduceQuantity);
@@ -16,6 +18,8 @@ const QuantityAdjuster = ({
     useCart(
       (state) => state.items.find((item) => item.name === name)?.quantity
     ) || 0;
+
+  const removeFee = useShipment((state) => state.removeFee);
 
   const incrementQuantity = (name: string) => {
     increaseQuantity(name);
@@ -27,6 +31,7 @@ const QuantityAdjuster = ({
     }
     if (quantity === 1) {
       removeProduct(name, price);
+      removeFee(id);
     }
   };
   return (

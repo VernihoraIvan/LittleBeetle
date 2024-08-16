@@ -13,16 +13,19 @@ interface ShipmentDetails {
   postalCode: string;
 }
 
-// interface Fee {
-//   total: number;
-//   shipping: number[];
-// }
+interface Fee {
+  price: number;
+  quantity: number;
+  id: string;
+}
 
 export interface ShipmentState {
   shipment: ShipmentDetails;
   submitForm: (shipment: ShipmentDetails) => void;
-  fee: number[];
-  setFee: (fee: number) => void;
+  fee: Fee[];
+  setFee: (id: string, price: number, quantity: number) => void;
+  // setFee: ({ id, price, quantity }: Fee) => void;
+  removeFee: (id: string) => void;
 }
 
 export const useShipment = create(
@@ -43,14 +46,14 @@ export const useShipment = create(
       submitForm: (shipment: ShipmentDetails) => {
         set({ shipment });
       },
-      setFee: (num: number) => {
+      setFee: (id: string, price: number, quantity: number) => {
         set((state: ShipmentState) => ({
-          fee: [...state.fee, num],
+          fee: [...state.fee, { id, price, quantity }],
         }));
       },
-      removeFee: (num: number) => {
+      removeFee: (id: string) => {
         set(({ fee }) => ({
-          fee: fee.filter((item) => item !== num),
+          fee: fee.filter((item) => item.id !== id),
         }));
       },
     }),

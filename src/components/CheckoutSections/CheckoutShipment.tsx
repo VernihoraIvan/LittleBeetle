@@ -10,7 +10,7 @@ const CheckoutShipment = () => {
   console.log(shipmentStore);
   const products = useCart((state) => state.items);
   const totalFee = useShipment((state) => state.fee).reduce(
-    (acc, curr) => acc + curr,
+    (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
 

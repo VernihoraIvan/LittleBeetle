@@ -20,7 +20,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
 
   const [price, setPrice] = useState<number>(0);
   const [lang, setLang] = useState<string>("en");
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const handleOverlayPrice = () => {
     setIsOverlayPrice(!isOverlayPrice);
@@ -43,7 +43,8 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
       console.log(id);
       setPrice(0);
       setIsOverlayPrice(false);
-      setFee(price);
+      setFee(id, price, quantity);
+      setQuantity(1);
     }
   };
 
@@ -93,7 +94,9 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 )}
               >
                 <button
-                  onClick={() => handleAddProduct(title, price, quantity, lang, id)}
+                  onClick={() =>
+                    handleAddProduct(title, price, quantity, lang, id)
+                  }
                   className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14"
                 >
                   Add to Cart
