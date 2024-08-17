@@ -6,12 +6,14 @@ import FormEl from "./Elements/FormEl";
 import { MyFormValues } from "@/utilities/interfaces";
 import { SubmitSchema } from "@/utilities/FormSchema";
 import { useShipment } from "@/zustand/shipmentStore";
+import { useStage } from "@/zustand/stageStore";
 
 const DetailsForm = () => {
   const navigate = useNavigate();
 
   const submitShipment = useShipment((state) => state.submitForm);
   const shipmentStore = useShipment((state) => state.shipment);
+  const setStage = useStage((state) => state.setStage);
 
   return (
     <section className="pt-buttonP">
@@ -116,6 +118,7 @@ const DetailsForm = () => {
             <button
               className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl mt-9"
               type="submit"
+              onClick={() => setStage(3)}
             >
               CONTINUE TO NEXT
             </button>

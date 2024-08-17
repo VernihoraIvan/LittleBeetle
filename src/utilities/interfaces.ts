@@ -75,6 +75,7 @@ export interface ButtonToProps {
   to: string;
   title: string;
   style: string;
+  onClick?: () => void;
 }
 
 export interface CheckoutContributionElProps {

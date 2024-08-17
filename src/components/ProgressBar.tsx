@@ -1,3 +1,4 @@
+import { useStage } from "@/zustand/stageStore";
 import clsx from "clsx";
 import { NavLink, useParams } from "react-router-dom";
 
@@ -6,6 +7,8 @@ const ProgressBar = () => {
   const steps = ["contribution", "details", "shipment", "payment"];
   const progressWidth = ["-", "1/3", "2/3", "full"];
   const stage = steps.indexOf(step || "contribution");
+  const allowedStage = useStage((state) => state.allowedStage);
+  console.log(allowedStage);
   return (
     <section className="flex justify-center bg-primBeige ">
       <div className="xxl:w-contW relative pt-bookPT flex justify-center flex-col">
@@ -19,7 +22,10 @@ const ProgressBar = () => {
         <ul className="text-2xl font-secondaryBold  absolute w-full flex justify-between">
           <li className="relative">
             <NavLink
-              className="  bg-primPurple border-primPurple  text-primWhite flex justify-center items-center w-16 h-16 rounded-full border-3 "
+              className={clsx(
+                "  bg-primPurple border-primPurple  text-primWhite flex justify-center items-center w-16 h-16 rounded-full border-3 ",
+                stage < 1 && "pointer-events-none"
+              )}
               to={"contribution"}
             >
               <p className="">1</p>
@@ -34,7 +40,8 @@ const ProgressBar = () => {
                 "flex justify-center items-center w-16 h-16 rounded-full border-3",
                 stage > 0
                   ? "bg-primPurple border-primPurple  text-primWhite"
-                  : "text-bgPurple border-primPurple bg-primWhite"
+                  : "text-bgPurple border-primPurple bg-primWhite",
+                allowedStage < 2 && "pointer-events-none"
               )}
               to={"details"}
             >
@@ -55,7 +62,8 @@ const ProgressBar = () => {
                 "flex justify-center items-center w-16 h-16 rounded-full border-3",
                 stage > 1
                   ? "bg-primPurple border-primPurple  text-primWhite"
-                  : "text-bgPurple border-primPurple bg-primWhite"
+                  : "text-bgPurple border-primPurple bg-primWhite",
+                allowedStage < 3 && "pointer-events-none"
               )}
               to={"shipment"}
             >
@@ -76,7 +84,8 @@ const ProgressBar = () => {
                 "flex justify-center items-center w-16 h-16 rounded-full border-3",
                 stage > 2
                   ? "bg-primPurple border-primPurple  text-primWhite"
-                  : "text-bgPurple border-primPurple bg-primWhite"
+                  : "text-bgPurple border-primPurple bg-primWhite",
+                allowedStage < 4 && "pointer-events-none"
               )}
               to={"payment"}
             >

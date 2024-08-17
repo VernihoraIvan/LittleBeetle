@@ -6,6 +6,7 @@ import ButtonTo from "../ButtonTo";
 import SummaryCheckout from "../SummaryCheckout";
 import clsx from "clsx";
 import { useShipment } from "@/zustand/shipmentStore";
+import { useStage } from "@/zustand/stageStore";
 
 const CheckoutContribution = () => {
   const products = useCart((state) => state.items);
@@ -13,7 +14,7 @@ const CheckoutContribution = () => {
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
-  // console.log(products);
+  const setStage = useStage((state) => state.setStage);
   return (
     <>
       <div
@@ -42,6 +43,7 @@ const CheckoutContribution = () => {
       </div>
       <CartIncludedWidget />
       <ButtonTo
+        onClick={() => setStage(2)}
         to="/checkout/details"
         title="CONTINUE TO NEXT"
         style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl"

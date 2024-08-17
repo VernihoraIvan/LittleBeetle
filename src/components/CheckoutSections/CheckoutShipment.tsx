@@ -4,6 +4,7 @@ import ShipmentEl from "../Elements/ShipmentEl";
 import { useCart } from "@/zustand/productStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
 import ButtonTo from "../ButtonTo";
+import { useStage } from "@/zustand/stageStore";
 
 const CheckoutShipment = () => {
   const shipmentStore = useShipment((state) => state.shipment);
@@ -13,6 +14,7 @@ const CheckoutShipment = () => {
     (acc, curr) => acc + curr.price * curr.quantity,
     0
   );
+  const setStage = useStage((state) => state.setStage);
 
   const productToDisplay = includedProducts.concat(extraProducts);
 
@@ -61,6 +63,7 @@ const CheckoutShipment = () => {
         <ShippingSummary subTotal={totalFee} shippingFee={0} />
       </div>
       <ButtonTo
+        onClick={() => setStage(4)}
         to="/checkout/payment"
         title="CONTINUE TO NEXT"
         style="w-fit mt-bookPT text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl"
