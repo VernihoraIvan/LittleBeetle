@@ -2,12 +2,13 @@ import { useStage } from "@/zustand/stageStore";
 import clsx from "clsx";
 import { NavLink, useParams } from "react-router-dom";
 
-const ProgressBar = () => {
+const ProgressBarWO = () => {
   const { step } = useParams();
-  const steps = ["contribution", "details", "shipment", "payment"];
-  const progressWidth = ["-", "1/3", "2/3", "full"];
+  const steps = ["contribution", "details", "payment"];
+  const progressWidth = ["-", "1/2", "full"];
   const stage = steps.indexOf(step || "contribution");
   const allowedStage = useStage((state) => state.allowedStage);
+
   return (
     <section className="flex justify-center bg-primBeige ">
       <div className="xxl:w-contW relative pt-bookPT flex justify-center flex-col">
@@ -64,7 +65,7 @@ const ProgressBar = () => {
                   : "text-bgPurple border-primPurple bg-primWhite",
                 allowedStage < 3 && "pointer-events-none"
               )}
-              to={"shipment"}
+              to={"payment"}
             >
               3
             </NavLink>
@@ -72,28 +73,6 @@ const ProgressBar = () => {
               className={clsx(
                 "absolute w-max -left-1/2 mt-4 ",
                 stage > 1 ? "text-bgPurple" : "text-barGrey"
-              )}
-            >
-              Shipment
-            </p>
-          </li>
-          <li className="relative">
-            <NavLink
-              className={clsx(
-                "flex justify-center items-center w-16 h-16 rounded-full border-3",
-                stage > 2
-                  ? "bg-primPurple border-primPurple  text-primWhite"
-                  : "text-bgPurple border-primPurple bg-primWhite",
-                allowedStage < 4 && "pointer-events-none"
-              )}
-              to={"payment"}
-            >
-              4
-            </NavLink>
-            <p
-              className={clsx(
-                "absolute w-max -left-1/2 mt-4 ",
-                stage > 2 ? "text-bgPurple" : "text-barGrey"
               )}
             >
               Payment
@@ -105,4 +84,4 @@ const ProgressBar = () => {
   );
 };
 
-export default ProgressBar;
+export default ProgressBarWO;

@@ -6,13 +6,13 @@ import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
-import { useCart } from "@/zustand/productStore";
+import { useDonation } from "@/zustand/donationStore";
 
-const PaymentSection = () => {
+const PaymentSectionWO = () => {
   const [isActive, setIsActive] = useState<number>(0);
-  const products = useCart((state) => state.items);
+  const donations = useDonation((state) => state.items);
 
-  const totalFee = products.reduce(
+  const totalFee = donations.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
   );
@@ -88,4 +88,4 @@ const PaymentSection = () => {
   );
 };
 
-export default PaymentSection;
+export default PaymentSectionWO;

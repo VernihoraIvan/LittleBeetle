@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import CheckoutContribution from "./CheckoutSections/CheckoutContribution";
 import CheckoutDetails from "./CheckoutSections/CheckoutDetails";
 import CheckoutShipment from "./CheckoutSections/CheckoutShipment";
-import CheckoutPayment from "./CheckoutSections/CheckoutPayment";
+import PaymentSection from "./PaymentSection";
 
 const CheckoutSection = () => {
   const { step } = useParams();
@@ -15,7 +15,7 @@ const CheckoutSection = () => {
       case "shipment":
         return <CheckoutShipment />;
       case "payment":
-        return <CheckoutPayment />;
+        return <PaymentSection />;
       default:
         return <CheckoutContribution />;
     }

@@ -3,7 +3,7 @@ import { includedProducts } from "@/utilities/data";
 
 const Products = () => {
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT pb-prodPB">
+    <section className="flex justify-center bg-primBeige pt-bookPT pb-[125px]">
       <div className="xxl:w-contW">
         <h2 className="font-primaryBold mb-6 text-primPurple  text-titleS">
           Included with every donation

@@ -50,7 +50,6 @@ export interface TitleProps {
 }
 
 export interface QuantityAdjusterProps {
-  price: number;
   isOverlay?: boolean;
   id: string;
 }
@@ -83,6 +82,7 @@ export interface CheckoutContributionElProps {
   language: string;
   imgPath?: string[];
   id: string;
+  isGiftpossible?: boolean;
 }
 
 export interface titleProps {
@@ -129,4 +129,18 @@ export interface FormElProps {
   title: string;
   element: string;
   isRequired?: boolean;
+}
+
+export interface DonationOptionProps {
+  handleOverlayLang: () => void;
+  lang: string;
+  setIsOverlayLang: React.Dispatch<React.SetStateAction<boolean>>;
+  setLang: React.Dispatch<React.SetStateAction<string>>;
+  isOverlayLang: boolean;
+  handleOverlayPrice: () => void;
+  price: number;
+  isOverlayPrice: boolean;
+  setPrice: React.Dispatch<React.SetStateAction<number>>;
+  setIsOverlayPrice: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsChecked: (value: boolean) => void;
 }

@@ -1,6 +1,9 @@
 import { CheckoutContributionElProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
 import { useEffect, useState } from "react";
+import CrossLogo from "@/assets/icons//cross.svg?react";
+import { useStage } from "@/zustand/stageStore";
+import { useDonation } from "@/zustand/donationStore";
 
 const CheckoutContributionEl = ({
   name,
@@ -8,16 +11,12 @@ const CheckoutContributionEl = ({
   imgPath,
   language,
   id,
+  isGiftpossible,
 }: CheckoutContributionElProps) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const { setAGift } = useCart();
   const product = useCart((state) => state.items);
-
-  // const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(event.currentTarget.value);
-  //   setAGift(event.target.value);
-  //   setIsChecked(!isChecked);
-  // };
+  const setStage = useStage((state) => state.setStage);
 
   useEffect(() => {
     const gift = product.find((item) => item.id === id);
@@ -30,11 +29,20 @@ const CheckoutContributionEl = ({
     const checked = event.target.checked;
     setIsChecked(checked);
     setAGift(id, checked);
-    console.log(product);
+  };
+
+  const removeDonation = useDonation((state) => state.removeDonation);
+  const removeProductHandler = () => {
+    removeDonation(id);
+    setStage(1);
   };
 
   return (
     <div className="relative mt-10 mb-prodMar flex justify-between w-full pr-6 ">
+      <CrossLogo
+        className="cursor-pointer absolute left-[-60px]"
+        onClick={removeProductHandler}
+      />
       <div className="flex items-center">
         {imgPath && (
           <img
@@ -57,23 +65,25 @@ const CheckoutContributionEl = ({
               £{total}
             </p>
           </div>
-          <div className="flex items-center ml-8 ">
-            <label
-              className="font-secondaryRegular text-xl hover:cursor-pointer"
-              htmlFor={id}
-            >
-              <input
-                className="mr-2 hover:cursor-pointer "
-                type="checkbox"
-                id={id}
-                name="option"
-                value={id}
-                checked={isChecked}
-                onChange={(e) => handleCheckboxChange(e)}
-              />
-              it's a gift
-            </label>
-          </div>
+          {isGiftpossible && (
+            <div className="flex items-center ml-8 ">
+              <label
+                className="font-secondaryRegular text-xl hover:cursor-pointer"
+                htmlFor={id}
+              >
+                <input
+                  className="mr-2 hover:cursor-pointer "
+                  type="checkbox"
+                  id={id}
+                  name="option"
+                  value={id}
+                  checked={isChecked}
+                  onChange={(e) => handleCheckboxChange(e)}
+                />
+                it's a gift
+              </label>
+            </div>
+          )}
         </div>
       </div>
     </div>

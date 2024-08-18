@@ -6,11 +6,7 @@ import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
 import clsx from "clsx";
 
-const QuantityAdjuster = ({
-  price,
-  isOverlay = false,
-  id,
-}: QuantityAdjusterProps) => {
+const QuantityAdjuster = ({ isOverlay = false, id }: QuantityAdjusterProps) => {
   const increaseQuantity = useCart((state) => state.increaseQuantity);
   const reduceQuantity = useCart((state) => state.reduceQuantity);
   const removeProduct = useCart((state) => state.removeFromCart);
@@ -30,7 +26,7 @@ const QuantityAdjuster = ({
       reduceQuantity(id);
     }
     if (quantity === 1) {
-      removeProduct(id, price);
+      removeProduct(id);
       removeFee(id);
       setStage(1);
     }

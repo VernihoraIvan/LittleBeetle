@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export interface CartState {
+export interface DonationState {
   items: {
     name: string;
     quantity: number;
@@ -10,7 +10,7 @@ export interface CartState {
     isAGift: boolean;
     id: string;
   }[];
-  addToCart: (
+  addDonation: (
     name: string,
     quantity: number,
     price: number,
@@ -18,8 +18,7 @@ export interface CartState {
     isAGift: boolean,
     id: string
   ) => void;
-  removeFromCart: (id: string) => void;
-  adjustCart: (id: string, quantity: number, price: number) => void;
+  removeDonation: (id: string) => void;
   increaseQuantity: (id: string) => void;
   reduceQuantity: (id: string) => void;
   chooseItemLanguage: (itemLanguage: string) => void;
@@ -27,23 +26,11 @@ export interface CartState {
   setAGift: (id: string, checked: boolean) => void;
 }
 
-export interface LanguageState {
-  language: string;
-  changeLanguage: (language: string) => void;
-}
-
-export const useLanguage = create<LanguageState>((set) => ({
-  language: "en",
-  changeLanguage: (language: string) => {
-    set({ language });
-  },
-}));
-
-export const useCart = create(
-  persist<CartState>(
+export const useDonation = create(
+  persist<DonationState>(
     (set, get) => ({
       items: [],
-      addToCart: (
+      addDonation: (
         name: string,
         quantity: number,
         price: number,
@@ -51,7 +38,7 @@ export const useCart = create(
         isAGift: boolean,
         id: string
       ) => {
-        set((state: CartState) => ({
+        set((state: DonationState) => ({
           items: state.items.some(
             (item) => item.name === name && item.price === price
           )
@@ -66,34 +53,27 @@ export const useCart = create(
               ],
         }));
       },
-      removeFromCart: (id: string) => {
-        set((state: CartState) => ({
+      removeDonation: (id: string) => {
+        set((state: DonationState) => ({
           items: state.items.filter((item) => !(item.id === id)),
         }));
       },
       increaseQuantity: (id: string) => {
-        set((state: CartState) => ({
+        set((state: DonationState) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity + 1 } : item
           ),
         }));
       },
       reduceQuantity: (id: string) => {
-        set((state: CartState) => ({
+        set((state: DonationState) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, quantity: item.quantity - 1 } : item
           ),
         }));
       },
-      adjustCart: (id: string, quantity: number, price: number) => {
-        set((state: CartState) => ({
-          items: state.items.map((item) =>
-            item.id === id ? { ...item, quantity, price } : item
-          ),
-        }));
-      },
       chooseItemLanguage: (itemLanguage: string) => {
-        set((state: CartState) => ({
+        set((state: DonationState) => ({
           items: state.items.map((item) => ({
             ...item,
             itemLanguage,
@@ -106,7 +86,7 @@ export const useCart = create(
         return item ? item.quantity : 0;
       },
       setAGift: (id: string, checked: boolean) => {
-        set((state: CartState) => ({
+        set((state: DonationState) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, isAGift: checked } : item
           ),
@@ -114,7 +94,7 @@ export const useCart = create(
       },
     }),
     {
-      name: "cart-storage",
+      name: "donation-storage",
       getStorage: () => localStorage,
     }
   )

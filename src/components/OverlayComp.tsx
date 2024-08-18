@@ -53,7 +53,7 @@ const OverlayComp = ({
           ref={elementRefPrice}
           className={clsx(
             "  bg-primWhite font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-prodW  transition-transform duration-0",
-            isOverlay ? "translate-y-0" : "-translate-y-full"
+            isOverlay ? "translate-y-0 " : "-translate-y-full block"
           )}
         >
           <div className=" overlay-container cursor-pointer  w-full">

@@ -1,4 +1,4 @@
-import { useShipment } from "@/zustand/shipmentStore";
+// import { useShipment } from "@/zustand/shipmentStore";
 import ShippingSummary from "../ShippingSummary";
 import ShipmentEl from "../Elements/ShipmentEl";
 import { useCart } from "@/zustand/productStore";
@@ -7,13 +7,8 @@ import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
 
 const CheckoutShipment = () => {
-  const shipmentStore = useShipment((state) => state.shipment);
-  console.log(shipmentStore);
+  // const shipmentStore = useShipment((state) => state.shipment);
   const products = useCart((state) => state.items);
-  // const totalFee = useShipment((state) => state.fee).reduce(
-  //   (acc, curr) => acc + curr.price * curr.quantity,
-  //   0
-  // );
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,

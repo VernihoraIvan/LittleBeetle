@@ -11,6 +11,8 @@ import PageNotFound from "./pages/PageNotFound";
 import SubDonationPage from "./pages/SubDonationPage";
 import Checkout from "./pages/Checkout";
 import CheckoutSection from "./components/CheckoutSection";
+import CheckoutWO from "./pages/CheckoutWO";
+import CheckoutWOSection from "./components/CheckoutWOSection";
 // import Checkout1stPage from "./components/Checkout1st";
 
 function App() {
@@ -26,6 +28,9 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />}>
           <Route path=":step" element={<CheckoutSection />} />
+        </Route>
+        <Route path="/checkout-donation" element={<CheckoutWO />}>
+          <Route path=":step" element={<CheckoutWOSection />} />
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />

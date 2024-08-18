@@ -26,9 +26,6 @@ const CheckoutContribution = () => {
     setTotalFee(totalFee);
   }, [totalFee]);
 
-  console.log(products[0].quantity);
-  console.log(totalFee);
-
   const setStage = useStage((state) => state.setStage);
   return (
     <>
@@ -51,6 +48,7 @@ const CheckoutContribution = () => {
                 imgPath={
                   extraProducts.find((p) => p.title === product.name)?.imagePath
                 }
+                isGiftpossible={true}
               />
             ))}
         </section>
