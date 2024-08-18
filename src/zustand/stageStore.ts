@@ -1,10 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-// interface StageDetails {
-//   allowedStage: number;
-// }
-
 export interface StageState {
   allowedStage: number;
   setStage: (stage: number) => void;

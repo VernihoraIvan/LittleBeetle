@@ -5,15 +5,30 @@ import CartIncludedWidget from "../CartIncludedWidget";
 import ButtonTo from "../ButtonTo";
 import SummaryCheckout from "../SummaryCheckout";
 import clsx from "clsx";
-import { useShipment } from "@/zustand/shipmentStore";
+// import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
+import { useEffect, useState } from "react";
 
 const CheckoutContribution = () => {
+  const [totalFeeState, setTotalFee] = useState(0);
   const products = useCart((state) => state.items);
-  const totalFee = useShipment((state) => state.fee).reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
+  // const totalFee = useShipment((state) => state.fee).reduce(
+  //   (acc, curr) => acc + curr.price * curr.quantity,
+  //   0
+  // );
+
+  const totalFee = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
     0
   );
+
+  useEffect(() => {
+    setTotalFee(totalFee);
+  }, [totalFee]);
+
+  console.log(products[0].quantity);
+  console.log(totalFee);
+
   const setStage = useStage((state) => state.setStage);
   return (
     <>
@@ -39,7 +54,7 @@ const CheckoutContribution = () => {
               />
             ))}
         </section>
-        <SummaryCheckout subTotal={totalFee} shippingFee={0} />
+        <SummaryCheckout subTotal={totalFeeState} shippingFee={0} />
       </div>
       <CartIncludedWidget />
       <ButtonTo

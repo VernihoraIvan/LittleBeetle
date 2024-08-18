@@ -50,13 +50,11 @@ export interface TitleProps {
 }
 
 export interface QuantityAdjusterProps {
-  name: string;
   price: number;
   isOverlay?: boolean;
   id: string;
 }
 export interface QuantityAdjusterWStateProps {
-  name: string;
   price: number;
   isOverlay?: boolean;
   quantity: number;

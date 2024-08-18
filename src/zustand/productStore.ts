@@ -18,12 +18,12 @@ export interface CartState {
     isAGift: boolean,
     id: string
   ) => void;
-  removeFromCart: (name: string, price: number) => void;
-  adjustCart: (name: string, quantity: number, price: number) => void;
-  increaseQuantity: (name: string) => void;
-  reduceQuantity: (name: string) => void;
+  removeFromCart: (id: string, price: number) => void;
+  adjustCart: (id: string, quantity: number, price: number) => void;
+  increaseQuantity: (id: string) => void;
+  reduceQuantity: (id: string) => void;
   chooseItemLanguage: (itemLanguage: string) => void;
-  getQuantity: (name: string) => number;
+  getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
 }
 
@@ -52,37 +52,45 @@ export const useCart = create(
         id: string
       ) => {
         set((state: CartState) => ({
-          items: [
-            ...state.items,
-            { name, quantity, price, itemLanguage, id, isAGift },
-          ],
+          items: state.items.some(
+            (item) => item.name === name && item.price === price
+          )
+            ? state.items.map((item) =>
+                item.name === name && item.price === price
+                  ? { ...item, quantity: item.quantity + quantity }
+                  : item
+              )
+            : [
+                ...state.items,
+                { name, quantity, price, itemLanguage, id, isAGift },
+              ],
         }));
       },
-      removeFromCart: (name: string, price: number) => {
+      removeFromCart: (id: string, price: number) => {
         set((state: CartState) => ({
           items: state.items.filter(
-            (item) => !(item.name === name && item.price === price)
+            (item) => !(item.id === id && item.price === price)
           ),
         }));
       },
-      increaseQuantity: (name: string) => {
+      increaseQuantity: (id: string) => {
         set((state: CartState) => ({
           items: state.items.map((item) =>
-            item.name === name ? { ...item, quantity: item.quantity + 1 } : item
+            item.id === id ? { ...item, quantity: item.quantity + 1 } : item
           ),
         }));
       },
-      reduceQuantity: (name: string) => {
+      reduceQuantity: (id: string) => {
         set((state: CartState) => ({
           items: state.items.map((item) =>
-            item.name === name ? { ...item, quantity: item.quantity - 1 } : item
+            item.id === id ? { ...item, quantity: item.quantity - 1 } : item
           ),
         }));
       },
-      adjustCart: (name: string, quantity: number, price: number) => {
+      adjustCart: (id: string, quantity: number, price: number) => {
         set((state: CartState) => ({
           items: state.items.map((item) =>
-            item.name === name ? { ...item, quantity, price } : item
+            item.id === id ? { ...item, quantity, price } : item
           ),
         }));
       },
@@ -94,9 +102,9 @@ export const useCart = create(
           })),
         }));
       },
-      getQuantity: (name: string) => {
+      getQuantity: (id: string) => {
         const state = get();
-        const item = state.items.find((item) => item.name === name);
+        const item = state.items.find((item) => item.id === id);
         return item ? item.quantity : 0;
       },
       setAGift: (id: string, checked: boolean) => {

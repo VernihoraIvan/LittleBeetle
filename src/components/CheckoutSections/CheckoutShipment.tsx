@@ -10,10 +10,16 @@ const CheckoutShipment = () => {
   const shipmentStore = useShipment((state) => state.shipment);
   console.log(shipmentStore);
   const products = useCart((state) => state.items);
-  const totalFee = useShipment((state) => state.fee).reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
+  // const totalFee = useShipment((state) => state.fee).reduce(
+  //   (acc, curr) => acc + curr.price * curr.quantity,
+  //   0
+  // );
+
+  const totalFee = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
     0
   );
+
   const setStage = useStage((state) => state.setStage);
 
   const productToDisplay = includedProducts.concat(extraProducts);

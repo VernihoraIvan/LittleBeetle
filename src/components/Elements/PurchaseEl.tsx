@@ -5,26 +5,34 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/zustand/productStore";
 import QuantityAdjuster from "@/components/QuantityAdjuster";
 import { useShipment } from "@/zustand/shipmentStore";
+import { useStage } from "@/zustand/stageStore";
 
 const PurchaseEl = ({ name, price, total, imgPath, id }: PurchaseElProps) => {
   const [totalEl, setTotal] = useState<number>(total);
   const removeProduct = useCart((state) => state.removeFromCart);
   const quantityEl = useCart(
-    (state) => state.items.find((item) => item.name === name)?.quantity
+    (state) => state.items.find((item) => item.id === id)?.quantity
   );
   const removeFee = useShipment((state) => state.removeFee);
+  const setStage = useStage((state) => state.setStage);
 
   const removeProductHandler = () => {
-    removeProduct(name, price);
+    removeProduct(id, price);
     removeFee(id);
+    setStage(1);
   };
 
   useEffect(() => {
     if (quantityEl) {
+      console.log("quantityEl", quantityEl);
       setTotal(price * quantityEl);
     }
   }, [quantityEl, price]);
 
+  console.log("totalEl", totalEl);
+  console.log("quantityEl", quantityEl);
+  console.log("total", total);
+  console.log(id);
   return (
     <div className="relative mt-10 mb-prodMar flex justify-between w-full pr-6 ">
       <CrossLogo
@@ -50,7 +58,7 @@ const PurchaseEl = ({ name, price, total, imgPath, id }: PurchaseElProps) => {
           <Edit className="cursor-pointer" />
         </li>
         <li className="relative">
-          <QuantityAdjuster name={name} price={price} id={id} />
+          <QuantityAdjuster price={price} id={id} />
         </li>
         <li className="items-center w-10">£{totalEl}</li>
       </ul>

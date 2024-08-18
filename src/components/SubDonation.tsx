@@ -38,9 +38,9 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     id: string
   ) => {
     if (price > 2) {
-      console.log(title, quantity, price, lang, false, id);
+      // console.log(title, quantity, price, lang, false, id);
       addProduct(title, quantity, price, lang, false, id);
-      console.log(id);
+      // console.log(id);
       setPrice(0);
       setIsOverlayPrice(false);
       setFee(id, price, quantity);
@@ -81,7 +81,6 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 </p>
                 <QuantityAdjuster
                   isOverlay={isOverlayPrice}
-                  name={title}
                   price={price}
                   quantity={quantity}
                   setQuantity={setQuantity}

@@ -1,4 +1,4 @@
-import { useShipment } from "@/zustand/shipmentStore";
+// import { useShipment } from "@/zustand/shipmentStore";
 import SummaryUniversal from "./SummaryUniversal";
 import { useState } from "react";
 import clsx from "clsx";
@@ -7,13 +7,21 @@ import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
+import { useCart } from "@/zustand/productStore";
 
 const PaymentSection = () => {
   const [isActive, setIsActive] = useState<number>(0);
-  const totalFee = useShipment((state) => state.fee).reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
+  // const totalFee = useShipment((state) => state.fee).reduce(
+  //   (acc, curr) => acc + curr.price * curr.quantity,
+  //   0
+  // );
+  const products = useCart((state) => state.items);
+
+  const totalFee = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
     0
   );
+
   console.log(totalFee);
   return (
     <section className="flex justify-between pt-bookPB">

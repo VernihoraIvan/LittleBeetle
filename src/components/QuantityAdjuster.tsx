@@ -3,10 +3,10 @@ import Plus from "@/assets/icons/plus.svg?react";
 import { QuantityAdjusterProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
 import { useShipment } from "@/zustand/shipmentStore";
+import { useStage } from "@/zustand/stageStore";
 import clsx from "clsx";
 
 const QuantityAdjuster = ({
-  name,
   price,
   isOverlay = false,
   id,
@@ -15,23 +15,24 @@ const QuantityAdjuster = ({
   const reduceQuantity = useCart((state) => state.reduceQuantity);
   const removeProduct = useCart((state) => state.removeFromCart);
   const quantity =
-    useCart(
-      (state) => state.items.find((item) => item.name === name)?.quantity
-    ) || 0;
+    useCart((state) => state.items.find((item) => item.id === id)?.quantity) ||
+    0;
+  const setStage = useStage((state) => state.setStage);
 
   const removeFee = useShipment((state) => state.removeFee);
 
-  const incrementQuantity = (name: string) => {
-    increaseQuantity(name);
+  const incrementQuantity = (id: string) => {
+    increaseQuantity(id);
   };
 
-  const decrementQuantity = (name: string) => {
+  const decrementQuantity = (id: string) => {
     if (quantity && quantity > 0) {
-      reduceQuantity(name);
+      reduceQuantity(id);
     }
     if (quantity === 1) {
-      removeProduct(name, price);
+      removeProduct(id, price);
       removeFee(id);
+      setStage(1);
     }
   };
   return (
@@ -43,13 +44,10 @@ const QuantityAdjuster = ({
     >
       <Minus
         className="cursor-pointer "
-        onClick={() => decrementQuantity(name)}
+        onClick={() => decrementQuantity(id)}
       />
       <p>{quantity}</p>
-      <Plus
-        className="cursor-pointer"
-        onClick={() => incrementQuantity(name)}
-      />
+      <Plus className="cursor-pointer" onClick={() => incrementQuantity(id)} />
     </div>
   );
 };
