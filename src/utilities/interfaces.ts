@@ -1,3 +1,4 @@
+import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { FormikTouched } from "formik";
 
 export interface OverlayProps {
@@ -121,6 +122,7 @@ export interface MyFormValues {
   city: string;
   postalCode: string;
   id: string;
+  shipment?: ShipmentDetails;
 }
 
 export interface FormElProps {

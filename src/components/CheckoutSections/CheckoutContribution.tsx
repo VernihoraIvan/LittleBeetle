@@ -5,17 +5,13 @@ import CartIncludedWidget from "../CartIncludedWidget";
 import ButtonTo from "../ButtonTo";
 import SummaryCheckout from "../SummaryCheckout";
 import clsx from "clsx";
-// import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
 import { useEffect, useState } from "react";
+import EmptyCart from "../EmptyCart";
 
 const CheckoutContribution = () => {
   const [totalFeeState, setTotalFee] = useState(0);
   const products = useCart((state) => state.items);
-  // const totalFee = useShipment((state) => state.fee).reduce(
-  //   (acc, curr) => acc + curr.price * curr.quantity,
-  //   0
-  // );
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
@@ -32,11 +28,11 @@ const CheckoutContribution = () => {
       <div
         className={clsx(
           "flex  pt-bookPT",
-          products.length > 0 ? "justify-between" : "justify-end"
+          products.length > 0 ? "justify-between" : "justify-between"
         )}
       >
         <section className="">
-          {products.length > 0 &&
+          {products.length > 0 ? (
             products.map((product) => (
               <CheckoutContributionEl
                 key={product.id}
@@ -50,7 +46,12 @@ const CheckoutContribution = () => {
                 }
                 isGiftpossible={true}
               />
-            ))}
+            ))
+          ) : (
+            <div className="flex justify-begin">
+              <EmptyCart />
+            </div>
+          )}
         </section>
         <SummaryCheckout subTotal={totalFeeState} shippingFee={0} />
       </div>

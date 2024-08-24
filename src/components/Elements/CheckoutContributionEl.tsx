@@ -17,13 +17,15 @@ const CheckoutContributionEl = ({
   const { setAGift } = useCart();
   const product = useCart((state) => state.items);
   const setStage = useStage((state) => state.setStage);
+  const [productState, setProductState] = useState(product);
+  const removeProduct = useCart((state) => state.removeFromCart);
 
   useEffect(() => {
     const gift = product.find((item) => item.id === id);
     if (gift) {
       setIsChecked(gift.isAGift);
     }
-  }, [product, id]);
+  }, [product, id, productState]);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
@@ -32,16 +34,20 @@ const CheckoutContributionEl = ({
   };
 
   const removeDonation = useDonation((state) => state.removeDonation);
-  const removeProductHandler = () => {
+  const removeProductHandler = (id: string) => {
     removeDonation(id);
+    removeProduct(id);
     setStage(1);
+    setProductState((prev) => prev.filter((item) => item.id !== id));
+    console.log("remove donation");
+    console.log(productState);
   };
 
   return (
     <div className="relative mt-10 mb-prodMar flex justify-between w-full pr-6 ">
       <CrossLogo
         className="cursor-pointer absolute left-[-60px]"
-        onClick={removeProductHandler}
+        onClick={() => removeProductHandler(id)}
       />
       <div className="flex items-center">
         {imgPath && (

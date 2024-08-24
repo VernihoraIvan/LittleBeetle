@@ -104,6 +104,9 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   to="/checkout/contribution"
                   style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
                   title="Checkout"
+                  onClick={() =>
+                    handleAddProduct(title, price, quantity, lang, id)
+                  }
                 />
               </div>
             </div>

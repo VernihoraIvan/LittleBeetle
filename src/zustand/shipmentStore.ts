@@ -22,10 +22,9 @@ interface Fee {
 
 export interface ShipmentState {
   shipment: ShipmentDetails;
-  submitForm: (shipment: ShipmentDetails) => void;
+  submitForm: (shipment: ShipmentDetails, id: string) => void;
   fee: Fee[];
   setFee: (id: string, price: number, quantity: number) => void;
-  // setFee: ({ id, price, quantity }: Fee) => void;
   removeFee: (id: string) => void;
 }
 

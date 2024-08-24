@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { nanoid } from "nanoid";
 import { CartState, useCart } from "./productStore";
-import { ShipmentState, useShipment } from "./shipmentStore";
+import { ShipmentDetails, ShipmentState, useShipment } from "./shipmentStore";
 
 export interface MainStoreState {
   products: CartState["items"];
@@ -18,6 +18,8 @@ export interface MainStoreState {
   submitForm: ShipmentState["submitForm"];
   setFee: ShipmentState["setFee"];
   removeFee: ShipmentState["removeFee"];
+  addShippment: ShipmentState["submitForm"];
+  setDefaultAdress: CartState["setDefaultAdress"];
   syncStates: () => void;
 }
 
@@ -32,11 +34,27 @@ export const useMainStore = create<MainStoreState>((set) => ({
     set({ orderID: nanoid() });
   },
 
+  setDefaultAdress: (shipment: ShipmentDetails) => {
+    useCart.getState().setDefaultAdress(shipment);
+    set({ products: useCart.getState().items });
+  },
+
   // Pass through Cart methods and update products in the main store
   addToCart: (...args) => {
     useCart.getState().addToCart(...args);
     set({ products: useCart.getState().items });
   },
+  addShippment: (shipment: ShipmentDetails, id: string) => {
+    useCart.getState().addShipment(shipment, id);
+    set({ products: useCart.getState().items });
+  },
+  //   addShipment: (shipment: ShipmentDetails, id: string) => {
+  //     set((state: CartState) => ({
+  //       items: state.items.map((item) =>
+  //         item.id === id ? { ...item, shippment: shipment } : item
+  //       ),
+  //     }));
+  //   },
   removeFromCart: (...args) => {
     useCart.getState().removeFromCart(...args);
     set({ products: useCart.getState().items });

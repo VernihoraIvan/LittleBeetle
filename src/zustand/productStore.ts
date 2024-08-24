@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { ShipmentDetails } from "./shipmentStore";
 
 export interface itemProps {
   name: string;
@@ -8,9 +9,12 @@ export interface itemProps {
   itemLanguage: string;
   isAGift: boolean;
   id: string;
+  shippment?: ShipmentDetails;
 }
 export interface CartState {
   items: itemProps[];
+  shippment?: ShipmentDetails;
+  setDefaultAdress: (shipment: ShipmentDetails) => void;
   addToCart: (
     name: string,
     quantity: number,
@@ -26,6 +30,7 @@ export interface CartState {
   chooseItemLanguage: (itemLanguage: string) => void;
   getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
+  addShipment: (shipment: ShipmentDetails, id: string) => void;
 }
 
 export interface LanguageState {
@@ -65,6 +70,18 @@ export const useCart = create(
                 ...state.items,
                 { name, quantity, price, itemLanguage, id, isAGift },
               ],
+        }));
+      },
+      setDefaultAdress: (shipment: ShipmentDetails) => {
+        set((state: CartState) => ({
+          items: state.items.map((item) => ({ ...item, shippment: shipment })),
+        }));
+      },
+      addShipment: (shipment: ShipmentDetails, id: string) => {
+        set((state: CartState) => ({
+          items: state.items.map((item) =>
+            item.id === id ? { ...item, shippment: shipment } : item
+          ),
         }));
       },
       removeFromCart: (id: string) => {
