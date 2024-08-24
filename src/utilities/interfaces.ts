@@ -120,6 +120,7 @@ export interface MyFormValues {
   streetAdress2: string;
   city: string;
   postalCode: string;
+  id: string;
 }
 
 export interface FormElProps {

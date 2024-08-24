@@ -7,24 +7,44 @@ import { MyFormValues } from "@/utilities/interfaces";
 import { SubmitSchema } from "@/utilities/FormSchema";
 import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
+import { getHi, postDonation, updateDonation } from "@/api/connection";
+import { nanoid } from "nanoid";
+import { useMainStore } from "@/zustand/mainOrderStore";
 
 const DetailsForm = () => {
   const navigate = useNavigate();
 
-  const submitShipment = useShipment((state) => state.submitForm);
+  // const submitShipment = useShipment((state) => state.submitForm);
   const shipmentStore = useShipment((state) => state.shipment);
   const setStage = useStage((state) => state.setStage);
+  const allowedStage = useStage((state) => state.allowedStage);
+  const getProducts = useMainStore((state) => state.products);
+  const getShippment = useMainStore((state) => state.shipment);
+  const submitShipment = useMainStore((state) => state.submitForm);
+  console.log("getProducts", getProducts);
+  console.log("getShippment", getShippment);
+  const id = nanoid();
 
   return (
     <section className="pt-buttonP">
       <Formik
         initialValues={shipmentStore}
         validationSchema={SubmitSchema}
-        onSubmit={(
+        onSubmit={async (
           values: MyFormValues,
           { setSubmitting }: FormikHelpers<MyFormValues>
         ) => {
-          alert(JSON.stringify(values, null, 2));
+          if (allowedStage < 3) {
+            const res = await postDonation({ ...values, id });
+            console.log(res);
+          } else {
+            console.log("values", values);
+            const res = await updateDonation({ ...values, id });
+            console.log(res);
+          }
+          console.log("allowedStage", allowedStage);
+          console.log(values);
+          // alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
           submitShipment(values);
           navigate("/checkout/shipment");
@@ -121,6 +141,15 @@ const DetailsForm = () => {
             >
               CONTINUE TO NEXT
             </button>
+            <div
+              className="bg-purpleHover w-[210px] w-[40px] cursor-pointer"
+              onClick={() => getHi()}
+            >
+              GET HI
+            </div>
+            <div className="w-[210px] h-[40px] bg-purpleHover cursor-pointer mt-10">
+              GET WHOLE STORE
+            </div>
           </Form>
         )}
       </Formik>

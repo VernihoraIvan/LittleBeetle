@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface ShipmentDetails {
+export interface ShipmentDetails {
   firstName: string;
   lastName: string;
   email: string;
@@ -11,6 +11,7 @@ interface ShipmentDetails {
   streetAdress2: string;
   city: string;
   postalCode: string;
+  id: string;
 }
 
 interface Fee {
@@ -41,6 +42,7 @@ export const useShipment = create(
         streetAdress2: "",
         city: "",
         postalCode: "",
+        id: "",
       },
       fee: [],
       submitForm: (shipment: ShipmentDetails) => {
