@@ -18,7 +18,7 @@ export interface MainStoreState {
   submitForm: ShipmentState["submitForm"];
   setFee: ShipmentState["setFee"];
   removeFee: ShipmentState["removeFee"];
-  addShippment: ShipmentState["submitForm"];
+  addShippment: CartState["addShipment"];
   setDefaultAdress: CartState["setDefaultAdress"];
   syncStates: () => void;
 }

@@ -1,14 +1,27 @@
 import clsx from "clsx";
 import { useState } from "react";
 import FormReadress from "./FormReadress";
+import { ShipmentDetails } from "@/zustand/shipmentStore";
+import { FormikProps } from "formik";
+import { MyFormValues } from "@/utilities/interfaces";
 
 export interface ShipmentElProps {
   title: string;
   imgPath?: string[];
+  id: string;
+  shipment?: ShipmentDetails;
+  onSubmitRef: (instance: FormikProps<MyFormValues>) => void;
 }
 
-const ShipmentEl = ({ title, imgPath }: ShipmentElProps) => {
+const ShipmentEl = ({
+  title,
+  imgPath,
+  id,
+  shipment,
+  onSubmitRef,
+}: ShipmentElProps) => {
   const [isMyAdress, setIsMyAdress] = useState(true);
+  console.log("shipment", shipment);
   return (
     <div>
       <div className="mt-8">
@@ -45,7 +58,9 @@ const ShipmentEl = ({ title, imgPath }: ShipmentElProps) => {
           </button>
         </div>
       </div>
-      {isMyAdress === false && <FormReadress />}
+      {isMyAdress === false && (
+        <FormReadress onSubmitRef={onSubmitRef} id={id} />
+      )}
     </div>
   );
 };

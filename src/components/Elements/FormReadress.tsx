@@ -1,30 +1,44 @@
-import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
-import { useNavigate } from "react-router-dom";
+import {
+  Formik,
+  Form,
+  Field,
+  FormikHelpers,
+  ErrorMessage,
+  FormikProps,
+} from "formik";
 import { countries } from "@/utilities/data";
 import FormEl from "@/components/Elements/FormEl";
 import { MyFormValues } from "@/utilities/interfaces";
 import { SubmitSchema } from "@/utilities/FormSchema";
 import { useShipment } from "@/zustand/shipmentStore";
+import { useRef } from "react";
+import { useMainStore } from "@/zustand/mainOrderStore";
 
-const FormReadress = () => {
-  const navigate = useNavigate();
+interface FormReadressProps {
+  id: string;
+  onSubmitRef: (instance: FormikProps<MyFormValues>) => void;
+}
 
-  const submitShipment = useShipment((state) => state.submitForm);
+const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
+  const addShipment = useMainStore((state) => state.addShippment);
+  const formikRef = useRef<FormikProps<MyFormValues> | null>(null);
   const shipmentStore = useShipment((state) => state.shipment);
 
   return (
     <section className="pt-buttonP">
       <Formik
+        innerRef={(instance) => {
+          formikRef.current = instance;
+          onSubmitRef(instance!);
+        }}
         initialValues={shipmentStore}
         validationSchema={SubmitSchema}
         onSubmit={(
           values: MyFormValues,
           { setSubmitting }: FormikHelpers<MyFormValues>
         ) => {
-          alert(JSON.stringify(values, null, 2));
+          addShipment(values, id);
           setSubmitting(false);
-          submitShipment(values);
-          navigate("/checkout/shipment");
         }}
       >
         {({ errors, touched }) => (
