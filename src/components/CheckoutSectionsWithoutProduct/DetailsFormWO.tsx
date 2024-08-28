@@ -2,30 +2,29 @@ import { Formik, Form, FormikHelpers } from "formik";
 import PrivacySec from "@/components/PrivacySec";
 import { useNavigate } from "react-router-dom";
 import FormEl from "@/components/Elements/FormEl";
-import { MyFormValues } from "@/utilities/interfaces";
-import { SubmitSchema } from "@/utilities/FormSchema";
-import { useShipment } from "@/zustand/shipmentStore";
+import { PersonalData } from "@/utilities/interfaces";
+import { SubmitSchemaWO } from "@/utilities/FormSchema";
 import { useStage } from "@/zustand/stageStore";
+import { useDonation } from "@/zustand/donationStore";
 
 const DetailsFormWO = () => {
   const navigate = useNavigate();
-
-  const submitShipment = useShipment((state) => state.submitForm);
-  const shipmentStore = useShipment((state) => state.shipment);
+  const addAdress = useDonation((state) => state.addAdress);
   const setStage = useStage((state) => state.setStage);
+  const adressStore = { firstName: "", lastName: "", email: "", phone: "" };
 
   return (
     <section className="pt-buttonP">
       <Formik
-        initialValues={shipmentStore}
-        validationSchema={SubmitSchema}
+        initialValues={adressStore}
+        validationSchema={SubmitSchemaWO}
         onSubmit={(
-          values: MyFormValues,
-          { setSubmitting }: FormikHelpers<MyFormValues>
+          values: PersonalData,
+          { setSubmitting }: FormikHelpers<PersonalData>
         ) => {
-          alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          submitShipment(values);
+          addAdress(values);
+          console.log("values", values);
           navigate("/checkout-donation/payment");
         }}
       >

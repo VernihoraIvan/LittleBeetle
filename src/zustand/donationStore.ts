@@ -1,3 +1,4 @@
+import { PersonalData } from "@/utilities/interfaces";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -9,6 +10,7 @@ export interface DonationState {
     itemLanguage: string;
     isAGift: boolean;
     id: string;
+    adress?: PersonalData;
   }[];
   addDonation: (
     name: string,
@@ -24,6 +26,7 @@ export interface DonationState {
   chooseItemLanguage: (itemLanguage: string) => void;
   getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
+  addAdress: (adress: PersonalData) => void;
 }
 
 export const useDonation = create(
@@ -89,6 +92,13 @@ export const useDonation = create(
         set((state: DonationState) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, isAGift: checked } : item
+          ),
+        }));
+      },
+      addAdress: (adress: PersonalData) => {
+        set((state: DonationState) => ({
+          items: state.items.map((item) =>
+            !item.adress ? { ...item, adress } : item
           ),
         }));
       },

@@ -23,6 +23,7 @@ interface Fee {
 export interface ShipmentState {
   shipment: ShipmentDetails;
   submitForm: (shipment: ShipmentDetails, id: string) => void;
+  submitFormAll: (shipment: ShipmentDetails) => void;
   fee: Fee[];
   setFee: (id: string, price: number, quantity: number) => void;
   removeFee: (id: string) => void;
@@ -56,6 +57,9 @@ export const useShipment = create(
         set(({ fee }) => ({
           fee: fee.filter((item) => item.id !== id),
         }));
+      },
+      submitFormAll: (shipment: ShipmentDetails) => {
+        set({ shipment });
       },
     }),
     {

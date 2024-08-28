@@ -7,18 +7,86 @@ import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
 import { useCart } from "@/zustand/productStore";
+// import { loadStripe } from "@stripe/stripe-js";
+import {
+  CardElement,
+  // Elements,
+  // useElements,
+  // useStripe,
+} from "@stripe/react-stripe-js";
+// import { proceedToPayment } from "@/api/connection";
 
 const PaymentSection = () => {
+  // const stripe = useStripe();
+  // const elements = useElements();
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
+  // const [isProcessing, setIsProcessing] = useState(false);
+  // const [errorMessage, setErrorMessage] = useState<string>("");
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
   );
 
+  // const stripe = Stripe(
+  //   "pk_test_51PrdjZRq3XOp8unvxUPIEbTEL0xEDoyX71gTb6k1rEfs9uTJMKXfGsGuc60f85tKqQQS0EdQ35t3bGrYasNtOQKu00JXDLVkAb"
+  // );
+  // const stripePromise = await loadStripe(
+  //   "pk_test_51PrdjZRq3XOp8unvxUPIEbTEL0xEDoyX71gTb6k1rEfs9uTJMKXfGsGuc60f85tKqQQS0EdQ35t3bGrYasNtOQKu00JXDLVkAb"
+  // );
+
+  // const makePayment = async (
+  //   event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  // ) => {
+  //   event.preventDefault();
+  //   // setIsProcessing(true);
+  //   // const response = await proceedToPayment(totalFee);
+  //   const response = await fetch(
+  //     "http://localhost:3000/payment/create-payment-intent",
+  //     {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ amount: 5000, currency: "usd" }), // Example amount and currency
+  //     }
+  //   );
+
+  // if (!stripe || !elements) {
+  //   setErrorMessage("Stripe.js has not loaded properly.");
+  //   setIsProcessing(false);
+  //   return;
+  // }
+
+  // const { clientSecret } = await response.json();
+  // const cardElement = elements.getElement(CardElement);
+  // if (!cardElement) {
+  //   setErrorMessage("Card element is not available.");
+  //   // setIsProcessing(false); // Uncomment if you have setIsProcessing logic
+  //   return;
+  // }
+
+  //   const { error, paymentIntent } = await stripe.confirmCardPayment(
+  //     clientSecret,
+  //     {
+  //       payment_method: {
+  //         card: cardElement,
+  //       },
+  //     }
+  //   );
+
+  //   if (error) {
+  //     setErrorMessage(error.message);
+  //   } else if (paymentIntent && paymentIntent.status === "succeeded") {
+  //     console.log("Payment succeeded!");
+  //   }
+  // };
+
+  // const [paymentSucceeded, setPaymentSucceeded] = useState(false);
+
   return (
+    // <Elements stripe={stripePromise}>
     <section className="flex justify-between pt-bookPB">
+      <CardElement />
       <div>
         <h2 className="mb-9 font-secondaryBold text-buttonS">Payment method</h2>
         <div className="mb-navPad">
@@ -85,6 +153,7 @@ const PaymentSection = () => {
       </div>
       <SummaryUniversal subTotal={totalFee} shippingFee={0} />
     </section>
+    // </Elements>
   );
 };
 

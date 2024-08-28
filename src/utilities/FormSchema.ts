@@ -13,3 +13,12 @@ export const SubmitSchema = Yup.object().shape({
   city: Yup.string().required("This field is required."),
   postalCode: Yup.string().required("This field is required."),
 });
+
+export const SubmitSchemaWO = Yup.object().shape({
+  firstName: Yup.string().required("This field is required."),
+  lastName: Yup.string().required("This field is required."),
+  email: Yup.string()
+    .email("Invalid email")
+    .required("This field is required."),
+  phone: Yup.string(),
+});

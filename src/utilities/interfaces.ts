@@ -125,6 +125,13 @@ export interface MyFormValues {
   shipment?: ShipmentDetails;
 }
 
+export interface PersonalData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+}
+
 export interface FormElProps {
   // errors?: FormikErrors<MyFormValues>;
   errors?: string;

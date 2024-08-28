@@ -26,10 +26,10 @@ export const updateDonation = async (data: MyFormValues) => {
   }
 };
 
-export const getHi = async () => {
+export const proceedToPayment = async (amount: number) => {
   try {
-    const response = await axios.get("/donation");
-    console.log(response);
+    const response = await axios.post("/payment", amount);
+    console.log("inside proceedToPayment");
     return response;
   } catch (error) {
     console.error(error);
