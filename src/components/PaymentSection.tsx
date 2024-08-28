@@ -8,12 +8,12 @@ import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
 import { useCart } from "@/zustand/productStore";
 // import { loadStripe } from "@stripe/stripe-js";
-import {
-  CardElement,
-  // Elements,
-  // useElements,
-  // useStripe,
-} from "@stripe/react-stripe-js";
+// import {
+// CardElement,
+// Elements,
+// useElements,
+// useStripe,
+// } from "@stripe/react-stripe-js";
 // import { proceedToPayment } from "@/api/connection";
 
 const PaymentSection = () => {
@@ -86,7 +86,7 @@ const PaymentSection = () => {
   return (
     // <Elements stripe={stripePromise}>
     <section className="flex justify-between pt-bookPB">
-      <CardElement />
+      {/* <CardElement /> */}
       <div>
         <h2 className="mb-9 font-secondaryBold text-buttonS">Payment method</h2>
         <div className="mb-navPad">

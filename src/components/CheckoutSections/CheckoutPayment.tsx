@@ -1,9 +1,9 @@
-// import PaymentSection from "../PaymentSection";
-import StripeElement from "../StripeElement";
+import PaymentSection from "../PaymentSection";
+// import StripeElement from "../StripeElement";
 
 const CheckoutPayment = () => {
-  // return <PaymentSection />;
-  return <StripeElement />;
+  return <PaymentSection />;
+  // return <StripeElement />;
 };
 
 export default CheckoutPayment;
