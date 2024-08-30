@@ -1,7 +1,7 @@
 import SummaryUniversal from "./SummaryUniversal";
 import { useState } from "react";
 import clsx from "clsx";
-import CardInfo from "./CardInfo";
+// import CardInfo from "./CardInfo";
 import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
@@ -11,6 +11,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { proceedToPayment } from "@/api/connection";
 import CheckoutForm from "./StripeElement1";
+import StripeElement from "./StripeElement";
 
 // import { loadStripe } from "@stripe/stripe-js";
 // import {
@@ -35,7 +36,7 @@ const PaymentSection = () => {
   );
 
   const handleSubmit = async () => {
-    const res = await proceedToPayment(totalFee * 100, "usd");
+    const res = await proceedToPayment(totalFee, "usd");
     console.log("inside handleSubmit");
     console.log(res);
   };
@@ -145,7 +146,8 @@ const PaymentSection = () => {
           </div>
           <div className="flex flex-col gap-5">
             <div className="">
-              {isActive === 1 && <CardInfo />}
+              {/* {isActive === 1 && <CardInfo />} */}
+              {isActive === 1 && <StripeElement />}
               {isActive === 2 && (
                 <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
                   <img src={gPayImg} alt="Googlepay icon" />

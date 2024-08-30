@@ -30,7 +30,7 @@ export const proceedToPayment = async (amount: number, currency: string) => {
   try {
     console.log("amount: ", amount);
     const response = await axios.post("donation", {
-      amount,
+      amount: amount,
       currency,
     });
 

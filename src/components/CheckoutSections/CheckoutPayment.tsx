@@ -1,12 +1,12 @@
-// import PaymentSection from "../PaymentSection";
+import PaymentSection from "../PaymentSection";
 // import CompletePage from "../StripeElement1";
 // import CheckoutForm from "../StripeElement1";
-import StripeElement from "../StripeElement";
+// import StripeElement from "../StripeElement";
 
 const CheckoutPayment = () => {
   // return <CheckoutForm />;
-  // return <PaymentSection />;
-  return <StripeElement />;
+  return <PaymentSection />;
+  // return <StripeElement />;
   // return <CompletePage />;
 };
 

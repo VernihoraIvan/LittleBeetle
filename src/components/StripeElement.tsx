@@ -37,8 +37,7 @@ const PaymentComponent = () => {
     setIsProcessing(true);
 
     try {
-      // const res = await proceedToPayment(100, "usd");
-      const res = await proceedToPayment(totalFee * 100, "usd");
+      const res = await proceedToPayment(totalFee, "usd");
       if (!res) {
         setPaymentStatus("Payment failed!");
         setIsProcessing(false);
