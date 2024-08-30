@@ -1,69 +1,102 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-// import { Elements } from "@stripe/react-stripe-js";
+import { proceedToPayment } from "@/api/connection";
+import { useCart } from "@/zustand/productStore";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { FormEvent, useEffect, useState } from "react";
 
-// const ProductDisplay = () => (
-//     return <div></div>;
-// );
+const PaymentComponent = () => {
+  const cart = useCart((state) => state.items);
+  const products = useCart((state) => state.items);
 
-// const stripePromise = await loadStripe(
-//   "pk_test_51PrdjZRq3XOp8unvxUPIEbTEL0xEDoyX71gTb6k1rEfs9uTJMKXfGsGuc60f85tKqQQS0EdQ35t3bGrYasNtOQKu00JXDLVkAb"
-// );
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState("");
 
-// const stripe = require("stripe")(
-//   "sk_test_51PrdjZRq3XOp8unvxy5ZqRuqdy9gACffhSyeUzGpPoooxrzNPsTyUsHwGlwjzDQk2EvGv8CxLctMoMrRfHo7c5M7004eny9RbO"
-// );
-
-const ProductDisplay = () => {
-  return (
-    // <Elements stripe={stripePromise}>
-    <section>
-      <div className="product">
-        <img
-          src="https://i.imgur.com/EHyR2nP.png"
-          alt="The cover of Stubborn Attachments"
-        />
-        <div className="description">
-          <h3>Stubborn Attachments</h3>
-          <h5>$20.00</h5>
-        </div>
-      </div>
-      <form action="/create-checkout-session" method="POST">
-        <button type="submit">Checkout</button>
-      </form>
-    </section>
-    // </Elements>
+  const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalFee = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
   );
-};
-interface MessageProps {
-  message: string;
-}
 
-const Message = ({ message }: MessageProps) => (
-  <section>
-    <p>{message}</p>
-  </section>
-);
-
-const StripeElement = () => {
-  const [message, setMessage] = useState("");
+  const stripe = useStripe();
+  const elements = useElements();
 
   useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    const query = new URLSearchParams(window.location.search);
+    if (totalQty === 0) return;
 
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
+    if (paymentStatus !== "succeeded") return;
+  });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (totalQty === 0) return;
+
+    if (!stripe || !elements) return;
+
+    const cardEl = elements.getElement(CardElement);
+
+    setIsProcessing(true);
+
+    try {
+      // const res = await proceedToPayment(100, "usd");
+      const res = await proceedToPayment(totalFee * 100, "usd");
+      if (!res) {
+        setPaymentStatus("Payment failed!");
+        setIsProcessing(false);
+        console.log("Payment failed!");
+        return;
+      }
+      const { client_secret: clientSecret } = res.data;
+      console.log("clientSecret: ", clientSecret);
+
+      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardEl!,
+        },
+      });
+
+      if (!paymentIntent) {
+        setPaymentStatus("Payment failed!");
+      } else {
+        setPaymentStatus(paymentIntent.status);
+      }
+    } catch (error) {
+      console.error(error);
+      setPaymentStatus("Payment failed!");
     }
 
-    if (query.get("canceled")) {
-      setMessage(
-        "Order canceled -- continue to shop around and checkout when you're ready."
-      );
-    }
-  }, []);
+    setIsProcessing(false);
+  };
 
-  return message ? <Message message={message} /> : <ProductDisplay />;
+  return (
+    <div style={{ fontSize: "20px" }}>
+      <form onSubmit={handleSubmit} id="payment-form">
+        <label htmlFor="card-element">Place order</label>
+        <CardElement id="card-element" />
+        {!isProcessing && (
+          <button
+            style={{
+              marginTop: "16px",
+              height: "31px",
+              backgroundColor: "#f0c14b",
+              color: "black",
+              display: "flex",
+              fontWeight: 600,
+              fontSize: "20px",
+              padding: "24px",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+              width: "100%",
+            }}
+          >
+            Pay
+          </button>
+        )}
+        {isProcessing && <div>Processing...</div>}
+        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>}
+      </form>
+    </div>
+  );
 };
 
-export default StripeElement;
+export default PaymentComponent;

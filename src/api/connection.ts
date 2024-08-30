@@ -26,9 +26,14 @@ export const updateDonation = async (data: MyFormValues) => {
   }
 };
 
-export const proceedToPayment = async (amount: number) => {
+export const proceedToPayment = async (amount: number, currency: string) => {
   try {
-    const response = await axios.post("/payment", amount);
+    console.log("amount: ", amount);
+    const response = await axios.post("donation", {
+      amount,
+      currency,
+    });
+
     console.log("inside proceedToPayment");
     return response;
   } catch (error) {
