@@ -92,6 +92,7 @@ const CheckoutContributionWO = () => {
               setPrice={setPrice}
               isOverlayPrice={isOverlayPrice}
               setIsChecked={setIsChecked}
+              checkboxIsHidden={true}
             />
           )}
         </div>

@@ -37,6 +37,12 @@
   src: local("Montserrat-Bold"),
     url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");
 }
+
+.card-element-wrapper {
+  padding: 12px 14px; /* Padding around the Stripe Element */
+  border: 1px solid #ddd; /* Optional: Add a border */
+  background-color: #ffff; /* Optional: Add a background color */
+}
 /* body {
   font-family: Pretendard;
 } */

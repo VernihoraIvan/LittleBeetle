@@ -17,6 +17,7 @@ const DonationOption = ({
   setPrice,
   setIsOverlayPrice,
   setIsChecked,
+  checkboxIsHidden,
 }: DonationOptionProps) => {
   const id = nanoid();
   let isChecked;
@@ -55,21 +56,23 @@ const DonationOption = ({
           isOverlayPrice || isOverlayLang ? "static" : "relative"
         )}
       >
-        <label
-          className="font-secondaryRegular text-2xl hover:cursor-pointer"
-          htmlFor={id}
-        >
-          <input
-            className="mr-2 hover:cursor-pointer transform scale-150"
-            type="checkbox"
-            id={id}
-            name="option"
-            value={id}
-            checked={isChecked}
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-          it's a gift
-        </label>
+        {!checkboxIsHidden && (
+          <label
+            className="font-secondaryRegular text-2xl hover:cursor-pointer"
+            htmlFor={id}
+          >
+            <input
+              className="mr-2 hover:cursor-pointer transform scale-150"
+              type="checkbox"
+              id={id}
+              name="option"
+              value={id}
+              checked={isChecked}
+              onChange={(e) => handleCheckboxChange(e)}
+            />
+            it's a gift
+          </label>
+        )}
       </div>
     </div>
   );

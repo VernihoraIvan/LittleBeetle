@@ -1,7 +1,8 @@
 import { MyFormValues } from "@/utilities/interfaces";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://little-beetle-backend-d16f76890ac7.herokuapp.com/";
 
 axios.defaults.baseURL = BASE_URL;
 
@@ -30,7 +31,7 @@ export const proceedToPayment = async (amount: number, currency: string) => {
   try {
     console.log("amount: ", amount);
     const response = await axios.post("donation", {
-      amount: amount,
+      amount: amount * 100,
       currency,
     });
 

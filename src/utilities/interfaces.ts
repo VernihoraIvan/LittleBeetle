@@ -153,4 +153,5 @@ export interface DonationOptionProps {
   setPrice: React.Dispatch<React.SetStateAction<number>>;
   setIsOverlayPrice: React.Dispatch<React.SetStateAction<boolean>>;
   setIsChecked: (value: boolean) => void;
+  checkboxIsHidden?: boolean;
 }
