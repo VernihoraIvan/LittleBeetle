@@ -3,7 +3,7 @@ import ButtonTo from "./ButtonTo";
 const DonationLink = () => {
   return (
     <section className="flex justify-center bg-primBeige">
-      <div className="w-contW flex flex-col items-center border border-primPurple px-24 py-navPad">
+      <div className="w-contWXXL flex flex-col items-center border border-primPurple px-24 py-navPad">
         <p className="font-secondaryRegular text-linkS mb-9 text-center">
           Each donation of any size includes access to our Digital Gift Package:
           Digital Illustrated Book, a Lullaby recording, and a personalised

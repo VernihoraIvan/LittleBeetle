@@ -8,13 +8,13 @@ const Contact = () => {
     <>
       <section className="bg-gradient-to-b from-primPurple to-primPurple ">
         <div className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  bg-contacts-bg ">
-          <div className="xxl:w-contW">
+          <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
             <div className="flex flex-col justify-between ">
               <TitleNDescription
                 title="Contact Us"
                 description="Connect with us on LinkedIn, Instagram, or via email for inquiries and updates."
               />
-              <div className="xxl:w-contW flex gap-[50px] h-contactH fill-primPurple ">
+              <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-[50px] h-contactH fill-primPurple ">
                 <a
                   href="https://www.linkedin.com/"
                   target="_blank"

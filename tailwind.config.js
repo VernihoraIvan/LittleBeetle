@@ -48,7 +48,12 @@ export default {
         fit: "fit-content",
       },
       spacing: {
-        contW: "1564px",
+        contWXXL: "1564px",
+        contWXL: "1200px",
+        contWLG: "1024px",
+        contWMD: "708px",
+        contWSM: "580px",
+        contWXSS: "320px",
         cartCont: "1024px",
         secH: "980px",
         prodW: "740px",

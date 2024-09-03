@@ -7,7 +7,7 @@ const Creators = () => {
   return (
     <div className="bg-gradient-to-b from-primPurple to-primPurple w-screen ">
       <section className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-custom-50-150 bg-cover w-screen bg-no-repeat  bg-creators-bg ">
-        <div className="xxl:w-contW ">
+        <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS ">
           <TitleNDescription
             title="Creators"
             description="The book and lullaby was crafted by over 15 volunteers from around the world. They donated their talents to create this project, from beautiful illustrations to a soothing melody, to inspire hope and healing."
@@ -15,7 +15,7 @@ const Creators = () => {
         </div>
       </section>
       <section className="flex justify-center pt-navPad">
-        <div className="xxl:w-contW ">
+        <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS ">
           {creatorsData.map((el) => (
             <CreatorsEl
               key={el.name}

@@ -4,7 +4,7 @@ import ProductElOptional from "./Elements/ProductElOptional";
 const ProductsIncluded = () => {
   return (
     <section className="flex justify-center bg-primBeige pt-bookPT pb-prodPB">
-      <div className="xxl:w-contW">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
         <h2 className="font-primaryBold mb-6 text-primPurple  text-titleS">
           Optional Printed Gifts
         </h2>

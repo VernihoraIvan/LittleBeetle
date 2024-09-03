@@ -3,7 +3,7 @@ import titleImg from "@/assets/images/book_title.png";
 const Home = () => {
   return (
     <div className="flex justify-center pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen h-screen bg-home-bg">
-      <div className="xxl:w-contW ">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS ">
         <img
           src={titleImg}
           alt="a book title"

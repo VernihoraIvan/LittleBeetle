@@ -6,7 +6,7 @@ import ButtonTo from "./ButtonTo";
 const BooksSection = () => {
   return (
     <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB">
-      <div className="xxl:w-contW">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
         <h2 className="font-primaryBold mb-2 text-primPurple  text-titleS">
           The book and lullaby
         </h2>

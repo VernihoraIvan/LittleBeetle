@@ -5,7 +5,7 @@ import MailLogo from "@/assets/icons/mail.svg?react";
 const Footer = () => {
   return (
     <footer className="flex justify-center h-40 bg-primPurple">
-      <div className="xxl:w-contW flex justify-between items-center">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex justify-between items-center">
         <div className="flex gap-6">
           <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
             <LinkedInLogo />

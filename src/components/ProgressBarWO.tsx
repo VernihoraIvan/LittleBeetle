@@ -11,7 +11,7 @@ const ProgressBarWO = () => {
 
   return (
     <section className="flex justify-center bg-primBeige ">
-      <div className="xxl:w-contW relative pt-bookPT flex justify-center flex-col">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS relative pt-bookPT flex justify-center flex-col">
         <div className="w-full h-2 bg-pinkBar relative"></div>
         <div
           className={clsx(
