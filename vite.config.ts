@@ -11,4 +11,12 @@ export default defineConfig({
     },
   },
   plugins: [react(), svgr()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        wellKnown: ".well-known/apple-developer-merchantid-domain-association",
+      },
+    },
+  },
 });
