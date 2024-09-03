@@ -7,7 +7,7 @@ import Donation from "./pages/Donation";
 import Creators from "./pages/Creators";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
-import PageNotFound from "./pages/PageNotFound";
+// import PageNotFound from "./pages/PageNotFound";
 import SubDonationPage from "./pages/SubDonationPage";
 import Checkout from "./pages/Checkout";
 import CheckoutSection from "./components/CheckoutSection";
@@ -33,7 +33,7 @@ function App() {
           <Route path=":step" element={<CheckoutWOSection />} />
         </Route>
       </Route>
-      <Route path="*" element={<PageNotFound />} />
+      {/* <Route path="*" element={<PageNotFound />} /> */}
     </Routes>
   );
 }
