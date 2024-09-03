@@ -11,6 +11,7 @@ import { useCart } from "@/zustand/productStore";
 // import { Elements } from "@stripe/react-stripe-js";
 import { proceedToPayment } from "@/api/connection";
 import StripeElement from "./StripeElement";
+import GooglePayEl from "./GooglePayEl";
 
 // import { loadStripe } from "@stripe/stripe-js";
 // import {
@@ -145,10 +146,11 @@ const PaymentSection = () => {
             {/* {isActive === 1 && <CardInfo />} */}
             {isActive === 1 && <StripeElement />}
             {isActive === 2 && (
-              <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
-                <img src={gPayImg} alt="Googlepay icon" />
-                <p className="py-5">Continue at Google pay</p>
-              </div>
+              // <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
+              //   <img src={gPayImg} alt="Googlepay icon" />
+              //   <p className="py-5">Continue at Google pay</p>
+              // </div>
+              <GooglePayEl />
             )}
             {isActive === 3 && (
               <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
