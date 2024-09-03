@@ -35,7 +35,7 @@ const CheckoutShipment = () => {
   return (
     <section className="py-10 flex flex-col">
       <div className="flex ">
-        <div className="w-contWXXL flex flex-col gap-[110px]">
+        <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex flex-col gap-[110px]">
           <div className="flex flex-col">
             {filteredForMyself.length > 0 && (
               <h2 className="font-secondaryBold text-buttonS">For myself</h2>

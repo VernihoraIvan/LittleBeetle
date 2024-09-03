@@ -10,7 +10,7 @@ const BooksSection = () => {
         <h2 className="font-primaryBold mb-2 text-primPurple  text-titleS">
           The book and lullaby
         </h2>
-        <p className="leading-relaxed text-primPurpleFaint w-[1410px] text-2xl font-secondaryRegular">
+        <p className="leading-relaxed text-primPurpleFaint  text-2xl font-secondaryRegular">
           This book and lullaby was crafted by over 15 volunteers from around
           the world. They donated their talents to create this project, from
           beautiful illustrations to a soothing melody, to inspire hope and
