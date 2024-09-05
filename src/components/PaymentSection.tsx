@@ -12,6 +12,7 @@ import { useCart } from "@/zustand/productStore";
 import { proceedToPayment } from "@/api/connection";
 import StripeElement from "./StripeElement";
 import GooglePayEl from "./GooglePayEl";
+import ApplePayEl from "./ApplePayEl";
 
 // import { loadStripe } from "@stripe/stripe-js";
 // import {
@@ -153,10 +154,11 @@ const PaymentSection = () => {
               <GooglePayEl />
             )}
             {isActive === 3 && (
-              <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
-                <img src={aPayImg} alt="Applepay icon" />
-                <p className="py-5">Continue at Apple pay</p>
-              </div>
+              // <div className="flex items-center justify-center gap-[18px] cursor-pointer text-bgPurple  w-payW  font-secondarySBold text-xl border text-center border-bgPurple">
+              //   <img src={aPayImg} alt="Applepay icon" />
+              //   <p className="py-5">Continue at Apple pay</p>
+              // </div>
+              <ApplePayEl />
             )}
           </div>
 
