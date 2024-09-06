@@ -14,15 +14,18 @@ const Contact = () => {
                 title="Contact Us"
                 description="Connect with us on LinkedIn, Instagram, or via email for inquiries and updates."
               />
-              <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-[50px] h-contactH fill-primPurple ">
+              <ul
+                className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-[50px] xxl:h-contactH fill-primPurple 
+              xl:gap-10"
+              >
                 <a
                   href="https://www.linkedin.com/"
                   target="_blank"
-                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center"
+                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center xl:h-[240px]"
                 >
-                  <div className="flex flex-col justify-center items-center gap-5">
-                    <LinkedInLogo className="w-16" />
-                    <h3 className="text-xl font-primarySBold text-center">
+                  <div className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]">
+                    <LinkedInLogo className="w-16 xl:w-[42px]" />
+                    <h3 className="text-xl font-primarySBold text-center xl:text-[16px]">
                       Linkedin
                     </h3>
                   </div>
@@ -30,11 +33,12 @@ const Contact = () => {
                 <a
                   href="https://www.instagram.com/"
                   target="_blank"
-                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center"
+                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
+                  xl:h-[240px]"
                 >
-                  <div className="flex flex-col justify-center items-center gap-5">
-                    <InstagramLogo className="w-16" />
-                    <h3 className="text-xl font-primarySBold text-center">
+                  <div className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]">
+                    <InstagramLogo className="w-16 xl:w-[42px]" />
+                    <h3 className="text-xl font-primarySBold text-center xl:text-[16px]">
                       Instagram
                     </h3>
                   </div>
@@ -42,19 +46,28 @@ const Contact = () => {
                 <a
                   href="mailto:tes@mail.com"
                   target="_blank"
-                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center"
+                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
+                  xl:h-[240px]"
                 >
-                  <div className="flex flex-col justify-center items-center gap-5">
-                    <EmailLogo className="w-16" />
-                    <h3 className="text-xl font-primarySBold text-center">
+                  <div className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]">
+                    <EmailLogo className="w-16 xl:w-[42px]" />
+                    <h3 className="text-xl font-primarySBold text-center xl:text-[16px]">
                       Email
                     </h3>
                   </div>
                 </a>
-              </div>
+              </ul>
             </div>
-            <div className="flex justify-end pb-20 mt-40">
-              <p className="font-secondaryRegular text-copyS text-primWhiteFaint">
+            <div className="flex justify-between pb-20 mt-40 ">
+              <div className="flex gap-[70px]">
+                <p className="text-copyS font-secondaryRegular text-primWhiteFaint xl:text-[16px]">
+                  Terms and conditions
+                </p>
+                <p className="text-copyS font-secondaryRegular text-primWhiteFaint xl:text-[16px]">
+                  Privacy policy
+                </p>
+              </div>
+              <p className="font-secondaryRegular text-copyS text-primWhiteFaint xl:text-[16px]">
                 copyright © 2024 A Great Journey of a Little Beetle. all rights
                 reserved
               </p>
