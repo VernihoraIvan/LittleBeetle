@@ -8,10 +8,16 @@ const Goal = () => {
           <div className="flex justify-between  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
             <div>
               <div className="mb-10 flex justify-center align-center flex-col">
-                <h2 className="mb-8 font-primaryBold text-primWhite  text-titleS">
+                <h2
+                  className="mb-8 font-primaryBold text-primWhite text-titleS
+                xl:text-buttonS"
+                >
                   Our goal
                 </h2>
-                <p className="leading-relaxed text-primWhiteFaint w-[1110px] text-2xl font-secondaryRegular">
+                <p
+                  className="leading-relaxed text-primWhiteFaint w-[1110px] text-2xl font-secondaryRegular
+                xl:text-[20px] xl:w-[800px]"
+                >
                   100% of donations from this project will be redirected to the
                   Voices of Children Charitable Foundation. This organization
                   focuses on providing psychological support to children who
@@ -38,11 +44,15 @@ const Goal = () => {
             </div>
             <div className="flex flex-col items-center ">
               <img
-                className="h-imgW w-imgW mb-2"
+                className="h-imgW w-imgW mb-2 
+                xl:w-[280px] xl:h-[280px]"
                 src={VoicesLogo}
                 alt="Voices of children logo"
               />
-              <p className="text-2xl font-secondarySBold text-primWhite">
+              <p
+                className="text-2xl font-secondarySBold text-primWhite
+              xl:text-[20px]"
+              >
                 Voices of children
               </p>
             </div>

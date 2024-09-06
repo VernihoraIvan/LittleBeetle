@@ -7,16 +7,26 @@ const BooksSection = () => {
   return (
     <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB">
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
-        <h2 className="font-primaryBold mb-2 text-primPurple  text-titleS">
-          The book and lullaby
+        <h2
+          className="font-primaryBold mb-2 text-primPurple  text-titleS
+         xl:text-buttonS"
+        >
+          About the project
         </h2>
-        <p className="leading-relaxed text-primPurpleFaint  text-2xl font-secondaryRegular">
-          This book and lullaby was crafted by over 15 volunteers from around
-          the world. They donated their talents to create this project, from
-          beautiful illustrations to a soothing melody, to inspire hope and
-          healing.
+        <p
+          className="leading-relaxed text-primPurpleFaint text-2xl font-secondaryRegular
+          xl:text-[20px]"
+        >
+          Over 15 creative professionals from around the world have come
+          together to craft a lullaby and an illustrated book, offered
+          exclusively on a donation basis, along with several other products.
+          Every item is designed to bring some comfort and joy, while
+          channelling all proceeds to support children affected by the war in
+          Ukraine. Our mission is to help provide psychological rehabilitation
+          and raise crucial funds for the organisation delivering this vital
+          care.
         </p>
-        <ul className="flex justify-between mt-14">
+        <ul className="flex justify-between mt-14 xl:gap-5">
           <li>
             <img src={book1} alt="image of a book" />
           </li>
@@ -31,7 +41,8 @@ const BooksSection = () => {
           <ButtonTo
             to={"/creators"}
             title="Creators"
-            style="text-primPurple text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP "
+            style="text-primPurple text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP 
+            xl:text-linkS xl:py-[14px] xl:px-[96px]"
           />
         </div>
       </div>
