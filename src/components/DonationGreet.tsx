@@ -2,10 +2,16 @@ const DonationGreet = () => {
   return (
     <section className="flex justify-center pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  h-secH bg-donation-bg">
       <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
-        <h2 className="font-primaryBold text-primWhite  text-titleS">
+        <h2
+          className="font-primaryBold text-primWhite  text-titleS
+        xl:text-buttonS"
+        >
           Why Donate?
         </h2>
-        <p className="leading-relaxed text-primWhiteFaint h-purchImgH text-2xl font-secondaryRegular">
+        <p
+          className="leading-relaxed text-primWhiteFaint h-purchImgH text-2xl font-secondaryRegular
+        xl:text-[20px]"
+        >
           This project was born from a simple philosophy: whether you donate
           your time, attention, or money, we value these contributions
           immensely. We designed this initiative around the idea of resource

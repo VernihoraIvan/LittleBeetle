@@ -3,8 +3,15 @@ import { ProductElProps } from "@/utilities/interfaces";
 const ProductEl = ({ title, imgPath, description }: ProductElProps) => {
   return (
     <li className="flex-1">
-      <img className="w-full h-imgH2" src={imgPath[0]} alt="image of a book" />
-      <h3 className=" mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
+      <img
+        className="w-full h-imgH2 object-cover"
+        src={imgPath[0]}
+        alt="image of a book"
+      />
+      <h3
+        className=" mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold 
+      xl:text-linkS"
+      >
         {title}
       </h3>
       <p className="mt-4">{description}</p>
