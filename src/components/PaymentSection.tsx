@@ -42,63 +42,26 @@ const PaymentSection = () => {
     console.log(res);
   };
 
-  // const stripe = Stripe(
-  //   "pk_test_51PrdjZRq3XOp8unvxUPIEbTEL0xEDoyX71gTb6k1rEfs9uTJMKXfGsGuc60f85tKqQQS0EdQ35t3bGrYasNtOQKu00JXDLVkAb"
-  // );
-  // const stripePromise = await loadStripe(
-  //   "pk_test_51PrdjZRq3XOp8unvxUPIEbTEL0xEDoyX71gTb6k1rEfs9uTJMKXfGsGuc60f85tKqQQS0EdQ35t3bGrYasNtOQKu00JXDLVkAb"
-  // );
+  function detectUserOS(): "Android" | "Apple" | "Desktop" | "Unknown" {
+    const userAgent = navigator.userAgent;
+    if (/android/i.test(userAgent)) {
+      return "Android";
+    }
+    if (/iPad|iPhone|iPod|Macintosh|Mac OS X/.test(userAgent)) {
+      return "Apple";
+    }
+    if (/Windows|Linux/.test(userAgent)) {
+      return "Desktop";
+    }
+    return "Unknown";
+  }
 
-  // const makePayment = async (
-  //   event: React.MouseEvent<HTMLLIElement, MouseEvent>
-  // ) => {
-  //   event.preventDefault();
-  //   // setIsProcessing(true);
-  //   // const response = await proceedToPayment(totalFee);
-  //   const response = await fetch(
-  //     "http://localhost:3000/payment/create-payment-intent",
-  //     {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ amount: 5000, currency: "usd" }), // Example amount and currency
-  //     }
-  //   );
-
-  // if (!stripe || !elements) {
-  //   setErrorMessage("Stripe.js has not loaded properly.");
-  //   setIsProcessing(false);
-  //   return;
-  // }
-
-  // const { clientSecret } = await response.json();
-  // const cardElement = elements.getElement(CardElement);
-  // if (!cardElement) {
-  //   setErrorMessage("Card element is not available.");
-  //   // setIsProcessing(false); // Uncomment if you have setIsProcessing logic
-  //   return;
-  // }
-
-  //   const { error, paymentIntent } = await stripe.confirmCardPayment(
-  //     clientSecret,
-  //     {
-  //       payment_method: {
-  //         card: cardElement,
-  //       },
-  //     }
-  //   );
-
-  //   if (error) {
-  //     setErrorMessage(error.message);
-  //   } else if (paymentIntent && paymentIntent.status === "succeeded") {
-  //     console.log("Payment succeeded!");
-  //   }
-  // };
-
-  // const [paymentSucceeded, setPaymentSucceeded] = useState(false);
+  console.log(detectUserOS());
 
   return (
     <section className="flex justify-between pt-bookPB">
       {/* <CardElement /> */}
+      {detectUserOS()}
       <div>
         <h2 className="mb-9 font-secondaryBold text-buttonS">Payment method</h2>
         <div className="mb-navPad">

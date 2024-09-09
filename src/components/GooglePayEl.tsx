@@ -8,11 +8,19 @@ import {
   PaymentRequest,
   CanMakePaymentResult,
 } from "@stripe/stripe-js";
+import { useCart } from "@/zustand/productStore";
 
 const GooglePayEl = () => {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
     null
+  );
+
+  const products = useCart((state) => state.items);
+
+  const totalFee = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
   );
   const [canMakePayment, setCanMakePayment] =
     useState<CanMakePaymentResult | null>(null);
@@ -26,7 +34,7 @@ const GooglePayEl = () => {
         currency: "usd",
         total: {
           label: "Total",
-          amount: 5000, // Amount in cents, so 5000 = $50.00
+          amount: totalFee * 100, // Amount in cents, so 5000 = $50.00
         },
         requestPayerName: true,
         requestPayerEmail: true,
@@ -59,7 +67,7 @@ const GooglePayEl = () => {
         event.complete("success");
       });
     }
-  }, [stripe]);
+  }, [stripe, totalFee]);
 
   return (
     <div>
