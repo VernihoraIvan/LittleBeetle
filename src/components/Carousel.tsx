@@ -19,9 +19,17 @@ const Carousel = ({ images }: CarouselProps) => {
   };
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto overflow-hidden">
+    <div
+      className="relative w-full xxl:max-w-2xl  overflow-hidden
+    xl:w-[490px]
+    lg:min-w-[360px]
+    md:h-[300px]"
+    >
       <button
-        className="absolute z-10 top-1/4 transform -translate-y-1/2 left-4  text-white p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute z-10 xxl:top-1/2 transform -translate-y-1/2 left-4  text-white p-2 rounded-full hover:bg-gray-600 transition
+        xl:top-1/2
+        lg:top-[14%]
+        md:top-1/2"
         //top-1/2 transform -translate-y-1/2 left-0  text-white p-2 rounded-full hover:bg-gray-600 transition
         onClick={prevSlide}
       >
@@ -29,7 +37,7 @@ const Carousel = ({ images }: CarouselProps) => {
         <CarouselArrow className="transform rotate-180" />
       </button>
       <div
-        className="flex transition-transform duration-500 ease-in-out"
+        className="flex transition-transform duration-500 ease-in-out h-full "
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((image, index) => (
@@ -37,12 +45,15 @@ const Carousel = ({ images }: CarouselProps) => {
             key={index}
             src={image}
             alt={`Slide ${index}`}
-            className="w-full flex-shrink-0 h-secH2"
+            className="w-full flex-shrink-0 h-auto object-cover"
           />
         ))}
       </div>
       <button
-        className="absolute top-1/4 transform -translate-y-1/2 right-4  text-white p-2 rounded-full hover:bg-gray-600 transition"
+        className="absolute xxl:top-1/2 transform -translate-y-1/2 right-4  text-white p-2 rounded-full hover:bg-gray-600 transition
+        xl:top-1/2
+        lg:top-[14%]
+        md:top-1/2"
         onClick={nextSlide}
       >
         {/* &#10095; */}

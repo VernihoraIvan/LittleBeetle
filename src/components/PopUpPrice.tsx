@@ -16,11 +16,11 @@ const PopUpPrice = ({
       <div
         onClick={handleOverlay}
         className={clsx(
-          "hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite",
+          "hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4  bg-primWhite xl:py-2 xl:px-3 lg:py-[6px] lg:px-[8px]",
           isOverlayLang ? "" : "relative"
         )}
       >
-        <p className="text-addCartS font-secondaryRegular text-inputPink">
+        <p className="text-addCartS font-secondaryRegular text-inputPink xl:text-copyS lg:text-[14px] md:text-[14px]">
           {price ? `£${price}` : "Choose a price"}
         </p>
         <Chevron />

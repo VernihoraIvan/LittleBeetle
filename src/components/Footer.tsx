@@ -4,7 +4,7 @@ import MailLogo from "@/assets/icons/mail.svg?react";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-center h-40 bg-primPurple">
+    <footer className="flex justify-center py-10 bg-primPurple">
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex justify-between items-center">
         <div className="flex ">
           <div className="">

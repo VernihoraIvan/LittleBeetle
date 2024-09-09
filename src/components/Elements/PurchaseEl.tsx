@@ -1,4 +1,4 @@
-import Edit from "@/assets/icons/edit.svg?react";
+// import Edit from "@/assets/icons/edit.svg?react";
 import CrossLogo from "@/assets/icons/cross.svg?react";
 import { PurchaseElProps } from "@/utilities/interfaces";
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ const PurchaseEl = ({ name, price, total, imgPath, id }: PurchaseElProps) => {
       <ul className="flex items-center justify-between select-none">
         <li className="flex gap-gapS mr-[95px] items-center">
           <p>£{price}</p>
-          <Edit className="cursor-pointer" />
+          {/* <Edit className="cursor-pointer" /> */}
         </li>
         <li className="relative">
           <QuantityAdjuster id={id} />

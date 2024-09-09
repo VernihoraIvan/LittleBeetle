@@ -51,15 +51,26 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   return (
     <>
       <section className="h-headerPad bg-primPurple" />
-      <section className="flex justify-center pt-bookPT bg-primBeige w-screen  h-secH ">
-        <div className=" xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-8">
+      <section className="flex justify-center p-[60px] bg-primBeige w-screen  h-fit-content ">
+        <div
+          className=" xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-10
+        md:flex-col md:w-[480px] mx-[70px]"
+        >
           <Carousel images={imagePath} />
-          <div className="w-prodW">
-            <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold">
+          <div className="w-prodW max-w-full">
+            <h3
+              className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold
+            xl:text-linkS"
+            >
               {title}
             </h3>
-            <p className="text-2xl font-secondaryRegular">{description}</p>
-            <div className="flex flex-col justify-between mt-9 ">
+            <p className="text-2xl font-secondaryRegular xl:text-copyS">
+              {description}
+            </p>
+            <p className="text-2xl font-secondaryRegular xl:text-copyS mt-1">
+              Size: 21.0 x 29.7 cm
+            </p>
+            <div className="flex flex-col justify-between mt-2 ">
               <PopUpLang
                 handleOverlayLang={handleOverlayLang}
                 lang={lang}
@@ -75,8 +86,11 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 isOverlay={isOverlayPrice}
                 isOverlayLang={isOverlayLang}
               />
-              <div className="flex gap-6 mt-6  select-none">
-                <p className="font-secondaryRegular text-addCartS text-inputPink">
+              <div
+                className="flex gap-6 mt-6  select-none
+              xl:mt-[18px]"
+              >
+                <p className="font-secondaryRegular text-addCartS text-inputPink xl:text-[18px]">
                   Quantity
                 </p>
                 <QuantityAdjuster
@@ -88,7 +102,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
               </div>
               <div
                 className={clsx(
-                  "flex gap-5 mt-8",
+                  "flex gap-5 mt-8 xl:mt-4",
                   isOverlayPrice ? "" : "relative"
                 )}
               >
@@ -96,13 +110,15 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   onClick={() =>
                     handleAddProduct(title, price, quantity, lang, id)
                   }
-                  className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14"
+                  className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14 
+                  xl:text-[20px] xl:py-2
+                  lg:text-[16px]"
                 >
                   Add to Cart
                 </button>
                 <ButtonTo
                   to="/checkout/contribution"
-                  style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14"
+                  style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14 xl:text-[20px] lg:text-[16px]"
                   title="Checkout"
                   onClick={() =>
                     handleAddProduct(title, price, quantity, lang, id)

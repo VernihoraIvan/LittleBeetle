@@ -13,9 +13,15 @@ const PopUpLang = ({
     <>
       <div
         onClick={handleOverlayLang}
-        className="hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4 mb-5 bg-primWhite "
+        className="hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4 mb-5 bg-primWhite 
+        xl:py-2 xl:px-3 
+        lg:py-[6px] lg:px-[8px]
+        "
       >
-        <p className="text-addCartS font-secondaryRegular text-inputPink">
+        <p
+          className="leading-[150%] text-addCartS font-secondaryRegular text-inputPink 
+        xl:text-copyS lg:text-[14px] md:text-[14px]"
+        >
           {lang ? `${lang}` : "Language"}
         </p>
         <Chevron />
