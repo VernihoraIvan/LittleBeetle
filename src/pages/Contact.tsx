@@ -59,7 +59,7 @@ const Contact = () => {
               </ul>
             </div>
             <div className="flex justify-between pb-20 mt-40 ">
-              <div className="flex gap-[70px]">
+              {/* <div className="flex gap-[70px]">
                 <p className="text-copyS font-secondaryRegular text-primWhiteFaint xl:text-[16px]">
                   Terms and conditions
                 </p>
@@ -70,7 +70,7 @@ const Contact = () => {
               <p className="font-secondaryRegular text-copyS text-primWhiteFaint xl:text-[16px]">
                 copyright © 2024 A Great Journey of a Little Beetle. all rights
                 reserved
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

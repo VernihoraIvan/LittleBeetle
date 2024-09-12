@@ -1,7 +1,7 @@
 import Basket from "@/components/Basket";
 import CartIncludedWidget from "@/components/CartIncludedWidget";
 import EmptyCart from "@/components/EmptyCart";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import Title from "@/components/Title";
 import { useCart } from "@/zustand/productStore";
 
@@ -18,7 +18,7 @@ const Cart = () => {
       ) : (
         <EmptyCart />
       )}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

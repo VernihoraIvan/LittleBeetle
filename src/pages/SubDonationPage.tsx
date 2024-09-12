@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import SubDonation from "@/components/SubDonation";
 import { includedProducts, extraProducts } from "@/utilities/data";
 import { useParams } from "react-router-dom";
@@ -19,7 +19,7 @@ const SubDonationPage = () => {
           imagePath={productToDisplay.imagePath}
         />
       )}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

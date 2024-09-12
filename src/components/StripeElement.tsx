@@ -159,8 +159,8 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
             </button>
           )}
         </div>
-        {isProcessing && <div>Processing...</div>}
-        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>}
+        {/* {isProcessing && <div>Processing...</div>}
+        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>} */}
       </form>
     </div>
   );

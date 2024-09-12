@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import ProgressBar from "@/components/ProgressBar";
 import Title from "@/components/Title";
 import { Outlet } from "react-router-dom";
@@ -9,7 +9,7 @@ const Checkout = () => {
       <Title title="Checkout" />
       <ProgressBar />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

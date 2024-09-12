@@ -1,5 +1,5 @@
 import CreatorsEl from "@/components/Elements/CreatorsEl";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import TitleNDescription from "@/components/TitleNDescription";
 import { creatorsData } from "@/utilities/data";
 
@@ -38,7 +38,7 @@ const Creators = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

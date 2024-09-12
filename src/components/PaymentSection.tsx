@@ -13,6 +13,7 @@ import { useCart } from "@/zustand/productStore";
 import StripeElement from "./StripeElement";
 import GooglePayEl from "./GooglePayEl";
 import ApplePayEl from "./ApplePayEl";
+import { useNavigate } from "react-router-dom";
 
 // import { loadStripe } from "@stripe/stripe-js";
 // import {
@@ -29,7 +30,7 @@ import ApplePayEl from "./ApplePayEl";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
 
@@ -37,6 +38,7 @@ const PaymentSection = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+  console.log("isPaymentSuccess: ", isPaymentSuccess);
 
   const handleSubmit = async () => {
     // const res = await proceedToPayment(totalFee, "usd");
@@ -47,6 +49,7 @@ const PaymentSection = () => {
     } else {
       console.log("Payment failed");
     }
+    navigate("/complete");
   };
 
   function detectUserOS(): "Android" | "Apple" | "Desktop" | "Unknown" {
@@ -128,13 +131,24 @@ const PaymentSection = () => {
           <button
             onClick={handleSubmit}
             className={clsx(
-              "w-payW bg-pinkBar py-5 font-secondarySBold text-xl",
-              isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer"
+              "w-payW  py-5 font-secondarySBold text-xl",
+              isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
+              !isPaymentSuccess && "bg-pinkBar text-primWhite "
             )}
             disabled={!isPaymentSuccess}
           >
             COMPLETE DONATION
           </button>
+          {/* <button
+            onClick={handleSubmit}
+            className={clsx(
+              "w-payW  py-5 font-secondarySBold text-xl",
+              isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
+              !isPaymentSuccess && "bg-pinkBar text-primWhite "
+            )}
+          >
+            test
+          </button> */}
         </div>
       </div>
       <SummaryUniversal subTotal={totalFee} shippingFee={0} />
