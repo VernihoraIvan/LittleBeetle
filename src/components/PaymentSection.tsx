@@ -9,7 +9,7 @@ import aPayImg from "@/assets/images/aPay.png";
 import { useCart } from "@/zustand/productStore";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
-import { proceedToPayment } from "@/api/connection";
+// import { proceedToPayment } from "@/api/connection";
 import StripeElement from "./StripeElement";
 import GooglePayEl from "./GooglePayEl";
 import ApplePayEl from "./ApplePayEl";
