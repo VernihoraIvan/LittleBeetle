@@ -3,7 +3,10 @@ import { useCart } from "@/zustand/productStore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { FormEvent, useEffect, useState } from "react";
 
-const PaymentComponent = () => {
+interface PaymentComponentProps {
+  setIsPaymentSuccess: (value: boolean) => void;
+}
+const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cart = useCart((state) => state.items);
   const products = useCart((state) => state.items);
 
@@ -18,6 +21,12 @@ const PaymentComponent = () => {
 
   const stripe = useStripe();
   const elements = useElements();
+
+  useEffect(() => {
+    if (paymentStatus === "succeeded") {
+      setIsPaymentSuccess(true);
+    }
+  }, [paymentStatus, setIsPaymentSuccess]);
 
   useEffect(() => {
     if (totalQty === 0) return;
