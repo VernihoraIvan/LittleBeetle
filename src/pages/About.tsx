@@ -7,8 +7,8 @@ const About = () => {
   return (
     <>
       <Description />
-      <Goal />
       <BooksSection />
+      <Goal />
       {/* <Footer /> */}
     </>
   );

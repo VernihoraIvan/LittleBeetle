@@ -3,7 +3,7 @@ import VoicesLogo from "@/assets/images/voices-logo.png";
 const Goal = () => {
   return (
     <section>
-      <div className="bg-gradient-to-b from-primPurple to-primPurple h-secH">
+      <div className="bg-gradient-to-b from-primPurple to-primPurple h-screen">
         <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full ">
           <div className="flex justify-between  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
             <div>
