@@ -37,7 +37,7 @@ const PaymentSection = () => {
   );
 
   const handleSubmit = async () => {
-    const res = await proceedToPayment(totalFee, "usd");
+    const res = await proceedToPayment(totalFee, "gbp");
     console.log("inside handleSubmit");
     console.log(res);
   };

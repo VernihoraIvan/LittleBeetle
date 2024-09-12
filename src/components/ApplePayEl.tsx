@@ -16,7 +16,7 @@ const ApplePayEl = () => {
 
     const pr = stripe.paymentRequest({
       country: "US",
-      currency: "usd",
+      currency: "gbp",
       total: {
         label: "Total",
         amount: 1000, // amount in cents

@@ -1,16 +1,26 @@
-import { proceedToPayment } from "@/api/connection";
+// import { proceedToPayment } from "@/api/connection";
 import { useCart } from "@/zustand/productStore";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { FormEvent, useEffect, useState } from "react";
+import { proceedToPayment } from "@/api/connection";
+import {
+  // CardElement,
+  ExpressCheckoutElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import // PaymentIntent,
+// StripeExpressCheckoutElementClickEvent,
+// StripeExpressCheckoutElementConfirmEvent,
+"@stripe/stripe-js";
+// import { useEffect } from "react";
 
 const PaymentComponent = () => {
-  const cart = useCart((state) => state.items);
+  // const cart = useCart((state) => state.items);
   const products = useCart((state) => state.items);
 
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState("");
+  // const [isProcessing, setIsProcessing] = useState(false);
+  // const [paymentStatus, setPaymentStatus] = useState("");
 
-  const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+  // const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
@@ -19,82 +29,126 @@ const PaymentComponent = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  useEffect(() => {
-    if (totalQty === 0) return;
+  // useEffect(() => {
+  //   if (totalQty === 0) return;
 
-    if (paymentStatus !== "succeeded") return;
-  });
+  //   if (paymentStatus !== "succeeded") return;
+  // });
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
-    if (totalQty === 0) return;
+  //   if (totalQty === 0) return;
 
+  //   if (!stripe || !elements) return;
+
+  //   const cardEl = elements.getElement(CardElement);
+
+  //   setIsProcessing(true);
+
+  //   try {
+  //     const res = await proceedToPayment(totalFee, "gbp");
+  //     if (!res) {
+  //       setPaymentStatus("Payment failed!");
+  //       setIsProcessing(false);
+  //       console.log("Payment failed!");
+  //       return;
+  //     }
+
+  //     const { client_secret: clientSecret } = res.data;
+  //     console.log("clientSecret: ", clientSecret);
+
+  //     const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+  //       payment_method: {
+  //         card: cardEl!,
+  //       },
+  //     });
+
+  //     if (!paymentIntent) {
+  //       setPaymentStatus("Payment failed!");
+  //     } else {
+  //       setPaymentStatus(paymentIntent.status);
+  //     }
+  // } catch (error) {
+  //   console.error(error);
+  //   setPaymentStatus("Payment failed!");
+  // }
+
+  //   setIsProcessing(false);
+  // };
+
+  // const cardElementOptions = {
+  //   style: {
+  //     base: {
+  //       fontSize: "24px",
+  //       color: "#32325d", // Text color
+  //       backgroundColor: "#ffff", // Background color
+  //       "::placeholder": {
+  //         color: "#aab7c4", // Placeholder text color
+  //       },
+  //       iconColor: "#6772e5", // Icon color (like the card brand icon)
+  //       fontFamily: '"Helvetica Neue", Helvetica, sans-serif', // Custom font
+  //       padding: "10px 14px", // Padding inside the input
+  //     },
+  //     invalid: {
+  //       color: "#fa755a", // Text color for invalid input
+  //       iconColor: "#fa755a", // Icon color for invalid input
+  //     },
+  //   },
+  //   hidePostalCode: true, // Optionally hide the postal code field
+  //   // defaultValues: {
+  //   //   link: null, // Disable the "Save with Link" checkbox
+  //   // },
+  //   disableLink: true, // Disable the "Save with Link" checkbox
+  // };
+
+  // const onClick = ({ resolve }: StripeExpressCheckoutElementClickEvent) => {
+  //   const options = {
+  //     emailRequired: true,
+  //   };
+  //   resolve(options);
+  // };
+
+  const onConfirm = async () => {
     if (!stripe || !elements) return;
-
-    const cardEl = elements.getElement(CardElement);
-
-    setIsProcessing(true);
-
     try {
-      const res = await proceedToPayment(totalFee, "usd");
+      const res = await proceedToPayment(totalFee, "gbp");
       if (!res) {
-        setPaymentStatus("Payment failed!");
-        setIsProcessing(false);
+        console.log("Payment failed!");
+        return;
+      }
+      const { client_secret: clientSecret } = res.data;
+      if (!res) {
         console.log("Payment failed!");
         return;
       }
 
-      const { client_secret: clientSecret } = res.data;
-      console.log("clientSecret: ", clientSecret);
+      const { error } = await stripe.confirmPayment({
+        // `Elements` instance that's used to create the Express Checkout Element.
+        elements,
+        // `clientSecret` from the created PaymentIntent
 
-      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardEl!,
+        clientSecret,
+        confirmParams: {
+          return_url: "https://example.com/order/123/complete",
         },
+        // Uncomment below if you only want redirect for redirect-based payments.
+        // redirect: 'if_required',
       });
 
-      if (!paymentIntent) {
-        setPaymentStatus("Payment failed!");
+      if (error) {
+        // This point is reached only if there's an immediate error when confirming the payment. Show the error to your customer (for example, payment details incomplete).
       } else {
-        setPaymentStatus(paymentIntent.status);
+        // Your customer will be redirected to your `return_url`.
       }
     } catch (error) {
       console.error(error);
-      setPaymentStatus("Payment failed!");
     }
-
-    setIsProcessing(false);
-  };
-
-  const cardElementOptions = {
-    style: {
-      base: {
-        fontSize: "24px",
-        color: "#32325d", // Text color
-        backgroundColor: "#ffff", // Background color
-        "::placeholder": {
-          color: "#aab7c4", // Placeholder text color
-        },
-        iconColor: "#6772e5", // Icon color (like the card brand icon)
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif', // Custom font
-        padding: "10px 14px", // Padding inside the input
-      },
-      invalid: {
-        color: "#fa755a", // Text color for invalid input
-        iconColor: "#fa755a", // Icon color for invalid input
-      },
-    },
-    hidePostalCode: true, // Optionally hide the postal code field
-    // defaultValues: {
-    //   link: null, // Disable the "Save with Link" checkbox
-    // },
-    disableLink: true, // Disable the "Save with Link" checkbox
   };
 
   return (
     <div style={{ fontSize: "20px" }}>
-      <form onSubmit={handleSubmit} id="payment-form">
+      {/* <form onSubmit={handleSubmit} id="payment-form">
         <div className="w-payW">
           <h2 className="font-secondaryBold text-buttonS mb-6">
             Card information
@@ -152,7 +206,8 @@ const PaymentComponent = () => {
         </div>
         {isProcessing && <div>Processing...</div>}
         {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>}
-      </form>
+      </form> */}
+      <ExpressCheckoutElement /*onClick={onClick}*/ onConfirm={onConfirm} />
     </div>
   );
 };

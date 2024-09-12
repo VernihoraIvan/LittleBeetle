@@ -30,8 +30,8 @@ const GooglePayEl = () => {
     if (stripe) {
       // Define the basic payment request options
       const paymentRequestOptions: PaymentRequestOptions = {
-        country: "US",
-        currency: "usd",
+        country: "GB",
+        currency: "gbp",
         total: {
           label: "Total",
           amount: totalFee * 100, // Amount in cents, so 5000 = $50.00
