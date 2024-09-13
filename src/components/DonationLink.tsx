@@ -14,9 +14,6 @@ const DonationLink = () => {
           donation or add extra items to your cart from our Printed Collection.
           Please select an option below to proceed.
         </p>
-        {/* <button className="uppercase hover:bg-purpleHover text-center transition duration-300 px-imgSW  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14">
-          Donate now
-        </button> */}
         <ButtonTo
           to="/checkout-donation/contribution"
           title="Donate now"

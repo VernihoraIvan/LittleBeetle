@@ -1,7 +1,7 @@
-import SummaryUniversal from "./SummaryUniversal";
+import SummaryUniversal from "../SummaryUniversal";
 import { useState } from "react";
 import clsx from "clsx";
-import CardInfo from "./CardInfo";
+import CardInfo from "../CardInfo";
 import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
@@ -16,6 +16,7 @@ const PaymentSectionWO = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+  console.log("donations: ", donations);
 
   return (
     <section className="flex justify-between pt-bookPB">
@@ -25,7 +26,7 @@ const PaymentSectionWO = () => {
           <ul className="flex flex-col gap-5   ">
             <li
               className={clsx(
-                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
+                "flex justify-between items-center cursor-pointer text-[24px] font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                 isActive === 1 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(1)}
@@ -42,7 +43,7 @@ const PaymentSectionWO = () => {
             </li>
             <li
               className={clsx(
-                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
+                "flex justify-between items-center cursor-pointer text-[24px] font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                 isActive === 2 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(2)}
@@ -52,7 +53,7 @@ const PaymentSectionWO = () => {
             </li>
             <li
               className={clsx(
-                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP",
+                "flex justify-between items-center cursor-pointer text-[24px] font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP",
                 isActive === 3 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(3)}

@@ -81,7 +81,7 @@ const CheckoutShipment = () => {
         onClick={handleSubmitAllForms}
         to="/checkout/payment"
         title="CONTINUE TO NEXT"
-        style="w-fit mt-bookPT text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl"
+        style="w-fit mt-bookPT text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]"
       />
     </section>
   );

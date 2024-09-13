@@ -133,7 +133,6 @@ export interface PersonalData {
 }
 
 export interface FormElProps {
-  // errors?: FormikErrors<MyFormValues>;
   errors?: string;
   touched: FormikTouched<MyFormValues>;
   title: string;
@@ -142,16 +141,8 @@ export interface FormElProps {
 }
 
 export interface DonationOptionProps {
-  handleOverlayLang: () => void;
-  lang: string;
-  setIsOverlayLang: React.Dispatch<React.SetStateAction<boolean>>;
-  setLang: React.Dispatch<React.SetStateAction<string>>;
-  isOverlayLang: boolean;
-  handleOverlayPrice: () => void;
-  price: number;
-  isOverlayPrice: boolean;
-  setPrice: React.Dispatch<React.SetStateAction<number>>;
-  setIsOverlayPrice: React.Dispatch<React.SetStateAction<boolean>>;
+  setLang: (value: string | number) => void;
+  setPrice: (value: string | number) => void;
   setIsChecked: (value: boolean) => void;
   checkboxIsHidden?: boolean;
 }

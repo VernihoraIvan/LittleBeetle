@@ -1,32 +1,15 @@
 import SummaryUniversal from "./SummaryUniversal";
 import { useState } from "react";
 import clsx from "clsx";
-// import CardInfo from "./CardInfo";
 import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
 import { useCart } from "@/zustand/productStore";
-// import { loadStripe } from "@stripe/stripe-js";
-// import { Elements } from "@stripe/react-stripe-js";
-// import { proceedToPayment } from "@/api/connection";
 import StripeElement from "./StripeElement";
 import GooglePayEl from "./GooglePayEl";
 import ApplePayEl from "./ApplePayEl";
 import { useNavigate } from "react-router-dom";
-
-// import { loadStripe } from "@stripe/stripe-js";
-// import {
-// CardElement,
-// Elements,
-// useElements,
-// useStripe,
-// } from "@stripe/react-stripe-js";
-// import { proceedToPayment } from "@/api/connection";
-
-// const stripePromise = await loadStripe(
-//   "pk_test_51PrdjZRq3XOp8unvxUPIEbTEL0xEDoyX71gTb6k1rEfs9uTJMKXfGsGuc60f85tKqQQS0EdQ35t3bGrYasNtOQKu00JXDLVkAb"
-// );
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -39,17 +22,19 @@ const PaymentSection = () => {
     0
   );
   console.log("isPaymentSuccess: ", isPaymentSuccess);
+  console.log("products: ", products);
 
   const handleSubmit = async () => {
-    // const res = await proceedToPayment(totalFee, "usd");
-    // console.log("inside handleSubmit");
-    // console.log(res);
     if (isPaymentSuccess) {
       console.log("Payment success");
     } else {
       console.log("Payment failed");
     }
     navigate("/complete");
+  };
+
+  const handleSubmitTest = () => {
+    navigate("/test");
   };
 
   function detectUserOS(): "Android" | "Apple" | "Desktop" | "Unknown" {
@@ -71,14 +56,13 @@ const PaymentSection = () => {
 
   return (
     <section className="flex justify-between pt-bookPB">
-      {/* <CardElement /> */}
       <div>
         <h2 className="mb-9 font-secondaryBold text-buttonS">Payment method</h2>
         <div className="mb-navPad">
           <ul className="flex flex-col gap-5   ">
             <li
               className={clsx(
-                "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
+                "flex justify-between items-center cursor-pointer text-[24px] font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                 isActive === 1 && "bg-payButtonActive"
               )}
               onClick={() => setIsActive(1)}
@@ -96,7 +80,7 @@ const PaymentSection = () => {
             {currentOS === "Android" && (
               <li
                 className={clsx(
-                  "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
+                  "flex justify-between items-center cursor-pointer text-[24px] font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP ",
                   isActive === 2 && "bg-payButtonActive"
                 )}
                 onClick={() => setIsActive(2)}
@@ -108,7 +92,7 @@ const PaymentSection = () => {
             {currentOS === "Apple" && (
               <li
                 className={clsx(
-                  "flex justify-between items-center cursor-pointer text-2xl font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP",
+                  "flex justify-between items-center cursor-pointer text-[24px] font-secondaryBold text-bgPurple border border-bgPurple w-payW px-CreatorsElP",
                   isActive === 3 && "bg-payButtonActive"
                 )}
                 onClick={() => setIsActive(3)}
@@ -139,8 +123,8 @@ const PaymentSection = () => {
           >
             COMPLETE DONATION
           </button>
-          {/* <button
-            onClick={handleSubmit}
+          <button
+            onClick={handleSubmitTest}
             className={clsx(
               "w-payW  py-5 font-secondarySBold text-xl",
               isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
@@ -148,7 +132,7 @@ const PaymentSection = () => {
             )}
           >
             test
-          </button> */}
+          </button>
         </div>
       </div>
       <SummaryUniversal subTotal={totalFee} shippingFee={0} />

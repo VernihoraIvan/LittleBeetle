@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-// import CheckoutShipment from "./CheckoutSections/CheckoutShipment";
-import CheckoutContributionWO from "./CheckoutSectionsWithoutProduct/CheckoutContributionWO";
-import CheckoutDetailsWO from "./CheckoutSectionsWithoutProduct/CheckoutDetailsWO";
+import CheckoutContributionWO from "./CheckoutContributionWO";
+import CheckoutDetailsWO from "./CheckoutDetailsWO";
 import PaymentSectionWO from "./PaymentSectionWO";
 
 const CheckoutWOSection = () => {
@@ -12,8 +11,6 @@ const CheckoutWOSection = () => {
         return <CheckoutContributionWO />;
       case "details":
         return <CheckoutDetailsWO />;
-      // case "shipment":
-      //   return <CheckoutShipment />;
       case "payment":
         return <PaymentSectionWO />;
       default:

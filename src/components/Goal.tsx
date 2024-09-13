@@ -15,7 +15,7 @@ const Goal = () => {
                   Our goal
                 </h2>
                 <p
-                  className="leading-relaxed text-primWhiteFaint w-[1110px] text-2xl font-secondaryRegular
+                  className="leading-relaxed text-primWhiteFaint w-[1110px] text-[24px] font-secondaryRegular
                 xl:text-[20px] xl:w-[800px]"
                 >
                   100% of donations from this project will be redirected to the
@@ -50,7 +50,7 @@ const Goal = () => {
                 alt="Voices of children logo"
               />
               <p
-                className="text-2xl font-secondarySBold text-primWhite
+                className="text-[24px] font-secondarySBold text-primWhite
               xl:text-[20px]"
               >
                 Voices of children

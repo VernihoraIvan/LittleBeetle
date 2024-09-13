@@ -20,7 +20,7 @@ const Carousel = ({ images }: CarouselProps) => {
 
   return (
     <div
-      className="relative w-full xxl:max-w-2xl  overflow-hidden
+      className="relative w-full xxl:max-w-[660px]  overflow-hidden
     xl:w-[490px]
     lg:min-w-[360px]
     md:h-[300px]"
@@ -30,10 +30,8 @@ const Carousel = ({ images }: CarouselProps) => {
         xl:top-1/2
         lg:top-[14%]
         md:top-1/2"
-        //top-1/2 transform -translate-y-1/2 left-0  text-white p-2 rounded-full hover:bg-gray-600 transition
         onClick={prevSlide}
       >
-        {/* &#10094; */}
         <CarouselArrow className="transform rotate-180" />
       </button>
       <div
@@ -56,7 +54,6 @@ const Carousel = ({ images }: CarouselProps) => {
         md:top-1/2"
         onClick={nextSlide}
       >
-        {/* &#10095; */}
         <CarouselArrow />
       </button>
     </div>

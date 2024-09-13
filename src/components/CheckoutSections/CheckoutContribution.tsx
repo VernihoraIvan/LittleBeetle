@@ -17,12 +17,15 @@ const CheckoutContribution = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+  const setStage = useStage((state) => state.setStage);
 
   useEffect(() => {
     setTotalFee(totalFee);
-  }, [totalFee]);
+    if (products.length === 0) {
+      setStage(1);
+    }
+  }, [products, setStage, totalFee]);
 
-  const setStage = useStage((state) => state.setStage);
   return (
     <>
       <div
@@ -60,7 +63,7 @@ const CheckoutContribution = () => {
         onClick={() => setStage(2)}
         to="/checkout/details"
         title="CONTINUE TO NEXT"
-        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl"
+        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]"
       />
     </>
   );

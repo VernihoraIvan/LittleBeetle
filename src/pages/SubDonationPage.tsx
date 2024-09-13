@@ -19,7 +19,6 @@ const SubDonationPage = () => {
           imagePath={productToDisplay.imagePath}
         />
       )}
-      {/* <Footer /> */}
     </>
   );
 };

@@ -4,7 +4,7 @@ const SummaryCheckout = ({ subTotal }: SummaryProps) => {
   return (
     <div className="flex flex-col gap-prodMar">
       <div className="w-sumW border   border-primPurple">
-        <div className="px-prodMar py-4 font-secondaryBold text-2xl text-primWhite bg-primPurple">
+        <div className="px-prodMar py-4 font-secondaryBold text-[24px] text-primWhite bg-primPurple">
           Summary
         </div>
         <div>

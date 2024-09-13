@@ -59,7 +59,7 @@ const OverlayCompLang = ({
       <div ref={elementRef} className="absolute  mt-16 overflow-hidden w-full">
         <div
           className={clsx(
-            "  bg-primWhite font-secondaryRegular text-inputPink text-2xl  border border-primPurpleFaintM w-prodW  transition-transform duration-0",
+            "  bg-primWhite font-secondaryRegular text-inputPink text-[24px]  border border-primPurpleFaintM w-prodW  transition-transform duration-0",
             isOverlayLang
               ? "translate-y-0 /*pointer-events-none*/"
               : "-translate-y-full"

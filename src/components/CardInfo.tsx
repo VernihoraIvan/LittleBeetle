@@ -4,11 +4,11 @@ const CardInfo = () => {
       <h2 className="font-secondaryBold text-buttonS mb-6">Card information</h2>
       <form className="flex flex-col gap-10" action="">
         <div className="flex flex-col gap-4">
-          <label htmlFor="cardName" className="font-secondaryBold text-2xl">
+          <label htmlFor="cardName" className="font-secondaryBold text-[24px]">
             Cardholder name <span className="text-red-500">*</span>
           </label>
           <input
-            className="text-2xl px-4 py-3 border border-primPurpleFaintM h-[60px]"
+            className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]"
             type="text"
             id="cardName"
             name="cardName"
@@ -16,11 +16,14 @@ const CardInfo = () => {
           />
         </div>
         <div className="flex flex-col gap-4">
-          <label htmlFor="cardNumber" className="font-secondaryBold text-2xl">
+          <label
+            htmlFor="cardNumber"
+            className="font-secondaryBold text-[24px]"
+          >
             Card number <span className="text-red-500">*</span>
           </label>
           <input
-            className="text-2xl px-4 py-3 border border-primPurpleFaintM h-[60px]"
+            className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]"
             type="text"
             id="cardNumber"
             name="cardNumber"
@@ -29,11 +32,11 @@ const CardInfo = () => {
         </div>
         <div className="flex  gap-10">
           <div className="flex flex-col gap-4 w-[275px]">
-            <label htmlFor="expDate" className="font-secondaryBold text-2xl">
+            <label htmlFor="expDate" className="font-secondaryBold text-[24px]">
               Expiry date <span className="text-red-500">*</span>
             </label>
             <input
-              className="text-2xl px-4 py-3 border border-primPurpleFaintM h-[60px]"
+              className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]"
               type="text"
               id="expDate"
               name="expDate"
@@ -42,11 +45,11 @@ const CardInfo = () => {
             />
           </div>
           <div className="flex flex-col gap-4 w-[275px]">
-            <label htmlFor="CVV" className="font-secondaryBold text-2xl">
+            <label htmlFor="CVV" className="font-secondaryBold text-[24px]">
               CVV <span className="text-red-500">*</span>
             </label>
             <input
-              className="text-2xl px-4 py-3 border border-primPurpleFaintM h-[60px]"
+              className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]"
               type="text"
               id="CVV"
               name="CVV"

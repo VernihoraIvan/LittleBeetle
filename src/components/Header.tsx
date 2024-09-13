@@ -1,6 +1,5 @@
 // / <reference types="vite-plugin-svgr/client" />
 import { NavLink } from "react-router-dom";
-// import Chevron from "@/assets/icons/chevron-down.svg?react";
 import CartLogo from "@/assets/icons/shopping-cart.svg?react";
 import ActiveCartLogo from "@/assets/icons/shopping-cart-active.svg?react";
 
@@ -48,12 +47,6 @@ const Header = () => {
               {({ isActive }) => (isActive ? <ActiveCartLogo /> : <CartLogo />)}
             </NavLink>
           </li>
-          {/* <li className="flex cursor-pointer">
-            <p className="mr-2 ">EN</p>
-            <div className="w-6 h-6 ">
-              <Chevron />
-            </div>
-          </li> */}
         </ul>
       </nav>
     </header>

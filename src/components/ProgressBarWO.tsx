@@ -19,7 +19,7 @@ const ProgressBarWO = () => {
             step && `w-${progressWidth[stage]}`
           )}
         ></div>
-        <ul className="text-2xl font-secondaryBold  absolute w-full flex justify-between">
+        <ul className="text-[24px] font-secondaryBold  absolute w-full flex justify-between">
           <li className="relative">
             <NavLink
               className={clsx(

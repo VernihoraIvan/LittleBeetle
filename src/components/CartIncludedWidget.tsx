@@ -7,7 +7,7 @@ const CartIncludedWidget = () => {
     <section className="flex justify-center bg-primBeige pb-buttonP pt-bookPT">
       <div className="flex justify-start xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
         <div className=" p-10 border border-bgPurple xxl:w-cartCont">
-          <h3 className="text-primPurple text-2xl font-secondaryBold uppercase mb-6">
+          <h3 className="text-primPurple text-[24px] font-secondaryBold uppercase mb-6">
             Included with every purchase
           </h3>
           <ul className="flex justify-between">

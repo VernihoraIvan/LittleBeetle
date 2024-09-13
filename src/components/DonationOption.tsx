@@ -1,21 +1,11 @@
 import { nanoid } from "nanoid";
-import PopUpLang from "./PopUpLang";
-import PopUpPrice from "./PopUpPrice";
 import { useDonation } from "@/zustand/donationStore";
 import { DonationOptionProps } from "@/utilities/interfaces";
-import clsx from "clsx";
+import PopUp from "./PopUpTest";
 
 const DonationOption = ({
-  handleOverlayLang,
-  lang,
-  setIsOverlayLang,
   setLang,
-  isOverlayLang,
-  handleOverlayPrice,
-  price,
-  isOverlayPrice,
   setPrice,
-  setIsOverlayPrice,
   setIsChecked,
   checkboxIsHidden,
 }: DonationOptionProps) => {
@@ -35,30 +25,20 @@ const DonationOption = ({
       <h3 className="font-secondaryBold text-buttonS mb-4">
         Select options for donation
       </h3>
-      <PopUpLang
-        handleOverlayLang={handleOverlayLang}
-        lang={lang}
-        setIsOverlayLang={setIsOverlayLang}
-        setLang={setLang}
-        isOverlayLang={isOverlayLang}
+      <PopUp
+        defaultVal={"Language"}
+        setValue={setLang}
+        value={["English", "Ukrainian"]}
       />
-      <PopUpPrice
-        handleOverlay={handleOverlayPrice}
-        price={price}
-        setIsOverlay={setIsOverlayPrice}
-        setPrice={setPrice}
-        isOverlay={isOverlayPrice}
-        isOverlayLang={isOverlayLang}
+      <PopUp
+        defaultVal={"Donation Amount"}
+        setValue={setPrice}
+        value={[3, 5, 10]}
       />
-      <div
-        className={clsx(
-          "flex items-center  mt-9",
-          isOverlayPrice || isOverlayLang ? "static" : "relative"
-        )}
-      >
+      <div className="flex items-center  mt-9">
         {!checkboxIsHidden && (
           <label
-            className="font-secondaryRegular text-2xl hover:cursor-pointer"
+            className="font-secondaryRegular text-[24px] hover:cursor-pointer"
             htmlFor={id}
           >
             <input

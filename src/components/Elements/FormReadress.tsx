@@ -73,7 +73,7 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
               />
               <li className="flex flex-col ">
                 <label
-                  className="font-secondaryBold text-2xl"
+                  className="font-secondaryBold text-[24px]"
                   htmlFor="country"
                 >
                   Country <span className="text-red-500">*</span>
@@ -81,11 +81,11 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
                 <Field
                   as="select"
                   name="country"
-                  className={`w-prodW cursor-pointer outline-none mt-4 border border-primPurpleFaintM py-3 px-4 text-inputPink text-2xl font-secondaryRegular ${
+                  className={`w-prodW cursor-pointer outline-none mt-4 border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular ${
                     errors.country && touched.country ? "border-red-500" : ""
                   }`}
                 >
-                  <option className="text-2xl" value="" label="Select" />
+                  <option className="text-[24px]" value="" label="Select" />
                   {countries.map((country) => (
                     <option key={country} value={country} label={country} />
                   ))}

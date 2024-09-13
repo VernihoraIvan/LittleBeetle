@@ -28,26 +28,20 @@ const GooglePayEl = () => {
 
   useEffect(() => {
     if (stripe) {
-      // Define the basic payment request options
       const paymentRequestOptions: PaymentRequestOptions = {
         country: "US",
         currency: "usd",
         total: {
           label: "Total",
-          amount: totalFee * 100, // Amount in cents, so 5000 = $50.00
+          amount: totalFee * 100,
         },
         requestPayerName: true,
         requestPayerEmail: true,
       };
-
-      // Create the payment request object
       const pr = stripe.paymentRequest(paymentRequestOptions);
-
-      // Check for available payment methods, including Google Pay
       pr.canMakePayment().then((result) => {
         console.log(result);
         if (result && result.googlePay) {
-          // If Google Pay is available, show the button
           console.log("Google Pay is available");
           setCanMakePayment(result);
           setPaymentRequest(pr);
@@ -58,12 +52,8 @@ const GooglePayEl = () => {
         }
       });
 
-      // Handle the payment method received event
       pr.on("paymentmethod", async (event) => {
-        // This is where you would process the payment on your server
         console.log(event.paymentMethod);
-
-        // Complete the payment request (showing success for demo purposes)
         event.complete("success");
       });
     }

@@ -4,7 +4,7 @@ const DonationComplete = () => {
   return (
     <>
       <Title title="" />
-      <div className=" flex justify-center items-center flex-gggrow h-[calc(100vh-40px)]">
+      <div className=" flex justify-center items-center  h-[calc(100vh-40px)]">
         <div className="flex flex-col gap-[18px] items-center w-[925px]">
           <h2 className="font-secondaryBold text-buttonS ">
             Thank you! Your donation is complete.

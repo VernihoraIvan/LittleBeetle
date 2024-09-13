@@ -10,13 +10,13 @@ const EmptyCart = () => {
           src={emptyCartIMG}
           alt="empty cart icon mb-[14px]"
         />
-        <h1 className="mb-[42px] font-secondarySBold text-2xl">
+        <h1 className="mb-[42px] font-secondarySBold text-[24px]">
           Your cart is empty
         </h1>
         <ButtonTo
           to="/donation"
           title="View Store"
-          style="w-[455px] uppercase hover:bg-purpleHover text-center transition duration-300  font-secondarySBold text-primWhite text-2xl bg-primPurple py-[18px] "
+          style="w-[455px] uppercase hover:bg-purpleHover text-center transition duration-300  font-secondarySBold text-primWhite text-[24px] bg-primPurple py-[18px] "
         />
       </div>
     </section>

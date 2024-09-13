@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { SubDonationProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
-import PopUpPrice from "./PopUpPrice";
-import PopUpLang from "./PopUpLang";
 import clsx from "clsx";
 import QuantityAdjuster from "./QuantityAdjusterWState";
 import Carousel from "./Carousel";
 import ButtonTo from "./ButtonTo";
 import { useShipment } from "@/zustand/shipmentStore";
 import { nanoid } from "nanoid";
+import PopUp from "./PopUpTest";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -16,19 +15,10 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const id = nanoid();
 
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
-  const [isOverlayLang, setIsOverlayLang] = useState<boolean>(false);
 
-  const [price, setPrice] = useState<number>(0);
-  const [lang, setLang] = useState<string>("en");
+  const [price, setPrice] = useState<string | number>(0);
+  const [lang, setLang] = useState<string | number>("en");
   const [quantity, setQuantity] = useState<number>(1);
-
-  const handleOverlayPrice = () => {
-    setIsOverlayPrice(!isOverlayPrice);
-  };
-
-  const handleOverlayLang = () => {
-    setIsOverlayLang(!isOverlayLang);
-  };
 
   const handleAddProduct = (
     title: string,
@@ -50,41 +40,36 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
 
   return (
     <>
-      <section className="h-headerPad bg-primPurple" />
-      <section className="flex justify-center p-[60px] bg-primBeige w-screen  h-fit-content ">
+      <section className="h-headerPad bg-primPurple  " />
+      <section className="flex flex-grow justify-center p-[60px] bg-primBeige w-screen  h-fit-content ">
         <div
           className=" xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-10
-        md:flex-col md:w-[480px] mx-[70px]"
+        md:flex-col md:w-[480px] "
         >
           <Carousel images={imagePath} />
-          <div className="w-prodW max-w-full">
+          <div className=" popup-container          ">
             <h3
               className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold
             xl:text-linkS"
             >
               {title}
             </h3>
-            <p className="text-2xl font-secondaryRegular xl:text-copyS">
+            <p className="text-[24px] font-secondaryRegular xl:text-copyS">
               {description}
             </p>
-            <p className="text-2xl font-secondaryRegular xl:text-copyS mt-1">
+            <p className="text-[24px] font-secondaryRegular xl:text-copyS mt-1">
               Size: 21.0 x 29.7 cm
             </p>
             <div className="flex flex-col justify-between mt-2 ">
-              <PopUpLang
-                handleOverlayLang={handleOverlayLang}
-                lang={lang}
-                setIsOverlayLang={setIsOverlayLang}
-                setLang={setLang}
-                isOverlayLang={isOverlayLang}
+              <PopUp
+                defaultVal={"Language"}
+                setValue={setLang}
+                value={["English", "Ukrainian"]}
               />
-              <PopUpPrice
-                handleOverlay={handleOverlayPrice}
-                price={price}
-                setIsOverlay={setIsOverlayPrice}
-                setPrice={setPrice}
-                isOverlay={isOverlayPrice}
-                isOverlayLang={isOverlayLang}
+              <PopUp
+                defaultVal={"Donation Amount"}
+                setValue={setPrice}
+                value={[3, 5, 10]}
               />
               <div
                 className="flex gap-6 mt-6  select-none
@@ -95,7 +80,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 </p>
                 <QuantityAdjuster
                   isOverlay={isOverlayPrice}
-                  price={price}
+                  price={price as number}
                   quantity={quantity}
                   setQuantity={setQuantity}
                 />
@@ -108,7 +93,13 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
               >
                 <button
                   onClick={() =>
-                    handleAddProduct(title, price, quantity, lang, id)
+                    handleAddProduct(
+                      title,
+                      price as number,
+                      quantity,
+                      lang as string,
+                      id
+                    )
                   }
                   className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14 
                   xl:text-[20px] xl:py-2
@@ -121,7 +112,13 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14 xl:text-[20px] lg:text-[16px]"
                   title="Checkout"
                   onClick={() =>
-                    handleAddProduct(title, price, quantity, lang, id)
+                    handleAddProduct(
+                      title,
+                      price as number,
+                      quantity,
+                      lang as string,
+                      id
+                    )
                   }
                 />
               </div>

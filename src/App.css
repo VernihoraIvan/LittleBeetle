@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Small screens */
+@media (max-width: 640px) {
+  .popup-content {
+    max-width: 320px; /* Fixed size for small screens */
+  }
+
+  .popup-container {
+    max-width: 320px; /* Fixed size for small screens */
+  }
+}
+
+/* Medium screens */
+@media (min-width: 639px) and (max-width: 768px) {
+  .popup-content {
+    max-width: 540px; /* Fixed size for medium screens */
+  }
+  .popup-container {
+    max-width: 540px; /* Fixed size for medium screens */
+  }
+}
+
+/* Large screens */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .popup-content {
+    max-width: 420px; /* Fixed size for large screens */
+  }
+  .popup-container {
+    max-width: 420px; /* Fixed size for large screens */
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1563px) {
+  .popup-content {
+    max-width: 555px; /* Fixed size for large screens */
+  }
+  .popup-container {
+    max-width: 555px; /* Fixed size for large screens */
+  }
+}
+
+@media (min-width: 1564px) {
+  .popup-content {
+    max-width: 740px; /* Fixed size for large screens */
+  }
+  .popup-container {
+    max-width: 740px; /* Fixed size for large screens */
+  }
+}

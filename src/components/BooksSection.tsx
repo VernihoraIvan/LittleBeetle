@@ -14,7 +14,7 @@ const BooksSection = () => {
           About the project
         </h2>
         <p
-          className="leading-relaxed text-primPurpleFaint text-2xl font-secondaryRegular
+          className="leading-relaxed text-primPurpleFaint text-[24px] font-secondaryRegular
           xl:text-[20px]"
         >
           Over 15 creative professionals from around the world have come

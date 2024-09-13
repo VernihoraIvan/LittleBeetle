@@ -80,25 +80,23 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
     style: {
       base: {
         fontSize: "24px",
-        color: "#32325d", // Text color
-        backgroundColor: "#ffff", // Background color
+        color: "#32325d", 
+        backgroundColor: "#ffff", 
         "::placeholder": {
-          color: "#aab7c4", // Placeholder text color
+          color: "#aab7c4", 
         },
-        iconColor: "#6772e5", // Icon color (like the card brand icon)
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif', // Custom font
-        padding: "10px 14px", // Padding inside the input
+        iconColor: "#6772e5",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif', 
+        padding: "10px 14px",
       },
       invalid: {
-        color: "#fa755a", // Text color for invalid input
-        iconColor: "#fa755a", // Icon color for invalid input
+        color: "#fa755a",
+        iconColor: "#fa755a", 
       },
     },
-    hidePostalCode: true, // Optionally hide the postal code field
-    // defaultValues: {
-    //   link: null, // Disable the "Save with Link" checkbox
-    // },
-    disableLink: true, // Disable the "Save with Link" checkbox
+    hidePostalCode: true, 
+
+    disableLink: true, 
   };
 
   return (
@@ -116,7 +114,7 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
               Cardholder name <span className="text-red-500">*</span>
             </label>
             <input
-              className="text-2xl px-4 py-3 border border-primPurpleFaintM h-[60px]"
+              className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]"
               type="text"
               id="cardName"
               name="cardName"
@@ -126,14 +124,13 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
           <div className="flex flex-col gap-4">
             <label
               htmlFor="card-element"
-              className="font-secondaryBold text-2xl"
+              className="font-secondaryBold text-[24px]"
             >
               Card number <span className="text-red-500">*</span>
             </label>
-            <div className="card-element-wrapper font-secondaryBold text-2xl h-[60px] border border-primPurpleFaintM">
+            <div className="card-element-wrapper font-secondaryBold text-[24px] h-[60px] border border-primPurpleFaintM">
               <CardElement
                 options={cardElementOptions}
-                // className=" text-2xl px-4 py-3 bg-primWhite item-center border border-primPurpleFaintM h-[60px]"
                 id="card-element"
               />
             </div>

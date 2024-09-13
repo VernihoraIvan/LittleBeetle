@@ -9,7 +9,7 @@ const CreatorsEl = ({ name, location, description }: CreatorsElProps) => {
           <h3 className="font-secondaryBold text-buttonS text-primWhite xl:text-linkS">
             {name}
           </h3>
-          <p className="text-secondaryRegular text-2xl text-primWhiteFaint xl:text-copyS">
+          <p className="text-secondaryRegular text-[24px] text-primWhiteFaint xl:text-copyS">
             {location}
           </p>
         </div>

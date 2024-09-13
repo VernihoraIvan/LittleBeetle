@@ -61,7 +61,7 @@ const DetailsFormWO = () => {
             </ul>
             <PrivacySec />
             <button
-              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl mt-9"
+              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px] mt-9"
               type="submit"
               onClick={() => setStage(4)}
             >

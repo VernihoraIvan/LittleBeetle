@@ -12,24 +12,16 @@ import { nanoid } from "nanoid";
 const CheckoutContributionWO = () => {
   const id = nanoid();
 
-  const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
-  const [isOverlayLang, setIsOverlayLang] = useState<boolean>(false);
-
-  const [price, setPrice] = useState<number>(0);
-  const [lang, setLang] = useState<string>("en");
+  const [price, setPrice] = useState<number | string>(0);
+  const [lang, setLang] = useState<number | string>("en");
   const [quantity, setQuantity] = useState<number>(1);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const addDonation = useDonation((state) => state.addDonation);
-  const handleOverlayPrice = () => {
-    setIsOverlayPrice(!isOverlayPrice);
-  };
-
-  const handleOverlayLang = () => {
-    setIsOverlayLang(!isOverlayLang);
-  };
-  const [totalFeeState, setTotalFee] = useState(0);
   const donations = useDonation((state) => state.items);
+  const setStage = useStage((state) => state.setStage);
+
+  const [totalFeeState, setTotalFee] = useState(0);
 
   const totalFee = donations.reduce(
     (acc, product) => acc + product.price * product.quantity,
@@ -37,10 +29,8 @@ const CheckoutContributionWO = () => {
   );
 
   useEffect(() => {
-    setTotalFee(totalFee);
-  }, [totalFee]);
-
-  const setStage = useStage((state) => state.setStage);
+    setTotalFee(totalFee + (price as number));
+  }, [price, totalFee]);
 
   const handleAddProduct = (
     title: string,
@@ -53,7 +43,7 @@ const CheckoutContributionWO = () => {
     if (price > 2) {
       addDonation(title, quantity, price, lang, isChecked, id);
       setPrice(0);
-      setIsOverlayPrice(false);
+      // setIsOverlayPrice(false);
       setStage(2);
       setQuantity(1);
     }
@@ -80,20 +70,14 @@ const CheckoutContributionWO = () => {
               />
             ))
           ) : (
-            <DonationOption
-              handleOverlayLang={handleOverlayLang}
-              lang={lang}
-              setIsOverlayLang={setIsOverlayLang}
-              setLang={setLang}
-              isOverlayLang={isOverlayLang}
-              handleOverlayPrice={handleOverlayPrice}
-              price={price}
-              setIsOverlayPrice={setIsOverlayPrice}
-              setPrice={setPrice}
-              isOverlayPrice={isOverlayPrice}
-              setIsChecked={setIsChecked}
-              checkboxIsHidden={true}
-            />
+            <>
+              <DonationOption
+                setLang={setLang}
+                setPrice={setPrice}
+                setIsChecked={setIsChecked}
+                checkboxIsHidden={true}
+              />
+            </>
           )}
         </div>
         <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
@@ -101,11 +85,18 @@ const CheckoutContributionWO = () => {
       <CartIncludedWidget />
       <ButtonTo
         onClick={() =>
-          handleAddProduct("Donation", price, quantity, lang, isChecked, id)
+          handleAddProduct(
+            "Donation",
+            price as number,
+            quantity,
+            lang as string,
+            isChecked,
+            id
+          )
         }
         to="/checkout-donation/details"
         title="CONTINUE TO NEXT"
-        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-2xl"
+        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]"
       />
     </>
   );
