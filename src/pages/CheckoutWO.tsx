@@ -1,4 +1,4 @@
-import ProgressBarWO from "@/components/ProgressBarWO";
+import ProgressBarWO from "@/components/CheckoutSectionsWithoutProduct/ProgressBarWO";
 import Title from "@/components/Title";
 import { Outlet } from "react-router-dom";
 

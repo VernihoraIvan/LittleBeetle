@@ -6,9 +6,9 @@ import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
 import { useCart } from "@/zustand/productStore";
-import StripeElement from "./StripeElement";
-import GooglePayEl from "./GooglePayEl";
-import ApplePayEl from "./ApplePayEl";
+import StripeElement from "./PaymentEl/StripeElement";
+import GooglePayEl from "./PaymentEl/GooglePayEl";
+import ApplePayEl from "./PaymentEl/ApplePayEl";
 import { useNavigate } from "react-router-dom";
 
 const PaymentSection = () => {

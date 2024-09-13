@@ -1,7 +1,7 @@
 import SummaryUniversal from "../SummaryUniversal";
 import { useState } from "react";
 import clsx from "clsx";
-import CardInfo from "../CardInfo";
+import CardInfo from "../PaymentEl/CardInfo";
 import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
