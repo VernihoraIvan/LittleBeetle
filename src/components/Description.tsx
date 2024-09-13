@@ -1,4 +1,4 @@
-import UnionSVG from "@/assets/icons/union.svg?react";
+import UnionSVG from "@/assets/icons/arrow-down.svg?react";
 
 const Description = () => {
   return (
