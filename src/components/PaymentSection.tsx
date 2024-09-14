@@ -10,6 +10,7 @@ import StripeElement from "./PaymentEl/StripeElement";
 import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
 import { useNavigate } from "react-router-dom";
+import { sentData } from "@/api/connection";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -34,7 +35,7 @@ const PaymentSection = () => {
   };
 
   const handleSubmitTest = () => {
-    navigate("/test");
+    sentData(products[0]);
   };
 
   function detectUserOS(): "Android" | "Apple" | "Desktop" | "Unknown" {

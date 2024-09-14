@@ -1,8 +1,9 @@
 import { MyFormValues } from "@/utilities/interfaces";
+import { itemProps } from "@/zustand/productStore";
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:3001";
-const BASE_URL = "https://little-beetle-backend-d16f76890ac7.herokuapp.com/";
+const BASE_URL = "http://localhost:3001";
+// const BASE_URL = "https://little-beetle-backend-d16f76890ac7.herokuapp.com/";
 // const BASE_URL = "https://littlebeetle-backend-nestjs.onrender.com";
 
 axios.defaults.baseURL = BASE_URL;
@@ -10,8 +11,18 @@ axios.defaults.baseURL = BASE_URL;
 export const postDonation = async (data: MyFormValues) => {
   try {
     const response = await axios.post("/donation", data);
+
     console.log("inside postDonation");
     return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const sentData = async (data: itemProps) => {
+  try {
+    const responseData = await axios.post("/data", data);
+    console.log("responseData: ", responseData);
   } catch (error) {
     console.error(error);
   }

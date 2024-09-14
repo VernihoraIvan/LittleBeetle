@@ -11,6 +11,7 @@ export interface itemProps {
   id: string;
   shippment?: ShipmentDetails;
 }
+
 export interface CartState {
   items: itemProps[];
   shippment?: ShipmentDetails;
