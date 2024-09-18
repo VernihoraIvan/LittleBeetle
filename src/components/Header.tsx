@@ -10,7 +10,7 @@ const Header = () => {
         <ul className="mr-navMar flex flex-row w-full justify-between">
           <li>
             <NavLink
-              to={"/about"}
+              to={"/"}
               className={({ isActive }) => (isActive ? "text-hovYellow" : "")}
             >
               About
