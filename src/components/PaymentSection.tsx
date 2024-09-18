@@ -10,7 +10,7 @@ import StripeElement from "./PaymentEl/StripeElement";
 import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
 import { useNavigate } from "react-router-dom";
-import { sentData } from "@/api/connection";
+// import { sentData } from "@/api/connection";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -34,9 +34,9 @@ const PaymentSection = () => {
     navigate("/complete");
   };
 
-  const handleSubmitTest = () => {
-    sentData(products[0]);
-  };
+  // const handleSubmitTest = () => {
+  //   sentData(products[0]);
+  // };
 
   function detectUserOS(): "Android" | "Apple" | "Desktop" | "Unknown" {
     const userAgent = navigator.userAgent;
@@ -122,9 +122,9 @@ const PaymentSection = () => {
             )}
             disabled={!isPaymentSuccess}
           >
-            COMPLETE DONATION
+            NEXT STEP
           </button>
-          <button
+          {/* <button
             onClick={handleSubmitTest}
             className={clsx(
               "w-payW  py-5 font-secondarySBold text-xl",
@@ -133,7 +133,7 @@ const PaymentSection = () => {
             )}
           >
             test
-          </button>
+          </button> */}
         </div>
       </div>
       <SummaryUniversal subTotal={totalFee} shippingFee={0} />

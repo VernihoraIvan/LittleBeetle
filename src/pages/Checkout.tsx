@@ -6,8 +6,10 @@ const Checkout = () => {
   return (
     <div className="flex flex-col ">
       <Title title="Checkout" />
-      <ProgressBar />
-      <Outlet />
+      <div className="px-[120px] xxl:px-[175px] lg:px-[60px] bg-primBeige">
+        <ProgressBar />
+        <Outlet />
+      </div>
     </div>
   );
 };

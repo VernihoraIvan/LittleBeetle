@@ -17,7 +17,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
 
   const [price, setPrice] = useState<string | number>(0);
-  const [lang, setLang] = useState<string | number>("en");
+  const [lang, setLang] = useState<string | number>("English");
   const [quantity, setQuantity] = useState<number>(1);
 
   const handleAddProduct = (

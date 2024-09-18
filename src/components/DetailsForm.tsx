@@ -122,7 +122,7 @@ const DetailsForm = () => {
               type="submit"
               onClick={() => setStage(3)}
             >
-              CONTINUE TO NEXT
+              NEXT STEP
             </button>
           </Form>
         )}

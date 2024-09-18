@@ -67,6 +67,7 @@ export interface PurchaseElProps {
   total: number;
   imgPath?: string[];
   id: string;
+  language: string;
 }
 
 export interface ButtonToProps {

@@ -46,24 +46,35 @@ const CheckoutContributionEl = ({
   return (
     <div className="relative mt-10 mb-prodMar flex justify-between w-full pr-6 ">
       <CrossLogo
-        className="cursor-pointer absolute left-[-60px]"
+        className="cursor-pointer absolute left-[-60px]
+        xl:left-[-40px]
+        lg:left-[-40px]"
         onClick={() => removeProductHandler(id)}
       />
       <div className="flex items-center">
         {imgPath && (
           <img
-            className="h-purchImgH mr-12 w-imgSW"
+            className="h-purchImgH mr-12 w-imgSW
+            "
             src={imgPath[0]}
             alt="image of a book"
           />
         )}
         <div className="flex gap-20">
           <div className="flex flex-col">
-            <h3 className="w-[180px] text-secBlack text-linkS font-secondarySBold">
+            <h3
+              className="w-[180px] text-secBlack text-linkS font-secondarySBold
+            xl:text-copyS
+            lg:text-copyS"
+            >
               {name}
             </h3>
             {name !== "Postcards" && (
-              <h4 className="mb-2 text-inputPink text-base font-secondaryRegular ">
+              <h4
+                className="mb-2 text-inputPink text-base font-secondaryRegular 
+              xl:text-[12px]
+              lg:text-[12px]"
+              >
                 Language: {language}
               </h4>
             )}

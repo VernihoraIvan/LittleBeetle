@@ -18,7 +18,7 @@ const ModalWindow = () => {
           </button>
           <ButtonTo
             to={"/checkout"}
-            title="Complete Donation"
+            title="NEXT STEP"
             style="uppercase w-full py-4 text-addCartS font-secondarySBold hover:bg-purpleHover text-center transition duration-300   font-secondarySBold text-primWhite text-addCartS bg-primPurple"
           />
         </div>

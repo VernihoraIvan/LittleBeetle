@@ -22,6 +22,7 @@ const Basket = () => {
           {products.length > 0 &&
             products.map((product) => (
               <PurchaseEl
+                language={product.itemLanguage}
                 key={product.id}
                 name={product.name}
                 price={product.price}

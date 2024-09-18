@@ -13,7 +13,7 @@ const CheckoutContributionWO = () => {
   const id = nanoid();
 
   const [price, setPrice] = useState<number | string>(0);
-  const [lang, setLang] = useState<number | string>("en");
+  const [lang, setLang] = useState<number | string>("English");
   const [quantity, setQuantity] = useState<number>(1);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 

@@ -80,7 +80,7 @@ const PaymentSectionWO = () => {
             )}
           </div>
           <button className=" w-payW bg-pinkBar py-5 font-secondarySBold text-xl">
-            COMPLETE DONATION
+            NEXT STEP
           </button>
         </div>
       </div>
