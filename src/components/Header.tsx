@@ -41,7 +41,7 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <ul className="flex flex-row ">
+        <ul className="flex flex-row">
           <li className="mr-10 fill-primWhite w-6 h-6">
             <NavLink to={"/checkout/contribution"}>
               {({ isActive }) => (isActive ? <ActiveCartLogo /> : <CartLogo />)}

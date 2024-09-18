@@ -6,7 +6,7 @@ const Goal = () => {
       <div className="bg-gradient-to-b from-primPurple to-primPurple h-screen">
         <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full ">
           <div className="flex justify-between  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
-            <div>
+            <div className="flex ">
               <div className="mb-10 flex justify-center align-center flex-col">
                 <h2
                   className="mb-8 font-primaryBold text-primWhite text-titleS
@@ -16,7 +16,9 @@ const Goal = () => {
                 </h2>
                 <p
                   className="leading-relaxed text-primWhiteFaint w-[1110px] text-[24px] font-secondaryRegular
-                xl:text-[20px] xl:w-[800px]"
+                xl:text-[20px] xl:w-[800px]
+                lg:text-[20px] lg:w-[800px]
+                md:w-"
                 >
                   100% of donations from this project will be redirected to the
                   Voices of Children Charitable Foundation. This organization
@@ -45,7 +47,8 @@ const Goal = () => {
             <div className="flex flex-col items-center ">
               <img
                 className="h-imgW w-imgW mb-2 
-                xl:w-[280px] xl:h-[280px]"
+                xl:w-[280px] xl:h-[280px]
+                lg:w-[200px] lg:h-[200px]"
                 src={VoicesLogo}
                 alt="Voices of children logo"
               />
