@@ -34,6 +34,8 @@ export default {
         xs: { max: "639px" },
         // => @media (max-width: 639px) { ... }
         sm: { max: "760px" },
+        // => @media (max-width: 1023px) { ... }
+        smd: { max: "1023px" },
         // => @media (min-width: 640px and max-width: 767px) { ... }
         md: { min: "760px", max: "1023px" },
         // => @media (min-width: 768px and max-width: 1023px) { ... }
@@ -50,7 +52,7 @@ export default {
       spacing: {
         contWXXL: "1564px",
         contWXL: "1200px",
-        contWLG: "1024px",
+        contWLG: "900px",
         contWMD: "708px",
         contWSM: "580px",
         contWXSS: "320px",

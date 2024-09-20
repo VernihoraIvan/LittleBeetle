@@ -26,7 +26,7 @@ const BooksSection = () => {
           and raise crucial funds for the organisation delivering this vital
           care.
         </p>
-        <ul className="flex justify-between mt-14 xl:gap-5">
+        <ul className="flex justify-between mt-14 gap-5">
           <li>
             <img src={book1} alt="image of a book" />
           </li>
@@ -42,7 +42,9 @@ const BooksSection = () => {
             to={"/creators"}
             title="Creators"
             style="text-primPurple text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP 
-            xl:text-linkS xl:py-[14px] xl:px-[96px]"
+            xl:text-linkS xl:py-[14px] xl:px-[96px]
+            lg:text-linkS lg:py-[8px] lg:px-[75px]
+            md:text-copyS md:py-[8px] md:px-[60px] md:w-[260px] text-center"
           />
         </div>
       </div>
