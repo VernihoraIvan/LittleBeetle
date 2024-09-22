@@ -9,13 +9,19 @@ const BooksSection = () => {
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
         <h2
           className="font-primaryBold mb-2 text-primPurple  text-titleS
-         xl:text-buttonS"
+         xl:text-buttonS
+         lg:text-[22px]
+         md:text-[22px]
+         sm:text-[22px]"
         >
           About the project
         </h2>
         <p
           className="leading-relaxed text-primPurpleFaint text-[24px] font-secondaryRegular
-          xl:text-[20px]"
+          xl:text-[20px]
+          lg:text-[16px]
+          md:text-[16px]
+          sm:text-[16px]"
         >
           Over 15 creative professionals from around the world have come
           together to craft a lullaby and an illustrated book, offered

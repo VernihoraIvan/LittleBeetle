@@ -27,7 +27,7 @@ const Creators = () => {
             <h3 className="font-secondaryBold text-buttonS text-primWhite mb-3">
               Acknowledgments
             </h3>
-            <p className="text-secondaryRegular text-[24px] text-primWhiteFaint">
+            <p className="font-secondaryRegular text-[24px] text-primWhiteFaint">
               Thank you texts for creators staying Incognito In publishing and
               graphic design, Lorem ipsum is a placeholder text commonly used to
               demonstrate the visual form of a document or a typeface without

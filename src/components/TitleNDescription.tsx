@@ -7,7 +7,7 @@ const TitleNDescription = ({ title, description }: titleProps) => {
         <h2 className="font-primaryBold text-primWhite  text-titleS xl:text-buttonS">
           {title}
         </h2>
-        <p className="leading-relaxed text-primWhiteFaint w-[1110px] text-[24px] font-secondaryRegular xl:text-copyS">
+        <p className="leading-relaxed text-primWhiteFaint  text-[24px] font-secondaryRegular xl:text-copyS">
           {description}
         </p>
       </div>

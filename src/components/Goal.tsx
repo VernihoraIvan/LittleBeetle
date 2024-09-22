@@ -6,11 +6,11 @@ const Goal = () => {
       <div className="bg-gradient-to-b from-primPurple to-primPurple h-screen smd:h-auto ">
         <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full smd:h-auto smd:py-[140px]">
           <div
-            className="flex justify-between  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS
-          smd:flex-col smd:gap-[60px]"
+            className="flex justify-between gap-20  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS
+          smd:flex-col smd:gap-[60px] items-center"
           >
-            <div className="flex ">
-              <div className="mb-10 smd:mb-0 flex justify-center align-center flex-col">
+            <div className="flex w-fit">
+              <div className="mb-10 smd:mb-0 flex justify-center align-center flex-col ">
                 <h2
                   className="mb-8 smd:mb-0 font-primaryBold text-primWhite text-titleS
                 xl:text-buttonS
@@ -19,11 +19,12 @@ const Goal = () => {
                   Our goal
                 </h2>
                 <p
-                  className="leading-relaxed text-primWhiteFaint w-[1110px] text-[24px] font-secondaryRegular
-                xl:text-[20px] xl:w-[800px]
-                lg:text-[16px] lg:w-[600px]
-                md:text-[16px] md:w-[708px]
-                sm:text-[16px] sm:w-[580px]"
+                  className="leading-relaxed text-primWhiteFaint  text-[24px] font-secondaryRegular
+                  xl:text-[20px] xl:wrrr-[800px]
+                  lg:text-[16px] lg:wrrr-[600px]
+                  sm:text-[16px] sm:wrrr-[580px]
+                  md:text-[16px] md:wrrr-[708px]
+                "
                 >
                   100% of donations from this project will be redirected to the
                   Voices of Children Charitable Foundation. This organization
@@ -57,7 +58,12 @@ const Goal = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-center ">
+            <div
+              className="flex flex-col items-center w-[300px]
+            xl:w-[280px] xl:h-[280px]
+            lg:w-[200px] lg:h-[200px]
+            md:w-[200px]"
+            >
               <img
                 className="h-imgW w-imgW mb-2 
                 xl:w-[280px] xl:h-[280px]

@@ -31,7 +31,7 @@ export default {
       screens: {
         xxs: { max: "460px" },
         // => @media (max-width: 460px) { ... }
-        xs: { max: "639px" },
+        xs: { max: "640px" },
         // => @media (max-width: 639px) { ... }
         sm: { max: "760px" },
         // => @media (max-width: 1023px) { ... }

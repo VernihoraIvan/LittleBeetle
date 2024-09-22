@@ -1,7 +1,7 @@
 import { CheckoutContributionElProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
 import { useEffect, useState } from "react";
-import CrossLogo from "@/assets/icons//cross.svg?react";
+import CrossLogo from "@/assets/icons/cross.svg?react";
 import { useStage } from "@/zustand/stageStore";
 import { useDonation } from "@/zustand/donationStore";
 
