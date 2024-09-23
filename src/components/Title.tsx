@@ -7,7 +7,8 @@ const Title = ({ title }: TitleProps) => {
         {title && (
           <h2
             className="mt-titleM text-titleS font-primaryBold text-primWhite 
-          xl:text-buttonS"
+          xl:text-buttonS
+          smd:mt-10"
           >
             {title}
           </h2>

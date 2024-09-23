@@ -35,11 +35,11 @@ const CheckoutContribution = () => {
     <>
       <div
         className={clsx(
-          "flex lg:gap-10 md:gap-8 pt-bookPT",
+          "flex gap-10  pt-bookPT smd:flex-col smd:pt-0  smd:gap-0",
           products.length > 0 ? "justify-between" : "justify-between"
         )}
       >
-        <div className="">
+        <div className="w-full xxl:pl-10 md:pt-[140px]">
           {products.length > 0 ? (
             <div className="max-w-full ">
               <TitleBar />

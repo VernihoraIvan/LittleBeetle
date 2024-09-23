@@ -9,7 +9,7 @@ const Products = () => {
           className="font-primaryBold mb-6 text-primPurple text-titleS
         xl:text-[28px]
         lg:text-[22px]
-        smd:text-[22px]"
+        smd:text-[16px]"
         >
           Included with every donation
         </h2>

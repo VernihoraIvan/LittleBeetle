@@ -2,12 +2,12 @@ import { SummaryProps } from "@/utilities/interfaces";
 
 const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
   return (
-    <div className="flex flex-col gap-prodMar">
+    <div className="flex flex-col gap-prodMar smd:pt-[40px]">
       <div
-        className="w-sumW border   border-primPurple
+        className="w-[420px] border   border-primPurple
       xl:w-[285px] 
       lg:w-[230px]
-      md:w-[230px]"
+      smd:w-full"
       >
         <div
           className="px-prodMar py-4 font-secondaryBold text-[24px] text-primWhite bg-primPurple 

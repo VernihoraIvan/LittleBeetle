@@ -34,7 +34,7 @@ const QuantityAdjuster = ({ isOverlay = false, id }: QuantityAdjusterProps) => {
   return (
     <div
       className={clsx(
-        "flex gap-gapS mr-[120px] items-center",
+        "flex gap-gapS mr-[120px] items-center  xl:mr-[40px] lg:mr-[50px] smd:mr-[40px]",
         isOverlay ? "" : "relative"
       )}
     >

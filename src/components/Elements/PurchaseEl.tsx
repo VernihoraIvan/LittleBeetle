@@ -58,16 +58,23 @@ const PurchaseEl = ({
       <CrossLogo
         className="cursor-pointer absolute left-[-60px]
         xl:left-[-40px]
-        lg:left-[-40px]"
+        lg:left-[-40px]
+        sm:hidden"
         onClick={removeProductHandler}
       />
-      <div className="flex items-center">
+      <CrossLogo
+        className="cursor-pointer hidden absolute right-[20px]
+        sm:block"
+        onClick={removeProductHandler}
+      />
+      <div className="flex items-center sm:items-end">
         {imgPath && (
           <img
             className=" mr-12 w-imgSW
             xl:w-[185px] xl:mr-5
             lg:w-[185px] lg:mr-5
-            md:w-[135px] md:mr-5"
+            md:w-[135px] md:mr-5
+            sm:w-[100px] sm:h-[80px] sm:mr-3"
             src={imgPath[0]}
             alt="image of a book"
           />
@@ -78,8 +85,10 @@ const PurchaseEl = ({
         <div className="flex flex-col">
           <h3
             className="w-[180px] text-secBlack text-linkS font-secondarySBold
-            xl:text-copyS
-            lg:text-copyS"
+            xl:text-[18px]
+            lg:text-[16px]
+            smd:text-[16px]
+            "
           >
             {name}
           </h3>
@@ -92,15 +101,20 @@ const PurchaseEl = ({
               Language: {language}
             </h4>
           )}
-          {/* <p className="items-center w-10 text-copyS font-secondarySBold">
+          <p
+            className="items-center hidden w-10 text-copyS font-secondarySBold sm:block
+          xl:text-[16px]
+              lg:text-[14px]
+              smd:text-[14px]"
+          >
             £{total}
-          </p> */}
+          </p>
           <div className="flex items-center">
             <label
               className="font-secondaryRegular text-[20px] hover:cursor-pointer
               xl:text-[16px]
               lg:text-[14px]
-              md:text-[14px]"
+              smd:text-[14px]"
               htmlFor={id}
             >
               <input
@@ -116,9 +130,15 @@ const PurchaseEl = ({
             </label>
           </div>
         </div>
+        <div className="hidden sm:block">
+          <QuantityAdjuster id={id} />
+        </div>
       </div>
-      <ul className="flex items-center justify-between select-none">
-        <li className="flex gap-gapS mr-[95px] items-center ">
+      <ul className="flex items-center justify-between select-none sm:hidden">
+        <li
+          className="flex gap-gapS mr-[95px] items-center 
+        xl:mr-[40px] lg:mr-[40px] smd:mr-[40px] "
+        >
           <p
             className="xl:text-[16px]
               lg:text-[14px]
@@ -127,7 +147,7 @@ const PurchaseEl = ({
             £{price}
           </p>
         </li>
-        <li className="relative">
+        <li className="relative sm:hidden">
           <QuantityAdjuster id={id} />
         </li>
         <li
