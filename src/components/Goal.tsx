@@ -4,9 +4,9 @@ const Goal = () => {
   return (
     <section>
       <div className="bg-gradient-to-b from-primPurple to-primPurple h-screen smd:h-auto ">
-        <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full smd:h-auto smd:py-[140px]">
+        <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full smd:h-auto smd:py-[140px] smd:px-8">
           <div
-            className="flex justify-between gap-20  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS
+            className="flex justify-between gap-20  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS
           smd:flex-col smd:gap-[60px] items-center"
           >
             <div className="flex w-fit">
@@ -20,10 +20,10 @@ const Goal = () => {
                 </h2>
                 <p
                   className="leading-relaxed text-primWhiteFaint  text-[24px] font-secondaryRegular
-                  xl:text-[20px] xl:wrrr-[800px]
-                  lg:text-[16px] lg:wrrr-[600px]
-                  sm:text-[16px] sm:wrrr-[580px]
-                  md:text-[16px] md:wrrr-[708px]
+                  xl:text-[20px] 
+                  lg:text-[16px] 
+                  sm:text-[16px] 
+                  md:text-[16px] 
                 "
                 >
                   100% of donations from this project will be redirected to the
@@ -84,7 +84,8 @@ const Goal = () => {
                 className="hidden smd:block hover:bg-whiteHover transition duration-300 border border-white py-3.5  flex justify-center inline-flex mt-10 w-[400px]
                 xl:w-[320px]
                 lg:w-[230px] 
-                md:w-[230px]"
+                md:w-[230px]
+                sm:w-[230px]"
               >
                 <a
                   href="https://voices.org.ua/en/"
@@ -95,7 +96,8 @@ const Goal = () => {
                     <p
                       className="text-primWhite text-linkS font-primaryRegular
                       lg:text-[18px]
-                      md:text-[18px]"
+                      md:text-[18px]
+                      sm:text-[18px]"
                     >
                       Learn more
                     </p>

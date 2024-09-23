@@ -5,8 +5,8 @@ import ButtonTo from "./ButtonTo";
 
 const BooksSection = () => {
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
+    <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB smd:px-8">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         <h2
           className="font-primaryBold mb-2 text-primPurple  text-titleS
          xl:text-buttonS
@@ -32,7 +32,7 @@ const BooksSection = () => {
           and raise crucial funds for the organisation delivering this vital
           care.
         </p>
-        <ul className="flex justify-between mt-14 gap-5">
+        <ul className="flex justify-between mt-14 gap-5 xs:flex-col">
           <li>
             <img src={book1} alt="image of a book" />
           </li>
@@ -47,10 +47,11 @@ const BooksSection = () => {
           <ButtonTo
             to={"/creators"}
             title="Creators"
-            style="text-primPurple text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP 
-            xl:text-linkS xl:py-[14px] xl:px-[96px]
-            lg:text-linkS lg:py-[8px] lg:px-[75px]
-            md:text-copyS md:py-[8px] md:px-[60px] md:w-[260px] text-center"
+            style="text-primPurple text-center text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP 
+            xl:text-[22px] xl:py-[14px] xl:px-[96px]
+            lg:text-[22px] lg:py-[8px] lg:px-[75px]
+            md:text-[18px] md:py-[8px] md:px-[60px] md:w-[260px]
+            smd:text-[18px] smd:py-[8px] smd:px-[90px] "
           />
         </div>
       </div>

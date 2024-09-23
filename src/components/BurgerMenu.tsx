@@ -42,7 +42,7 @@ const BurgerMenu = () => {
   }, [isOpen]);
 
   return (
-    <div ref={menuRef} className="hidden xs:block">
+    <div ref={menuRef} className="hidden xs:block xs:pr-2">
       <button onClick={() => setIsOpen(!isOpen)}>
         <BurgerMenuIcon />
       </button>

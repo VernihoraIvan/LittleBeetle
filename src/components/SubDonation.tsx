@@ -43,7 +43,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
       <section className="h-headerPad bg-primPurple  " />
       <section className="flex flex-grow justify-center p-[60px] bg-primBeige w-screen  h-fit-content ">
         <div
-          className=" xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS flex gap-10
+          className=" xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex gap-10
         md:flex-col md:w-[480px] "
         >
           <Carousel images={imagePath} />

@@ -19,7 +19,7 @@ const CheckoutWOSection = () => {
   };
   return (
     <section className="flex justify-center bg-primBeige pt-bookPT pb-purchElH">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         {renderStep()}
       </div>
     </section>
