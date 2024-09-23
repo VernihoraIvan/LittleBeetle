@@ -5,10 +5,10 @@ import MailLogo from "@/assets/icons/mail.svg?react";
 const Footer = () => {
   return (
     <footer className="flex justify-center py-10 bg-primPurple">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex justify-between items-center">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS  flex justify-between items-end xs:flex-col xs:items-start xs:gap-4">
         <div className="flex ">
           <div className="">
-            <div className="flex gap-6 mb-6">
+            <div className="flex gap-6 mb-6 smd:gap-5 xs:hidden ">
               <a
                 href="https://www.linkedin.com/"
                 target="_blank"
@@ -27,17 +27,22 @@ const Footer = () => {
                 <MailLogo />
               </a>
             </div>
-            <div className="flex flex-col gap-2">
-              <p className="text-copyS font-secondaryRegular text-primWhiteFaint">
+            <div className="flex flex-col gap-2 text-copyS lg:text-[14px] smd:text-[12px] ">
+              <p className=" font-secondaryRegular text-primWhiteFaint">
                 Terms and conditions
               </p>
-              <p className="text-copyS font-secondaryRegular text-primWhiteFaint">
+              <p className=" font-secondaryRegular text-primWhiteFaint">
                 Privacy policy
               </p>
             </div>
           </div>
         </div>
-        <p className="text-primWhiteFaint text-copyS font-secondaryRegular ">
+        <p
+          className="text-primWhiteFaint font-secondaryRegular text-copyS 
+          lg:text-[14px]
+          smd:text-[10px]
+          "
+        >
           copyright © 2024 A Great Journey of a Little Beetle. all rights
           reserved
         </p>

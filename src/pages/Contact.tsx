@@ -6,8 +6,8 @@ import EmailLogo from "@/assets/icons/envelope.svg?react";
 const Contact = () => {
   return (
     <>
-      <section className="bg-gradient-to-b from-primPurple to-primPurple">
-        <div className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  bg-contacts-bg smd:py-16  pb-[100px]">
+      <section className="bg-gradient-to-b from-primPurple to-primPurple xxs:overflow-x-hidden">
+        <div className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen   bg-contacts-bg smd:py-16  pb-[100px]">
           <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
             <div className="flex flex-col justify-between ">
               <TitleNDescription
@@ -17,7 +17,9 @@ const Contact = () => {
               <div
                 className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex gap-[50px] xxl:h-contactH fill-primPurple 
               xl:gap-10
-              smd:gap-5"
+              smd:gap-5
+              xs:flex-col 
+              xxs:px-8"
               >
                 <a
                   href="https://www.linkedin.com/"
@@ -26,11 +28,13 @@ const Contact = () => {
                   xl:h-[240px] 
                   lg:h-[170px]
                   md:h-[200px]
-                  sm:h-[140px]"
+                  sm:h-[140px]
+                  "
                 >
                   <div
                     className="flex flex-col justify-center items-center gap-5 xl:gap-[14px] 
-                  smd:gap-2"
+                  smd:gap-2
+                  xs:h-[180px]"
                   >
                     <LinkedInLogo
                       className="w-16 
@@ -59,7 +63,8 @@ const Contact = () => {
                 >
                   <div
                     className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]
-                  smd:gap-2"
+                  smd:gap-2
+                  xs:h-[180px]"
                   >
                     <InstagramLogo
                       className="w-16
@@ -88,7 +93,8 @@ const Contact = () => {
                 >
                   <div
                     className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]
-                  smd:gap-2"
+                  smd:gap-2
+                  xs:h-[180px]"
                   >
                     <EmailLogo
                       className="w-16
