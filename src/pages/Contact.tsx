@@ -6,26 +6,44 @@ import EmailLogo from "@/assets/icons/envelope.svg?react";
 const Contact = () => {
   return (
     <>
-      <section className="bg-gradient-to-b from-primPurple to-primPurple ">
-        <div className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  bg-contacts-bg ">
+      <section className="bg-gradient-to-b from-primPurple to-primPurple">
+        <div className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  bg-contacts-bg smd:py-16  pb-[100px]">
           <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
             <div className="flex flex-col justify-between ">
               <TitleNDescription
                 title="Contact Us"
                 description="Connect with us on LinkedIn, Instagram, or via email for inquiries and updates."
               />
-              <ul
+              <div
                 className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex gap-[50px] xxl:h-contactH fill-primPurple 
-              xl:gap-10"
+              xl:gap-10
+              smd:gap-5"
               >
                 <a
                   href="https://www.linkedin.com/"
                   target="_blank"
-                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center xl:h-[240px]"
+                  className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center 
+                  xl:h-[240px] 
+                  lg:h-[170px]
+                  md:h-[200px]
+                  sm:h-[140px]"
                 >
-                  <div className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]">
-                    <LinkedInLogo className="w-16 xl:w-[42px]" />
-                    <h3 className="text-xl font-primarySBold text-center xl:text-[16px]">
+                  <div
+                    className="flex flex-col justify-center items-center gap-5 xl:gap-[14px] 
+                  smd:gap-2"
+                  >
+                    <LinkedInLogo
+                      className="w-16 
+                    xl:w-[42px] xl:h-[42px]
+                    lg:w-[32px] lg:h-[32px]
+                    smd:w-[32px] smd:h-[32px]"
+                    />
+                    <h3
+                      className="text-xl font-primarySBold text-center 
+                    xl:text-[16px]
+                    lg:text-[14px]
+                    smd:text-[14px]"
+                    >
                       Linkedin
                     </h3>
                   </div>
@@ -34,11 +52,27 @@ const Contact = () => {
                   href="https://www.instagram.com/"
                   target="_blank"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
-                  xl:h-[240px]"
+                  xl:h-[240px] 
+                  lg:h-[170px]
+                  md:h-[200px]
+                  sm:h-[140px]"
                 >
-                  <div className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]">
-                    <InstagramLogo className="w-16 xl:w-[42px]" />
-                    <h3 className="text-xl font-primarySBold text-center xl:text-[16px]">
+                  <div
+                    className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]
+                  smd:gap-2"
+                  >
+                    <InstagramLogo
+                      className="w-16
+                    xl:w-[42px] xl:h-[42px]
+                    lg:w-[32px] lg:h-[32px]
+                    smd:w-[32px] smd:h-[32px]"
+                    />
+                    <h3
+                      className="text-xl font-primarySBold text-center 
+                    xl:text-[16px]
+                    lg:text-[14px]
+                    smd:text-[14px]"
+                    >
                       Instagram
                     </h3>
                   </div>
@@ -47,30 +81,32 @@ const Contact = () => {
                   href="mailto:tes@mail.com"
                   target="_blank"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
-                  xl:h-[240px]"
+                  xl:h-[240px] 
+                  lg:h-[170px]
+                  md:h-[200px]
+                  sm:h-[140px]"
                 >
-                  <div className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]">
-                    <EmailLogo className="w-16 xl:w-[42px]" />
-                    <h3 className="text-xl font-primarySBold text-center xl:text-[16px]">
+                  <div
+                    className="flex flex-col justify-center items-center gap-5 xl:gap-[14px]
+                  smd:gap-2"
+                  >
+                    <EmailLogo
+                      className="w-16
+                    xl:w-[42px] xl:h-[42px]
+                    lg:w-[32px] lg:h-[32px]
+                    smd:w-[32px] smd:h-[32px]"
+                    />
+                    <h3
+                      className="text-xl font-primarySBold text-center 
+                    xl:text-[16px]
+                    lg:text-[14px]
+                    smd:text-[14px]"
+                    >
                       Email
                     </h3>
                   </div>
                 </a>
-              </ul>
-            </div>
-            <div className="flex justify-between pb-20 mt-40 ">
-              {/* <div className="flex gap-[70px]">
-                <p className="text-copyS font-secondaryRegular text-primWhiteFaint xl:text-[16px]">
-                  Terms and conditions
-                </p>
-                <p className="text-copyS font-secondaryRegular text-primWhiteFaint xl:text-[16px]">
-                  Privacy policy
-                </p>
               </div>
-              <p className="font-secondaryRegular text-copyS text-primWhiteFaint xl:text-[16px]">
-                copyright © 2024 A Great Journey of a Little Beetle. all rights
-                reserved
-              </p> */}
             </div>
           </div>
         </div>
