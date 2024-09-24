@@ -67,67 +67,66 @@ const PurchaseEl = ({
         sm:block"
         onClick={removeProductHandler}
       />
-      <div className="flex items-center sm:items-end">
-        {imgPath && (
-          <img
-            className=" mr-12 w-imgSW
+      <div className="flex items-center sm:items-end justify-between w-full">
+        <div className="flex">
+          {imgPath && (
+            <img
+              className=" mr-12 w-imgSW
             xl:w-[185px] xl:mr-5
             lg:w-[185px] lg:mr-5
             md:w-[135px] md:mr-5
             sm:w-[100px] sm:h-[80px] sm:mr-3"
-            src={imgPath[0]}
-            alt="image of a book"
-          />
-        )}
-        {/* <h3 className="w-[180px] text-secBlack text-linkS font-secondarySBold">
-          {name}
-        </h3> */}
-        <div className="flex flex-col">
-          <h3
-            className="w-[180px] text-secBlack text-linkS font-secondarySBold
+              src={imgPath[0]}
+              alt="image of a book"
+            />
+          )}
+          <div className="flex flex-col">
+            <h3
+              className="w-[180px] text-secBlack text-linkS font-secondarySBold
             xl:text-[18px]
             lg:text-[16px]
             smd:text-[16px]
             "
-          >
-            {name}
-          </h3>
-          {name !== "Postcards" && (
-            <h4
-              className="mb-2 text-inputPink text-base font-secondaryRegular 
+            >
+              {name}
+            </h3>
+            {name !== "Postcards" && (
+              <h4
+                className="mb-2 text-inputPink text-base font-secondaryRegular 
               xl:text-[12px]
               lg:text-[12px]"
-            >
-              Language: {language}
-            </h4>
-          )}
-          <p
-            className="items-center hidden w-10 text-copyS font-secondarySBold sm:block
+              >
+                Language: {language}
+              </h4>
+            )}
+            <p
+              className="items-center hidden w-10 text-copyS font-secondarySBold sm:block
           xl:text-[16px]
               lg:text-[14px]
               smd:text-[14px]"
-          >
-            £{total}
-          </p>
-          <div className="flex items-center">
-            <label
-              className="font-secondaryRegular text-[20px] hover:cursor-pointer
+            >
+              £{total}
+            </p>
+            <div className="flex items-center">
+              <label
+                className="font-secondaryRegular text-[20px] hover:cursor-pointer
               xl:text-[16px]
               lg:text-[14px]
               smd:text-[14px]"
-              htmlFor={id}
-            >
-              <input
-                className="mr-2 hover:cursor-pointer "
-                type="checkbox"
-                id={id}
-                name="option"
-                value={id}
-                checked={isChecked}
-                onChange={(e) => handleCheckboxChange(e)}
-              />
-              it's a gift
-            </label>
+                htmlFor={id}
+              >
+                <input
+                  className="mr-2 hover:cursor-pointer "
+                  type="checkbox"
+                  id={id}
+                  name="option"
+                  value={id}
+                  checked={isChecked}
+                  onChange={(e) => handleCheckboxChange(e)}
+                />
+                it's a gift
+              </label>
+            </div>
           </div>
         </div>
         <div className="hidden sm:block">

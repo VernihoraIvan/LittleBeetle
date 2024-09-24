@@ -19,8 +19,15 @@ const DetailsForm = () => {
   const id = nanoid();
 
   return (
-    <section className="pt-buttonP">
+    <section
+      className="pt-buttonP w-screen flex text-[24px]
+      xl:text-[18px]
+      lg:text-[16px]
+      smd:text-[16px]
+"
+    >
       <Formik
+        className="w-[50%] "
         initialValues={shipmentStore}
         validationSchema={SubmitSchema}
         onSubmit={async (
@@ -34,8 +41,8 @@ const DetailsForm = () => {
         }}
       >
         {({ errors, touched }) => (
-          <Form className=" ">
-            <ul className="flex flex-col gap-9">
+          <Form className="max-w-full px-20 ">
+            <ul className="flex flex-col gap-10 xl:gap-8 lg:gap-5 smd:gap-4 ">
               <FormEl
                 errors={errors.firstName}
                 touched={touched}
@@ -64,20 +71,19 @@ const DetailsForm = () => {
                 element="phone"
               />
               <li className="flex flex-col ">
-                <label
-                  className="font-secondaryBold text-[24px]"
-                  htmlFor="country"
-                >
+                <label className="font-secondaryBold " htmlFor="country">
                   Country <span className="text-red-500">*</span>
                 </label>
                 <Field
                   as="select"
                   name="country"
-                  className={`w-prodW cursor-pointer outline-none mt-4 border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular ${
-                    errors.country && touched.country ? "border-red-500" : ""
-                  }`}
+                  className={` cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular 
+                    mt-4 xl:mt-3 lg:mt-2 smd:mt-2 
+                    xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]${
+                      errors.country && touched.country ? "border-red-500" : ""
+                    }`}
                 >
-                  <option className="text-[24px]" value="" label="Select" />
+                  <option className="" value="w-full" label="Select" />
                   {countries.map((country) => (
                     <option key={country} value={country} label={country} />
                   ))}
@@ -118,7 +124,7 @@ const DetailsForm = () => {
             </ul>
             <PrivacySec />
             <button
-              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px] mt-9"
+              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT  mt-9"
               type="submit"
               onClick={() => setStage(3)}
             >
