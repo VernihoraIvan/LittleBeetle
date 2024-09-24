@@ -79,42 +79,59 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cardElementOptions = {
     style: {
       base: {
-        fontSize: "24px",
-        color: "#32325d", 
-        backgroundColor: "#ffff", 
+        // fontSize: "24px",
+        color: "#32325d",
+        backgroundColor: "#ffff",
         "::placeholder": {
-          color: "#aab7c4", 
+          color: "#aab7c4",
         },
         iconColor: "#6772e5",
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif', 
-        padding: "10px 14px",
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        // padding: "10px 12px",
       },
       invalid: {
         color: "#fa755a",
-        iconColor: "#fa755a", 
+        iconColor: "#fa755a",
       },
     },
-    hidePostalCode: true, 
+    hidePostalCode: true,
 
-    disableLink: true, 
+    disableLink: true,
   };
 
   return (
     <div style={{ fontSize: "20px" }}>
       <form onSubmit={handleSubmit} id="payment-form">
-        <div className="w-payW">
-          <h2 className="font-secondaryBold text-buttonS mb-6">
+        <div className="">
+          <h2
+            className="font-secondaryBold text-buttonS mb-6
+              xl:text-[24px]
+              lg:text-[22px]
+              md:text-[22px]
+              sm:text-[22px]"
+          >
             Card information
           </h2>
-          <div className="flex flex-col gap-4 mb-10">
+          <div
+            className="flex flex-col gap-4 mb-10 
+          xl:mb-7
+          lg:mb-5
+          smd:mb-5"
+          >
             <label
               htmlFor="cardName"
-              className="font-secondaryBold text-[24px]"
+              className="font-secondaryBold text-[24px]
+              xl:text-[20px]
+              lg:text-[18px]
+              smd:text-[18px]"
             >
               Cardholder name <span className="text-red-500">*</span>
             </label>
             <input
-              className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]"
+              className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]
+              xl:text-[18px] xl:py-2 xl:px-3 xl:h-[45px]
+              lg:text-[14px] lg:py-[6px] lg:px-2 lg:h-[33px]
+              smd:text-[14px] smd:py-[6px] smd:px-2 smd:h-[33px]"
               type="text"
               id="cardName"
               name="cardName"
@@ -124,35 +141,30 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
           <div className="flex flex-col gap-4">
             <label
               htmlFor="card-element"
-              className="font-secondaryBold text-[24px]"
+              className="font-secondaryBold text-[24px]
+              xl:text-[20px]
+              lg:text-[18px]
+              smd:text-[18px]"
             >
               Card number <span className="text-red-500">*</span>
             </label>
-            <div className="card-element-wrapper font-secondaryBold text-[24px] h-[60px] border border-primPurpleFaintM">
-              <CardElement
-                options={cardElementOptions}
-                id="card-element"
-              />
+            <div
+              className="card-element-wrapper font-secondaryBold text-[24px] h-[60px] border border-primPurpleFaintM px-4 py-3
+            xl:text-[18px] xl:py-2 xl:px-3 xl:h-[45px]
+            lg:text-[14px] lg:py-[6px] lg:px-2 lg:h-[33px]
+            smd:text-[14px] smd:py-[6px] smd:px-2 smd:h-[33px]"
+            >
+              <CardElement options={cardElementOptions} id="card-element" />
             </div>
           </div>
           {!isProcessing && (
             <button
-              style={{
-                marginTop: "16px",
-                height: "31px",
-                backgroundColor: "#f0c14b",
-                color: "black",
-                display: "flex",
-                fontWeight: 600,
-                fontSize: "20px",
-                padding: "24px",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                width: "100%",
-              }}
+              className="mt-4 uppercase bg-primPurple text-primWhite font-secondaryBold text-[24px] flex justify-center items-center cursor-pointer w-full py-4 px-[110px]
+            xl:text-[20px]
+            lg:text-[18px]
+            smd:text-[18px]"
             >
-              Pay
+              Donate
             </button>
           )}
         </div>

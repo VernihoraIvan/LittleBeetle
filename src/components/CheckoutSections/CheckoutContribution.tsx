@@ -32,7 +32,7 @@ const CheckoutContribution = () => {
   const productToDisplay = includedProducts.concat(extraProducts);
 
   return (
-    <>
+    <div>
       <div
         className={clsx(
           "flex gap-10  pt-bookPT smd:flex-col smd:pt-0  smd:gap-0",
@@ -88,9 +88,13 @@ const CheckoutContribution = () => {
         onClick={() => setStage(2)}
         to="/checkout/details"
         title="NEXT STEP"
-        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]"
+        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
+          xl:text-[20px]
+          lg:text-[18px]
+          smd:text-[18px] 
+          sm:w-full sm:px-0 sm:block"
       />
-    </>
+    </div>
   );
 };
 

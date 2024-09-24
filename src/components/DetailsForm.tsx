@@ -9,6 +9,7 @@ import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
 import { nanoid } from "nanoid";
 import { useMainStore } from "@/zustand/mainOrderStore";
+import clsx from "clsx";
 
 const DetailsForm = () => {
   const navigate = useNavigate();
@@ -20,11 +21,10 @@ const DetailsForm = () => {
 
   return (
     <section
-      className="pt-buttonP w-screen flex text-[24px]
+      className="pt-buttonP flex text-[24px]
       xl:text-[18px]
       lg:text-[16px]
-      smd:text-[16px]
-"
+      smd:text-[16px]"
     >
       <Formik
         className="w-[50%] "
@@ -41,7 +41,7 @@ const DetailsForm = () => {
         }}
       >
         {({ errors, touched }) => (
-          <Form className="max-w-full px-20 ">
+          <Form className=" px-20 smd:px-0">
             <ul className="flex flex-col gap-10 xl:gap-8 lg:gap-5 smd:gap-4 ">
               <FormEl
                 errors={errors.firstName}
@@ -77,11 +77,13 @@ const DetailsForm = () => {
                 <Field
                   as="select"
                   name="country"
-                  className={` cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular 
-                    mt-4 xl:mt-3 lg:mt-2 smd:mt-2 
-                    xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]${
-                      errors.country && touched.country ? "border-red-500" : ""
-                    }`}
+                  className={clsx(
+                    "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
+                  )}
+                  // className={`
+                  //   ${
+                  //     errors.country && touched.country ? "border-red-500" : ""
+                  //   }`}
                 >
                   <option className="" value="w-full" label="Select" />
                   {countries.map((country) => (
@@ -124,7 +126,11 @@ const DetailsForm = () => {
             </ul>
             <PrivacySec />
             <button
-              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT  mt-9"
+              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT  mt-9
+          xl:text-[20px]
+          lg:text-[18px]
+          smd:text-[16px]
+          sm:w-full sm:px-0"
               type="submit"
               onClick={() => setStage(3)}
             >

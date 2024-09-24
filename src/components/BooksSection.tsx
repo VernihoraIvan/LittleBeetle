@@ -9,7 +9,7 @@ const BooksSection = () => {
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         <h2
           className="font-primaryBold mb-2 text-primPurple  text-titleS
-         xl:text-buttonS
+         xl:text-[28px]
          lg:text-[22px]
          md:text-[22px]
          sm:text-[22px]"

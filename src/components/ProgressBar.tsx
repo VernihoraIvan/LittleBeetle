@@ -22,12 +22,12 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className={clsx(
-                "  bg-primPurple border-primPurple  text-primWhite flex justify-center items-center w-16 h-16 rounded-full border-3 ",
+                "  bg-primPurple border-primPurple  text-primWhite flex justify-center items-center w-16 h-16 rounded-full border-3 xl:w-[45px] xl:h-[45px] lg:h-[32px] lg:w-[32px] smd:w-[32px] smd:h-[32px] ",
                 stage < 1 && "pointer-events-none"
               )}
               to={"contribution"}
             >
-              <p className="">1</p>
+              <p className="xl:text-[18px] lg:text-[14px] smd:text-[14px]">1</p>
             </NavLink>
             <p
               className="absolute w-max -left-[80%] mt-4 text-bgPurple
@@ -42,7 +42,7 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className={clsx(
-                "flex justify-center items-center w-16 h-16 rounded-full border-3",
+                "flex justify-center items-center w-16 h-16 rounded-full border-3 xl:w-[45px] xl:h-[45px] xl:text-[18px] lg:h-[32px] lg:w-[32px] smd:w-[32px] smd:h-[32px] lg:text-[14px] smd:text-[14px]",
                 stage > 0
                   ? "bg-primPurple border-primPurple  text-primWhite"
                   : "text-bgPurple border-primPurple bg-primWhite",
@@ -64,7 +64,7 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className={clsx(
-                "flex justify-center items-center w-16 h-16 rounded-full border-3",
+                "flex justify-center items-center w-16 h-16 rounded-full border-3 xl:w-[45px] xl:h-[45px] xl:text-[18px] lg:h-[32px] lg:w-[32px] smd:w-[32px] smd:h-[32px] lg:text-[14px] smd:text-[14px]",
                 stage > 1
                   ? "bg-primPurple border-primPurple  text-primWhite"
                   : "text-bgPurple border-primPurple bg-primWhite",
@@ -76,7 +76,7 @@ const ProgressBar = () => {
             </NavLink>
             <p
               className={clsx(
-                "absolute w-max -left-1/3 mt-4 xl:text-copyS xl:-left-1/4 lg:text-copyS lg:-left-1/4 md:text-[14px] md:-left-[0%] sm:text-[12px]",
+                "absolute w-max -left-1/3 mt-4 xl:text-copyS xl:-left-1/4 lg:text-copyS lg:-left-1/4 md:text-[14px] md:-left-[0%] sm:text-[12px] ",
                 stage > 1 ? "text-bgPurple" : "text-barGrey"
               )}
             >
@@ -86,7 +86,7 @@ const ProgressBar = () => {
           <li className="relative">
             <NavLink
               className={clsx(
-                "flex justify-center items-center w-16 h-16 rounded-full border-3",
+                "flex justify-center items-center w-16 h-16 rounded-full border-3 xl:w-[45px] xl:h-[45px] xl:text-[18px] lg:h-[32px] lg:w-[32px] smd:w-[32px] smd:h-[32px] lg:text-[14px] smd:text-[14px]",
                 stage > 2
                   ? "bg-primPurple border-primPurple  text-primWhite"
                   : "text-bgPurple border-primPurple bg-primWhite",
@@ -102,7 +102,7 @@ const ProgressBar = () => {
                 stage > 2 ? "text-bgPurple" : "text-barGrey"
               )}
             >
-              Payment
+              Complete Donation
             </p>
           </li>
         </ul>

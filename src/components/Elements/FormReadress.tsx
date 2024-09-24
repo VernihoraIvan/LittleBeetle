@@ -13,6 +13,7 @@ import { SubmitSchema } from "@/utilities/FormSchema";
 import { useShipment } from "@/zustand/shipmentStore";
 import { useRef } from "react";
 import { useMainStore } from "@/zustand/mainOrderStore";
+import clsx from "clsx";
 
 interface FormReadressProps {
   id: string;
@@ -25,8 +26,14 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
   const shipmentStore = useShipment((state) => state.shipment);
 
   return (
-    <section className="pt-buttonP">
+    <section
+      className="pt-buttonP flex text-[24px]
+      xl:text-[18px]
+      lg:text-[16px]
+      smd:text-[16px]"
+    >
       <Formik
+        className="w-[50%] "
         innerRef={(instance) => {
           formikRef.current = instance;
           onSubmitRef(instance!);
@@ -73,7 +80,10 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
               />
               <li className="flex flex-col ">
                 <label
-                  className="font-secondaryBold text-[24px]"
+                  className="font-secondaryBold text-[24px]
+                  xl:text-[18px]
+                  lg:text-[16px]
+                  smd:text-[16px]"
                   htmlFor="country"
                 >
                   Country <span className="text-red-500">*</span>
@@ -81,9 +91,13 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
                 <Field
                   as="select"
                   name="country"
-                  className={`w-prodW cursor-pointer outline-none mt-4 border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular ${
-                    errors.country && touched.country ? "border-red-500" : ""
-                  }`}
+                  // className={clsx(
+                  //   "w-full outline-none  border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]",
+                  //   errors && touched.firstName && "border-red-500"
+                  // )}
+                  className={clsx(
+                    "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
+                  )}
                 >
                   <option className="text-[24px]" value="" label="Select" />
                   {countries.map((country) => (
