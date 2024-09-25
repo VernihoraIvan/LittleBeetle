@@ -43,7 +43,6 @@ const CheckoutContributionWO = () => {
     if (price > 2) {
       addDonation(title, quantity, price, lang, isChecked, id);
       setPrice(0);
-      // setIsOverlayPrice(false);
       setStage(2);
       setQuantity(1);
     }

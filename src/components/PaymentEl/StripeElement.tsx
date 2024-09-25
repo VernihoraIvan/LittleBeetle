@@ -95,7 +95,6 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
       },
     },
     hidePostalCode: true,
-
     disableLink: true,
   };
 

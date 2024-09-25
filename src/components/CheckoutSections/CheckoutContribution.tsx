@@ -1,9 +1,7 @@
 import { useCart } from "@/zustand/productStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
-// import CheckoutContributionEl from "../Elements/CheckoutContributionEl";
 import CartIncludedWidget from "../CartIncludedWidget";
 import ButtonTo from "../ButtonTo";
-// import SummaryCheckout from "../SummaryCheckout";
 import clsx from "clsx";
 import { useStage } from "@/zustand/stageStore";
 import { useEffect, useState } from "react";
@@ -61,26 +59,11 @@ const CheckoutContribution = () => {
                 ))}
             </div>
           ) : (
-            // products.map((product) => (
-            //   <CheckoutContributionEl
-            //     key={product.id}
-            //     id={product.id}
-            //     name={product.name}
-            //     quantity={product.quantity}
-            //     total={product.price * product.quantity}
-            //     language={product.itemLanguage}
-            //     imgPath={
-            //       extraProducts.find((p) => p.title === product.name)?.imagePath
-            //     }
-            //     isGiftpossible={true}
-            //   />
-            // ))
             <div className="flex justify-begin">
               <EmptyCart />
             </div>
           )}
         </div>
-        {/* <SummaryCheckout subTotal={totalFeeState} shippingFee={0} /> */}
         <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
       </div>
       <CartIncludedWidget />
