@@ -52,8 +52,8 @@ const CheckoutContributionWO = () => {
 
   return (
     <>
-      <div className="flex  pt-bookPT justify-between">
-        <div className="">
+      <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0  smd:gap-0">
+        <div className="smd:pt-[80px] md:pl-[40px]">
           {donations.length > 0 ? (
             donations.map((product) => (
               <CheckoutContributionEl
@@ -82,7 +82,7 @@ const CheckoutContributionWO = () => {
         <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
       </div>
       <CartIncludedWidget />
-      <ButtonTo
+      {/* <ButtonTo
         onClick={() =>
           handleAddProduct(
             "Donation",
@@ -96,6 +96,25 @@ const CheckoutContributionWO = () => {
         to="/checkout-donation/details"
         title="CONTINUE TO NEXT"
         style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]"
+      /> */}
+      <ButtonTo
+        onClick={() =>
+          handleAddProduct(
+            "Donation",
+            price as number,
+            quantity,
+            lang as string,
+            isChecked,
+            id
+          )
+        }
+        to="/checkout/details"
+        title="NEXT STEP"
+        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
+          xl:text-[20px]
+          lg:text-[18px]
+          smd:text-[18px] 
+          sm:w-full sm:px-0 sm:block"
       />
     </>
   );

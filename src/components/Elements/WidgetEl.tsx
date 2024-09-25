@@ -4,7 +4,7 @@ const WidgetEl = ({ title, imgPath }: ProductElProps) => {
   return (
     <li>
       <img
-        className="h-purchElH w-imgW md:h-[115px] sm:h-[215px] xs:h-[215px] xxs:h-[215px] object-cover"
+        className="h-purchElH w-imgW md:h-[115px] xsm:h-[115px] object-cover"
         src={imgPath[0]}
         alt={title}
       />

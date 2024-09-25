@@ -14,29 +14,13 @@ import CheckoutSection from "./components/CheckoutSection";
 import CheckoutWO from "./pages/CheckoutWO";
 import CheckoutWOSection from "./components/CheckoutSectionsWithoutProduct/CheckoutWOSection";
 import DonationComplete from "./components/DonationComplete";
-import PopUp from "./components/PopUpTest";
-import { useState } from "react";
 
 function App() {
-  const [value, setValue] = useState<string | number>("");
-  console.log(value);
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        {/* <Route index path="/" element={<Home />} /> */}
         <Route index path="/" element={<About />} />
         <Route path="/complete" element={<DonationComplete />} />
-        <Route
-          path="/test"
-          element={
-            <PopUp
-              defaultVal={"Language"}
-              setValue={setValue}
-              value={["English", "Spanish", "Ukrainian"]}
-            />
-          }
-        />
-
         <Route path="/donation" element={<Donation />} />
         <Route path="/donation/:product" element={<SubDonationPage />} />
         <Route path="/creators" element={<Creators />} />

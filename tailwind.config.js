@@ -33,6 +33,8 @@ export default {
         // => @media (max-width: 460px) { ... }
         xs: { max: "640px" },
         // => @media (max-width: 639px) { ... }
+        xsm: { min: "460px", max: "760px" },
+        // => @media (min-width: 460px and max-width: 760px) { ... }
         sm: { max: "760px" },
         // => @media (max-width: 1023px) { ... }
         smd: { max: "1023px" },

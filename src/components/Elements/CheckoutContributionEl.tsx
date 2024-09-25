@@ -48,7 +48,15 @@ const CheckoutContributionEl = ({
       <CrossLogo
         className="cursor-pointer absolute left-[-60px]
         xl:left-[-40px]
-        lg:left-[-40px]"
+        lg:left-[-40px]
+        md:left-[-30px]
+        smd:hidden
+        "
+        onClick={() => removeProductHandler(id)}
+      />
+      <CrossLogo
+        className="hidden smd:block cursor-pointer hidden absolute right-[20px]
+        sm:block"
         onClick={() => removeProductHandler(id)}
       />
       <div className="flex items-center">

@@ -33,6 +33,7 @@ const ProgressBar = () => {
               className="absolute w-max -left-[80%] mt-4 text-bgPurple
             xl:text-copyS
             lg:text-copyS
+            smd:w-[120px]
             md:text-[14px] md:-left-[50%] 
             sm:text-[12px] "
             >
@@ -54,7 +55,7 @@ const ProgressBar = () => {
             </NavLink>
             <p
               className={clsx(
-                "absolute w-max -left-1/2 mt-4  xl:text-copyS xl:-left-1/4 lg:text-copyS lg:-left-1/4 md:text-[14px] md:-left-[10%] sm:text-[12px]",
+                "absolute w-max -left-1/2 mt-4  xl:text-copyS xl:-left-1/4 lg:text-copyS lg:-left-1/4 smd:w-[70px] md:text-[14px] md:-left-[10%] sm:text-[12px]",
                 stage > 0 ? "text-bgPurple" : "text-barGrey"
               )}
             >
@@ -98,7 +99,7 @@ const ProgressBar = () => {
             </NavLink>
             <p
               className={clsx(
-                "absolute w-max -left-1/2 mt-4 xl:text-copyS xl:-left-1/4 lg:text-copyS lg:-left-1/4 md:text-[14px] md:-left-[0%] sm:text-[12px]",
+                "absolute w-max -left-1/2 mt-4 xl:text-copyS xl:-left-[130%] lg:text-copyS lg:-left-[200%] smd:w-[90px] md:text-[14px] md:-left-[0%] sm:text-[12px]",
                 stage > 2 ? "text-bgPurple" : "text-barGrey"
               )}
             >
