@@ -34,7 +34,7 @@ const CheckoutShipment = () => {
   };
   return (
     <section className="py-10 flex flex-col ">
-      <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10">
+      <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10 md:pt-[80px]">
         <div className=" flex flex-col gap-[110px]">
           <div className="flex flex-col">
             {filteredForMyself.length > 0 && (

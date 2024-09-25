@@ -42,12 +42,14 @@ const PopUp = ({ setValue, value, defaultVal }: PopUpProps) => {
             <div
               className="menu-item hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4 mb-5 bg-primWhite 
         xl:py-2 xl:px-3 
-        lg:py-[6px] lg:px-[8px]"
+        lg:py-[6px] lg:px-[8px]
+        smd:py-[6px] smd:px-[8px]"
             >
               <p
                 className="leading-[150%] text-addCartS font-secondaryRegular text-inputPink 
                           xl:text-copyS 
-                          lg:text-[14px] md:text-[14px]"
+                          lg:text-[14px] md:text-[14px]
+                          smd:text-[14px]"
               >
                 {valueIsNumber
                   ? !isNaN(defaultV as number)
@@ -82,8 +84,18 @@ const PopUp = ({ setValue, value, defaultVal }: PopUpProps) => {
               />
             ))}
             {valueIsNumber && (
-              <div className="flex justify-between py-2 px-4 hover:bg-dropHover transition duration-300 cursor-pointer">
-                <label className="cursor-pointer">
+              <div
+                className="flex justify-between py-2 px-4 hover:bg-dropHover transition duration-300 cursor-pointer
+              xl:py-2 xl:px-3 
+              lg:py-[6px] lg:px-[8px]
+              smd:py-[6px] smd:px-[8px]"
+              >
+                <label
+                  className="cursor-pointer xl:text-copyS 
+                  lg:text-[14px] 
+                  md:text-[14px]
+                  smd:text-[14px]"
+                >
                   Enter your own amount
                   <input
                     className="w-40 h-10 border border-primPurpleFaintM px-3 ml-4 cursor-pointer"

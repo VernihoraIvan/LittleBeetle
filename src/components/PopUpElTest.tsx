@@ -16,7 +16,8 @@ const PopUpEl = ({ value, setValue, setDefault }: PopUpELProps) => {
       className="menu-item py-2 cursor-pointer hover:bg-dropHover transition duration-300 px-4
             xl:text-copyS  xl:p-3 
             lg:text-[14px] lg:py-[6px] lg:px-[8px] 
-            md:text-[14px] md:py-[6px] md:px-[8px]"
+            md:text-[14px] md:py-[6px] md:px-[8px]
+            smd:text-[14px] smd:py-[6px] smd:px-[8px]"
       onClick={() => onClickHandler(value)}
     >
       {valueIsNumber ? `£ ${value}` : value}

@@ -59,6 +59,7 @@ const PurchaseEl = ({
         className="cursor-pointer absolute left-[-60px]
         xl:left-[-40px]
         lg:left-[-40px]
+        smd:left-[-40px]
         sm:hidden"
         onClick={removeProductHandler}
       />

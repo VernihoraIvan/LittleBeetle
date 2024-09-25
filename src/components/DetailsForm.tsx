@@ -78,12 +78,8 @@ const DetailsForm = () => {
                   as="select"
                   name="country"
                   className={clsx(
-                    "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
+                    "w-1/2 smd:w-full cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
                   )}
-                  // className={`
-                  //   ${
-                  //     errors.country && touched.country ? "border-red-500" : ""
-                  //   }`}
                 >
                   <option className="" value="w-full" label="Select" />
                   {countries.map((country) => (
