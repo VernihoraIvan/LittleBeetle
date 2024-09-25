@@ -10,7 +10,6 @@ import StripeElement from "./PaymentEl/StripeElement";
 import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
 import { useNavigate } from "react-router-dom";
-// import { sentData } from "@/api/connection";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);

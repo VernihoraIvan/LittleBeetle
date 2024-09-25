@@ -1,7 +1,7 @@
 const DonationGreet = () => {
   return (
     <section
-      className="flex justify-center pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  h-screen bg-donation-bg
+      className="custom-min-height flex justify-center pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  h-screen bg-donation-bg
     smd:h-auto smd:pb-6 smd:px-8"
     >
       <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">

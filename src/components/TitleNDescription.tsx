@@ -8,7 +8,7 @@ const TitleNDescription = ({ title, description }: titleProps) => {
     lg:pt-[120px]
     smd:pt-[90px]"
     >
-      <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
+      <div className="flex gap-2 justify-center align-center flex-col ">
         <h2
           className="font-primaryBold text-primWhite  text-titleS 
          xl:text-[28px]

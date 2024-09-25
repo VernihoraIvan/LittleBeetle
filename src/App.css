@@ -50,3 +50,11 @@
     max-width: 740px; /* Fixed size for large screens */
   }
 }
+
+.custom-min-height {
+  min-height: calc(100vh);
+}
+
+main {
+  overflow-x: hidden;
+}

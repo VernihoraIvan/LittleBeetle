@@ -3,7 +3,7 @@ import titleImg from "@/assets/images/book_title.png";
 
 const Description = () => {
   return (
-    <section className="relative flex justify-center pt-headerPad object-fit bg-cover bg-home-bg bg-custom-50-150 bg-no-repeat w-screen  h-screen smd:px-8">
+    <section className="custom-min-height relative flex justify-center pt-headerPad object-fit bg-cover bg-home-bg bg-custom-50-150 bg-no-repeat w-screen  h-sc1reen smd:px-8">
       <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL xl:px-[30px] lg:w-contWLG md:w-contWMD sm:w-contWSM xxs:w-contWXSS">
         <img
           src={titleImg}

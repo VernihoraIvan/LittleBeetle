@@ -108,7 +108,7 @@ const CheckoutContributionWO = () => {
             id
           )
         }
-        to="/checkout/details"
+        to="/checkout-donation/details"
         title="NEXT STEP"
         style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
           xl:text-[20px]

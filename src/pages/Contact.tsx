@@ -6,20 +6,20 @@ import EmailLogo from "@/assets/icons/envelope.svg?react";
 const Contact = () => {
   return (
     <>
-      <section className="bg-gradient-to-b from-primPurple to-primPurple xxs:overflow-x-hidden">
-        <div className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen   bg-contacts-bg smd:py-16  pb-[100px]">
-          <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
+      <section className="bg-gradient-to-b from-primPurple to-primPurple xxs:overflow-x-hidden ">
+        <div className="custom-min-height flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen   bg-contacts-bg smd:py-16  smd:px-8 pb-[100px]">
+          <div className="">
             <div className="flex flex-col justify-between ">
               <TitleNDescription
                 title="Contact Us"
                 description="Connect with us on LinkedIn, Instagram, or via email for inquiries and updates."
               />
               <div
-                className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex gap-[50px] xxl:h-contactH fill-primPurple 
+                className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM smd:w-full flex gap-[50px] xxl:h-contactH fill-primPurple 
               xl:gap-10
               smd:gap-5
               xs:flex-col 
-              xxs:px-8"
+              "
               >
                 <a
                   href="https://www.linkedin.com/"

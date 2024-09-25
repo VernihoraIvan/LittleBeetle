@@ -6,6 +6,7 @@ import { PersonalData } from "@/utilities/interfaces";
 import { SubmitSchemaWO } from "@/utilities/FormSchema";
 import { useStage } from "@/zustand/stageStore";
 import { useDonation } from "@/zustand/donationStore";
+import ButtonTo from "../ButtonTo";
 
 const DetailsFormWO = () => {
   const navigate = useNavigate();
@@ -60,13 +61,23 @@ const DetailsFormWO = () => {
               />
             </ul>
             <PrivacySec />
-            <button
+            {/* <button
               className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px] mt-9"
               type="submit"
               onClick={() => setStage(4)}
             >
               CONTINUE TO NEXT
-            </button>
+            </button> */}
+            <ButtonTo
+              onClick={() => setStage(4)}
+              to="/checkout-donation/payment"
+              title="CONTINUE TO NEXT"
+              style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
+          xl:text-[20px]
+          lg:text-[18px]
+          smd:text-[18px] 
+          sm:w-full sm:px-0 sm:block"
+            />
           </Form>
         )}
       </Formik>

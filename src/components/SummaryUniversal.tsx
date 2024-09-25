@@ -19,7 +19,12 @@ const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
           Summary
         </div>
         <div>
-          <div className="px-prodMar py-9">
+          <div
+            className="px-[30px] py-[36px] 
+          xl:px-[28px] xl:py-[24px]
+          lg:px-[24px] lg:py-[20px]
+          smd:px-[20px] smd:py-[26px]"
+          >
             <div
               className="flex justify-between  text-linkS text-primPurple 
             xl:text-[18px]
