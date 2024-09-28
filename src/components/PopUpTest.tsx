@@ -11,7 +11,7 @@ interface PopUpProps {
   defaultVal: string | number;
 }
 
-const PopUp = ({ setValue, value, defaultVal }: PopUpProps) => {
+const PopUpCustom = ({ setValue, value, defaultVal }: PopUpProps) => {
   const [defaultV, setDefault] = useState<string | number>(defaultVal);
   const [price, setPrice] = useState<number>(0);
   const popupRef = useRef<PopupActions | null>(null);
@@ -38,6 +38,7 @@ const PopUp = ({ setValue, value, defaultVal }: PopUpProps) => {
     <div className="relative">
       <div className="tooltipBoundary relative ">
         <Popup
+          nested
           trigger={
             <div
               className="menu-item hover:bg-dropHover transition duration-300 cursor-pointer flex justify-between w-full border border-primPurpleFaintM py-3 px-4 mb-5 bg-primWhite 
@@ -68,9 +69,9 @@ const PopUp = ({ setValue, value, defaultVal }: PopUpProps) => {
           contentStyle={{
             padding: "0px",
             border: "none",
-            width: "100%", // Matches parent width
-            boxSizing: "border-box", // Include padding and borders in width
+            boxSizing: "border-box",
           }}
+          className="popup-container-one "
           arrow={false}
           ref={popupRef}
         >
@@ -117,4 +118,4 @@ const PopUp = ({ setValue, value, defaultVal }: PopUpProps) => {
   );
 };
 
-export default PopUp;
+export default PopUpCustom;

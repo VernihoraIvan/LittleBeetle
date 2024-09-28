@@ -20,7 +20,7 @@ const Carousel = ({ images }: CarouselProps) => {
 
   return (
     <div
-      className="relative w-full xxl:max-w-[660px]  overflow-hidden
+      className="relative w-full xxl:w-[660px]  overflow-hidden
     xl:w-[490px]
     lg:min-w-[360px]
     md:h-[300px]"

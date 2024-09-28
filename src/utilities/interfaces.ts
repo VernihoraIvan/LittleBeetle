@@ -40,6 +40,12 @@ export interface ProductElProps {
   imgPath: string[];
 }
 
+export interface ProductElOptionalProps {
+  title: string;
+  description: string;
+  imgPath: string[];
+}
+
 export interface SubDonationProps {
   title: string;
   description: string;

@@ -2,52 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+[role="tooltip"].popup-content {
+  width: 100%; /* Fixed size for large screens */
+}
+
 /* Small screens */
 @media (max-width: 640px) {
-  .popup-content {
-    max-width: 320px; /* Fixed size for small screens */
+  .popup-content-one {
+    width: 320px; /* Fixed size for small screens */
+  }
+  [role="tooltip"].popup-content {
+    width: 320px !important; /* Fixed size for large screens */
   }
 
-  .popup-container {
-    max-width: 320px; /* Fixed size for small screens */
+  .popup-container-one {
+    width: 320px; /* Fixed size for small screens */
+  }
+}
+
+@media (min-width: 641px) and (max-width: 760px) {
+  .popup-content-one {
+    width: 320px; /* Fixed size for small screens */
+  }
+  [role="tooltip"].popup-content {
+    width: 320px !important; /* Fixed size for large screens */
+  }
+
+  .popup-container-one {
+    width: 320px; /* Fixed size for small screens */
   }
 }
 
 /* Medium screens */
 @media (min-width: 639px) and (max-width: 768px) {
-  .popup-content {
-    max-width: 540px; /* Fixed size for medium screens */
+  .popup-content-one {
+    width: 540px; /* Fixed size for medium screens */
   }
-  .popup-container {
-    max-width: 540px; /* Fixed size for medium screens */
+  [role="tooltip"].popup-content {
+    width: 540px !important; /* Fixed size for large screens */
+  }
+  .popup-container-one {
+    width: 540px; /* Fixed size for medium screens */
   }
 }
 
 /* Large screens */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .popup-content {
-    max-width: 420px; /* Fixed size for large screens */
+  .popup-content-one {
+    width: 420px; /* Fixed size for large screens */
   }
-  .popup-container {
-    max-width: 420px; /* Fixed size for large screens */
+  [role="tooltip"].popup-content {
+    width: 420px !important; /* Fixed size for large screens */
+  }
+  .popup-container-one {
+    width: 420px; /* Fixed size for large screens */
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1563px) {
-  .popup-content {
-    max-width: 555px; /* Fixed size for large screens */
+@media (min-width: 1024px) and (max-width: "1279px") {
+  .popup-content-one {
+    width: 475px; /* Fixed size for large screens */
   }
-  .popup-container {
-    max-width: 555px; /* Fixed size for large screens */
+  [role="tooltip"].popup-content {
+    width: 475px !important; /* Fixed size for large screens */
+  }
+  .popup-container-one {
+    width: 475px; /* Fixed size for large screens */
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1563px) {
+  .popup-content-one {
+    width: 555px; /* Fixed size for large screens */
+  }
+  [role="tooltip"].popup-content {
+    width: 555px !important; /* Fixed size for large screens */
+  }
+  .popup-container-one {
+    width: 555px; /* Fixed size for large screens */
   }
 }
 
 @media (min-width: 1564px) {
-  .popup-content {
-    max-width: 740px; /* Fixed size for large screens */
+  .popup-content-one {
+    width: 740px; /* Fixed size for large screens */
   }
-  .popup-container {
-    max-width: 740px; /* Fixed size for large screens */
+  [role="tooltip"].popup-content {
+    width: 740px !important; /* Fixed size for large screens */
+  }
+  .popup-container-one {
+    width: 740px; /* Fixed size for large screens */
   }
 }
 

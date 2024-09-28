@@ -3,7 +3,7 @@ import { titleProps } from "@/utilities/interfaces";
 const TitleNDescription = ({ title, description }: titleProps) => {
   return (
     <section
-      className="flex justify-center pt-purchImgH pb-bookPB 
+      className="flex  pt-purchImgH pb-bookPB 
     xl:pt-[140px]
     lg:pt-[120px]
     smd:pt-[90px]"

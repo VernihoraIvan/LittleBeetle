@@ -25,7 +25,6 @@ const ProductsIncluded = () => {
                 extraProducts.map((product) => (
                   <ProductElOptional
                     key={product.title}
-                    to={product.to}
                     title={product.title}
                     description={product.description}
                     imgPath={product.imagePath}

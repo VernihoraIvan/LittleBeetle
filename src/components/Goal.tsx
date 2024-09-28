@@ -6,10 +6,10 @@ const Goal = () => {
       <div className="bg-gradient-to-b from-primPurple to-primPurple h-screen smd:h-auto ">
         <div className="flex justify-center items-center mix-blend-luminosity bg-cover object-fit  bg-about-bg2 bg-no-repeat w-full h-full smd:h-auto smd:py-[140px] smd:px-8">
           <div
-            className="flex justify-between gap-20  xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS
+            className="flex justify-between   xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS
           smd:flex-col smd:gap-[60px] items-center"
           >
-            <div className="flex w-fit">
+            <div className="flex w-fit xxl:max-w-[970px]">
               <div className="mb-10 smd:mb-0 flex justify-center align-center flex-col ">
                 <h2
                   className="mb-8 smd:mb-0 font-primaryBold text-primWhite text-titleS
