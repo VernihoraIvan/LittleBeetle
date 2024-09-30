@@ -12,6 +12,10 @@ export interface itemProps {
   shippment?: ShipmentDetails;
 }
 
+export interface ItemArrayProps {
+  items: itemProps[];
+}
+
 export interface CartState {
   items: itemProps[];
   shippment?: ShipmentDetails;
