@@ -1,4 +1,5 @@
 import { proceedToPayment } from "@/api/connection";
+import { useDonation } from "@/zustand/donationStore";
 import { useCart } from "@/zustand/productStore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { FormEvent, useEffect, useState } from "react";
@@ -9,15 +10,29 @@ interface PaymentComponentProps {
 const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cart = useCart((state) => state.items);
   const products = useCart((state) => state.items);
+  const donations = useDonation((state) => state.items);
+  console.log("products: ", products);
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
 
   const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
-  const totalFee = products.reduce(
-    (acc, product) => acc + product.price * product.quantity,
-    0
-  );
+  let totalFee: number;
+  if (totalQty === 0) {
+    console.log("totalQty is 0");
+    totalFee = donations.reduce(
+      (acc, product) => acc + product.price * product.quantity,
+      0
+    );
+  } else {
+    console.log("totalQty is not 0");
+    totalFee = products.reduce(
+      (acc, product) => acc + product.price * product.quantity,
+      0
+    );
+  }
+
+  console.log("isProcessing: ", isProcessing);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -29,23 +44,30 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   }, [paymentStatus, setIsPaymentSuccess]);
 
   useEffect(() => {
-    if (totalQty === 0) return;
+    // if (totalQty === 0) return;
 
     if (paymentStatus !== "succeeded") return;
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    console.log("handleSubmit");
     e.preventDefault();
+    console.log("totalQty: ", totalQty);
 
-    if (totalQty === 0) return;
+    // if (totalQty === 0) return;
 
     if (!stripe || !elements) return;
+
+    console.log("stripe: ", stripe);
+    console.log("elements: ", elements);
 
     const cardEl = elements.getElement(CardElement);
 
     setIsProcessing(true);
+    console.log("after setIsProcessing");
 
     try {
+      console.log("totalFee: ", totalFee);
       const res = await proceedToPayment(totalFee, "usd");
       if (!res) {
         setPaymentStatus("Payment failed!");
@@ -53,6 +75,7 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
         console.log("Payment failed!");
         return;
       }
+      console.log("after try block");
 
       const { client_secret: clientSecret } = res.data;
       console.log("clientSecret: ", clientSecret);
@@ -167,8 +190,8 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
             </button>
           )}
         </div>
-        {/* {isProcessing && <div>Processing...</div>}
-        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>} */}
+        {isProcessing && <div>Processing...</div>}
+        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>}
       </form>
     </div>
   );
