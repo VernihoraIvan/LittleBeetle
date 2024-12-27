@@ -59,12 +59,13 @@ const CheckoutContributionWO = () => {
               <CheckoutContributionEl
                 key={product.id}
                 id={product.id}
-                name={product.name}
+                name={product.product_name}
                 quantity={product.quantity}
                 total={product.price * product.quantity}
-                language={product.itemLanguage}
+                language={product.product_language}
                 imgPath={
-                  extraProducts.find((p) => p.title === product.name)?.imagePath
+                  extraProducts.find((p) => p.title === product.product_name)
+                    ?.imagePath
                 }
               />
             ))

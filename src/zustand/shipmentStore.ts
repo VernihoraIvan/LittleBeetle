@@ -2,15 +2,15 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 export interface ShipmentDetails {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   phone: string;
   country: string;
-  streetAdress: string;
-  streetAdress2: string;
+  street_adress: string;
+  street_adress2: string;
   city: string;
-  postalCode: string;
+  postal_code: string;
   id: string;
 }
 
@@ -33,15 +33,15 @@ export const useShipment = create(
   persist<ShipmentState>(
     (set) => ({
       shipment: {
-        firstName: "",
-        lastName: "",
+        first_name: "",
+        last_name: "",
         email: "",
         phone: "",
         country: "",
-        streetAdress: "",
-        streetAdress2: "",
+        street_adress: "",
+        street_adress2: "",
         city: "",
-        postalCode: "",
+        postal_code: "",
         id: "",
       },
       fee: [],

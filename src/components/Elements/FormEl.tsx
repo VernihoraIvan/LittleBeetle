@@ -20,10 +20,10 @@ const FormEl = ({
           name={element}
           className={clsx(
             "w-1/2 smd:w-full outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]",
-            errors && isRequired && touched.firstName && "border-red-500"
+            errors && isRequired && touched.first_name && "border-red-500"
           )}
         />
-        {isRequired && errors && touched.firstName ? (
+        {isRequired && errors && touched.first_name ? (
           <div
             className="text-alertRed text-linkS font-secondaryRegular ml-4
           xl:text-[18px]

@@ -4,26 +4,26 @@ import { persist } from "zustand/middleware";
 
 export interface DonationState {
   items: {
-    name: string;
+    product_name: string;
     quantity: number;
     price: number;
-    itemLanguage: string;
+    product_language: string;
     isAGift: boolean;
     id: string;
     adress?: PersonalData;
   }[];
   addDonation: (
-    name: string,
+    product_name: string,
     quantity: number,
     price: number,
-    itemLanguage: string,
+    product_language: string,
     isAGift: boolean,
     id: string
   ) => void;
   removeDonation: (id: string) => void;
   increaseQuantity: (id: string) => void;
   reduceQuantity: (id: string) => void;
-  chooseItemLanguage: (itemLanguage: string) => void;
+  chooseItemLanguage: (product_language: string) => void;
   getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
   addAdress: (adress: PersonalData) => void;
@@ -34,25 +34,32 @@ export const useDonation = create(
     (set, get) => ({
       items: [],
       addDonation: (
-        name: string,
+        product_name: string,
         quantity: number,
         price: number,
-        itemLanguage: string,
+        product_language: string,
         isAGift: boolean,
         id: string
       ) => {
         set((state: DonationState) => ({
           items: state.items.some(
-            (item) => item.name === name && item.price === price
+            (item) => item.product_name === product_name && item.price === price
           )
             ? state.items.map((item) =>
-                item.name === name && item.price === price
+                item.product_name === product_name && item.price === price
                   ? { ...item, quantity: item.quantity + quantity }
                   : item
               )
             : [
                 ...state.items,
-                { name, quantity, price, itemLanguage, id, isAGift },
+                {
+                  product_name,
+                  quantity,
+                  price,
+                  product_language,
+                  id,
+                  isAGift,
+                },
               ],
         }));
       },
@@ -75,11 +82,11 @@ export const useDonation = create(
           ),
         }));
       },
-      chooseItemLanguage: (itemLanguage: string) => {
+      chooseItemLanguage: (product_language: string) => {
         set((state: DonationState) => ({
           items: state.items.map((item) => ({
             ...item,
-            itemLanguage,
+            product_language,
           })),
         }));
       },

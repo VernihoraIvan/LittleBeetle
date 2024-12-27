@@ -21,7 +21,7 @@ interface FormReadressProps {
 }
 
 const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
-  const addShipment = useMainStore((state) => state.addShippment);
+  const addShipment = useMainStore((state) => state.addShipment);
   const formikRef = useRef<FormikProps<MyFormValues> | null>(null);
   const shipmentStore = useShipment((state) => state.shipment);
 
@@ -52,17 +52,17 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
           <Form className=" ">
             <ul className="flex flex-col gap-9">
               <FormEl
-                errors={errors.firstName}
+                errors={errors.first_name}
                 touched={touched}
                 title="First name"
-                element="firstName"
+                element="first_name"
                 isRequired={true}
               />
               <FormEl
-                errors={errors.lastName}
+                errors={errors.last_name}
                 touched={touched}
                 title="Last name"
-                element="lastName"
+                element="last_name"
                 isRequired={true}
               />
               <FormEl
@@ -111,17 +111,17 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
                 />
               </li>
               <FormEl
-                errors={errors.streetAdress}
+                errors={errors.street_adress}
                 touched={touched}
                 title="Street address"
-                element="streetAdress"
+                element="street_adress"
                 isRequired={true}
               />
               <FormEl
-                errors={errors.streetAdress2}
+                errors={errors.street_adress2}
                 touched={touched}
                 title="Street address line 2"
-                element="streetAdress2"
+                element="street_adress2"
               />
               <FormEl
                 errors={errors.city}
@@ -131,10 +131,10 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
                 isRequired={true}
               />
               <FormEl
-                errors={errors.postalCode}
+                errors={errors.postal_code}
                 touched={touched}
                 title="Postal code"
-                element="postalCode"
+                element="postal_code"
                 isRequired={true}
               />
             </ul>

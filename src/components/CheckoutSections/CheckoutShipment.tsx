@@ -54,11 +54,12 @@ const CheckoutShipment = () => {
                   key={product.id}
                   onSubmitRef={handleAddSubFormRef}
                   id={product.id}
-                  title={product.name}
-                  shipment={product.shippment}
+                  title={product.product_name}
+                  shipment={product.shipment}
                   imgPath={
-                    productToDisplay.find((p) => p.title === product.name)
-                      ?.imagePath
+                    productToDisplay.find(
+                      (p) => p.title === product.product_name
+                    )?.imagePath
                   }
                 />
               ))}
@@ -81,11 +82,12 @@ const CheckoutShipment = () => {
                   key={product.id}
                   onSubmitRef={handleAddSubFormRef}
                   id={product.id}
-                  title={product.name}
-                  shipment={product.shippment}
+                  title={product.product_name}
+                  shipment={product.shipment}
                   imgPath={
-                    productToDisplay.find((p) => p.title === product.name)
-                      ?.imagePath
+                    productToDisplay.find(
+                      (p) => p.title === product.product_name
+                    )?.imagePath
                   }
                 />
               ))}

@@ -12,7 +12,7 @@ const DetailsFormWO = () => {
   const navigate = useNavigate();
   const addAdress = useDonation((state) => state.addAdress);
   const setStage = useStage((state) => state.setStage);
-  const adressStore = { firstName: "", lastName: "", email: "", phone: "" };
+  const adressStore = { first_name: "", last_name: "", email: "", phone: "" };
 
   return (
     <section className="pt-buttonP">
@@ -33,17 +33,17 @@ const DetailsFormWO = () => {
           <Form className=" ">
             <ul className="flex flex-col gap-9">
               <FormEl
-                errors={errors.firstName}
+                errors={errors.first_name}
                 touched={touched}
                 title="First name"
-                element="firstName"
+                element="first_name"
                 isRequired={true}
               />
               <FormEl
-                errors={errors.lastName}
+                errors={errors.last_name}
                 touched={touched}
                 title="Last name"
-                element="lastName"
+                element="last_name"
                 isRequired={true}
               />
               <FormEl

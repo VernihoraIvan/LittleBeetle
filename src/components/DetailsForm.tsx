@@ -44,17 +44,17 @@ const DetailsForm = () => {
           <Form className=" px-20 smd:px-0">
             <ul className="flex flex-col gap-10 xl:gap-8 lg:gap-5 smd:gap-4 ">
               <FormEl
-                errors={errors.firstName}
+                errors={errors.first_name}
                 touched={touched}
                 title="First name"
-                element="firstName"
+                element="first_name"
                 isRequired={true}
               />
               <FormEl
-                errors={errors.lastName}
+                errors={errors.last_name}
                 touched={touched}
                 title="Last name"
-                element="lastName"
+                element="last_name"
                 isRequired={true}
               />
               <FormEl
@@ -93,17 +93,17 @@ const DetailsForm = () => {
                 />
               </li>
               <FormEl
-                errors={errors.streetAdress}
+                errors={errors.street_adress}
                 touched={touched}
                 title="Street address"
-                element="streetAdress"
+                element="street_adress"
                 isRequired={true}
               />
               <FormEl
-                errors={errors.streetAdress2}
+                errors={errors.street_adress2}
                 touched={touched}
                 title="Street address line 2"
-                element="streetAdress2"
+                element="street_adress2"
               />
               <FormEl
                 errors={errors.city}
@@ -113,10 +113,10 @@ const DetailsForm = () => {
                 isRequired={true}
               />
               <FormEl
-                errors={errors.postalCode}
+                errors={errors.postal_code}
                 touched={touched}
                 title="Postal code"
-                element="postalCode"
+                element="postal_code"
                 isRequired={true}
               />
             </ul>

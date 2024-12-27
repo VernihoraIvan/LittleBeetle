@@ -3,13 +3,13 @@ import { persist } from "zustand/middleware";
 import { ShipmentDetails } from "./shipmentStore";
 
 export interface itemProps {
-  name: string;
+  product_name: string;
   quantity: number;
   price: number;
-  itemLanguage: string;
+  product_language: string;
   isAGift: boolean;
   id: string;
-  shippment?: ShipmentDetails;
+  shipment?: ShipmentDetails;
 }
 
 export interface ItemArrayProps {
@@ -18,13 +18,13 @@ export interface ItemArrayProps {
 
 export interface CartState {
   items: itemProps[];
-  shippment?: ShipmentDetails;
+  shipment?: ShipmentDetails;
   setDefaultAdress: (shipment: ShipmentDetails) => void;
   addToCart: (
-    name: string,
+    product_name: string,
     quantity: number,
     price: number,
-    itemLanguage: string,
+    product_language: string,
     isAGift: boolean,
     id: string
   ) => void;
@@ -32,7 +32,7 @@ export interface CartState {
   adjustCart: (id: string, quantity: number, price: number) => void;
   increaseQuantity: (id: string) => void;
   reduceQuantity: (id: string) => void;
-  chooseItemLanguage: (itemLanguage: string) => void;
+  chooseItemLanguage: (product_language: string) => void;
   getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
   addShipment: (shipment: ShipmentDetails, id: string) => void;
@@ -55,37 +55,44 @@ export const useCart = create(
     (set, get) => ({
       items: [],
       addToCart: (
-        name: string,
+        product_name: string,
         quantity: number,
         price: number,
-        itemLanguage: string,
+        product_language: string,
         isAGift: boolean,
         id: string
       ) => {
         set((state: CartState) => ({
           items: state.items.some(
-            (item) => item.name === name && item.price === price
+            (item) => item.product_name === product_name && item.price === price
           )
             ? state.items.map((item) =>
-                item.name === name && item.price === price
+                item.product_name === product_name && item.price === price
                   ? { ...item, quantity: item.quantity + quantity }
                   : item
               )
             : [
                 ...state.items,
-                { name, quantity, price, itemLanguage, id, isAGift },
+                {
+                  product_name,
+                  quantity,
+                  price,
+                  product_language,
+                  id,
+                  isAGift,
+                },
               ],
         }));
       },
       setDefaultAdress: (shipment: ShipmentDetails) => {
         set((state: CartState) => ({
-          items: state.items.map((item) => ({ ...item, shippment: shipment })),
+          items: state.items.map((item) => ({ ...item, shipment: shipment })),
         }));
       },
       addShipment: (shipment: ShipmentDetails, id: string) => {
         set((state: CartState) => ({
           items: state.items.map((item) =>
-            item.id === id ? { ...item, shippment: shipment } : item
+            item.id === id ? { ...item, shipment: shipment } : item
           ),
         }));
       },
@@ -115,11 +122,11 @@ export const useCart = create(
           ),
         }));
       },
-      chooseItemLanguage: (itemLanguage: string) => {
+      chooseItemLanguage: (product_language: string) => {
         set((state: CartState) => ({
           items: state.items.map((item) => ({
             ...item,
-            itemLanguage,
+            product_language,
           })),
         }));
       },

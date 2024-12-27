@@ -18,7 +18,7 @@ export interface MainStoreState {
   submitForm: ShipmentState["submitForm"];
   setFee: ShipmentState["setFee"];
   removeFee: ShipmentState["removeFee"];
-  addShippment: CartState["addShipment"];
+  addShipment: CartState["addShipment"];
   setDefaultAdress: CartState["setDefaultAdress"];
   syncStates: () => void;
 }
@@ -44,14 +44,14 @@ export const useMainStore = create<MainStoreState>((set) => ({
     useCart.getState().addToCart(...args);
     set({ products: useCart.getState().items });
   },
-  addShippment: (shipment: ShipmentDetails, id: string) => {
+  addShipment: (shipment: ShipmentDetails, id: string) => {
     useCart.getState().addShipment(shipment, id);
     set({ products: useCart.getState().items });
   },
   //   addShipment: (shipment: ShipmentDetails, id: string) => {
   //     set((state: CartState) => ({
   //       items: state.items.map((item) =>
-  //         item.id === id ? { ...item, shippment: shipment } : item
+  //         item.id === id ? { ...item, shipment: shipment } : item
   //       ),
   //     }));
   //   },

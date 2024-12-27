@@ -11,7 +11,7 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cart = useCart((state) => state.items);
   const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
-  console.log("products: ", products);
+  // console.log("products: ", products);
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
@@ -19,20 +19,20 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
   let totalFee: number;
   if (totalQty === 0) {
-    console.log("totalQty is 0");
+    // console.log("totalQty is 0");
     totalFee = donations.reduce(
       (acc, product) => acc + product.price * product.quantity,
       0
     );
   } else {
-    console.log("totalQty is not 0");
+    // console.log("totalQty is not 0");
     totalFee = products.reduce(
       (acc, product) => acc + product.price * product.quantity,
       0
     );
   }
 
-  console.log("isProcessing: ", isProcessing);
+  // console.log("isProcessing: ", isProcessing);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -50,24 +50,24 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    console.log("handleSubmit");
+    // console.log("handleSubmit");
     e.preventDefault();
-    console.log("totalQty: ", totalQty);
+    // console.log("totalQty: ", totalQty);
 
     // if (totalQty === 0) return;
 
     if (!stripe || !elements) return;
 
-    console.log("stripe: ", stripe);
-    console.log("elements: ", elements);
+    // console.log("stripe: ", stripe);
+    // console.log("elements: ", elements);
 
     const cardEl = elements.getElement(CardElement);
 
     setIsProcessing(true);
-    console.log("after setIsProcessing");
+    // console.log("after setIsProcessing");
 
     try {
-      console.log("totalFee: ", totalFee);
+      // console.log("totalFee: ", totalFee);
       const res = await proceedToPayment(totalFee, "usd");
       if (!res) {
         setPaymentStatus("Payment failed!");
@@ -78,7 +78,7 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
       console.log("after try block");
 
       const { client_secret: clientSecret } = res.data;
-      console.log("clientSecret: ", clientSecret);
+      // console.log("clientSecret: ", clientSecret);
 
       const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -94,9 +94,9 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
     } catch (error) {
       console.error(error);
       setPaymentStatus("Payment failed!");
+    } finally {
+      setIsProcessing(false);
     }
-
-    setIsProcessing(false);
   };
 
   const cardElementOptions = {

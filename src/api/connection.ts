@@ -22,8 +22,17 @@ export const postDonation = async (data: MyFormValues) => {
 
 export const sentData = async (data: itemProps[]) => {
   console.log("data: ", data);
+  const productArray = data.map((item) => ({
+    product_name: item.product_name,
+    quantity: item.quantity,
+    price: item.price,
+    product_language: item.product_language,
+    isAGift: item.isAGift,
+    id: item.id,
+    shipment: item.shipment,
+  }));
   try {
-    const responseData = await axios.post("/data", data);
+    const responseData = await axios.post("/data", productArray);
     console.log("responseData: ", responseData);
   } catch (error) {
     console.error(error);

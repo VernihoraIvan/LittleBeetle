@@ -119,22 +119,22 @@ export interface CarouselProps {
 }
 
 export interface MyFormValues {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   phone: string;
   country: string;
-  streetAdress: string;
-  streetAdress2: string;
+  street_adress: string;
+  street_adress2: string;
   city: string;
-  postalCode: string;
+  postal_code: string;
   id: string;
   shipment?: ShipmentDetails;
 }
 
 export interface PersonalData {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   email: string;
   phone: string;
 }

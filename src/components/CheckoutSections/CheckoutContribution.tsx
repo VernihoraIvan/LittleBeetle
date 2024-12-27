@@ -45,14 +45,15 @@ const CheckoutContribution = () => {
                 products.map((product) => (
                   <PurchaseEl
                     key={product.id}
-                    language={product.itemLanguage}
-                    name={product.name}
+                    language={product.product_language}
+                    name={product.product_name}
                     price={product.price}
                     quantity={product.quantity}
                     total={product.price * product.quantity}
                     imgPath={
-                      productToDisplay.find((p) => p.title === product.name)
-                        ?.imagePath
+                      productToDisplay.find(
+                        (p) => p.title === product.product_name
+                      )?.imagePath
                     }
                     id={product.id}
                   />

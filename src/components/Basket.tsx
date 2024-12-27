@@ -22,14 +22,14 @@ const Basket = () => {
           {products.length > 0 &&
             products.map((product) => (
               <PurchaseEl
-                language={product.itemLanguage}
+                language={product.product_language}
                 key={product.id}
-                name={product.name}
+                name={product.product_name}
                 price={product.price}
                 quantity={product.quantity}
                 total={product.price * product.quantity}
                 imgPath={
-                  productToDisplay.find((p) => p.title === product.name)
+                  productToDisplay.find((p) => p.title === product.product_name)
                     ?.imagePath
                 }
                 id={product.id}
