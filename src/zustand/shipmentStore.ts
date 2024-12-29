@@ -6,12 +6,11 @@ export interface ShipmentDetails {
   last_name: string;
   email: string;
   phone: string;
-  country: string;
-  street_adress: string;
-  street_adress2: string;
-  city: string;
-  postal_code: string;
-  id: string;
+  country?: string;
+  street_adress?: string;
+  street_adress2?: string;
+  city?: string;
+  postal_code?: string;
 }
 
 interface Fee {
@@ -27,6 +26,8 @@ export interface ShipmentState {
   fee: Fee[];
   setFee: (id: string, price: number, quantity: number) => void;
   removeFee: (id: string) => void;
+  resetShipments: () => void;
+  resetShipmentsMain: () => void;
 }
 
 export const useShipment = create(
@@ -42,9 +43,23 @@ export const useShipment = create(
         street_adress2: "",
         city: "",
         postal_code: "",
-        id: "",
       },
       fee: [],
+      resetShipmentsMain: () => {
+        set({
+          shipment: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            phone: "",
+            country: "",
+            street_adress: "",
+            street_adress2: "",
+            city: "",
+            postal_code: "",
+          },
+        });
+      },
       submitForm: (shipment: ShipmentDetails) => {
         set({ shipment });
       },
@@ -60,6 +75,21 @@ export const useShipment = create(
       },
       submitFormAll: (shipment: ShipmentDetails) => {
         set({ shipment });
+      },
+      resetShipments: () => {
+        set({
+          shipment: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            phone: "",
+            country: "",
+            street_adress: "",
+            street_adress2: "",
+            city: "",
+            postal_code: "",
+          },
+        });
       },
     }),
     {

@@ -11,6 +11,7 @@ import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
 // import { useNavigate } from "react-router-dom";
 import { sentData } from "@/api/connection";
+import { useDonation } from "@/zustand/donationStore";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -23,7 +24,10 @@ const PaymentSection = () => {
     0
   );
   // console.log("isPaymentSuccess: ", isPaymentSuccess);
-  // console.log("products: ", products);
+  const donations = useDonation((state) => state.items);
+
+  console.log("products: ", products);
+  console.log("donations: ", donations);
 
   const handleSubmit = async () => {
     if (isPaymentSuccess) {

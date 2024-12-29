@@ -3,7 +3,7 @@ import PrivacySec from "./PrivacySec";
 import { useNavigate } from "react-router-dom";
 import { countries } from "@/utilities/data";
 import FormEl from "./Elements/FormEl";
-import { MyFormValues } from "@/utilities/interfaces";
+import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { SubmitSchema } from "@/utilities/FormSchema";
 import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
@@ -18,6 +18,10 @@ const DetailsForm = () => {
   const submitShipment = useMainStore((state) => state.submitForm);
   const setDefaultAdress = useMainStore((state) => state.setDefaultAdress);
   const id = nanoid();
+  const shipment = useMainStore((state) => state.shipment);
+
+  console.log("shipment IN dETAILS FORM MAINE STORE: ", shipment);
+  console.log("shipmentStore IN dETAILS FORM MAINE STORE: ", shipmentStore);
 
   return (
     <section
@@ -31,12 +35,15 @@ const DetailsForm = () => {
         initialValues={shipmentStore}
         validationSchema={SubmitSchema}
         onSubmit={async (
-          values: MyFormValues,
-          { setSubmitting }: FormikHelpers<MyFormValues>
+          values: ShipmentDetails,
+          { setSubmitting }: FormikHelpers<ShipmentDetails>
         ) => {
           setDefaultAdress(values);
+          console.log("test0");
           setSubmitting(false);
+          console.log("test1");
           submitShipment(values, id);
+          console.log("test2");
           navigate("/checkout/shipment");
         }}
       >

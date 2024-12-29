@@ -1,13 +1,10 @@
 import { create } from "zustand";
-import { nanoid } from "nanoid";
 import { CartState, useCart } from "./productStore";
 import { ShipmentDetails, ShipmentState, useShipment } from "./shipmentStore";
 
 export interface MainStoreState {
   products: CartState["items"];
   shipment: ShipmentState["shipment"];
-  orderID: string;
-  generateOrderID: () => void;
   addToCart: CartState["addToCart"];
   removeFromCart: CartState["removeFromCart"];
   adjustCart: CartState["adjustCart"];
@@ -27,12 +24,6 @@ export const useMainStore = create<MainStoreState>((set) => ({
   // Initial states from other stores
   products: useCart.getState().items,
   shipment: useShipment.getState().shipment,
-  orderID: "",
-
-  // Generate a new order ID using nanoid
-  generateOrderID: () => {
-    set({ orderID: nanoid() });
-  },
 
   setDefaultAdress: (shipment: ShipmentDetails) => {
     useCart.getState().setDefaultAdress(shipment);

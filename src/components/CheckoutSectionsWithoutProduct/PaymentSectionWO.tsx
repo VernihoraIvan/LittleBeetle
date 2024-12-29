@@ -1,5 +1,5 @@
 import SummaryUniversal from "../SummaryUniversal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 // import CardInfo from "../PaymentEl/CardInfo";
 import mCardImg from "@/assets/images/mCard.png";
@@ -12,24 +12,35 @@ import StripeElement from "../PaymentEl/StripeElement";
 import GooglePayEl from "../PaymentEl/GooglePayEl";
 import ApplePayEl from "../PaymentEl/ApplePayEl";
 import { sentData } from "@/api/connection";
+import { useCart } from "@/zustand/productStore";
+import { useMainStore } from "@/zustand/mainOrderStore";
 
 const PaymentSectionWO = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
   // const navigate = useNavigate();
   const [isActive, setIsActive] = useState<number>(0);
-  // const products = useCart((state) => state.items);
+  const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
+  const setDonationAddress = useDonation((state) => state.addAdress);
+  // console.log("donations.adress: ", donations[0].adress);
 
   const totalFee = donations.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
   );
   console.log("donations: ", donations);
+  console.log("products: ", products);
+  const mainShipmentStore = useMainStore((state) => state.shipment);
+  useEffect(() => {
+    setDonationAddress(mainShipmentStore);
+  }, [mainShipmentStore, setDonationAddress]);
+  console.log("mainShipmentStore: ", mainShipmentStore);
 
   const handleSubmit = async () => {
     if (isPaymentSuccess) {
       console.log("Payment success");
       // postDonation(donations);
+      console.log("donations: ", donations);
       sentData(donations);
     } else {
       console.log("Payment failed");

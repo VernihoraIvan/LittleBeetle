@@ -1,6 +1,7 @@
-import { PersonalData } from "@/utilities/interfaces";
+// import { PersonalData } from "@/utilities/interfaces";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { ShipmentDetails } from "./shipmentStore";
 
 export interface DonationState {
   items: {
@@ -10,7 +11,7 @@ export interface DonationState {
     product_language: string;
     isAGift: boolean;
     id: string;
-    adress?: PersonalData;
+    shipment: ShipmentDetails;
   }[];
   addDonation: (
     product_name: string,
@@ -26,13 +27,39 @@ export interface DonationState {
   chooseItemLanguage: (product_language: string) => void;
   getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
-  addAdress: (adress: PersonalData) => void;
+  addAdress: (shipment: ShipmentDetails) => void;
+  setDefaultAdress: (shipment: ShipmentDetails) => void;
+  resetShipments: () => void;
 }
 
 export const useDonation = create(
   persist<DonationState>(
     (set, get) => ({
       items: [],
+      setDefaultAdress: (shipment: ShipmentDetails) => {
+        set((state: DonationState) => ({
+          items: state.items.map((item) => ({ ...item, shipment: shipment })),
+        }));
+      },
+      resetShipments: () => {
+        set((state: DonationState) => ({
+          items: state.items.map((item) => ({
+            ...item,
+            shipment: {
+              first_name: "",
+              last_name: "",
+              email: "",
+              phone: "",
+              country: "",
+              street_adress: "",
+              street_adress2: "",
+              city: "",
+              postal_code: "",
+              id: "",
+            },
+          })),
+        }));
+      },
       addDonation: (
         product_name: string,
         quantity: number,
@@ -59,6 +86,12 @@ export const useDonation = create(
                   product_language,
                   id,
                   isAGift,
+                  shipment: {
+                    first_name: "",
+                    last_name: "",
+                    email: "",
+                    phone: "",
+                  },
                 },
               ],
         }));
@@ -102,11 +135,10 @@ export const useDonation = create(
           ),
         }));
       },
-      addAdress: (adress: PersonalData) => {
+      addAdress: (shipment: ShipmentDetails) => {
+        console.log("setting shipment shipment: ", shipment);
         set((state: DonationState) => ({
-          items: state.items.map((item) =>
-            !item.adress ? { ...item, adress } : item
-          ),
+          items: state.items.map((item) => ({ ...item, shipment: shipment })),
         }));
       },
     }),

@@ -9,7 +9,7 @@ export interface itemProps {
   product_language: string;
   isAGift: boolean;
   id: string;
-  shipment?: ShipmentDetails;
+  shipment: ShipmentDetails;
 }
 
 export interface ItemArrayProps {
@@ -80,6 +80,17 @@ export const useCart = create(
                   product_language,
                   id,
                   isAGift,
+                  shipment: {
+                    first_name: "",
+                    last_name: "",
+                    email: "",
+                    phone: "",
+                    country: "",
+                    street_adress: "",
+                    street_adress2: "",
+                    city: "",
+                    postal_code: "",
+                  },
                 },
               ],
         }));

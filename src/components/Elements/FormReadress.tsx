@@ -8,21 +8,21 @@ import {
 } from "formik";
 import { countries } from "@/utilities/data";
 import FormEl from "@/components/Elements/FormEl";
-import { MyFormValues } from "@/utilities/interfaces";
+// import { MyFormValues } from "@/utilities/interfaces";
 import { SubmitSchema } from "@/utilities/FormSchema";
-import { useShipment } from "@/zustand/shipmentStore";
+import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
 import { useRef } from "react";
 import { useMainStore } from "@/zustand/mainOrderStore";
 import clsx from "clsx";
 
 interface FormReadressProps {
   id: string;
-  onSubmitRef: (instance: FormikProps<MyFormValues>) => void;
+  onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
 }
 
 const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
   const addShipment = useMainStore((state) => state.addShipment);
-  const formikRef = useRef<FormikProps<MyFormValues> | null>(null);
+  const formikRef = useRef<FormikProps<ShipmentDetails> | null>(null);
   const shipmentStore = useShipment((state) => state.shipment);
 
   return (
@@ -41,8 +41,8 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
         initialValues={shipmentStore}
         validationSchema={SubmitSchema}
         onSubmit={(
-          values: MyFormValues,
-          { setSubmitting }: FormikHelpers<MyFormValues>
+          values: ShipmentDetails,
+          { setSubmitting }: FormikHelpers<ShipmentDetails>
         ) => {
           addShipment(values, id);
           setSubmitting(false);
