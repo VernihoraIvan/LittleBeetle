@@ -7,7 +7,7 @@ import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
 import { useDonation } from "@/zustand/donationStore";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import StripeElement from "../PaymentEl/StripeElement";
 import GooglePayEl from "../PaymentEl/GooglePayEl";
 import ApplePayEl from "../PaymentEl/ApplePayEl";
@@ -17,7 +17,7 @@ import { useMainStore } from "@/zustand/mainOrderStore";
 
 const PaymentSectionWO = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
@@ -45,7 +45,7 @@ const PaymentSectionWO = () => {
     } else {
       console.log("Payment failed");
     }
-    // navigate("/complete");
+    navigate("/complete");
   };
 
   return (

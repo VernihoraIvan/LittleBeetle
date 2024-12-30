@@ -1,14 +1,14 @@
-import digitalBook from "@/assets/images/digital-book.png";
-import lullaby from "@/assets/images/lullaby.png";
-import poster from "@/assets/images/poster.png";
-import poster1 from "@/assets/images/poster1-min.png";
-import postcard from "@/assets/images/postcard.png";
-import postcard1 from "@/assets/images/postcard-open1-min.png";
-import postcard2 from "@/assets/images/postcard-open2-min.png";
-import postcard3 from "@/assets/images/postcard-open3-min.png";
-import book1 from "@/assets/images/book-open1-min.png";
-import book2 from "@/assets/images/book-open2-min.png";
-import book3 from "@/assets/images/book-open3-min.png";
+import digitalBook from "@/assets/images/compressed/digital-book.jpg";
+import lullaby from "@/assets/images/compressed/lullaby.jpg";
+import poster from "@/assets/images/compressed/poster.jpg";
+import poster1 from "@/assets/images/compressed/poster1-min.jpg";
+import postcard from "@/assets/images/compressed/postcard.jpg";
+import postcard1 from "@/assets/images/compressed/postcard-open1-min.jpg";
+import postcard2 from "@/assets/images/compressed/postcard-open2-min.jpg";
+import postcard3 from "@/assets/images/compressed/postcard-open3-min.jpg";
+import book1 from "@/assets/images/compressed/book-open1-min.jpg";
+import book2 from "@/assets/images/compressed/book-open2-min.jpg";
+import book3 from "@/assets/images/compressed/book-open3-min.jpg";
 import certificate from "@/assets/images/certificate.png";
 
 export const includedProducts = [
@@ -83,6 +83,12 @@ export const creatorsData = [
     location: "london, UK",
     description:
       "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.",
+  },
+  {
+    name: "Inna Ishchenko",
+    location: "Kiev, Ukraine",
+    description:
+      "is a bandurist, indie-soul singer, and songwriter, also known as Solo Inna. She is a super-finalist on 'Voice of the Country 6' and also participated in 'X-Factor.' In 2016, she performed the song 'Plyne Kacha' on 'Voice of the Country,' which garnered 9 million views. Currently, Inna is dedicated to supporting the moral and psychological well-being of the military and promoting Ukrainian culture. The Voice Ukraine ('Holos Krainy') is part of the international syndication The Voice.",
   },
   {
     name: "Teo Nalani",

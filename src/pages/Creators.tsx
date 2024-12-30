@@ -4,9 +4,11 @@ import { creatorsData } from "@/utilities/data";
 
 const Creators = () => {
   return (
-    <div className="bg-gradient-to-b from-primPurple to-primPurple w-screen  overflow-x-hidden">
-      <section className="flex justify-center mix-blend-luminosity pt-headerPad object-fit bg-custom-50-150 bg-cover w-screen bg-no-repeat  bg-creators-bg smd:px-8">
-        <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-[320px] smd:px-8">
+    <div className=" bg-gradient-to-b from-primPurple to-primPurple w-screen  overflow-x-hidden">
+      <section className="relative flex justify-center pt-headerPad">
+        <div className="absolute inset-0 mix-blend-luminosity object-fit bg-custom-50-150 bg-cover w-screen bg-no-repeat opacity-30 bg-creators-bg" />
+
+        <div className="relative xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px] xxs:w-[320px] smd:px-8">
           <TitleNDescription
             title="Creators"
             description="The book and lullaby was crafted by over 15 volunteers from around the world. They donated their talents to create this project, from beautiful illustrations to a soothing melody, to inspire hope and healing."
