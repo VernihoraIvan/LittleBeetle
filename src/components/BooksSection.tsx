@@ -34,13 +34,13 @@ const BooksSection = () => {
         </p>
         <ul className="flex justify-between mt-14 gap-5 xs:flex-col">
           <li>
-            <img src={book1} alt="image of a book" />
+            <img loading="lazy" src={book1} alt="image of a book" />
           </li>
           <li>
-            <img src={book2} alt="little girl holds a book" />
+            <img loading="lazy" src={book2} alt="little girl holds a book" />
           </li>
           <li>
-            <img src={book3} alt="little girl reads a book" />
+            <img loading="lazy" src={book3} alt="little girl reads a book" />
           </li>
         </ul>
         <div className="flex justify-center mt-20">

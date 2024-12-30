@@ -3,7 +3,7 @@ import ButtonTo from "./ButtonTo";
 
 const EmptyCart = () => {
   return (
-    <section className="flex-grow flex justify-center pt-[170px] pb-[180px]">
+    <section className="flex-grow flex justify-center pt-[10px] pb-[10px]">
       <div className="flex flex-col items-center">
         <img
           className="w-[130px]"

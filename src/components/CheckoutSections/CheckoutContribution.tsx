@@ -65,19 +65,25 @@ const CheckoutContribution = () => {
             </div>
           )}
         </div>
-        <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
+        {products.length > 0 && (
+          <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
+        )}
       </div>
-      <CartIncludedWidget />
-      <ButtonTo
-        onClick={() => setStage(2)}
-        to="/checkout/details"
-        title="NEXT STEP"
-        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
+      {products.length > 0 && (
+        <>
+          <CartIncludedWidget />
+          <ButtonTo
+            onClick={() => setStage(2)}
+            to="/checkout/details"
+            title="NEXT STEP"
+            style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
           xl:text-[20px]
           lg:text-[18px]
           smd:text-[18px] 
           sm:w-full sm:px-0 sm:block"
-      />
+          />
+        </>
+      )}
     </div>
   );
 };
