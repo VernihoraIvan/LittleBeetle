@@ -47,10 +47,7 @@ const Goal = () => {
                     rel="noreferrer"
                   >
                     <div className=" flex gap-2 items-center ">
-                      <p
-                        className="text-primWhite text-linkS font-primaryRegular
-                      lg:text-[18px]"
-                      >
+                      <p className="text-primWhite responsive-heading font-primaryRegular">
                         Learn more
                       </p>
                       <LinkLogo />
@@ -94,12 +91,7 @@ const Goal = () => {
                   rel="noreferrer"
                 >
                   <div className=" flex gap-2 items-center justify-center ">
-                    <p
-                      className="text-primWhite text-linkS font-primaryRegular
-                      lg:text-[18px]
-                      md:text-[18px]
-                      sm:text-[18px]"
-                    >
+                    <p className="text-primWhite responsive-heading font-primaryRegular">
                       Learn more
                     </p>
                     <LinkLogo />

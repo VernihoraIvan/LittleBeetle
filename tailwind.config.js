@@ -127,12 +127,12 @@ export default {
         luminosity: "luminosity",
       },
       backgroundImage: {
-        "home-bg": "url('@/assets/images/compressed/home-bg.jpg')",
-        "about-bg": "url('@/assets/images/compressed/about-bg.jpg')",
-        "about-bg2": "url('@/assets/images/compressed/about-bg2.jpg')",
-        "donation-bg": "url('@/assets/images/compressed/donation-bg.jpg')",
-        "contacts-bg": "url('@/assets/images/compressed/contacts-bg.jpg')",
-        "creators-bg": "url('@/assets/images/compressed/creators-bg.jpg')",
+        "home-bg": "url('/src/assets/images/compressed/home-bg.jpg')",
+        "about-bg": "url('/src/assets/images/compressed/about-bg.jpg')",
+        "about-bg2": "url('/src/assets/images/compressed/about-bg2.jpg')",
+        "donation-bg": "url('/src/assets/images/compressed/donation-bg.jpg')",
+        "contacts-bg": "url('/src/assets/images/compressed/contacts-bg.jpg')",
+        "creators-bg": "url('/src/assets/images/compressed/creators-bg.jpg')",
       },
       backgroundPosition: {
         "custom-50-150": "50% 50%",

@@ -9,12 +9,7 @@ const ProductEl = ({ title, imgPath, description }: ProductElProps) => {
         alt="image of a book"
       />
       <div>
-        <h3
-          className=" mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold 
-      lg:text-[22px]
-      md:text-[18px]
-      smd:text-[18px]"
-        >
+        <h3 className=" mt-prodMar leading-relaxed text-secBlack  font-secondaryBold responsive-heading">
           {title}
         </h3>
         <p className="mt-4">{description}</p>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ButtonTo = ({ to, title, style, onClick }: ButtonToProps) => {
   return (
-    <Link onClick={onClick} to={to} className={style}>
+    <Link onClick={onClick} to={to} className={`${style} responsive-heading`}>
       {title}
     </Link>
   );

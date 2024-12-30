@@ -15,9 +15,7 @@ const DonationLink = () => {
         >
           <p
             className="font-secondaryRegular text-linkS mb-9 text-center 
-        xl:text-[20px]
-        lg:text-[16px]
-        smd:text-[16px]"
+        responsive-text"
           >
             Each donation of any size includes access to our Digital Gift
             Package: Digital Illustrated Book, a Lullaby recording, and a

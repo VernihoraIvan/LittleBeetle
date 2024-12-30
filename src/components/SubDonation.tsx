@@ -7,7 +7,13 @@ import Carousel from "./Carousel";
 import ButtonTo from "./ButtonTo";
 import { useShipment } from "@/zustand/shipmentStore";
 import { nanoid } from "nanoid";
-import PopUpEl from "./PopUpTest";
+import {
+  Select,
+  SelectValue,
+  SelectTrigger,
+  SelectItem,
+  SelectContent,
+} from "./ui/select";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -42,27 +48,77 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     <>
       {/* <section className="h-headerPad bg-primPurple  h-[615px]" /> */}
       <section className=" ">
-        <section className="flex flex-grow justify-center p-[60px] bg-primBeige  ">
+        <section className="flex flex-grow justify-center smd:pt-6 bg-primBeige  ">
           <div
-            className=" xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex gap-10
-        md:flex-col md:w-[480px] "
+            className="  flex smd:gap-0 gap-10 w-full
+        smd:flex-col  "
           >
             <Carousel images={imagePath} />
-            <div className=" popup-container-one          ">
-              <h3
-                className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack text-buttonS font-secondaryBold
-            xl:text-linkS"
-              >
+            <div className="    xl:flex xl:flex-col xl:justify-between xxl:flex xxl:flex-col xxl:justify-between   ">
+              <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold">
                 {title}
               </h3>
-              <p className="text-[24px] font-secondaryRegular xl:text-copyS">
+              <p className="responsive-text font-secondaryRegular ">
                 {description}
               </p>
-              <p className="text-[24px] font-secondaryRegular xl:text-copyS mt-1">
+              <p className="small-responsive-text font-secondaryRegular  mt-1">
                 Size: 21.0 x 29.7 cm
               </p>
               <div className="flex flex-col justify-between mt-2 ">
-                <PopUpEl
+                {/* //////////////////////////////////////////// */}
+
+                <div className="relative w-full big-responsive-text">
+                  <Select onValueChange={(value) => setPrice(value)}>
+                    <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
+                      <SelectValue placeholder="Donation Amount" />
+                    </SelectTrigger>
+                    <SelectContent className="w-full bg-white cursor-pointer">
+                      <SelectItem
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        value="3"
+                      >
+                        3
+                      </SelectItem>
+                      <SelectItem
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        value="5"
+                      >
+                        5
+                      </SelectItem>
+                      <SelectItem
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        value="10"
+                      >
+                        10
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="relative w-full mt-[10px] big-responsive-text">
+                  <Select onValueChange={(value) => setLang(value)}>
+                    <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
+                      <SelectValue placeholder="Language" />
+                    </SelectTrigger>
+                    <SelectContent className="w-full bg-white ">
+                      <SelectItem
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        value="English"
+                      >
+                        English
+                      </SelectItem>
+                      <SelectItem
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        value="Ukrainian"
+                      >
+                        Ukrainian
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* //////////////////////////////////////////// */}
+
+                {/* <PopUpEl
                   defaultVal={"Language"}
                   setValue={setLang}
                   value={["English", "Ukrainian"]}
@@ -71,12 +127,12 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   defaultVal={"Donation Amount"}
                   setValue={setPrice}
                   value={[3, 5, 10]}
-                />
+                /> */}
                 <div
-                  className="flex gap-6 mt-6  select-none
-              xl:mt-[18px]"
+                  className="flex gap-6 mt-[10px]  select-none
+              xl:mt-[18px] xxl:mt-[18px]"
                 >
-                  <p className="font-secondaryRegular text-addCartS text-inputPink xl:text-[18px]">
+                  <p className="font-secondaryRegular responsive-heading text-inputPink ">
                     Quantity
                   </p>
                   <QuantityAdjuster
@@ -88,7 +144,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 </div>
                 <div
                   className={clsx(
-                    "flex gap-5 mt-8 xl:mt-4",
+                    "flex gap-5 mt-[10px] xl:mt-4 xxl:mt-4",
                     isOverlayPrice ? "" : "relative"
                   )}
                 >
@@ -102,15 +158,13 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                         id
                       )
                     }
-                    className="hover:bg-whiteHover transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple text-addCartS bg-primWhite py-3 px-14 
-                  xl:text-[20px] xl:py-2
-                  lg:text-[16px]"
+                    className="hover:bg-whiteHover h-fit-content transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple responsive-heading bg-primWhite py-3 smd:py-1  lg:px-0  xl:py-2"
                   >
                     Add to Cart
                   </button>
                   <ButtonTo
                     to="/checkout/contribution"
-                    style="hover:bg-purpleHover text-center transition duration-300 w-full  font-secondarySBold text-primWhite text-addCartS bg-primPurple py-3 px-14 xl:text-[20px] lg:text-[16px]"
+                    style="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  lg:px-0 xl:py-2 responsive-heading"
                     title="Checkout"
                     onClick={() =>
                       handleAddProduct(

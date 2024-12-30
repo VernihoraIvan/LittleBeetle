@@ -102,3 +102,85 @@
 main {
   overflow-x: hidden;
 }
+
+.custom-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.small-responsive-text {
+  font-size: 12px;
+}
+
+.responsive-text {
+  font-size: 14px; /* Base size for smallest screens */
+}
+
+.big-responsive-text {
+  font-size: 16px;
+}
+
+.responsive-heading {
+  font-size: 18px;
+}
+
+/* For screens 768px and up */
+@media screen and (min-width: 768px) {
+  .responsive-text {
+    font-size: 16px;
+  }
+  .big-responsive-text {
+    font-size: 18px;
+  }
+  .responsive-heading {
+    font-size: 20px;
+  }
+}
+
+/* For screens 1024px and up */
+@media screen and (min-width: 1024px) {
+  .responsive-text {
+    font-size: 16px;
+  }
+  .big-responsive-text {
+    font-size: 18px;
+  }
+  .responsive-heading {
+    font-size: 22px;
+  }
+  .small-responsive-text {
+    font-size: 14px;
+  }
+}
+
+/* For screens 1440px and up */
+@media screen and (min-width: 1440px) {
+  .responsive-text {
+    font-size: 16px;
+  }
+  .big-responsive-text {
+    font-size: 18px;
+  }
+  .responsive-heading {
+    font-size: 24px;
+  }
+  .small-responsive-text {
+    font-size: 14px;
+  }
+}
+
+/* For larger screens (e.g., 1920px and up) */
+@media screen and (min-width: 1564px) {
+  .responsive-text {
+    font-size: 20px;
+  }
+  .big-responsive-text {
+    font-size: 22px;
+  }
+  .responsive-heading {
+    font-size: 28px;
+  }
+  .small-responsive-text {
+    font-size: 16px;
+  }
+}

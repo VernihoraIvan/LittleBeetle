@@ -25,7 +25,7 @@ const QuantityAdjuster = ({
         isOverlay ? "" : "relative"
       )}
     >
-      <Minus className="cursor-pointer " onClick={handleDecrementQuantity} />
+      <Minus className="cursor-pointer  " onClick={handleDecrementQuantity} />
       <p>{quantity}</p>
       <Plus className="cursor-pointer" onClick={handleIncrementQuantity} />
     </div>
