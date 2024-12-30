@@ -5,8 +5,8 @@ import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
 import { useRef } from "react";
 import { FormikProps } from "formik";
-import { MyFormValues } from "@/utilities/interfaces";
 import SummaryUniversal from "../SummaryUniversal";
+import { ShipmentDetails } from "@/zustand/shipmentStore";
 
 const CheckoutShipment = () => {
   const products = useCart((state) => state.items);
@@ -20,8 +20,8 @@ const CheckoutShipment = () => {
     (product) => product.isAGift === false
   );
   const filteredAsGift = products.filter((product) => product.isAGift === true);
-  const subFormsRefs = useRef<FormikProps<MyFormValues>[]>([]);
-  const handleAddSubFormRef = (ref: FormikProps<MyFormValues>) => {
+  const subFormsRefs = useRef<FormikProps<ShipmentDetails>[]>([]);
+  const handleAddSubFormRef = (ref: FormikProps<ShipmentDetails>) => {
     if (ref && !subFormsRefs.current.includes(ref)) {
       subFormsRefs.current.push(ref);
     }

@@ -3,14 +3,13 @@ import { useState } from "react";
 import FormReadress from "./FormReadress";
 import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { FormikProps } from "formik";
-import { MyFormValues } from "@/utilities/interfaces";
 
 export interface ShipmentElProps {
   title: string;
   imgPath?: string[];
   id: string;
   shipment?: ShipmentDetails;
-  onSubmitRef: (instance: FormikProps<MyFormValues>) => void;
+  onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
 }
 
 const ShipmentEl = ({
