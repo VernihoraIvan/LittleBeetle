@@ -3,12 +3,12 @@ import { useCart } from "@/zustand/productStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
 import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
-import { useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 import SummaryUniversal from "../SummaryUniversal";
 import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
 // import { availableCountries } from "@/utilities/data";
 import { deliveryFeeData } from "@/utilities/deliveryFeeData";
+import { useRef } from "react";
 
 interface DeliveryInfo {
   fee: number;
@@ -36,7 +36,7 @@ const CheckoutShipment = () => {
   const products = useCart((state) => state.items);
   const shipment = useShipment((state) => state.shipment);
   const fee = useShipment((state) => state.fee);
-  const setDeliveryFee = useShipment((state) => state.setDeliveryFee);
+  // const setDeliveryFee = useShipment((state) => state.setDeliveryFee);
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
