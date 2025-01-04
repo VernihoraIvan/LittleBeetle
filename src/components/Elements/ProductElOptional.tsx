@@ -4,7 +4,7 @@ import { ProductElOptionalProps } from "@/utilities/interfaces";
 import "reactjs-popup/dist/index.css";
 import SubDonation from "../SubDonation";
 // import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
 
 const ProductElOptional = ({
   title,
@@ -36,6 +36,7 @@ const ProductElOptional = ({
         /> */}
         <div className="bg-primBeige">
           <Sheet>
+            <SheetTitle className="sr-only">{title}</SheetTitle>
             <SheetTrigger className="hover:bg-whiteHover transition duration-300 w-full responsive-heading font-secondarySBold border border-primPurple text-primPurple py-3 block text-center">
               Learn more
             </SheetTrigger>

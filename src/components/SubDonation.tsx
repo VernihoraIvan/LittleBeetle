@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubDonationProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
 import clsx from "clsx";
@@ -14,6 +14,7 @@ import {
   SelectContent,
 } from "./ui/select";
 import { useNavigate } from "react-router-dom";
+import Alert from "@/assets/icons/alert-circle.svg?react";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
@@ -24,6 +25,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
 
   const [price, setPrice] = useState<number>(0);
+  const [customPrice, setCustomPrice] = useState<number | null>(null);
   const [lang, setLang] = useState<string>("English");
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -59,9 +61,13 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     }
   };
 
+  useEffect(() => {
+    console.log(price, "price");
+    console.log(customPrice, "customPrice");
+  }, [price, customPrice]);
+
   return (
     <>
-      {/* <section className="h-headerPad bg-primPurple  h-[615px]" /> */}
       <section className=" ">
         <section className="flex flex-grow justify-center smd:pt-6 bg-primBeige  ">
           <div
@@ -83,27 +89,60 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 <div className="relative w-full big-responsive-text">
                   <Select onValueChange={(value) => setPrice(Number(value))}>
                     <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
-                      <SelectValue placeholder="Donation Amount" />
+                      <SelectValue placeholder="Donation Amount">
+                        {price}
+                      </SelectValue>
                     </SelectTrigger>
                     <SelectContent className="w-full bg-white cursor-pointer">
                       <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="3"
                       >
                         3
                       </SelectItem>
                       <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="5"
                       >
                         5
                       </SelectItem>
                       <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="10"
                       >
                         10
                       </SelectItem>
+                      <div className="flex  justify-between gap-2 px-2 hover:bg-dropHover transition duration-300">
+                        <label htmlFor="customPrice" className="cursor-pointer">
+                          Enter your own amount
+                        </label>
+                        <div className=" py-1">
+                          <input
+                            id="customPrice"
+                            autoComplete="off"
+                            className="w-40 sm:w-20 sm:py-1 px-3 h-10 border border-primPurpleFaintM  "
+                            type="text"
+                            name="priceInput"
+                            placeholder="£"
+                            value={customPrice || ""}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) => setCustomPrice(Number(event.target.value))}
+                            onBlur={(
+                              event: React.FocusEvent<HTMLInputElement>
+                            ) => setPrice(Number(event.target.value))}
+                          ></input>
+                          <div className="flex items-center gap-1">
+                            <Alert className="w-4 h-4 text-inputPink" />
+                            <p className="text-sm text-inputPink min:block hidden">
+                              Minimum Donation: £3
+                            </p>
+                            <p className="text-sm text-inputPink block min:hidden">
+                              Min. Don.: £3
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </SelectContent>
                   </Select>
                 </div>
@@ -114,13 +153,13 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                     </SelectTrigger>
                     <SelectContent className="w-full bg-white ">
                       <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="English"
                       >
                         English
                       </SelectItem>
                       <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="Ukrainian"
                       >
                         Ukrainian

@@ -148,8 +148,9 @@ export interface FormElProps {
 }
 
 export interface DonationOptionProps {
-  setLang: (value: string | number) => void;
-  setPrice: (value: string | number) => void;
+  price: number;
+  setLang: (value: string) => void;
+  setPrice: (value: number) => void;
   setIsChecked: (value: boolean) => void;
   checkboxIsHidden?: boolean;
 }

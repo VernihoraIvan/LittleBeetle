@@ -8,13 +8,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { useState } from "react";
+import Alert from "@/assets/icons/alert-circle.svg?react";
 
 const DonationOption = ({
+  price,
   setLang,
   setPrice,
   setIsChecked,
   checkboxIsHidden,
 }: DonationOptionProps) => {
+  const [customPrice, setCustomPrice] = useState<number | null>(null);
+
   const id = nanoid();
   let isChecked;
 
@@ -27,67 +32,91 @@ const DonationOption = ({
   };
 
   return (
-    <div className="">
-      <h3 className="font-secondaryBold text-buttonS mb-4">
-        Select options for donation
+    <div className="w-full">
+      <h3 className="font-secondaryBold responsive-heading mb-4">
+        Please select your donation amount and the language for the products
+        included in your donation package.
       </h3>
-      {/* <PopUp
-        defaultVal={"Language"}
-        setValue={setLang}
-        value={["English", "Ukrainian"]}
-      />
-      <PopUp
-        defaultVal={"Donation Amount"}
-        setValue={setPrice}
-        value={[3, 5, 10]}
-      /> */}
-      <div className="flex flex-col justify-between mt-2 ">
-        <Select onValueChange={(value) => setPrice(Number(value))}>
-          <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
-            <SelectValue placeholder="Donation Amount" />
-          </SelectTrigger>
-          <SelectContent className="w-full bg-white cursor-pointer">
-            <SelectItem
-              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
-              value="3"
-            >
-              3
-            </SelectItem>
-            <SelectItem
-              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
-              value="5"
-            >
-              5
-            </SelectItem>
-            <SelectItem
-              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
-              value="10"
-            >
-              10
-            </SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="relative w-full mt-[10px] big-responsive-text">
-        <Select onValueChange={(value) => setLang(value)}>
-          <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
-            <SelectValue placeholder="Language" />
-          </SelectTrigger>
-          <SelectContent className="w-full bg-white ">
-            <SelectItem
-              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
-              value="English"
-            >
-              English
-            </SelectItem>
-            <SelectItem
-              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
-              value="Ukrainian"
-            >
-              Ukrainian
-            </SelectItem>
-          </SelectContent>
-        </Select>
+      <div className="smd:w-full w-[420px] ">
+        <div className="flex flex-col justify-between mt-2 ">
+          <Select onValueChange={(value) => setPrice(Number(value))}>
+            <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
+              <SelectValue placeholder="Donation Amount">{price}</SelectValue>
+            </SelectTrigger>
+            <SelectContent className="w-full bg-white cursor-pointer">
+              <SelectItem
+                className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                value="3"
+              >
+                3
+              </SelectItem>
+              <SelectItem
+                className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                value="5"
+              >
+                5
+              </SelectItem>
+              <SelectItem
+                className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                value="10"
+              >
+                10
+              </SelectItem>
+              <div className="flex  justify-between gap-2 px-2 hover:bg-dropHover transition duration-300">
+                <label htmlFor="customPrice" className="cursor-pointer">
+                  Enter your own amount
+                </label>
+                <div className=" py-1">
+                  <input
+                    id="customPrice"
+                    autoComplete="off"
+                    className="w-40 sm:w-20 sm:py-1 px-3 h-10 border border-primPurpleFaintM  "
+                    type="text"
+                    name="priceInput"
+                    placeholder="£"
+                    value={customPrice || ""}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                      setCustomPrice(Number(event.target.value))
+                    }
+                    onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
+                      setPrice(Number(event.target.value))
+                    }
+                  ></input>
+                  <div className="flex items-center gap-1">
+                    <Alert className="w-4 h-4 text-inputPink" />
+                    <p className="text-sm text-inputPink min:block hidden">
+                      Minimum Donation: £3
+                    </p>
+                    <p className="text-sm text-inputPink block min:hidden">
+                      Min. Don.: £3
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="relative w-full mt-[10px] big-responsive-text">
+          <Select onValueChange={(value) => setLang(value)}>
+            <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent className="w-full bg-white ">
+              <SelectItem
+                className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                value="English"
+              >
+                English
+              </SelectItem>
+              <SelectItem
+                className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+                value="Ukrainian"
+              >
+                Ukrainian
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <div className="flex items-center  mt-9">
         {!checkboxIsHidden && (

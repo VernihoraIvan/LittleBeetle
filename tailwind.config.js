@@ -37,6 +37,8 @@ export default {
         // => @media (min-width: 460px and max-width: 760px) { ... }
         sm: { max: "760px" },
         // => @media (max-width: 1023px) { ... }
+        min: { min: "761px" },
+        // => @media (min-width: 761px) { ... }
         smd: { max: "1023px" },
         // => @media (min-width: 640px and max-width: 767px) { ... }
         md: { min: "760px", max: "1023px" },

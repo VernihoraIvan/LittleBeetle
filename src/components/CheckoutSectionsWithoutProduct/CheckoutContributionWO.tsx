@@ -12,8 +12,8 @@ import { nanoid } from "nanoid";
 const CheckoutContributionWO = () => {
   const id = nanoid();
 
-  const [price, setPrice] = useState<number | string>(0);
-  const [lang, setLang] = useState<number | string>("English");
+  const [price, setPrice] = useState<number>(0);
+  const [lang, setLang] = useState<string>("English");
   const [quantity, setQuantity] = useState<number>(1);
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -52,8 +52,8 @@ const CheckoutContributionWO = () => {
 
   return (
     <>
-      <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0  smd:gap-0">
-        <div className="smd:pt-[80px] md:pl-[40px]">
+      <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0 gap-10  smd:gap-0">
+        <div className="smd:pt-[80px] md:pl-[40px] ">
           {donations.length > 0 ? (
             donations.map((product) => (
               <CheckoutContributionEl
@@ -72,6 +72,7 @@ const CheckoutContributionWO = () => {
           ) : (
             <>
               <DonationOption
+                price={price}
                 setLang={setLang}
                 setPrice={setPrice}
                 setIsChecked={setIsChecked}
