@@ -4,7 +4,6 @@ import { useCart } from "@/zustand/productStore";
 import clsx from "clsx";
 import QuantityAdjuster from "./QuantityAdjusterWState";
 import Carousel from "./Carousel";
-import ButtonTo from "./ButtonTo";
 import { useShipment } from "@/zustand/shipmentStore";
 import { nanoid } from "nanoid";
 import {
@@ -14,16 +13,18 @@ import {
   SelectItem,
   SelectContent,
 } from "./ui/select";
+import { useNavigate } from "react-router-dom";
 
 const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
   const setFee = useShipment((state) => state.setFee);
   const id = nanoid();
+  const navigate = useNavigate();
 
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
 
-  const [price, setPrice] = useState<string | number>(0);
-  const [lang, setLang] = useState<string | number>("English");
+  const [price, setPrice] = useState<number>(0);
+  const [lang, setLang] = useState<string>("English");
   const [quantity, setQuantity] = useState<number>(1);
 
   const handleAddProduct = (
@@ -37,10 +38,24 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
       // console.log(title, quantity, price, lang, false, id);
       addProduct(title, quantity, price, lang, false, id);
       // console.log(id);
-      setPrice(0);
+      // setPrice(0);
       setIsOverlayPrice(false);
       setFee(id, price, quantity);
       setQuantity(1);
+    }
+  };
+
+  const handleToCheckout = (
+    title: string,
+    price: number,
+    quantity: number,
+    lang: string,
+    id: string
+  ) => {
+    console.log(price, quantity, lang, id);
+    if (price > 2 && quantity >= 1) {
+      handleAddProduct(title, price, quantity, lang, id);
+      navigate("/checkout/contribution");
     }
   };
 
@@ -68,7 +83,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 {/* //////////////////////////////////////////// */}
 
                 <div className="relative w-full big-responsive-text">
-                  <Select onValueChange={(value) => setPrice(value)}>
+                  <Select onValueChange={(value) => setPrice(Number(value))}>
                     <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
                       <SelectValue placeholder="Donation Amount" />
                     </SelectTrigger>
@@ -162,20 +177,15 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   >
                     Add to Cart
                   </button>
-                  <ButtonTo
-                    to="/checkout/contribution"
-                    style="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  lg:px-0 xl:py-2 responsive-heading"
-                    title="Checkout"
+
+                  <button
+                    className="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  lg:px-0 xl:py-2 responsive-heading"
                     onClick={() =>
-                      handleAddProduct(
-                        title,
-                        price as number,
-                        quantity,
-                        lang as string,
-                        id
-                      )
+                      handleToCheckout(title, price, quantity, lang, id)
                     }
-                  />
+                  >
+                    Checkout
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,9 +1,9 @@
 import { ProductElOptionalProps } from "@/utilities/interfaces";
 // import ButtonTo from "../ButtonTo";
-import Popup from "reactjs-popup";
+// import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import SubDonation from "../SubDonation";
-import { useState } from "react";
+// import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 const ProductElOptional = ({
@@ -11,10 +11,10 @@ const ProductElOptional = ({
   imgPath,
   description,
 }: ProductElOptionalProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
+  // const [isOpen, setIsOpen] = useState(false);
+  // const openModal = () => setIsOpen(true);
+  // const closeModal = () => setIsOpen(false);;
+  //
   return (
     <li className="flex-1">
       <img
@@ -25,7 +25,7 @@ const ProductElOptional = ({
       <h3 className=" mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold ">
         {title}
       </h3>
-      <div className="flex justify-between mt-9">
+      <div className=" mt-9">
         {/* <ButtonTo
           to={`${to}`}
           style="hover:bg-whiteHover transition duration-300 w-full text-addCartS font-secondarySBold border border-primPurple text-primPurple py-3 block text-center
@@ -36,10 +36,12 @@ const ProductElOptional = ({
         /> */}
         <div className="bg-primBeige">
           <Sheet>
-            <SheetTrigger>Open</SheetTrigger>
+            <SheetTrigger className="hover:bg-whiteHover transition duration-300 w-full responsive-heading font-secondarySBold border border-primPurple text-primPurple py-3 block text-center">
+              Learn more
+            </SheetTrigger>
             <SheetContent
-              className="h-fit-content fixed custom-scrollbar xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex gap-10 overflow-y-auto
-        md:flex-col smd:w-[480px]  left-[50%]  top-1/2 flex w-[90vw] max-w-[1564px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-md "
+              className="h-fit-content fixed custom-scrollbar xxl:w-contWXXL xl:w-contWXL lg:w-contWLG   flex gap-10 overflow-y-auto
+        md:flex-col  left-[50%]  top-1/2 flex w-[90vw] max-w-[1564px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-md "
             >
               {/* <SheetContent className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-fit-content custom-scrollbar xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px] xxs:w-contWXSS flex gap-10 overflow-y-auto md:flex-col smd:w-[480px] w-[90vw] max-w-[1564px] rounded-md"> */}
 
@@ -59,7 +61,7 @@ const ProductElOptional = ({
           </Sheet>
         </div>
 
-        <Popup
+        {/* <Popup
           className="popup-content-two"
           contentStyle={{
             width: "100%", // Set the desired width
@@ -86,7 +88,7 @@ const ProductElOptional = ({
             description={description}
             imagePath={imgPath}
           />
-        </Popup>
+        </Popup> */}
       </div>
     </li>
   );

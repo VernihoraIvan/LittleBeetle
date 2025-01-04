@@ -153,3 +153,9 @@ export interface DonationOptionProps {
   setIsChecked: (value: boolean) => void;
   checkboxIsHidden?: boolean;
 }
+
+export interface DeliveryFeeData {
+  countries: string[];
+  fee: number;
+  duration: number;
+}

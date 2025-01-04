@@ -1,7 +1,7 @@
 import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
 import PrivacySec from "./PrivacySec";
 import { useNavigate } from "react-router-dom";
-import { countries } from "@/utilities/data";
+import { availableCountries } from "@/utilities/data";
 import FormEl from "./Elements/FormEl";
 import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { SubmitSchema } from "@/utilities/FormSchema";
@@ -89,7 +89,7 @@ const DetailsForm = () => {
                   )}
                 >
                   <option className="" value="w-full" label="Select" />
-                  {countries.map((country) => (
+                  {availableCountries.map((country) => (
                     <option key={country} value={country} label={country} />
                   ))}
                 </Field>

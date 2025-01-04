@@ -17,6 +17,8 @@ interface Fee {
   price: number;
   quantity: number;
   id: string;
+  deliveryFee: number;
+  duration: number;
 }
 
 export interface ShipmentState {
@@ -28,6 +30,7 @@ export interface ShipmentState {
   removeFee: (id: string) => void;
   resetShipments: () => void;
   resetShipmentsMain: () => void;
+  setDeliveryFee: (id: string, deliveryFee: number, duration: number) => void;
 }
 
 export const useShipment = create(
@@ -65,7 +68,17 @@ export const useShipment = create(
       },
       setFee: (id: string, price: number, quantity: number) => {
         set((state: ShipmentState) => ({
-          fee: [...state.fee, { id, price, quantity }],
+          fee: [
+            ...state.fee,
+            { id, price, quantity, deliveryFee: 0, duration: 0 },
+          ],
+        }));
+      },
+      setDeliveryFee: (id: string, deliveryFee: number, duration: number) => {
+        set((state: ShipmentState) => ({
+          fee: state.fee.map((item) =>
+            item.id === id ? { ...item, deliveryFee, duration } : item
+          ),
         }));
       },
       removeFee: (id: string) => {

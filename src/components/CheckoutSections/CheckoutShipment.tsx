@@ -3,13 +3,40 @@ import { useCart } from "@/zustand/productStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
 import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { FormikProps } from "formik";
 import SummaryUniversal from "../SummaryUniversal";
-import { ShipmentDetails } from "@/zustand/shipmentStore";
+import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
+// import { availableCountries } from "@/utilities/data";
+import { deliveryFeeData } from "@/utilities/deliveryFeeData";
+
+interface DeliveryInfo {
+  fee: number;
+  duration: number;
+}
+
+function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
+  const deliveryInfo = deliveryFeeData.find((data) =>
+    data.countries.some(
+      (country) => country.toLowerCase() === countryName.toLowerCase()
+    )
+  );
+
+  if (!deliveryInfo) {
+    return null;
+  }
+
+  return {
+    fee: deliveryInfo.fee,
+    duration: deliveryInfo.duration,
+  };
+}
 
 const CheckoutShipment = () => {
   const products = useCart((state) => state.items);
+  const shipment = useShipment((state) => state.shipment);
+  const fee = useShipment((state) => state.fee);
+  const setDeliveryFee = useShipment((state) => state.setDeliveryFee);
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
@@ -32,6 +59,16 @@ const CheckoutShipment = () => {
     });
     setStage(4);
   };
+
+  const deliveryInfo = getDeliveryInfoByCountry(shipment.country || "");
+  // useEffect(() => {
+  //   if (deliveryInfo) {
+  //     setDeliveryFee(fee.id, deliveryInfo.fee, deliveryInfo.duration);
+  //   }
+  // }, [deliveryInfo]);
+
+  console.log("deliveryInfo", deliveryInfo);
+  console.log(fee, "fee");
   return (
     <section className="py-10 flex flex-col ">
       <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10 md:pt-[80px]">
