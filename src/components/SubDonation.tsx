@@ -80,8 +80,6 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                 Size: 21.0 x 29.7 cm
               </p>
               <div className="flex flex-col justify-between mt-2 ">
-                {/* //////////////////////////////////////////// */}
-
                 <div className="relative w-full big-responsive-text">
                   <Select onValueChange={(value) => setPrice(Number(value))}>
                     <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
@@ -130,19 +128,6 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                     </SelectContent>
                   </Select>
                 </div>
-
-                {/* //////////////////////////////////////////// */}
-
-                {/* <PopUpEl
-                  defaultVal={"Language"}
-                  setValue={setLang}
-                  value={["English", "Ukrainian"]}
-                />
-                <PopUpEl
-                  defaultVal={"Donation Amount"}
-                  setValue={setPrice}
-                  value={[3, 5, 10]}
-                /> */}
                 <div
                   className="flex gap-6 mt-[10px]  select-none
               xl:mt-[18px] xxl:mt-[18px]"

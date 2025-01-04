@@ -1,7 +1,13 @@
 import { nanoid } from "nanoid";
 import { useDonation } from "@/zustand/donationStore";
 import { DonationOptionProps } from "@/utilities/interfaces";
-import PopUp from "./PopUpTest";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 const DonationOption = ({
   setLang,
@@ -21,11 +27,11 @@ const DonationOption = ({
   };
 
   return (
-    <div className="w-[720px]">
+    <div className="">
       <h3 className="font-secondaryBold text-buttonS mb-4">
         Select options for donation
       </h3>
-      <PopUp
+      {/* <PopUp
         defaultVal={"Language"}
         setValue={setLang}
         value={["English", "Ukrainian"]}
@@ -34,7 +40,55 @@ const DonationOption = ({
         defaultVal={"Donation Amount"}
         setValue={setPrice}
         value={[3, 5, 10]}
-      />
+      /> */}
+      <div className="flex flex-col justify-between mt-2 ">
+        <Select onValueChange={(value) => setPrice(Number(value))}>
+          <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
+            <SelectValue placeholder="Donation Amount" />
+          </SelectTrigger>
+          <SelectContent className="w-full bg-white cursor-pointer">
+            <SelectItem
+              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+              value="3"
+            >
+              3
+            </SelectItem>
+            <SelectItem
+              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+              value="5"
+            >
+              5
+            </SelectItem>
+            <SelectItem
+              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+              value="10"
+            >
+              10
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="relative w-full mt-[10px] big-responsive-text">
+        <Select onValueChange={(value) => setLang(value)}>
+          <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
+            <SelectValue placeholder="Language" />
+          </SelectTrigger>
+          <SelectContent className="w-full bg-white ">
+            <SelectItem
+              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+              value="English"
+            >
+              English
+            </SelectItem>
+            <SelectItem
+              className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
+              value="Ukrainian"
+            >
+              Ukrainian
+            </SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       <div className="flex items-center  mt-9">
         {!checkboxIsHidden && (
           <label

@@ -10,20 +10,24 @@ const Footer = () => {
           <div className="">
             <div className="flex gap-6 mb-6 smd:gap-5 xs:hidden ">
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/company/creative-branch-org"
                 target="_blank"
                 rel="noreferrer"
               >
                 <LinkedInLogo />
               </a>
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/littlebeetle.charity?igsh=ZnFkcmR5bXExbzAx"
                 target="_blank"
                 rel="noreferrer"
               >
                 <InstagramLogo />
               </a>
-              <a href="mailto:tes@mail.com" target="_blank" rel="noreferrer">
+              <a
+                href="mailto:maria@creativebranch.org"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <MailLogo />
               </a>
             </div>

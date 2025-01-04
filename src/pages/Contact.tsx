@@ -23,8 +23,9 @@ const Contact = () => {
               "
               >
                 <a
-                  href="https://www.linkedin.com/"
+                  href="https://www.linkedin.com/company/creative-branch-org"
                   target="_blank"
+                  rel="noreferrer"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center 
                   xl:h-[240px] 
                   lg:h-[170px]
@@ -54,8 +55,9 @@ const Contact = () => {
                   </div>
                 </a>
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/littlebeetle.charity?igsh=ZnFkcmR5bXExbzAx"
                   target="_blank"
+                  rel="noreferrer"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
                   xl:h-[240px] 
                   lg:h-[170px]
@@ -84,8 +86,9 @@ const Contact = () => {
                   </div>
                 </a>
                 <a
-                  href="mailto:tes@mail.com"
+                  href="mailto:maria@creativebranch.org"
                   target="_blank"
+                  rel="noreferrer"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
                   xl:h-[240px] 
                   lg:h-[170px]
