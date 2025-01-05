@@ -21,7 +21,7 @@ const CheckoutSection = () => {
     }
   };
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT pb-purchElH smd:py-[40px] ">
+    <section className="flex justify-center bg-primBeige pt-bookPT pb-purchElH xxs:py-0 xsm:py-10 md:py-[40px] ">
       <div className="  lg:px-[60px] md:px-[40px] w-full">{renderStep()}</div>
     </section>
   );

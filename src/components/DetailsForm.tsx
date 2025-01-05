@@ -25,10 +25,8 @@ const DetailsForm = () => {
 
   return (
     <section
-      className="pt-buttonP flex text-[24px]
-      xl:text-[18px]
-      lg:text-[16px]
-      smd:text-[16px]"
+      className=" flex responsive-text  sm:pt-10  pt-20
+      "
     >
       <Formik
         className="w-[50%] "
@@ -133,7 +131,7 @@ const DetailsForm = () => {
           xl:text-[20px]
           lg:text-[18px]
           smd:text-[16px]
-          sm:w-full sm:px-0"
+          sm:w-full sm:px-0 xs:mb-10"
               type="submit"
               onClick={() => setStage(3)}
             >

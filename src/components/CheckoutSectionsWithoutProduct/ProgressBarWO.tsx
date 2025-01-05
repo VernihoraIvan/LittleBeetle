@@ -35,7 +35,7 @@ const ProgressBarWO = () => {
             xl:text-copyS
             lg:text-copyS lg:w-[120px]
             md:text-[14px] md:w-[125px] 
-            sm:text-[12px]"
+            sm:text-[12px] "
             >
               Your Donation Cart
             </p>

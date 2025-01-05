@@ -38,7 +38,7 @@ const DetailsFormWO = () => {
 
   console.log("adressStore: ", adressStore);
   return (
-    <section className="pt-buttonP">
+    <section className="pt-buttonP ">
       <Formik
         initialValues={defaultValues}
         validationSchema={SubmitSchemaWO}

@@ -1,6 +1,6 @@
 const PrivacySec = () => {
   return (
-    <section className="mb-bookPB mt-bookPT w-full ">
+    <section className="xxl:my-bookPB xl:my-20 lg:my-10 smd:my-10 w-full ">
       <h3
         className="text-[24px] font-secondaryBold
       xl:text-[22px]

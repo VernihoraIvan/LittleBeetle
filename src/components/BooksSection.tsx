@@ -5,7 +5,7 @@ import ButtonTo from "./ButtonTo";
 
 const BooksSection = () => {
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT pb-bookPB smd:px-8">
+    <section className="flex justify-center bg-primBeige pt-bookPT smd:pt-20 sm:pt-10  pb-bookPB smd:px-8">
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         <h2
           className="font-primaryBold mb-2 text-primPurple  text-titleS

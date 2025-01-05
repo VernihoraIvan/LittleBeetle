@@ -36,7 +36,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     lang: string,
     id: string
   ) => {
-    if (price > 2) {
+    if (price > 2 && quantity >= 1) {
       // console.log(title, quantity, price, lang, false, id);
       addProduct(title, quantity, price, lang, false, id);
       // console.log(id);
@@ -120,8 +120,10 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                           <input
                             id="customPrice"
                             autoComplete="off"
-                            className="w-40 sm:w-20 sm:py-1 px-3 h-10 border border-primPurpleFaintM  "
-                            type="text"
+                            className="w-40 sm:w-20 sm:py-1 px-3 h-10 border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            type="number"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                             name="priceInput"
                             placeholder="£"
                             value={customPrice || ""}
@@ -131,7 +133,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                             onBlur={(
                               event: React.FocusEvent<HTMLInputElement>
                             ) => setPrice(Number(event.target.value))}
-                          ></input>
+                          />
                           <div className="flex items-center gap-1">
                             <Alert className="w-4 h-4 text-inputPink" />
                             <p className="text-sm text-inputPink min:block hidden">

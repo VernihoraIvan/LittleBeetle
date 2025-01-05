@@ -4,7 +4,7 @@ const Goal = () => {
   return (
     <section>
       <div className=" bg-gradient-to-b from-primPurple to-primPurple h-screen smd:h-auto ">
-        <div className="relative  flex justify-center items-center w-full h-full smd:h-auto smd:py-[140px] smd:px-8">
+        <div className="relative  flex justify-center items-center w-full h-full smd:h-auto sm:py-20 md:py-[140px]  smd:px-8">
           <div className="absolute  inset-0 mix-blend-luminosity bg-cover object-fit opacity-30 bg-about-bg2 bg-no-repeat" />
           <div
             className="relative flex justify-between   xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS
