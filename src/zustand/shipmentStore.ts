@@ -11,6 +11,8 @@ export interface ShipmentDetails {
   street_adress2?: string;
   city?: string;
   postal_code?: string;
+  delivery_fee: number;
+  duration: number;
 }
 
 interface Fee {
@@ -31,6 +33,11 @@ export interface ShipmentState {
   resetShipments: () => void;
   resetShipmentsMain: () => void;
   setDeliveryFee: (id: string, deliveryFee: number, duration: number) => void;
+  // setShipmentDeliveryFee: (
+  //   id: string,
+  //   deliveryFee: number,
+  //   duration: number
+  // ) => void;
 }
 
 export const useShipment = create(
@@ -46,6 +53,8 @@ export const useShipment = create(
         street_adress2: "",
         city: "",
         postal_code: "",
+        delivery_fee: 0,
+        duration: 0,
       },
       fee: [],
       resetShipmentsMain: () => {
@@ -60,6 +69,8 @@ export const useShipment = create(
             street_adress2: "",
             city: "",
             postal_code: "",
+            delivery_fee: 0,
+            duration: 0,
           },
         });
       },
@@ -75,12 +86,29 @@ export const useShipment = create(
         }));
       },
       setDeliveryFee: (id: string, deliveryFee: number, duration: number) => {
+        console.log(id, "id");
+        console.log(deliveryFee, "deliveryFee");
+        console.log(duration, "duration");
         set((state: ShipmentState) => ({
           fee: state.fee.map((item) =>
             item.id === id ? { ...item, deliveryFee, duration } : item
           ),
         }));
       },
+      // setShipmentDeliveryFee: (
+      //   id: string,
+      //   deliveryFee: number,
+      //   duration: number
+      // ) => {
+      //   set((state: ShipmentState) => ({
+      //     shipment: state.shipment.map((item) =>
+      //       item.id === id
+      //         ? { ...item, delivery_fee: deliveryFee, duration: duration }
+      //         : item
+      //     ),
+      //   }));
+      // },
+
       removeFee: (id: string) => {
         set(({ fee }) => ({
           fee: fee.filter((item) => item.id !== id),
@@ -101,6 +129,8 @@ export const useShipment = create(
             street_adress2: "",
             city: "",
             postal_code: "",
+            delivery_fee: 0,
+            duration: 0,
           },
         });
       },

@@ -10,6 +10,7 @@ const ProductElOptional = ({
   title,
   imgPath,
   description,
+  weight,
 }: ProductElOptionalProps) => {
   // const [isOpen, setIsOpen] = useState(false);
   // const openModal = () => setIsOpen(true);
@@ -57,6 +58,7 @@ const ProductElOptional = ({
                 title={title}
                 description={description}
                 imagePath={imgPath}
+                weight={weight}
               />
             </SheetContent>
           </Sheet>

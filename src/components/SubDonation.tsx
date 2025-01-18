@@ -16,7 +16,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import Alert from "@/assets/icons/alert-circle.svg?react";
 
-const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
+const SubDonation = ({
+  title,
+  description,
+  imagePath,
+  weight,
+}: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
   const setFee = useShipment((state) => state.setFee);
   const id = nanoid();
@@ -34,13 +39,11 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     price: number,
     quantity: number,
     lang: string,
-    id: string
+    id: string,
+    weight: number
   ) => {
     if (price > 2 && quantity >= 1) {
-      // console.log(title, quantity, price, lang, false, id);
-      addProduct(title, quantity, price, lang, false, id);
-      // console.log(id);
-      // setPrice(0);
+      addProduct(title, quantity, price, lang, false, id, weight * quantity);
       setIsOverlayPrice(false);
       setFee(id, price, quantity);
       setQuantity(1);
@@ -52,19 +55,16 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
     price: number,
     quantity: number,
     lang: string,
-    id: string
+    id: string,
+    weight: number
   ) => {
-    console.log(price, quantity, lang, id);
     if (price > 2 && quantity >= 1) {
-      handleAddProduct(title, price, quantity, lang, id);
+      handleAddProduct(title, price, quantity, lang, id, weight);
       navigate("/checkout/contribution");
     }
   };
 
-  useEffect(() => {
-    console.log(price, "price");
-    console.log(customPrice, "customPrice");
-  }, [price, customPrice]);
+  useEffect(() => {}, [price, customPrice]);
 
   return (
     <>
@@ -196,7 +196,8 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                         price as number,
                         quantity,
                         lang as string,
-                        id
+                        id,
+                        weight
                       )
                     }
                     className="hover:bg-whiteHover h-fit-content transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple responsive-heading bg-primWhite py-3 smd:py-1  lg:px-0  xl:py-2"
@@ -207,7 +208,7 @@ const SubDonation = ({ title, description, imagePath }: SubDonationProps) => {
                   <button
                     className="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  lg:px-0 xl:py-2 responsive-heading"
                     onClick={() =>
-                      handleToCheckout(title, price, quantity, lang, id)
+                      handleToCheckout(title, price, quantity, lang, id, weight)
                     }
                   >
                     Checkout

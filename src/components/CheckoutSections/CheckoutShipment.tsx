@@ -1,18 +1,23 @@
 import ShipmentEl from "../Elements/ShipmentEl";
-import { useCart } from "@/zustand/productStore";
+import { itemProps, useCart } from "@/zustand/productStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
 import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
 import { FormikProps } from "formik";
 import SummaryUniversal from "../SummaryUniversal";
-import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
+import { ShipmentDetails } from "@/zustand/shipmentStore";
 // import { availableCountries } from "@/utilities/data";
 import { deliveryFeeData } from "@/utilities/deliveryFeeData";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 interface DeliveryInfo {
   fee: number;
   duration: number;
+}
+
+interface DeliveryInfoSummary {
+  productId: string;
+  deliveryFee: number;
 }
 
 function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
@@ -34,9 +39,67 @@ function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
 
 const CheckoutShipment = () => {
   const products = useCart((state) => state.items);
-  const shipment = useShipment((state) => state.shipment);
-  const fee = useShipment((state) => state.fee);
+  //only for summary
+  const allDeliveryFees: DeliveryInfoSummary[] = [];
+
+  // useEffect(() => {
+  //   setShipmentDeliveryFee()
+  // }, [products]);
+  const setShipmentDeliveryFee = useCart(
+    (state) => state.setShipmentDeliveryFee
+  );
+
+  const calculateDeliveryFee = (product: itemProps) => {
+    const deliveryInfo = getDeliveryInfoByCountry(
+      product.shipment?.country || ""
+    );
+    if (deliveryInfo) {
+      console.log("deliveryInfo.fee", deliveryInfo.fee);
+      return deliveryInfo.fee;
+    }
+    console.log("deliveryInfo.fee 00000");
+    return 0;
+  };
+
+  useEffect(() => {
+    // Create all delivery info objects first
+    const newDeliveryFees = products.map((element) => ({
+      productId: element.id,
+      deliveryFee: element.shipment.delivery_fee,
+    }));
+
+    // Update allDeliveryFees once
+    allDeliveryFees.push(...newDeliveryFees);
+
+    // Batch all the setShipmentDeliveryFee calls
+    products.forEach((element) => {
+      console.log("element", element);
+      setShipmentDeliveryFee(
+        element.id,
+        calculateDeliveryFee(element),
+        element.shipment.duration
+      );
+      console.log("products", products);
+    });
+
+    console.log("products", products);
+    console.log("allDeliveryFees", allDeliveryFees);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Add setShipmentDeliveryFee to dependencies
+
+  // const removeFee = useShipment((state) => state.removeFee);
+  // useEffect(() => {
+  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
+  //   removeFee("V1V4L3Y5jnkME78imkZ70");
+  //   removeFee("E7Tp751iRpILUUmhmIsEc");
+  //   removeFee("qwDsF6NQUOk08GIvs7SAp");
+  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
+  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
+  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
+  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
+  // }, []);
   // const setDeliveryFee = useShipment((state) => state.setDeliveryFee);
+
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
@@ -46,29 +109,43 @@ const CheckoutShipment = () => {
   const filteredForMyself = products.filter(
     (product) => product.isAGift === false
   );
+  // const setShipmentDeliveryFee = useCart(
+  //   (state) => state.setShipmentDeliveryFee
+  // );
   const filteredAsGift = products.filter((product) => product.isAGift === true);
   const subFormsRefs = useRef<FormikProps<ShipmentDetails>[]>([]);
+
   const handleAddSubFormRef = (ref: FormikProps<ShipmentDetails>) => {
     if (ref && !subFormsRefs.current.includes(ref)) {
       subFormsRefs.current.push(ref);
     }
   };
+
   const handleSubmitAllForms = () => {
     subFormsRefs.current.forEach((formik) => {
       formik.submitForm();
     });
+
+    // Add delivery fees for each product
+    // products.forEach((product) => {
+    //   const deliveryInfo = getDeliveryInfoByCountry(
+    //     product.shipment?.country || ""
+    //   );
+    // if (deliveryInfo) {
+    //   setShipmentDeliveryFee(
+    //     product.id,
+    //     deliveryInfo.fee,
+    //     deliveryInfo.duration
+    //   );
+    // }
+    // }
+    // );
+
     setStage(4);
   };
 
-  const deliveryInfo = getDeliveryInfoByCountry(shipment.country || "");
-  // useEffect(() => {
-  //   if (deliveryInfo) {
-  //     setDeliveryFee(fee.id, deliveryInfo.fee, deliveryInfo.duration);
-  //   }
-  // }, [deliveryInfo]);
+  console.log("products", products);
 
-  console.log("deliveryInfo", deliveryInfo);
-  console.log(fee, "fee");
   return (
     <section className="py-10 flex flex-col ">
       <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10 md:pt-[80px]">

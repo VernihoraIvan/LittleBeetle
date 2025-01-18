@@ -10,6 +10,7 @@ import { useStage } from "@/zustand/stageStore";
 import { nanoid } from "nanoid";
 import { useMainStore } from "@/zustand/mainOrderStore";
 import clsx from "clsx";
+// import { useEffect } from "react";
 
 const DetailsForm = () => {
   const navigate = useNavigate();
@@ -18,11 +19,15 @@ const DetailsForm = () => {
   const submitShipment = useMainStore((state) => state.submitForm);
   const setDefaultAdress = useMainStore((state) => state.setDefaultAdress);
   const id = nanoid();
-  const shipment = useMainStore((state) => state.shipment);
+  // const shipment = useMainStore((state) => state.shipment);
 
-  console.log("shipment IN dETAILS FORM MAINE STORE: ", shipment);
-  console.log("shipmentStore IN dETAILS FORM MAINE STORE: ", shipmentStore);
+  // console.log("shipment IN dETAILS FORM MAINE STORE: ", shipment);
+  // console.log("shipmentStore IN dETAILS FORM MAINE STORE: ", shipmentStore);
+  // const resetShipment = useShipment((state) => state.resetShipments);
 
+  // useEffect(() => {
+  //   resetShipment();
+  // }, [resetShipment]);
   return (
     <section
       className=" flex responsive-text  sm:pt-10  pt-20
@@ -37,11 +42,8 @@ const DetailsForm = () => {
           { setSubmitting }: FormikHelpers<ShipmentDetails>
         ) => {
           setDefaultAdress(values);
-          console.log("test0");
           setSubmitting(false);
-          console.log("test1");
           submitShipment(values, id);
-          console.log("test2");
           navigate("/checkout/shipment");
         }}
       >

@@ -48,8 +48,6 @@ const CheckoutContributionWO = () => {
     }
   };
 
-  console.log(donations);
-
   return (
     <>
       <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0 gap-10  smd:gap-0">

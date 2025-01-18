@@ -19,6 +19,7 @@ export const includedProducts = [
       "Crafted to inspire hope and bring joy to bedtime. You can read it together or explore the beautiful world our illustrator created, with exciting finds to discover with every reading.",
     imagePath: [digitalBook],
     to: "/donation/digital-book",
+    weight: 0,
   },
   {
     title: "Lullaby",
@@ -27,6 +28,7 @@ export const includedProducts = [
       "A soothing lullaby recording, created to bring comfort to young hearts—both those who are safe at home and those whose homes are touched by conflict. It pairs perfectly with our illustrated book but is equally enchanting on its own.",
     imagePath: [lullaby],
     to: "/donation/lullaby",
+    weight: 0,
   },
   {
     title: "Digital Donation Certificate",
@@ -35,6 +37,7 @@ export const includedProducts = [
       "A personalised digital certificate acknowledging your support for children's psychological rehabilitation.",
     imagePath: [certificate],
     to: "/donation/certificate",
+    weight: 0,
   },
 ];
 
@@ -46,6 +49,7 @@ export const extraProducts = [
       "one sentence description one sentence description one sentence description one sentence description.",
     imagePath: [book1, book2, book3],
     to: "/donation/book",
+    weight: 2,
   },
   {
     title: "Poster",
@@ -54,6 +58,7 @@ export const extraProducts = [
       "one sentence description one sentence description one sentence description one sentence description.",
     imagePath: [poster, poster1],
     to: "/donation/poster",
+    weight: 2,
   },
   {
     title: "Postcards",
@@ -62,6 +67,7 @@ export const extraProducts = [
       "one sentence description one sentence description one sentence description one sentence description.",
     imagePath: [postcard, postcard1, postcard2, postcard3],
     to: "/donation/postcards",
+    weight: 1,
   },
 ];
 

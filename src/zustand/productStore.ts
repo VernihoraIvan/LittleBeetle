@@ -9,6 +9,7 @@ export interface itemProps {
   product_language: string;
   isAGift: boolean;
   id: string;
+  weight: number;
   shipment: ShipmentDetails;
 }
 
@@ -26,7 +27,8 @@ export interface CartState {
     price: number,
     product_language: string,
     isAGift: boolean,
-    id: string
+    id: string,
+    weight: number
   ) => void;
   removeFromCart: (id: string) => void;
   adjustCart: (id: string, quantity: number, price: number) => void;
@@ -36,6 +38,11 @@ export interface CartState {
   getQuantity: (id: string) => number;
   setAGift: (id: string, checked: boolean) => void;
   addShipment: (shipment: ShipmentDetails, id: string) => void;
+  setShipmentDeliveryFee: (
+    id: string,
+    deliveryFee: number,
+    duration: number
+  ) => void;
 }
 
 export interface LanguageState {
@@ -60,7 +67,8 @@ export const useCart = create(
         price: number,
         product_language: string,
         isAGift: boolean,
-        id: string
+        id: string,
+        weight: number
       ) => {
         set((state: CartState) => ({
           items: state.items.some(
@@ -80,6 +88,7 @@ export const useCart = create(
                   product_language,
                   id,
                   isAGift,
+                  weight,
                   shipment: {
                     first_name: "",
                     last_name: "",
@@ -90,6 +99,8 @@ export const useCart = create(
                     street_adress2: "",
                     city: "",
                     postal_code: "",
+                    delivery_fee: 0,
+                    duration: 0,
                   },
                 },
               ],
@@ -104,6 +115,26 @@ export const useCart = create(
         set((state: CartState) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, shipment: shipment } : item
+          ),
+        }));
+      },
+      setShipmentDeliveryFee: (
+        id: string,
+        deliveryFee: number,
+        duration: number
+      ) => {
+        set((state: CartState) => ({
+          items: state.items.map((item) =>
+            item.id === id && item.shipment
+              ? {
+                  ...item,
+                  shipment: {
+                    ...item.shipment,
+                    delivery_fee: deliveryFee,
+                    duration: duration,
+                  },
+                }
+              : item
           ),
         }));
       },

@@ -10,6 +10,8 @@ const SubDonationPage = () => {
     .concat(extraProducts)
     .find((el) => el.element === product);
 
+  console.log(productToDisplay, "productToDisplay");
+
   return (
     <>
       {productToDisplay && (
@@ -17,6 +19,7 @@ const SubDonationPage = () => {
           title={productToDisplay.title}
           description={productToDisplay.description}
           imagePath={productToDisplay.imagePath}
+          weight={productToDisplay.weight}
         />
       )}
     </>

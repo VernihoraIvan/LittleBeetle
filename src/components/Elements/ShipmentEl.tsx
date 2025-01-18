@@ -12,15 +12,8 @@ export interface ShipmentElProps {
   onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
 }
 
-const ShipmentEl = ({
-  title,
-  imgPath,
-  id,
-  shipment,
-  onSubmitRef,
-}: ShipmentElProps) => {
+const ShipmentEl = ({ title, imgPath, id, onSubmitRef }: ShipmentElProps) => {
   const [isMyAdress, setIsMyAdress] = useState(true);
-  console.log("shipment", shipment);
   return (
     <div className="smd:w-[310px]">
       <div className="mt-8">

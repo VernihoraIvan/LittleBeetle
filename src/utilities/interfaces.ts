@@ -44,12 +44,14 @@ export interface ProductElOptionalProps {
   title: string;
   description: string;
   imgPath: string[];
+  weight: number;
 }
 
 export interface SubDonationProps {
   title: string;
   description: string;
   imagePath: string[];
+  weight: number;
 }
 
 export interface TitleProps {
