@@ -9,6 +9,7 @@ import { ShipmentDetails } from "@/zustand/shipmentStore";
 // import { availableCountries } from "@/utilities/data";
 import { deliveryFeeData } from "@/utilities/deliveryFeeData";
 import { useRef, useEffect, useState } from "react";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 
 interface DeliveryInfo {
   fee: number;
@@ -49,6 +50,7 @@ function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
   );
 
   if (!deliveryInfo) {
+    console.log(`No delivery info found for country: ${countryName}`);
     return null;
   }
 
@@ -119,6 +121,7 @@ function groupProductsByAddress(products: itemProps[]): OrderLine[] {
 }
 
 const CheckoutShipment = () => {
+  const [isCountryChanged, setIsCountryChanged] = useState(false);
   const products = useCart((state) => state.items);
   //only for summary
   // const allDeliveryFees: DeliveryInfoSummary[] = [];
@@ -126,7 +129,8 @@ const CheckoutShipment = () => {
   const setShipmentDeliveryFee = useCart(
     (state) => state.setShipmentDeliveryFee
   );
-  const [orderLines, setOrderLines] = useState<OrderLine[]>([]);
+  const { orderLines, setOrderLines } = useOrderLines();
+  console.log("orderLines", orderLines);
 
   // const orderLine = [];
 
@@ -138,6 +142,13 @@ const CheckoutShipment = () => {
   //     });
   //   });
   // };
+
+  useEffect(() => {
+    if (isCountryChanged) {
+      subFormsRefs.current.forEach((formik) => formik.submitForm());
+      setIsCountryChanged(false);
+    }
+  }, [isCountryChanged]);
 
   const calculateDeliveryFee = (product: itemProps) => {
     const deliveryInfo = getDeliveryInfoByCountry(
@@ -153,7 +164,14 @@ const CheckoutShipment = () => {
   };
 
   useEffect(() => {
-    if (products.length === 0) return;
+    if (products.length === 0) {
+      setOrderLines([]);
+      return;
+    }
+    // if (isCountryChanged) {
+    //   subFormsRefs.current.forEach((formik) => formik.submitForm());
+    //   setIsCountryChanged(false);
+    // }
 
     // Create a map of current delivery fees to check if update is needed
     const currentFees = new Map(
@@ -172,7 +190,15 @@ const CheckoutShipment = () => {
       const baseDeliveryInfo = getDeliveryInfoByCountry(
         orderLine.address.country
       );
+      console.log(
+        "Country:",
+        orderLine.address.country,
+        "Delivery Info:",
+        baseDeliveryInfo
+      );
+
       if (!baseDeliveryInfo) {
+        console.log("No delivery info found for address:", orderLine.address);
         return {
           ...orderLine,
           totalDeliveryFee: 0,
@@ -211,8 +237,9 @@ const CheckoutShipment = () => {
     });
 
     setOrderLines(orderLinesWithFees);
+    setIsCountryChanged(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products]);
+  }, [products, setOrderLines, isCountryChanged]);
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
@@ -249,6 +276,23 @@ const CheckoutShipment = () => {
 
     setStage(4);
   };
+  console.log("isCountryChanged", isCountryChanged);
+
+  // useEffect(() => {
+  //   console.log("isCountryChanged", isCountryChanged);
+  //   if (isCountryChanged) {
+  //     // Resubmit all forms
+  //     Promise.all(subFormsRefs.current.map((formik) => formik.submitForm()));
+  //     // Update delivery fees after form submission
+  //     products.forEach((product) => {
+  //       const fee = calculateDeliveryFee(product);
+  //       setShipmentDeliveryFee(product.id, fee, product.shipment.duration);
+  //     });
+  //     console.log("orderLines", orderLines);
+  //     console.log("products", products);
+  //   }
+  //   setIsCountryChanged(false);
+  // }, [isCountryChanged, products, setShipmentDeliveryFee, orderLines]);
 
   console.log("products", products);
 
@@ -317,6 +361,7 @@ const CheckoutShipment = () => {
                       (p) => p.title === product.product_name
                     )?.imagePath
                   }
+                  setIsCountryChanged={setIsCountryChanged}
                 />
               ))}
           </div>
@@ -345,6 +390,7 @@ const CheckoutShipment = () => {
                       (p) => p.title === product.product_name
                     )?.imagePath
                   }
+                  setIsCountryChanged={setIsCountryChanged}
                 />
               ))}
           </div>

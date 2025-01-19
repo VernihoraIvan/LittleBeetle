@@ -10,9 +10,16 @@ export interface ShipmentElProps {
   id: string;
   shipment?: ShipmentDetails;
   onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
+  setIsCountryChanged: (value: boolean) => void;
 }
 
-const ShipmentEl = ({ title, imgPath, id, onSubmitRef }: ShipmentElProps) => {
+const ShipmentEl = ({
+  title,
+  imgPath,
+  id,
+  onSubmitRef,
+  setIsCountryChanged,
+}: ShipmentElProps) => {
   const [isMyAdress, setIsMyAdress] = useState(true);
   return (
     <div className="smd:w-[310px]">
@@ -62,7 +69,11 @@ const ShipmentEl = ({ title, imgPath, id, onSubmitRef }: ShipmentElProps) => {
         </div>
       </div>
       {isMyAdress === false && (
-        <FormReadress onSubmitRef={onSubmitRef} id={id} />
+        <FormReadress
+          onSubmitRef={onSubmitRef}
+          id={id}
+          setIsCountryChanged={setIsCountryChanged}
+        />
       )}
     </div>
   );

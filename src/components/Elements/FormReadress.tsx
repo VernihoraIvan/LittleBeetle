@@ -6,7 +6,9 @@ import {
   ErrorMessage,
   FormikProps,
 } from "formik";
-import { countries } from "@/utilities/data";
+// import { countries } from "@/utilities/data";
+import { availableCountries } from "@/utilities/data";
+
 import FormEl from "@/components/Elements/FormEl";
 // import { MyFormValues } from "@/utilities/interfaces";
 import { SubmitSchema } from "@/utilities/FormSchema";
@@ -18,9 +20,14 @@ import clsx from "clsx";
 interface FormReadressProps {
   id: string;
   onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
+  setIsCountryChanged: (value: boolean) => void;
 }
 
-const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
+const FormReadress = ({
+  id,
+  onSubmitRef,
+  setIsCountryChanged,
+}: FormReadressProps) => {
   const addShipment = useMainStore((state) => state.addShipment);
   const formikRef = useRef<FormikProps<ShipmentDetails> | null>(null);
   const shipmentStore = useShipment((state) => state.shipment);
@@ -91,16 +98,17 @@ const FormReadress = ({ id, onSubmitRef }: FormReadressProps) => {
                 <Field
                   as="select"
                   name="country"
-                  // className={clsx(
-                  //   "w-full outline-none  border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]",
-                  //   errors && touched.firstName && "border-red-500"
-                  // )}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setIsCountryChanged(true);
+                    // Need to call Formik's handleChange as well
+                    formikRef.current?.handleChange(e);
+                  }}
                   className={clsx(
                     "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
                   )}
                 >
                   <option className="text-[24px]" value="" label="Select" />
-                  {countries.map((country) => (
+                  {availableCountries.map((country) => (
                     <option key={country} value={country} label={country} />
                   ))}
                 </Field>

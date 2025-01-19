@@ -5,6 +5,7 @@ import { useCart } from "@/zustand/productStore";
 import QuantityAdjuster from "@/components/QuantityAdjuster";
 import { useShipment } from "@/zustand/shipmentStore";
 import { useStage } from "@/zustand/stageStore";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 
 const PurchaseEl = ({
   name,
@@ -15,6 +16,7 @@ const PurchaseEl = ({
   language,
 }: PurchaseElProps) => {
   const removeProduct = useCart((state) => state.removeFromCart);
+  const removeOrderLines = useOrderLines((state) => state.removeOrderLines);
   const quantityEl = useCart(
     (state) => state.items.find((item) => item.id === id)?.quantity
   );
@@ -28,6 +30,7 @@ const PurchaseEl = ({
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const removeProductHandler = () => {
+    removeOrderLines(id);
     removeProduct(id);
     removeFee(id);
     setStage(1);

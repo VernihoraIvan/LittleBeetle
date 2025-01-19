@@ -11,6 +11,7 @@ import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
 import { useNavigate } from "react-router-dom";
 import { sentData } from "@/api/connection";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -34,6 +35,9 @@ const PaymentSection = () => {
     }
     navigate("/complete");
   };
+
+  const { orderLines, setOrderLines } = useOrderLines();
+  console.log("orderLines", orderLines);
 
   // const handleSubmitTest = () => {
   //   sentData(products);
@@ -157,7 +161,13 @@ const PaymentSection = () => {
           </button> */}
         </div>
       </div>
-      <SummaryUniversal subTotal={totalFee} shippingFee={0} />
+      <SummaryUniversal
+        subTotal={totalFee}
+        shippingFee={orderLines.reduce(
+          (sum, line) => sum + (line.totalDeliveryFee || 0),
+          0
+        )}
+      />
     </section>
   );
 };
