@@ -67,7 +67,7 @@ export const extraProducts = [
       "one sentence description one sentence description one sentence description one sentence description.",
     imagePath: [postcard, postcard1, postcard2, postcard3],
     to: "/donation/postcards",
-    weight: 1,
+    weight: 0.375,
   },
 ];
 

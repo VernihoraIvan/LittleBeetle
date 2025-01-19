@@ -8,17 +8,38 @@ import SummaryUniversal from "../SummaryUniversal";
 import { ShipmentDetails } from "@/zustand/shipmentStore";
 // import { availableCountries } from "@/utilities/data";
 import { deliveryFeeData } from "@/utilities/deliveryFeeData";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 interface DeliveryInfo {
   fee: number;
   duration: number;
 }
 
-interface DeliveryInfoSummary {
-  productId: string;
-  deliveryFee: number;
+// interface DeliveryInfoSummary {
+//   productId: string;
+//   deliveryFee: number;
+// }
+
+interface OrderLine {
+  address: {
+    country: string;
+    city: string;
+    street: string;
+    postal_code: string;
+  };
+  products: {
+    id: string;
+    product_name: string;
+    quantity: number;
+    weight: number;
+  }[];
+  totalWeight: number;
+  totalDeliveryFee?: number;
+  deliveryDuration?: number;
 }
+
+const WEIGHT_LIMIT = 3;
+const ADDITIONAL_FEE = 2;
 
 function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
   const deliveryInfo = deliveryFeeData.find((data) =>
@@ -37,22 +58,92 @@ function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
   };
 }
 
+function getProductWeight(productName: string): number {
+  switch (productName.toLowerCase()) {
+    case "poster":
+      return 2;
+    case "book":
+      return 2;
+    case "postcards":
+      return 0.375;
+    default:
+      return 0;
+  }
+}
+
+function calculateDeliveryFeeByWeight(
+  baseDeliveryFee: number,
+  totalWeight: number
+): number {
+  if (totalWeight <= WEIGHT_LIMIT) {
+    return baseDeliveryFee;
+  }
+  const additionalWeightUnits = Math.ceil(
+    (totalWeight - WEIGHT_LIMIT) / WEIGHT_LIMIT
+  );
+  return baseDeliveryFee + additionalWeightUnits * ADDITIONAL_FEE;
+}
+
+function groupProductsByAddress(products: itemProps[]): OrderLine[] {
+  const orderLines: { [key: string]: OrderLine } = {};
+
+  products.forEach((product) => {
+    if (!product.shipment) return;
+
+    const addressKey = `${product.shipment.country}-${product.shipment.city}-${product.shipment.street_adress}-${product.shipment.postal_code}`;
+
+    if (!orderLines[addressKey]) {
+      orderLines[addressKey] = {
+        address: {
+          country: product.shipment.country || "",
+          city: product.shipment.city || "",
+          street: product.shipment.street_adress || "",
+          postal_code: product.shipment.postal_code || "",
+        },
+        products: [],
+        totalWeight: 0,
+      };
+    }
+
+    const weight = getProductWeight(product.product_name) * product.quantity;
+    orderLines[addressKey].products.push({
+      id: product.id,
+      product_name: product.product_name,
+      quantity: product.quantity,
+      weight: weight,
+    });
+    orderLines[addressKey].totalWeight += weight;
+  });
+
+  return Object.values(orderLines);
+}
+
 const CheckoutShipment = () => {
   const products = useCart((state) => state.items);
   //only for summary
-  const allDeliveryFees: DeliveryInfoSummary[] = [];
+  // const allDeliveryFees: DeliveryInfoSummary[] = [];
 
-  // useEffect(() => {
-  //   setShipmentDeliveryFee()
-  // }, [products]);
   const setShipmentDeliveryFee = useCart(
     (state) => state.setShipmentDeliveryFee
   );
+  const [orderLines, setOrderLines] = useState<OrderLine[]>([]);
+
+  // const orderLine = [];
+
+  // const createOrderLine = (products: itemProps[]) => {
+  //   products.forEach((product) => {
+  //     orderLine.push({
+  //       productId: product.id,
+  //       quantity: product.quantity,
+  //     });
+  //   });
+  // };
 
   const calculateDeliveryFee = (product: itemProps) => {
     const deliveryInfo = getDeliveryInfoByCountry(
       product.shipment?.country || ""
     );
+    console.log("deliveryInfo", deliveryInfo);
     if (deliveryInfo) {
       console.log("deliveryInfo.fee", deliveryInfo.fee);
       return deliveryInfo.fee;
@@ -62,43 +153,66 @@ const CheckoutShipment = () => {
   };
 
   useEffect(() => {
-    // Create all delivery info objects first
-    const newDeliveryFees = products.map((element) => ({
-      productId: element.id,
-      deliveryFee: element.shipment.delivery_fee,
-    }));
+    if (products.length === 0) return;
 
-    // Update allDeliveryFees once
-    allDeliveryFees.push(...newDeliveryFees);
+    // Create a map of current delivery fees to check if update is needed
+    const currentFees = new Map(
+      products.map((product) => [
+        product.id,
+        {
+          fee: product.shipment?.delivery_fee,
+          duration: product.shipment?.duration,
+        },
+      ])
+    );
 
-    // Batch all the setShipmentDeliveryFee calls
-    products.forEach((element) => {
-      console.log("element", element);
-      setShipmentDeliveryFee(
-        element.id,
-        calculateDeliveryFee(element),
-        element.shipment.duration
+    const calculatedOrderLines = groupProductsByAddress(products);
+
+    const orderLinesWithFees = calculatedOrderLines.map((orderLine) => {
+      const baseDeliveryInfo = getDeliveryInfoByCountry(
+        orderLine.address.country
       );
-      console.log("products", products);
+      if (!baseDeliveryInfo) {
+        return {
+          ...orderLine,
+          totalDeliveryFee: 0,
+          deliveryDuration: 0,
+        };
+      }
+
+      const totalDeliveryFee = calculateDeliveryFeeByWeight(
+        baseDeliveryInfo.fee,
+        orderLine.totalWeight
+      );
+
+      const feePerProduct = totalDeliveryFee / orderLine.products.length;
+
+      // Update individual product fees
+      orderLine.products.forEach((product) => {
+        const currentFee = currentFees.get(product.id);
+        if (
+          !currentFee ||
+          currentFee.fee !== feePerProduct ||
+          currentFee.duration !== baseDeliveryInfo.duration
+        ) {
+          setShipmentDeliveryFee(
+            product.id,
+            feePerProduct,
+            baseDeliveryInfo.duration
+          );
+        }
+      });
+
+      return {
+        ...orderLine,
+        totalDeliveryFee: totalDeliveryFee,
+        deliveryDuration: baseDeliveryInfo.duration,
+      };
     });
 
-    console.log("products", products);
-    console.log("allDeliveryFees", allDeliveryFees);
+    setOrderLines(orderLinesWithFees);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Add setShipmentDeliveryFee to dependencies
-
-  // const removeFee = useShipment((state) => state.removeFee);
-  // useEffect(() => {
-  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
-  //   removeFee("V1V4L3Y5jnkME78imkZ70");
-  //   removeFee("E7Tp751iRpILUUmhmIsEc");
-  //   removeFee("qwDsF6NQUOk08GIvs7SAp");
-  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
-  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
-  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
-  //   removeFee("aNiSwzP-eQAwv3PfXNqOG");
-  // }, []);
-  // const setDeliveryFee = useShipment((state) => state.setDeliveryFee);
+  }, [products]);
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
@@ -121,25 +235,17 @@ const CheckoutShipment = () => {
     }
   };
 
-  const handleSubmitAllForms = () => {
-    subFormsRefs.current.forEach((formik) => {
-      formik.submitForm();
-    });
+  const handleSubmitAllForms = async () => {
+    // Wait for all forms to submit
+    await Promise.all(
+      subFormsRefs.current.map((formik) => formik.submitForm())
+    );
 
-    // Add delivery fees for each product
-    // products.forEach((product) => {
-    //   const deliveryInfo = getDeliveryInfoByCountry(
-    //     product.shipment?.country || ""
-    //   );
-    // if (deliveryInfo) {
-    //   setShipmentDeliveryFee(
-    //     product.id,
-    //     deliveryInfo.fee,
-    //     deliveryInfo.duration
-    //   );
-    // }
-    // }
-    // );
+    // Update delivery fees after form submission
+    products.forEach((product) => {
+      const fee = calculateDeliveryFee(product);
+      setShipmentDeliveryFee(product.id, fee, product.shipment.duration);
+    });
 
     setStage(4);
   };
@@ -150,6 +256,42 @@ const CheckoutShipment = () => {
     <section className="py-10 flex flex-col ">
       <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10 md:pt-[80px]">
         <div className=" flex flex-col gap-[110px]">
+          {orderLines.map((orderLine, index) => (
+            <div key={index} className="mb-8 p-4 border rounded">
+              <div className="mb-4">
+                <h3 className="font-secondaryBold text-lg">
+                  Shipping Address {index + 1}
+                </h3>
+                <p>{orderLine.address.street}</p>
+                <p>
+                  {orderLine.address.city}, {orderLine.address.postal_code}
+                </p>
+                <p>{orderLine.address.country}</p>
+              </div>
+
+              <div className="mb-4">
+                <h4 className="font-secondaryBold">Products:</h4>
+                {orderLine.products.map((product) => (
+                  <div key={product.id} className="ml-4">
+                    <p>
+                      {product.product_name} x{product.quantity} (
+                      {product.weight}kg)
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-2">
+                <p className="font-secondaryBold">
+                  Total Weight: {orderLine.totalWeight.toFixed(3)}kg
+                </p>
+                <p className="font-secondaryBold">
+                  Delivery Fee: €{orderLine.totalDeliveryFee?.toFixed(2)}
+                </p>
+                <p>Estimated Delivery: {orderLine.deliveryDuration} days</p>
+              </div>
+            </div>
+          ))}
           <div className="flex flex-col">
             {filteredForMyself.length > 0 && (
               <h2
@@ -207,7 +349,13 @@ const CheckoutShipment = () => {
               ))}
           </div>
         </div>
-        <SummaryUniversal subTotal={totalFee} shippingFee={0} />
+        <SummaryUniversal
+          subTotal={totalFee}
+          shippingFee={orderLines.reduce(
+            (sum, line) => sum + (line.totalDeliveryFee || 0),
+            0
+          )}
+        />
       </div>
       <ButtonTo
         onClick={handleSubmitAllForms}

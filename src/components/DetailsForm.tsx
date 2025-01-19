@@ -10,6 +10,7 @@ import { useStage } from "@/zustand/stageStore";
 import { nanoid } from "nanoid";
 import { useMainStore } from "@/zustand/mainOrderStore";
 import clsx from "clsx";
+import { useCart } from "@/zustand/productStore";
 // import { useEffect } from "react";
 
 const DetailsForm = () => {
@@ -19,6 +20,8 @@ const DetailsForm = () => {
   const submitShipment = useMainStore((state) => state.submitForm);
   const setDefaultAdress = useMainStore((state) => state.setDefaultAdress);
   const id = nanoid();
+  const products = useCart((state) => state.items);
+  console.log("products", products);
   // const shipment = useMainStore((state) => state.shipment);
 
   // console.log("shipment IN dETAILS FORM MAINE STORE: ", shipment);
