@@ -1,7 +1,7 @@
 import { SummaryProps } from "@/utilities/interfaces";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
-const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
+const SummaryUniversal = ({ subTotal }: SummaryProps) => {
   const { orderLines } = useOrderLines();
 
   return (

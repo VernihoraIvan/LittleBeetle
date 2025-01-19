@@ -56,6 +56,8 @@ export const useDonation = create(
               city: "",
               postal_code: "",
               id: "",
+              delivery_fee: 0,
+              duration: 0,
             },
           })),
         }));
@@ -91,6 +93,8 @@ export const useDonation = create(
                     last_name: "",
                     email: "",
                     phone: "",
+                    delivery_fee: 0,
+                    duration: 0,
                   },
                 },
               ],

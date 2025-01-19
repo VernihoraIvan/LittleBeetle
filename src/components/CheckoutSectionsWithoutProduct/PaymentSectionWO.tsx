@@ -41,7 +41,12 @@ const PaymentSectionWO = () => {
       console.log("Payment success");
       // postDonation(donations);
       console.log("donations: ", donations);
-      sentData(donations);
+      sentData(
+        donations.map((donation) => ({
+          ...donation,
+          weight: 0, // or calculate based on product_name if needed
+        }))
+      );
     } else {
       console.log("Payment failed");
     }

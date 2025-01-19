@@ -36,7 +36,7 @@ const PaymentSection = () => {
     navigate("/complete");
   };
 
-  const { orderLines, setOrderLines } = useOrderLines();
+  const { orderLines } = useOrderLines();
   console.log("orderLines", orderLines);
 
   // const handleSubmitTest = () => {

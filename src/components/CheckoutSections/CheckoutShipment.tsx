@@ -6,7 +6,6 @@ import { useStage } from "@/zustand/stageStore";
 import { FormikProps } from "formik";
 import SummaryUniversal from "../SummaryUniversal";
 import { ShipmentDetails } from "@/zustand/shipmentStore";
-// import { availableCountries } from "@/utilities/data";
 import { deliveryFeeData } from "@/utilities/deliveryFeeData";
 import { useRef, useEffect, useState } from "react";
 import { useOrderLines } from "@/zustand/orderLinesStore";
@@ -15,11 +14,6 @@ interface DeliveryInfo {
   fee: number;
   duration: number;
 }
-
-// interface DeliveryInfoSummary {
-//   productId: string;
-//   deliveryFee: number;
-// }
 
 interface OrderLine {
   address: {
@@ -123,25 +117,12 @@ function groupProductsByAddress(products: itemProps[]): OrderLine[] {
 const CheckoutShipment = () => {
   const [isCountryChanged, setIsCountryChanged] = useState(false);
   const products = useCart((state) => state.items);
-  //only for summary
-  // const allDeliveryFees: DeliveryInfoSummary[] = [];
 
   const setShipmentDeliveryFee = useCart(
     (state) => state.setShipmentDeliveryFee
   );
   const { orderLines, setOrderLines } = useOrderLines();
   console.log("orderLines", orderLines);
-
-  // const orderLine = [];
-
-  // const createOrderLine = (products: itemProps[]) => {
-  //   products.forEach((product) => {
-  //     orderLine.push({
-  //       productId: product.id,
-  //       quantity: product.quantity,
-  //     });
-  //   });
-  // };
 
   useEffect(() => {
     if (isCountryChanged) {
@@ -168,10 +149,6 @@ const CheckoutShipment = () => {
       setOrderLines([]);
       return;
     }
-    // if (isCountryChanged) {
-    //   subFormsRefs.current.forEach((formik) => formik.submitForm());
-    //   setIsCountryChanged(false);
-    // }
 
     // Create a map of current delivery fees to check if update is needed
     const currentFees = new Map(
@@ -250,9 +227,7 @@ const CheckoutShipment = () => {
   const filteredForMyself = products.filter(
     (product) => product.isAGift === false
   );
-  // const setShipmentDeliveryFee = useCart(
-  //   (state) => state.setShipmentDeliveryFee
-  // );
+
   const filteredAsGift = products.filter((product) => product.isAGift === true);
   const subFormsRefs = useRef<FormikProps<ShipmentDetails>[]>([]);
 
@@ -277,23 +252,6 @@ const CheckoutShipment = () => {
     setStage(4);
   };
   console.log("isCountryChanged", isCountryChanged);
-
-  // useEffect(() => {
-  //   console.log("isCountryChanged", isCountryChanged);
-  //   if (isCountryChanged) {
-  //     // Resubmit all forms
-  //     Promise.all(subFormsRefs.current.map((formik) => formik.submitForm()));
-  //     // Update delivery fees after form submission
-  //     products.forEach((product) => {
-  //       const fee = calculateDeliveryFee(product);
-  //       setShipmentDeliveryFee(product.id, fee, product.shipment.duration);
-  //     });
-  //     console.log("orderLines", orderLines);
-  //     console.log("products", products);
-  //   }
-  //   setIsCountryChanged(false);
-  // }, [isCountryChanged, products, setShipmentDeliveryFee, orderLines]);
-
   console.log("products", products);
 
   return (
