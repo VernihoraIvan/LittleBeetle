@@ -11,7 +11,7 @@ export interface ShipmentDetails {
   street_adress2?: string;
   city?: string;
   postal_code?: string;
-  delivery_fee: number;
+  default_delivery_fee: number;
   duration: number;
 }
 
@@ -53,7 +53,7 @@ export const useShipment = create(
         street_adress2: "",
         city: "",
         postal_code: "",
-        delivery_fee: 0,
+        default_delivery_fee: 0,
         duration: 0,
       },
       fee: [],
@@ -69,7 +69,7 @@ export const useShipment = create(
             street_adress2: "",
             city: "",
             postal_code: "",
-            delivery_fee: 0,
+            default_delivery_fee: 0,
             duration: 0,
           },
         });
@@ -103,7 +103,7 @@ export const useShipment = create(
       //   set((state: ShipmentState) => ({
       //     shipment: state.shipment.map((item) =>
       //       item.id === id
-      //         ? { ...item, delivery_fee: deliveryFee, duration: duration }
+      //         ? { ...item, default_delivery_fee: deliveryFee, duration: duration }
       //         : item
       //     ),
       //   }));
@@ -129,7 +129,7 @@ export const useShipment = create(
             street_adress2: "",
             city: "",
             postal_code: "",
-            delivery_fee: 0,
+            default_delivery_fee: 0,
             duration: 0,
           },
         });

@@ -1,5 +1,6 @@
 import { proceedToPayment } from "@/api/connection";
 import { useDonation } from "@/zustand/donationStore";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 import { useCart } from "@/zustand/productStore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { FormEvent, useEffect, useState } from "react";
@@ -12,6 +13,11 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
   // console.log("products: ", products);
+  const orderLines = useOrderLines((state) => state.orderLines);
+  const totalDeliveryFee = orderLines.reduce(
+    (sum, line) => sum + (line.totalDeliveryFee || 0),
+    0
+  );
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
@@ -31,6 +37,7 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
       0
     );
   }
+  totalFee += totalDeliveryFee;
 
   // console.log("isProcessing: ", isProcessing);
 

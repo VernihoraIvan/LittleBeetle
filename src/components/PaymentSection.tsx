@@ -9,13 +9,13 @@ import { useCart } from "@/zustand/productStore";
 import StripeElement from "./PaymentEl/StripeElement";
 import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { sentData } from "@/api/connection";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
 
@@ -33,7 +33,7 @@ const PaymentSection = () => {
     } else {
       console.log("Payment failed");
     }
-    navigate("/complete");
+    // navigate("/complete");
   };
 
   const { orderLines } = useOrderLines();

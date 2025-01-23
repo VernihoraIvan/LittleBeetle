@@ -155,7 +155,7 @@ const CheckoutShipment = () => {
       products.map((product) => [
         product.id,
         {
-          fee: product.shipment?.delivery_fee,
+          fee: product.shipment?.default_delivery_fee,
           duration: product.shipment?.duration,
         },
       ])

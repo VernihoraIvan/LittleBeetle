@@ -30,7 +30,7 @@ const DetailsFormWO = () => {
     last_name: adressStore.last_name,
     email: adressStore.email,
     phone: adressStore.phone,
-    delivery_fee: adressStore.delivery_fee,
+    default_delivery_fee: adressStore.default_delivery_fee,
     duration: adressStore.duration,
   };
   const id = nanoid();

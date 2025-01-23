@@ -99,7 +99,7 @@ export const useCart = create(
                     street_adress2: "",
                     city: "",
                     postal_code: "",
-                    delivery_fee: 0,
+                    default_delivery_fee: 0,
                     duration: 0,
                   },
                 },
@@ -130,7 +130,7 @@ export const useCart = create(
                   ...item,
                   shipment: {
                     ...item.shipment,
-                    delivery_fee: deliveryFee,
+                    default_delivery_fee: deliveryFee,
                     duration: duration,
                   },
                 }

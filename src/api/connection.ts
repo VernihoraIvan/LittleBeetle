@@ -1,11 +1,12 @@
 import { MyFormValues } from "@/utilities/interfaces";
+// import { OrderLine } from "@/zustand/orderLinesStore";
 import { itemProps } from "@/zustand/productStore";
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3001";
 // const BASE_URL = "https://little-beetle-backend-d16f76890ac7.herokuapp.com/";
 // const BASE_URL = "https://littlebeetle-backend-nestjs.onrender.com";
-const BASE_URL = "https://secure-woodland-90867-0bbf625dd335.herokuapp.com/";
+// const BASE_URL = "https://secure-woodland-90867-0bbf625dd335.herokuapp.com/";
 axios.defaults.baseURL = BASE_URL;
 
 export const postDonation = async (data: MyFormValues) => {
@@ -38,6 +39,15 @@ export const sentData = async (data: itemProps[]) => {
     console.error(error);
   }
 };
+
+// const sendOrderLines = async (data: OrderLine[]) => {
+//   try {
+//     const responseData = await axios.post("/orderLines", data);
+//     console.log("responseData: ", responseData);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 export const updateDonation = async (data: MyFormValues) => {
   try {
