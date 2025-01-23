@@ -58,7 +58,7 @@ function getProductWeight(productName: string): number {
   switch (productName.toLowerCase()) {
     case "poster":
       return 2;
-    case "book":
+    case "printed book":
       return 2;
     case "postcards":
       return 0.375;
@@ -77,7 +77,13 @@ function calculateDeliveryFeeByWeight(
   const additionalWeightUnits = Math.ceil(
     (totalWeight - WEIGHT_LIMIT) / WEIGHT_LIMIT
   );
-  return baseDeliveryFee + additionalWeightUnits * ADDITIONAL_FEE;
+  const numberOfAdditionalCharges =
+    totalWeight <= WEIGHT_LIMIT ? 0 : totalWeight / WEIGHT_LIMIT;
+  return (
+    baseDeliveryFee +
+    additionalWeightUnits +
+    ADDITIONAL_FEE * numberOfAdditionalCharges
+  );
 }
 
 function groupProductsByAddress(products: itemProps[]): OrderLine[] {
@@ -123,6 +129,7 @@ const CheckoutShipment = () => {
   );
   const { orderLines, setOrderLines } = useOrderLines();
   console.log("orderLines", orderLines);
+  const setDeliveryFee = useCart((state) => state.setDeliveryFee);
 
   useEffect(() => {
     if (isCountryChanged) {
@@ -203,6 +210,7 @@ const CheckoutShipment = () => {
             feePerProduct,
             baseDeliveryInfo.duration
           );
+          setDeliveryFee(product.id, feePerProduct);
         }
       });
 

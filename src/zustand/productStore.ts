@@ -43,6 +43,7 @@ export interface CartState {
     deliveryFee: number,
     duration: number
   ) => void;
+  setDeliveryFee: (id: string, delivery_fee: number) => void;
 }
 
 export interface LanguageState {
@@ -181,6 +182,21 @@ export const useCart = create(
         set((state: CartState) => ({
           items: state.items.map((item) =>
             item.id === id ? { ...item, isAGift: checked } : item
+          ),
+        }));
+      },
+      setDeliveryFee: (id: string, delivery_fee: number) => {
+        set((state) => ({
+          items: state.items.map((item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  shipment: {
+                    ...item.shipment,
+                    delivery_fee: delivery_fee,
+                  },
+                }
+              : item
           ),
         }));
       },

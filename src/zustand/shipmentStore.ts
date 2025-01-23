@@ -13,6 +13,7 @@ export interface ShipmentDetails {
   postal_code?: string;
   default_delivery_fee: number;
   duration: number;
+  delivery_fee?: number;
 }
 
 interface Fee {
@@ -55,6 +56,7 @@ export const useShipment = create(
         postal_code: "",
         default_delivery_fee: 0,
         duration: 0,
+        delivery_fee: 0,
       },
       fee: [],
       resetShipmentsMain: () => {
@@ -71,6 +73,7 @@ export const useShipment = create(
             postal_code: "",
             default_delivery_fee: 0,
             duration: 0,
+            delivery_fee: 0,
           },
         });
       },
@@ -131,6 +134,7 @@ export const useShipment = create(
             postal_code: "",
             default_delivery_fee: 0,
             duration: 0,
+            delivery_fee: 0,
           },
         });
       },
