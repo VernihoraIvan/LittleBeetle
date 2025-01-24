@@ -32,6 +32,7 @@ const DetailsFormWO = () => {
     phone: adressStore.phone,
     default_delivery_fee: adressStore.default_delivery_fee,
     duration: adressStore.duration,
+    delivery_fee: adressStore.delivery_fee,
   };
   const id = nanoid();
   const shipment = useMainStore((state) => state.shipment);

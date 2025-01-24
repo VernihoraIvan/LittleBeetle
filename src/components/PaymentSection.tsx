@@ -1,11 +1,11 @@
 import SummaryUniversal from "./SummaryUniversal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
-import { useCart } from "@/zustand/productStore";
+import { itemProps, useCart } from "@/zustand/productStore";
 import StripeElement from "./PaymentEl/StripeElement";
 import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
@@ -21,10 +21,13 @@ const PaymentSection = () => {
 
   console.log("products", products);
 
-  const totalFee = products.reduce(
-    (acc, product) => acc + product.price * product.quantity,
+  const { orderLines } = useOrderLines();
+
+  const totalFee = orderLines.reduce(
+    (sum, line) => sum + (line.totalDeliveryFee || 0),
     0
   );
+  console.log("orderLines", orderLines);
 
   const handleSubmit = async () => {
     if (isPaymentSuccess) {
@@ -35,9 +38,6 @@ const PaymentSection = () => {
     }
     // navigate("/complete");
   };
-
-  const { orderLines } = useOrderLines();
-  console.log("orderLines", orderLines);
 
   // const handleSubmitTest = () => {
   //   sentData(products);
@@ -59,6 +59,37 @@ const PaymentSection = () => {
   // const currentOS = detectUserOS();
 
   // console.log(detectUserOS());
+
+  const checkEachDeliveryFee = (product: itemProps) => {
+    // Find the order line containing this product
+    const orderLine = orderLines.find((line) =>
+      line.products.some((p) => p.id === product.id)
+    );
+
+    if (!orderLine) {
+      console.warn(`No order line found for product ${product.id}`);
+      return false;
+    }
+
+    // Compare the fees
+    const productFee = product.shipment?.delivery_fee || 0;
+    const orderLineFee = orderLine.totalDeliveryFee || 0;
+
+    if (productFee !== orderLineFee) {
+      console.warn(
+        `Delivery fee mismatch for product ${product.id}: Product fee ${productFee} != Order line fee ${orderLineFee}`
+      );
+      return false;
+    }
+
+    return true;
+  };
+
+  useEffect(() => {
+    products.forEach((product) => {
+      console.log(checkEachDeliveryFee(product));
+    });
+  }, [products]);
 
   return (
     <section className="flex justify-between pt-bookPB sm:flex-col sm:flex-col-reverse sm:pt-0 ">
@@ -161,13 +192,7 @@ const PaymentSection = () => {
           </button> */}
         </div>
       </div>
-      <SummaryUniversal
-        subTotal={totalFee}
-        shippingFee={orderLines.reduce(
-          (sum, line) => sum + (line.totalDeliveryFee || 0),
-          0
-        )}
-      />
+      <SummaryUniversal subTotal={totalFee} shippingFee={totalFee} />
     </section>
   );
 };

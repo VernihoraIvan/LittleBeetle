@@ -10,7 +10,6 @@ interface PaymentComponentProps {
 }
 const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cart = useCart((state) => state.items);
-  const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
   // console.log("products: ", products);
   const orderLines = useOrderLines((state) => state.orderLines);
@@ -18,12 +17,15 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
     (sum, line) => sum + (line.totalDeliveryFee || 0),
     0
   );
+  console.log("totalDeliveryFee: ", totalDeliveryFee);
+  console.log("orderLines: ", orderLines);
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
 
   const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
   let totalFee: number;
+
   if (totalQty === 0) {
     // console.log("totalQty is 0");
     totalFee = donations.reduce(
@@ -32,8 +34,8 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
     );
   } else {
     // console.log("totalQty is not 0");
-    totalFee = products.reduce(
-      (acc, product) => acc + product.price * product.quantity,
+    totalFee = orderLines.reduce(
+      (sum, line) => sum + (line.totalDeliveryFee || 0),
       0
     );
   }

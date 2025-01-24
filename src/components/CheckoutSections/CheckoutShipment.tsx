@@ -74,16 +74,11 @@ function calculateDeliveryFeeByWeight(
   if (totalWeight <= WEIGHT_LIMIT) {
     return baseDeliveryFee;
   }
-  const additionalWeightUnits = Math.ceil(
-    (totalWeight - WEIGHT_LIMIT) / WEIGHT_LIMIT
-  );
-  const numberOfAdditionalCharges =
-    totalWeight <= WEIGHT_LIMIT ? 0 : totalWeight / WEIGHT_LIMIT;
-  return (
-    baseDeliveryFee +
-    additionalWeightUnits +
-    ADDITIONAL_FEE * numberOfAdditionalCharges
-  );
+
+  const numberOfAdditionalCharges: number =
+    totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1);
+  // console.log("numberOfAdditionalCharges", numberOfAdditionalCharges);
+  return baseDeliveryFee + ADDITIONAL_FEE * numberOfAdditionalCharges;
 }
 
 function groupProductsByAddress(products: itemProps[]): OrderLine[] {
@@ -128,7 +123,7 @@ const CheckoutShipment = () => {
     (state) => state.setShipmentDeliveryFee
   );
   const { orderLines, setOrderLines } = useOrderLines();
-  console.log("orderLines", orderLines);
+  // console.log("orderLines", orderLines);
   const setDeliveryFee = useCart((state) => state.setDeliveryFee);
 
   useEffect(() => {
@@ -142,12 +137,12 @@ const CheckoutShipment = () => {
     const deliveryInfo = getDeliveryInfoByCountry(
       product.shipment?.country || ""
     );
-    console.log("deliveryInfo", deliveryInfo);
+    // console.log("deliveryInfo", deliveryInfo);
     if (deliveryInfo) {
-      console.log("deliveryInfo.fee", deliveryInfo.fee);
+      // console.log("deliveryInfo.fee", deliveryInfo.fee);
       return deliveryInfo.fee;
     }
-    console.log("deliveryInfo.fee 00000");
+    // console.log("deliveryInfo.fee 00000");
     return 0;
   };
 
@@ -162,7 +157,7 @@ const CheckoutShipment = () => {
       products.map((product) => [
         product.id,
         {
-          fee: product.shipment?.default_delivery_fee,
+          fee: product.shipment?.delivery_fee,
           duration: product.shipment?.duration,
         },
       ])
@@ -174,12 +169,12 @@ const CheckoutShipment = () => {
       const baseDeliveryInfo = getDeliveryInfoByCountry(
         orderLine.address.country
       );
-      console.log(
-        "Country:",
-        orderLine.address.country,
-        "Delivery Info:",
-        baseDeliveryInfo
-      );
+      // console.log(
+      //   "Country:",
+      //   orderLine.address.country,
+      //   "Delivery Info:",
+      //   baseDeliveryInfo
+      // );
 
       if (!baseDeliveryInfo) {
         console.log("No delivery info found for address:", orderLine.address);
@@ -195,22 +190,24 @@ const CheckoutShipment = () => {
         orderLine.totalWeight
       );
 
-      const feePerProduct = totalDeliveryFee / orderLine.products.length;
-
       // Update individual product fees
       orderLine.products.forEach((product) => {
+        console.log("totalDeliveryFee inside each product", totalDeliveryFee);
+
         const currentFee = currentFees.get(product.id);
+        console.log("currentFee", currentFee);
         if (
           !currentFee ||
-          currentFee.fee !== feePerProduct ||
+          currentFee.fee !== totalDeliveryFee ||
           currentFee.duration !== baseDeliveryInfo.duration
         ) {
           setShipmentDeliveryFee(
             product.id,
-            feePerProduct,
+            totalDeliveryFee,
             baseDeliveryInfo.duration
           );
-          setDeliveryFee(product.id, feePerProduct);
+          setDeliveryFee(product.id, totalDeliveryFee);
+          console.log("setting delivery fee", totalDeliveryFee);
         }
       });
 
@@ -259,8 +256,12 @@ const CheckoutShipment = () => {
 
     setStage(4);
   };
-  console.log("isCountryChanged", isCountryChanged);
+  // console.log("isCountryChanged", isCountryChanged);
   console.log("products", products);
+
+  // ... existing code ...
+
+  // ... existing code ...
 
   return (
     <section className="py-10 flex flex-col ">

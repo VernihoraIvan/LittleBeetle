@@ -101,6 +101,7 @@ export const useCart = create(
                     city: "",
                     postal_code: "",
                     default_delivery_fee: 0,
+                    delivery_fee: 0,
                     duration: 0,
                   },
                 },
