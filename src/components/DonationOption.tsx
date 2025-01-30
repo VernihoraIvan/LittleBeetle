@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Alert from "@/assets/icons/alert-circle.svg?react";
 
 const DonationOption = ({
@@ -20,8 +20,18 @@ const DonationOption = ({
 }: DonationOptionProps) => {
   const [customPrice, setCustomPrice] = useState<number | null>(null);
 
+  const priceRef = useRef<number>(0);
+
   const id = nanoid();
   let isChecked;
+
+  const handleOnCustomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setCustomPrice(value === "" ? 0 : Number(value));
+    const newPrice = value === "" ? 0 : Number(value);
+    setPrice(newPrice);
+    priceRef.current = newPrice;
+  };
 
   const setAGift = useDonation((state) => state.setAGift);
 
@@ -31,6 +41,14 @@ const DonationOption = ({
     setAGift(id, checked);
   };
 
+  const handleSetPrice = (price: number) => {
+    setPrice(price);
+    setCustomPrice(0);
+    priceRef.current = price;
+  };
+  const priceToShow =
+    priceRef.current > 0 ? `${priceRef.current} £` : "Donation Amount";
+
   return (
     <div className="w-full">
       <h3 className="font-secondaryBold responsive-heading mb-4">
@@ -39,28 +57,28 @@ const DonationOption = ({
       </h3>
       <div className="smd:w-full w-[420px] ">
         <div className="flex flex-col justify-between mt-2 ">
-          <Select onValueChange={(value) => setPrice(Number(value))}>
+          <Select onValueChange={(value) => handleSetPrice(Number(value))}>
             <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
-              <SelectValue placeholder="Donation Amount">{price}</SelectValue>
+              <SelectValue placeholder={priceToShow} />
             </SelectTrigger>
             <SelectContent className="w-full bg-white cursor-pointer">
               <SelectItem
                 className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
                 value="3"
               >
-                3
+                3 £
               </SelectItem>
               <SelectItem
                 className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
                 value="5"
               >
-                5
+                5 £
               </SelectItem>
               <SelectItem
                 className="cursor-pointer xl:h-[45px] xxl:h-[63px]"
                 value="10"
               >
-                10
+                10 £
               </SelectItem>
               <div className="flex  justify-between gap-2 px-2 hover:bg-dropHover transition duration-300">
                 <label htmlFor="customPrice" className="cursor-pointer">
@@ -71,16 +89,19 @@ const DonationOption = ({
                     id="customPrice"
                     autoComplete="off"
                     className="w-40 sm:w-20 sm:py-1 px-3 h-10 border border-primPurpleFaintM  "
-                    type="text"
+                    type="number"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     name="priceInput"
                     placeholder="£"
                     value={customPrice || ""}
-                    onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                      setCustomPrice(Number(event.target.value))
-                    }
-                    onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
-                      setPrice(Number(event.target.value))
-                    }
+                    // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    //   setCustomPrice(Number(event.target.value))
+                    // }
+                    onChange={(e) => handleOnCustomChange(e)}
+                    // onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
+                    //   setPrice(Number(event.target.value))
+                    // }
                   ></input>
                   <div className="flex items-center gap-1">
                     <Alert className="w-4 h-4 text-inputPink" />

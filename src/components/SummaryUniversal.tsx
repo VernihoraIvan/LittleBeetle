@@ -1,9 +1,10 @@
 import { SummaryProps } from "@/utilities/interfaces";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
-const SummaryUniversal = ({ subTotal }: SummaryProps) => {
+const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
   const { orderLines } = useOrderLines();
 
+  console.log("shippingFee", shippingFee);
   return (
     <div className="flex flex-col gap-prodMar smd:pt-[40px] ">
       <div
@@ -33,10 +34,10 @@ const SummaryUniversal = ({ subTotal }: SummaryProps) => {
                 {/* Subtotal */}
                 <div
                   className="flex justify-between text-linkS text-inputPink mb-4
-              xl:text-[18px]
-              lg:text-[18px]
-              md:text-[14px]
-              sm:text-[14px]"
+                xl:text-[18px]
+                lg:text-[18px]
+                md:text-[14px]
+                sm:text-[14px]"
                 >
                   <p className="font-secondaryBold">Subtotal</p>
                   <p className="font-secondaryRegular text-inputPink">
@@ -44,29 +45,43 @@ const SummaryUniversal = ({ subTotal }: SummaryProps) => {
                   </p>
                 </div>
 
-                {/* Delivery fees per order line */}
-                {/* Delivery fees per order line */}
-                {orderLines.map((orderLine, index) => (
+                {/* Only show shipping fee if it's not 0 */}
+                {shippingFee !== 0 && (
                   <div
-                    key={index}
-                    className="flex justify-between text-linkS text-inputPink mb-2
-                xl:text-[18px]
-                lg:text-[18px]
-                md:text-[14px]
-                sm:text-[14px]"
+                    className="flex justify-between text-linkS text-inputPink mb-4
+                  xl:text-[18px]
+                  lg:text-[18px]
+                  md:text-[14px]
+                  sm:text-[14px]"
                   >
-                    <p className="font-secondaryRegular">
-                      Delivery to {orderLine.address.country}
-                      {/* <span className="text-xs block text-gray-500">
-                        ({orderLine.products.length} items,{" "}
-                        {orderLine.totalWeight.toFixed(1)}kg)
-                      </span> */}
-                    </p>
+                    <p className="font-secondaryRegular">Shipping Fee</p>
                     <p className="font-secondaryRegular text-inputPink">
-                      £{orderLine.totalDeliveryFee?.toFixed(2)}
+                      £{shippingFee.toFixed(2)}
                     </p>
                   </div>
-                ))}
+                )}
+
+                {/* Delivery fees per order line */}
+                {orderLines.map(
+                  (orderLine, index) =>
+                    orderLine.totalDeliveryFee !== 0 && (
+                      <div
+                        key={index}
+                        className="flex justify-between text-linkS text-inputPink mb-2
+                    xl:text-[18px]
+                    lg:text-[18px]
+                    md:text-[14px]
+                    sm:text-[14px]"
+                      >
+                        <p className="font-secondaryRegular">
+                          Delivery to {orderLine.address.country}
+                        </p>
+                        <p className="font-secondaryRegular text-inputPink">
+                          £{orderLine.totalDeliveryFee?.toFixed(2)}
+                        </p>
+                      </div>
+                    )
+                )}
 
                 {/* Separator line */}
                 <div className="border-t border-primPurple my-4"></div>
@@ -85,8 +100,13 @@ const SummaryUniversal = ({ subTotal }: SummaryProps) => {
                 £
                 {(
                   subTotal +
+                  (shippingFee || 0) +
                   orderLines.reduce(
-                    (sum, line) => sum + (line.totalDeliveryFee || 0),
+                    (sum, line) =>
+                      sum +
+                      (line.totalDeliveryFee && line.totalDeliveryFee !== 0
+                        ? line.totalDeliveryFee
+                        : 0),
                     0
                   )
                 ).toFixed(2)}

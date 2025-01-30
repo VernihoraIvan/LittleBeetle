@@ -97,7 +97,7 @@ const PopUpCustom = ({ setValue, value, defaultVal }: PopUpProps) => {
                   md:text-[14px]
                   smd:text-[14px]"
                 >
-                  Enter your own amount
+                  Enter your own amount 2
                   <input
                     className="w-40 h-10 border border-primPurpleFaintM px-3 ml-4 cursor-pointer"
                     type="text"

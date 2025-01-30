@@ -84,7 +84,7 @@ const OverlayComp = ({
             </ul>
             <div className="flex justify-between py-2 px-4 hover:bg-dropHover transition duration-300">
               <label>
-                Enter your own amount
+                Enter your own amount 3
                 <input
                   className="w-40 h-10 border border-primPurpleFaintM px-3 ml-4"
                   type="text"

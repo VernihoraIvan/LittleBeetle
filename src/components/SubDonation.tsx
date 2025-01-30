@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { SubDonationProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
 import clsx from "clsx";
@@ -15,6 +15,8 @@ import {
 } from "./ui/select";
 import { useNavigate } from "react-router-dom";
 import Alert from "@/assets/icons/alert-circle.svg?react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SubDonation = ({
   title,
@@ -29,6 +31,7 @@ const SubDonation = ({
 
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
 
+  const priceRef = useRef<number>(0);
   const [price, setPrice] = useState<number>(0);
   const [customPrice, setCustomPrice] = useState<number | null>(null);
   const [lang, setLang] = useState<string>("English");
@@ -47,6 +50,13 @@ const SubDonation = ({
       setIsOverlayPrice(false);
       setFee(id, price, quantity);
       setQuantity(1);
+      toast.success("Added to cart successfully!");
+    } else {
+      if (price < 3) {
+        toast.error("Please select a valid amount (minimum £3)");
+      } else {
+        toast.error("Please select a valid quantity");
+      }
     }
   };
 
@@ -61,10 +71,34 @@ const SubDonation = ({
     if (price > 2 && quantity >= 1) {
       handleAddProduct(title, price, quantity, lang, id, weight);
       navigate("/checkout/contribution");
+    } else {
+      toast.error("Please select a valid amount (minimum £3)");
     }
   };
 
-  useEffect(() => {}, [price, customPrice]);
+  const handleOnCustomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    setCustomPrice(value === "" ? 0 : Number(value));
+    const newPrice = value === "" ? 0 : Number(value);
+    setPrice(newPrice);
+    priceRef.current = newPrice;
+  };
+
+  const handleSetPrice = (price: number) => {
+    setPrice(price);
+    setCustomPrice(0);
+    priceRef.current = price;
+  };
+
+  useEffect(() => {
+    if (customPrice) {
+      setPrice(customPrice);
+      priceRef.current = customPrice;
+    }
+  }, [customPrice]);
+
+  const priceToShow =
+    priceRef.current > 0 ? `${priceRef.current} £` : "Donation Amount";
 
   return (
     <>
@@ -87,52 +121,50 @@ const SubDonation = ({
               </p>
               <div className="flex flex-col justify-between mt-2 ">
                 <div className="relative w-full big-responsive-text">
-                  <Select onValueChange={(value) => setPrice(Number(value))}>
-                    <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px]">
-                      <SelectValue placeholder="Donation Amount">
-                        {price}
-                      </SelectValue>
+                  <Select
+                    onValueChange={(value) => handleSetPrice(Number(value))}
+                  >
+                    <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
+                      <SelectValue placeholder={priceToShow} />
                     </SelectTrigger>
                     <SelectContent className="w-full bg-white cursor-pointer">
                       <SelectItem
                         className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="3"
                       >
-                        3
+                        3 £
                       </SelectItem>
                       <SelectItem
                         className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="5"
                       >
-                        5
+                        5 £
                       </SelectItem>
                       <SelectItem
                         className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="10"
                       >
-                        10
+                        10 £
                       </SelectItem>
-                      <div className="flex  justify-between gap-2 px-2 hover:bg-dropHover transition duration-300">
-                        <label htmlFor="customPrice" className="cursor-pointer">
+                      <div className="flex  justify-between gap-2 px-2 hover:bg-dropHover transition duration-300 ">
+                        <label
+                          htmlFor="customPrice"
+                          className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
+                        >
                           Enter your own amount
                         </label>
                         <div className=" py-1">
                           <input
                             id="customPrice"
                             autoComplete="off"
-                            className="w-40 sm:w-20 sm:py-1 px-3 h-10 border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                            className="w-40 sm:w-20 sm:py-1 px-3 h-8 border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             type="number"
                             inputMode="numeric"
                             pattern="[0-9]*"
                             name="priceInput"
                             placeholder="£"
                             value={customPrice || ""}
-                            onChange={(
-                              event: React.ChangeEvent<HTMLInputElement>
-                            ) => setCustomPrice(Number(event.target.value))}
-                            onBlur={(
-                              event: React.FocusEvent<HTMLInputElement>
-                            ) => setPrice(Number(event.target.value))}
+                            onChange={(e) => handleOnCustomChange(e)}
                           />
                           <div className="flex items-center gap-1">
                             <Alert className="w-4 h-4 text-inputPink" />
