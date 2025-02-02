@@ -11,8 +11,8 @@ export interface ShipmentDetails {
   street_adress2?: string;
   city?: string;
   postal_code?: string;
-  default_delivery_fee: number;
-  duration: number;
+  default_delivery_fee?: number;
+  duration?: number;
   delivery_fee?: number;
 }
 

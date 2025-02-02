@@ -25,14 +25,19 @@ const DetailsFormWO = () => {
   // const resetShipments = useDonation((state) => state.resetShipments);
   const resetShipmentsMain = useShipment((state) => state.resetShipments);
   console.log("mainShipmentStore: ", mainShipmentStore);
-  const defaultValues = {
+  const defaultValues: ShipmentDetails = {
     first_name: adressStore.first_name,
     last_name: adressStore.last_name,
     email: adressStore.email,
     phone: adressStore.phone,
-    default_delivery_fee: adressStore.default_delivery_fee,
-    duration: adressStore.duration,
-    delivery_fee: adressStore.delivery_fee,
+    default_delivery_fee: 0,
+    duration: 0,
+    delivery_fee: 0,
+    country: adressStore.country || "",
+    street_adress: adressStore.street_adress || "",
+    street_adress2: adressStore.street_adress2 || "",
+    city: adressStore.city || "",
+    postal_code: adressStore.postal_code || "",
   };
   const id = nanoid();
   const shipment = useMainStore((state) => state.shipment);
