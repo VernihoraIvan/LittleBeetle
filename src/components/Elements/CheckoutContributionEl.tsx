@@ -39,8 +39,6 @@ const CheckoutContributionEl = ({
     removeProduct(id);
     setStage(1);
     setProductState((prev) => prev.filter((item) => item.id !== id));
-    console.log("remove donation");
-    console.log(productState);
   };
 
   return (

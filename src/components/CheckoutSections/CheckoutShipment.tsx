@@ -77,15 +77,7 @@ function calculateDeliveryFeeByWeight(
 
   const numberOfAdditionalCharges: number =
     totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1);
-  console.log(
-    "WEIGHT_LIMIT",
-    WEIGHT_LIMIT,
-    "totalWeight",
-    totalWeight,
-    "totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1)",
-    totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1)
-  );
-  console.log("numberOfAdditionalCharges", numberOfAdditionalCharges);
+
   return baseDeliveryFee + ADDITIONAL_FEE * numberOfAdditionalCharges;
 }
 
@@ -131,7 +123,6 @@ const CheckoutShipment = () => {
     (state) => state.setShipmentDeliveryFee
   );
   const { orderLines, setOrderLines } = useOrderLines();
-  // console.log("orderLines", orderLines);
   const setDeliveryFee = useCart((state) => state.setDeliveryFee);
 
   useEffect(() => {
@@ -145,12 +136,9 @@ const CheckoutShipment = () => {
     const deliveryInfo = getDeliveryInfoByCountry(
       product.shipment?.country || ""
     );
-    // console.log("deliveryInfo", deliveryInfo);
     if (deliveryInfo) {
-      // console.log("deliveryInfo.fee", deliveryInfo.fee);
       return deliveryInfo.fee;
     }
-    // console.log("deliveryInfo.fee 00000");
     return 0;
   };
 
@@ -177,12 +165,6 @@ const CheckoutShipment = () => {
       const baseDeliveryInfo = getDeliveryInfoByCountry(
         orderLine.address.country
       );
-      // console.log(
-      //   "Country:",
-      //   orderLine.address.country,
-      //   "Delivery Info:",
-      //   baseDeliveryInfo
-      // );
 
       if (!baseDeliveryInfo) {
         console.log("No delivery info found for address:", orderLine.address);
@@ -200,10 +182,7 @@ const CheckoutShipment = () => {
 
       // Update individual product fees
       orderLine.products.forEach((product) => {
-        console.log("totalDeliveryFee inside each product", totalDeliveryFee);
-
         const currentFee = currentFees.get(product.id);
-        console.log("currentFee", currentFee);
         if (
           !currentFee ||
           currentFee.fee !== totalDeliveryFee ||
@@ -215,7 +194,6 @@ const CheckoutShipment = () => {
             baseDeliveryInfo.duration
           );
           setDeliveryFee(product.id, totalDeliveryFee);
-          console.log("setting delivery fee", totalDeliveryFee);
         }
       });
 
@@ -236,11 +214,6 @@ const CheckoutShipment = () => {
     0
   );
 
-  const deliveryFee = orderLines.reduce(
-    (sum, line) => sum + (line.totalDeliveryFee || 0),
-    0
-  );
-  console.log("deliveryFee", deliveryFee);
   const setStage = useStage((state) => state.setStage);
   const productToDisplay = includedProducts.concat(extraProducts);
   const filteredForMyself = products.filter(
@@ -274,12 +247,6 @@ const CheckoutShipment = () => {
 
     setStage(4);
   };
-  // console.log("isCountryChanged", isCountryChanged);
-  console.log("products", products);
-
-  // ... existing code ...
-
-  // ... existing code ...
 
   return (
     <section className="py-10 flex flex-col ">
@@ -380,13 +347,7 @@ const CheckoutShipment = () => {
               ))}
           </div>
         </div>
-        <SummaryUniversal
-          subTotal={totalFee}
-          // shippingFee={orderLines.reduce(
-          //   (sum, line) => sum + (line.totalDeliveryFee || 0),
-          //   0
-          // )}
-        />
+        <SummaryUniversal subTotal={totalFee} />
       </div>
       <ButtonTo
         onClick={handleSubmitAllForms}

@@ -24,7 +24,6 @@ const GooglePayEl = () => {
   );
   const [canMakePayment, setCanMakePayment] =
     useState<CanMakePaymentResult | null>(null);
-  console.log("stripe: ", stripe);
 
   useEffect(() => {
     if (stripe) {
@@ -40,9 +39,7 @@ const GooglePayEl = () => {
       };
       const pr = stripe.paymentRequest(paymentRequestOptions);
       pr.canMakePayment().then((result) => {
-        console.log(result);
         if (result && result.googlePay) {
-          console.log("Google Pay is available");
           setCanMakePayment(result);
           setPaymentRequest(pr);
         } else {
@@ -53,7 +50,6 @@ const GooglePayEl = () => {
       });
 
       pr.on("paymentmethod", async (event) => {
-        console.log(event.paymentMethod);
         event.complete("success");
       });
     }

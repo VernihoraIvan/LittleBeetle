@@ -6,11 +6,9 @@ import {
   ErrorMessage,
   FormikProps,
 } from "formik";
-// import { countries } from "@/utilities/data";
 import { availableCountries } from "@/utilities/data";
 
 import FormEl from "@/components/Elements/FormEl";
-// import { MyFormValues } from "@/utilities/interfaces";
 import { SubmitSchema } from "@/utilities/FormSchema";
 import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
 import { useRef } from "react";

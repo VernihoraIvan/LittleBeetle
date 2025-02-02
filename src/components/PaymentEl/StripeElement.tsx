@@ -4,6 +4,7 @@ import { useOrderLines } from "@/zustand/orderLinesStore";
 import { useCart } from "@/zustand/productStore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { FormEvent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface PaymentComponentProps {
   setIsPaymentSuccess: (value: boolean) => void;
@@ -11,14 +12,11 @@ interface PaymentComponentProps {
 const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cart = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
-  // console.log("products: ", products);
   const orderLines = useOrderLines((state) => state.orderLines);
   const totalDeliveryFee = orderLines.reduce(
     (sum, line) => sum + (line.totalDeliveryFee || 0),
     0
   );
-  console.log("totalDeliveryFee: ", totalDeliveryFee);
-  console.log("orderLines: ", orderLines);
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
@@ -27,25 +25,17 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   let totalFee: number;
 
   if (totalQty === 0) {
-    // console.log("totalQty is 0");
     totalFee = donations.reduce(
       (acc, product) => acc + product.price * product.quantity,
       0
     );
   } else {
-    // console.log("totalQty is not 0");
     totalFee = orderLines.reduce(
       (sum, line) => sum + (line.totalDeliveryFee || 0),
       0
     );
-    // totalFee = products.reduce(
-    //   (sum, product) => sum + product.price * product.quantity,
-    //   0
-    // );
   }
   totalFee += totalDeliveryFee;
-
-  // console.log("isProcessing: ", isProcessing);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -57,41 +47,27 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   }, [paymentStatus, setIsPaymentSuccess]);
 
   useEffect(() => {
-    // if (totalQty === 0) return;
-
     if (paymentStatus !== "succeeded") return;
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    // console.log("handleSubmit");
     e.preventDefault();
-    // console.log("totalQty: ", totalQty);
-
-    // if (totalQty === 0) return;
 
     if (!stripe || !elements) return;
-
-    // console.log("stripe: ", stripe);
-    // console.log("elements: ", elements);
 
     const cardEl = elements.getElement(CardElement);
 
     setIsProcessing(true);
-    // console.log("after setIsProcessing");
 
     try {
-      // console.log("totalFee: ", totalFee);
       const res = await proceedToPayment(totalFee, "gbp");
       if (!res) {
         setPaymentStatus("Payment failed!");
         setIsProcessing(false);
-        console.log("Payment failed!");
         return;
       }
-      console.log("after try block");
 
       const { client_secret: clientSecret } = res.data;
-      // console.log("clientSecret: ", clientSecret);
 
       const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -104,9 +80,11 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
       } else {
         setPaymentStatus(paymentIntent.status);
       }
+      toast.success("Payment successful!");
     } catch (error) {
       console.error(error);
       setPaymentStatus("Payment failed!");
+      toast.error("Payment failed!");
     } finally {
       setIsProcessing(false);
     }
@@ -115,7 +93,6 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
   const cardElementOptions = {
     style: {
       base: {
-        // fontSize: "24px",
         color: "#32325d",
         backgroundColor: "#ffff",
         "::placeholder": {
@@ -123,7 +100,6 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
         },
         iconColor: "#6772e5",
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        // padding: "10px 12px",
       },
       invalid: {
         color: "#fa755a",

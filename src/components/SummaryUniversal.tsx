@@ -8,8 +8,6 @@ const SummaryUniversal = ({
 }: SummaryProps) => {
   const { orderLines } = useOrderLines();
 
-  console.log("shippingFee", shippingFee);
-  console.log("orderLines", orderLines);
   return (
     <div className="flex flex-col gap-prodMar smd:pt-[40px] ">
       <div

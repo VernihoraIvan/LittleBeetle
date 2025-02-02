@@ -12,7 +12,6 @@ import { useRef, useState } from "react";
 import Alert from "@/assets/icons/alert-circle.svg?react";
 
 const DonationOption = ({
-  price,
   setLang,
   setPrice,
   setIsChecked,
@@ -95,13 +94,7 @@ const DonationOption = ({
                     name="priceInput"
                     placeholder="£"
                     value={customPrice || ""}
-                    // onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                    //   setCustomPrice(Number(event.target.value))
-                    // }
                     onChange={(e) => handleOnCustomChange(e)}
-                    // onBlur={(event: React.FocusEvent<HTMLInputElement>) =>
-                    //   setPrice(Number(event.target.value))
-                    // }
                   ></input>
                   <div className="flex items-center gap-1">
                     <Alert className="w-4 h-4 text-inputPink" />

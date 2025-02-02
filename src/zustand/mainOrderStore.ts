@@ -39,13 +39,7 @@ export const useMainStore = create<MainStoreState>((set) => ({
     useCart.getState().addShipment(shipment, id);
     set({ products: useCart.getState().items });
   },
-  //   addShipment: (shipment: ShipmentDetails, id: string) => {
-  //     set((state: CartState) => ({
-  //       items: state.items.map((item) =>
-  //         item.id === id ? { ...item, shipment: shipment } : item
-  //       ),
-  //     }));
-  //   },
+
   removeFromCart: (...args) => {
     useCart.getState().removeFromCart(...args);
     set({ products: useCart.getState().items });

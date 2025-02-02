@@ -1,7 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import SharedLayout from "./components/SharedLayout";
-// import Home from "./pages/Home";
 import About from "./pages/About";
 import Donation from "./pages/Donation";
 import Creators from "./pages/Creators";

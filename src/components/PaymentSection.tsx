@@ -1,109 +1,79 @@
 import SummaryUniversal from "./SummaryUniversal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import mCardImg from "@/assets/images/mCard.png";
 import visaImg from "@/assets/images/visa.png";
 import gPayImg from "@/assets/images/gPay.png";
 import aPayImg from "@/assets/images/aPay.png";
-import { itemProps, useCart } from "@/zustand/productStore";
+import { useCart } from "@/zustand/productStore";
 import StripeElement from "./PaymentEl/StripeElement";
 import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
-// import { useNavigate } from "react-router-dom";
 import { sentData } from "@/api/connection";
-import { OrderLine, useOrderLines } from "@/zustand/orderLinesStore";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 import { useStage } from "@/zustand/stageStore";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
-  // const navigate = useNavigate();
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
-  const orderLinesRef = useOrderLines((state) => state.orderLines);
-  console.log("orderLinesRef", orderLinesRef);
-  const [orderLines, setOrderLines] = useState<OrderLine[]>(orderLinesRef);
-
-  useEffect(() => {
-    setOrderLines(orderLinesRef);
-  }, [orderLinesRef]);
-
-  console.log("products", products);
+  // const orderLinesRef = useOrderLines((state) => state.orderLines);
+  // const [orderLines, setOrderLines] = useState<OrderLine[]>(orderLinesRef);
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   setOrderLines(orderLinesRef);
+  // }, [orderLinesRef]);
 
   const totalFee = products.reduce(
     (sum, product) => sum + product.price * product.quantity,
     0
   );
-  const deliveryFee = orderLines.reduce(
-    (sum, line) => sum + (line.totalDeliveryFee || 0),
-    0
-  );
-  console.log("totalFee", deliveryFee);
-  console.log("orderLines", orderLines);
 
   const handleSubmit = async () => {
     if (isPaymentSuccess) {
-      console.log("Payment success");
       sentData(products);
       useOrderLines.getState().clearOrderLines();
       useCart.getState().clearCart();
       useStage.getState().setStage(0);
+      toast.success("Donation completed successfully");
     } else {
-      console.log("Payment failed");
+      toast.error("Payment failed");
     }
-    // navigate("/complete");
+    navigate("/complete");
   };
 
-  // const handleSubmitTest = () => {
-  //   sentData(products);
+  // const checkEachDeliveryFee = (product: itemProps) => {
+  //   // Find the order line containing this product
+  //   const orderLine = orderLines.find((line) =>
+  //     line.products.some((p) => p.id === product.id)
+  //   );
+
+  //   if (!orderLine) {
+  //     console.warn(`No order line found for product ${product.id}`);
+  //     return false;
+  //   }
+
+  //   // Compare the fees
+  //   const productFee = product.shipment?.delivery_fee || 0;
+  //   const orderLineFee = orderLine.totalDeliveryFee || 0;
+
+  //   if (productFee !== orderLineFee) {
+  //     console.warn(
+  //       `Delivery fee mismatch for product ${product.id}: Product fee ${productFee} != Order line fee ${orderLineFee}`
+  //     );
+  //     return false;
+  //   }
+
+  //   return true;
   // };
 
-  // function detectUserOS(): "Android" | "Apple" | "Desktop" | "Unknown" {
-  //   const userAgent = navigator.userAgent;
-  //   if (/android/i.test(userAgent)) {
-  //     return "Android";
-  //   }
-  //   if (/iPad|iPhone|iPod|Macintosh|Mac OS X/.test(userAgent)) {
-  //     return "Apple";
-  //   }
-  //   if (/Windows|Linux/.test(userAgent)) {
-  //     return "Desktop";
-  //   }
-  //   return "Unknown";
-  // }
-  // const currentOS = detectUserOS();
-
-  // console.log(detectUserOS());
-
-  const checkEachDeliveryFee = (product: itemProps) => {
-    // Find the order line containing this product
-    const orderLine = orderLines.find((line) =>
-      line.products.some((p) => p.id === product.id)
-    );
-
-    if (!orderLine) {
-      console.warn(`No order line found for product ${product.id}`);
-      return false;
-    }
-
-    // Compare the fees
-    const productFee = product.shipment?.delivery_fee || 0;
-    const orderLineFee = orderLine.totalDeliveryFee || 0;
-
-    if (productFee !== orderLineFee) {
-      console.warn(
-        `Delivery fee mismatch for product ${product.id}: Product fee ${productFee} != Order line fee ${orderLineFee}`
-      );
-      return false;
-    }
-
-    return true;
-  };
-
-  useEffect(() => {
-    products.forEach((product) => {
-      console.log(checkEachDeliveryFee(product));
-    });
-  }, [products]);
+  // useEffect(() => {
+  //   products.forEach((product) => {
+  //     console.log(checkEachDeliveryFee(product));
+  //   });
+  // }, [products]);
 
   return (
     <section className="flex justify-between pt-bookPB sm:flex-col sm:flex-col-reverse sm:pt-0 ">
@@ -144,7 +114,6 @@ const PaymentSection = () => {
                 <img src={visaImg} className="h-full" alt="Visa icon" />
               </div>
             </li>
-            {/* {currentOS === "Android" && ( */}
             <li
               className={clsx(
                 "flex justify-between items-center cursor-pointer font-secondaryBold text-bgPurple border border-bgPurple px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4",
@@ -157,8 +126,6 @@ const PaymentSection = () => {
               </p>
               <img src={gPayImg} className="h-full" alt="Googlepay icon" />
             </li>
-            {/* )} */}
-            {/* {currentOS === "Apple" && ( */}
             <li
               className={clsx(
                 "flex justify-between items-center cursor-pointer  font-secondaryBold text-bgPurple border border-bgPurple  px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4",
@@ -171,7 +138,6 @@ const PaymentSection = () => {
               </p>
               <img src={aPayImg} className="h-full" alt="Applepay icon" />
             </li>
-            {/* )} */}
           </ul>
         </div>
         <div className="flex flex-col gap-5">
@@ -194,16 +160,6 @@ const PaymentSection = () => {
           >
             complete donation
           </button>
-          {/* <button
-            onClick={handleSubmitTest}
-            className={clsx(
-              "w-payW  py-5 font-secondarySBold text-xl",
-              isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
-              !isPaymentSuccess && "bg-pinkBar text-primWhite "
-            )}
-          >
-            test
-          </button> */}
         </div>
       </div>
       <SummaryUniversal subTotal={totalFee} />

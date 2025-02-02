@@ -1,4 +1,3 @@
-// Carousel.js
 import { CarouselProps } from "@/utilities/interfaces";
 import { useState } from "react";
 import CarouselArrow from "@/assets/icons/carousel-arrow.svg?react";

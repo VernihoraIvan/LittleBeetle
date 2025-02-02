@@ -141,7 +141,6 @@ export const useDonation = create(
         }));
       },
       addAdress: (shipment: ShipmentDetails) => {
-        console.log("setting shipment shipment: ", shipment);
         set((state: DonationState) => ({
           items: state.items.map((item) => ({ ...item, shipment: shipment })),
         }));

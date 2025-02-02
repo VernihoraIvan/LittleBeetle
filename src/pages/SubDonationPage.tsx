@@ -1,4 +1,3 @@
-// import Footer from "@/components/Footer";
 import SubDonation from "@/components/SubDonation";
 import { includedProducts, extraProducts } from "@/utilities/data";
 import { useParams } from "react-router-dom";
@@ -9,8 +8,6 @@ const SubDonationPage = () => {
   const productToDisplay = includedProducts
     .concat(extraProducts)
     .find((el) => el.element === product);
-
-  console.log(productToDisplay, "productToDisplay");
 
   return (
     <>

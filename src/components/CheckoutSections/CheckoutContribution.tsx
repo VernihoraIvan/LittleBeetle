@@ -20,8 +20,6 @@ const CheckoutContribution = () => {
   );
   const setStage = useStage((state) => state.setStage);
 
-  console.log("products", products);
-
   useEffect(() => {
     setTotalFee(totalFee);
     if (products.length === 0) {
