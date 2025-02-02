@@ -116,33 +116,37 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
         <div className="">
           <h2
             className="font-secondaryBold text-buttonS mb-6
-              xl:text-[24px]
-              lg:text-[22px]
-              md:text-[22px]
-              sm:text-[22px]"
+                xl:text-[24px]
+                lg:text-[22px]
+                md:text-[22px]
+                sm:text-[22px]"
           >
             Card information
           </h2>
           <div
             className="flex flex-col gap-4 mb-10 
-          xl:mb-7
-          lg:mb-5
-          smd:mb-5"
+            xl:mb-7
+            lg:mb-5
+            smd:mb-5"
           >
+            <p className="text-red-5004242 4242 4242 4242">
+              test card number: 4242 4242 4242 4242
+            </p>
+
             <label
               htmlFor="cardName"
               className="font-secondaryBold text-[24px]
-              xl:text-[20px]
-              lg:text-[18px]
-              smd:text-[18px]"
+                xl:text-[20px]
+                lg:text-[18px]
+                smd:text-[18px]"
             >
               Cardholder name <span className="text-red-500">*</span>
             </label>
             <input
               className="text-[24px] px-4 py-3 border border-primPurpleFaintM h-[60px]
-              xl:text-[18px] xl:py-2 xl:px-3 xl:h-[45px]
-              lg:text-[14px] lg:py-[6px] lg:px-2 lg:h-[33px]
-              smd:text-[14px] smd:py-[6px] smd:px-2 smd:h-[33px]"
+                xl:text-[18px] xl:py-2 xl:px-3 xl:h-[45px]
+                lg:text-[14px] lg:py-[6px] lg:px-2 lg:h-[33px]
+                smd:text-[14px] smd:py-[6px] smd:px-2 smd:h-[33px]"
               type="text"
               id="cardName"
               name="cardName"
@@ -153,17 +157,17 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
             <label
               htmlFor="card-element"
               className="font-secondaryBold text-[24px]
-              xl:text-[20px]
-              lg:text-[18px]
-              smd:text-[18px]"
+                xl:text-[20px]
+                lg:text-[18px]
+                smd:text-[18px]"
             >
               Card number <span className="text-red-500">*</span>
             </label>
             <div
               className="card-element-wrapper font-secondaryBold text-[24px] h-[60px] border border-primPurpleFaintM px-4 py-3
-            xl:text-[18px] xl:py-2 xl:px-3 xl:h-[45px]
-            lg:text-[14px] lg:py-[6px] lg:px-2 lg:h-[33px]
-            smd:text-[14px] smd:py-[6px] smd:px-2 smd:h-[33px]"
+              xl:text-[18px] xl:py-2 xl:px-3 xl:h-[45px]
+              lg:text-[14px] lg:py-[6px] lg:px-2 lg:h-[33px]
+              smd:text-[14px] smd:py-[6px] smd:px-2 smd:h-[33px]"
             >
               <CardElement options={cardElementOptions} id="card-element" />
             </div>
@@ -171,16 +175,16 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
           {!isProcessing && (
             <button
               className="mt-4 uppercase bg-primPurple text-primWhite font-secondaryBold text-[24px] flex justify-center items-center cursor-pointer w-full py-4 px-[110px]
-            xl:text-[20px]
-            lg:text-[18px]
-            smd:text-[18px]"
+              xl:text-[20px]
+              lg:text-[18px]
+              smd:text-[18px]"
             >
               Donate
             </button>
           )}
         </div>
-        {isProcessing && <div>Processing...</div>}
-        {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>}
+        {/* {isProcessing && <div>Processing...</div>}
+          {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>} */}
       </form>
     </div>
   );

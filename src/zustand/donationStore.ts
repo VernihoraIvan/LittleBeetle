@@ -29,6 +29,7 @@ export interface DonationState {
   addAdress: (shipment: ShipmentDetails) => void;
   setDefaultAdress: (shipment: ShipmentDetails) => void;
   resetShipments: () => void;
+  clearDonations: () => void;
 }
 
 export const useDonation = create(
@@ -144,6 +145,9 @@ export const useDonation = create(
         set((state: DonationState) => ({
           items: state.items.map((item) => ({ ...item, shipment: shipment })),
         }));
+      },
+      clearDonations: () => {
+        set({ items: [] });
       },
     }),
     {

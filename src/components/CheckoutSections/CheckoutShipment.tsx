@@ -122,7 +122,7 @@ const CheckoutShipment = () => {
   const setShipmentDeliveryFee = useCart(
     (state) => state.setShipmentDeliveryFee
   );
-  const { orderLines, setOrderLines } = useOrderLines();
+  const { setOrderLines } = useOrderLines();
   const setDeliveryFee = useCart((state) => state.setDeliveryFee);
 
   useEffect(() => {
@@ -252,7 +252,7 @@ const CheckoutShipment = () => {
     <section className="py-10 flex flex-col ">
       <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10 md:pt-[80px]">
         <div className=" flex flex-col gap-[110px]">
-          {orderLines.map((orderLine, index) => (
+          {/* {orderLines.map((orderLine, index) => (
             <div key={index} className="mb-8 p-4 border rounded">
               <div className="mb-4">
                 <h3 className="font-secondaryBold text-lg">
@@ -287,7 +287,7 @@ const CheckoutShipment = () => {
                 <p>Estimated Delivery: {orderLine.deliveryDuration} days</p>
               </div>
             </div>
-          ))}
+          ))} */}
           <div className="flex flex-col">
             {filteredForMyself.length > 0 && (
               <h2

@@ -40,6 +40,7 @@ const PaymentSectionWO = () => {
           }))
         );
         toast.success("Donation completed successfully");
+        useDonation.getState().clearDonations();
         navigate("/complete");
       } catch (error) {
         console.error("Payment failed:", error);
@@ -139,7 +140,7 @@ const PaymentSectionWO = () => {
           </button>
         </div>
       </div>
-      <SummaryUniversal subTotal={totalFee} shippingFee={0} />
+      <SummaryUniversal subTotal={totalFee} shippingFee={0} isDonation={true} />
     </section>
   );
 };
