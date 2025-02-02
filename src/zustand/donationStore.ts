@@ -1,4 +1,3 @@
-// import { PersonalData } from "@/utilities/interfaces";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { ShipmentDetails } from "./shipmentStore";

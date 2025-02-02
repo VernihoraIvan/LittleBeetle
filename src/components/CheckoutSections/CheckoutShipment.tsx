@@ -77,7 +77,15 @@ function calculateDeliveryFeeByWeight(
 
   const numberOfAdditionalCharges: number =
     totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1);
-  // console.log("numberOfAdditionalCharges", numberOfAdditionalCharges);
+  console.log(
+    "WEIGHT_LIMIT",
+    WEIGHT_LIMIT,
+    "totalWeight",
+    totalWeight,
+    "totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1)",
+    totalWeight <= WEIGHT_LIMIT ? 0 : Math.ceil(totalWeight / WEIGHT_LIMIT - 1)
+  );
+  console.log("numberOfAdditionalCharges", numberOfAdditionalCharges);
   return baseDeliveryFee + ADDITIONAL_FEE * numberOfAdditionalCharges;
 }
 
@@ -227,6 +235,12 @@ const CheckoutShipment = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+
+  const deliveryFee = orderLines.reduce(
+    (sum, line) => sum + (line.totalDeliveryFee || 0),
+    0
+  );
+  console.log("deliveryFee", deliveryFee);
   const setStage = useStage((state) => state.setStage);
   const productToDisplay = includedProducts.concat(extraProducts);
   const filteredForMyself = products.filter(
@@ -251,7 +265,11 @@ const CheckoutShipment = () => {
     // Update delivery fees after form submission
     products.forEach((product) => {
       const fee = calculateDeliveryFee(product);
-      setShipmentDeliveryFee(product.id, fee, product.shipment.duration);
+      setShipmentDeliveryFee(
+        product.id,
+        fee || 0,
+        product.shipment?.duration || 0
+      );
     });
 
     setStage(4);
@@ -364,10 +382,10 @@ const CheckoutShipment = () => {
         </div>
         <SummaryUniversal
           subTotal={totalFee}
-          shippingFee={orderLines.reduce(
-            (sum, line) => sum + (line.totalDeliveryFee || 0),
-            0
-          )}
+          // shippingFee={orderLines.reduce(
+          //   (sum, line) => sum + (line.totalDeliveryFee || 0),
+          //   0
+          // )}
         />
       </div>
       <ButtonTo

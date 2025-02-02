@@ -31,11 +31,14 @@ const CheckoutContribution = () => {
 
   const productToDisplay = includedProducts.concat(extraProducts);
 
+  const handleOnClick = () => {
+    setStage(2);
+  };
   return (
     <div>
       <div
         className={clsx(
-          "flex gap-10  pt-bookPT smd:flex-col smd:pt-0  smd:gap-0",
+          "flex gap-10  pt-5 smd:flex-col smd:pt-0  smd:gap-0",
           products.length > 0 ? "justify-between" : "justify-between"
         )}
       >
@@ -75,7 +78,7 @@ const CheckoutContribution = () => {
         <>
           <CartIncludedWidget />
           <ButtonTo
-            onClick={() => setStage(2)}
+            onClick={handleOnClick}
             to="/checkout/details"
             title="NEXT STEP"
             style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]

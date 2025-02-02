@@ -29,8 +29,8 @@ const GooglePayEl = () => {
   useEffect(() => {
     if (stripe) {
       const paymentRequestOptions: PaymentRequestOptions = {
-        country: "US",
-        currency: "usd",
+        country: "GB",
+        currency: "gbp",
         total: {
           label: "Total",
           amount: totalFee * 100,

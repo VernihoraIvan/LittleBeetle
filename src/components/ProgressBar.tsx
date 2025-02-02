@@ -10,7 +10,7 @@ const ProgressBar = () => {
   const allowedStage = useStage((state) => state.allowedStage);
   return (
     <section className="flex justify-center bg-primBeige sm:hidden">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS relative pt-bookPT flex justify-center flex-col">
+      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS relative pt-16 flex justify-center flex-col">
         <div className="w-full h-2 bg-pinkBar relative "></div>
         <div
           className={clsx(

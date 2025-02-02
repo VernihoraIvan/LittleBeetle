@@ -38,6 +38,10 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
       (sum, line) => sum + (line.totalDeliveryFee || 0),
       0
     );
+    // totalFee = products.reduce(
+    //   (sum, product) => sum + product.price * product.quantity,
+    //   0
+    // );
   }
   totalFee += totalDeliveryFee;
 
@@ -77,7 +81,7 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
 
     try {
       // console.log("totalFee: ", totalFee);
-      const res = await proceedToPayment(totalFee, "usd");
+      const res = await proceedToPayment(totalFee, "gbp");
       if (!res) {
         setPaymentStatus("Payment failed!");
         setIsProcessing(false);

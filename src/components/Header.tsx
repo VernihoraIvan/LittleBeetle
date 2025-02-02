@@ -6,7 +6,7 @@ import BurgerMenu from "./BurgerMenu";
 
 const Header = () => {
   return (
-    <header className="font-primaryBold z-10 flex flex-center justify-center absolute w-full py-navPad ">
+    <header className="font-primaryBold z-10 flex flex-center justify-center absolute w-full py-10 ">
       <nav
         className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS flex flex-row  text-primWhite text-xl
       lg:text-[16px]

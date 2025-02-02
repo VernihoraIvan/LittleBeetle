@@ -4,7 +4,7 @@ import Alert from "@/assets/icons/alert-circle.svg?react";
 
 const CartIncludedWidget = () => {
   return (
-    <section className="flex justify-center bg-primBeige pb-buttonP pt-bookPT">
+    <section className="flex justify-center bg-primBeige py-20">
       <div className="flex justify-start xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-full  xxs:w-contWXSS">
         <div className=" p-10 border border-bgPurple xxl:w-cartCont">
           <h3 className="text-primPurple responsive-heading font-secondaryBold uppercase mb-6">

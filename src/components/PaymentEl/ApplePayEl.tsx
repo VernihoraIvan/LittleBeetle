@@ -15,11 +15,11 @@ const ApplePayEl = () => {
     if (!stripe) return;
 
     const pr = stripe.paymentRequest({
-      country: "US",
-      currency: "usd",
+      country: "GB",
+      currency: "gbp",
       total: {
         label: "Total",
-        amount: 1000, // amount in cents
+        amount: 1000, // amount in pence
       },
       requestPayerName: true,
       requestPayerEmail: true,

@@ -1,5 +1,6 @@
 import ProgressBar from "@/components/ProgressBar";
 import Title from "@/components/Title";
+
 import { Outlet } from "react-router-dom";
 
 const Checkout = () => {

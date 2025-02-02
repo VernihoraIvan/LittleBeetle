@@ -44,6 +44,7 @@ export interface CartState {
     duration: number
   ) => void;
   setDeliveryFee: (id: string, delivery_fee: number) => void;
+  clearCart: () => void;
 }
 
 export interface LanguageState {
@@ -200,6 +201,9 @@ export const useCart = create(
               : item
           ),
         }));
+      },
+      clearCart: () => {
+        set({ items: [] });
       },
     }),
     {

@@ -79,7 +79,11 @@ const CheckoutContributionWO = () => {
             </>
           )}
         </div>
-        <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
+        <SummaryUniversal
+          subTotal={totalFeeState}
+          shippingFee={0}
+          isDonation={true}
+        />
       </div>
       <CartIncludedWidget />
       {/* <ButtonTo

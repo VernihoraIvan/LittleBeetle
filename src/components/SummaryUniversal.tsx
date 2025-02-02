@@ -1,10 +1,15 @@
 import { SummaryProps } from "@/utilities/interfaces";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
-const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
+const SummaryUniversal = ({
+  subTotal,
+  shippingFee,
+  isDonation,
+}: SummaryProps) => {
   const { orderLines } = useOrderLines();
 
   console.log("shippingFee", shippingFee);
+  console.log("orderLines", orderLines);
   return (
     <div className="flex flex-col gap-prodMar smd:pt-[40px] ">
       <div
@@ -29,7 +34,7 @@ const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
             lg:px-[24px] lg:py-[20px]
             smd:px-[20px] smd:py-[26px]"
           >
-            {orderLines.length > 0 && (
+            {orderLines.length > 0 && !isDonation && (
               <>
                 {/* Subtotal */}
                 <div
@@ -41,12 +46,12 @@ const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
                 >
                   <p className="font-secondaryBold">Subtotal</p>
                   <p className="font-secondaryRegular text-inputPink">
-                    £{subTotal}
+                    £{subTotal.toFixed(2)}
                   </p>
                 </div>
 
                 {/* Only show shipping fee if it's not 0 */}
-                {shippingFee !== 0 && (
+                {/* {shippingFee !== 0 && (
                   <div
                     className="flex justify-between text-linkS text-inputPink mb-4
                   xl:text-[18px]
@@ -59,7 +64,7 @@ const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
                       £{shippingFee.toFixed(2)}
                     </p>
                   </div>
-                )}
+                )} */}
 
                 {/* Delivery fees per order line */}
                 {orderLines.map(
@@ -98,18 +103,20 @@ const SummaryUniversal = ({ subTotal, shippingFee }: SummaryProps) => {
               <p className="font-secondaryBold smd:mr-[100px]">Total</p>
               <p className="font-secondaryRegular text-inputPink">
                 £
-                {(
-                  subTotal +
-                  (shippingFee || 0) +
-                  orderLines.reduce(
-                    (sum, line) =>
-                      sum +
-                      (line.totalDeliveryFee && line.totalDeliveryFee !== 0
-                        ? line.totalDeliveryFee
-                        : 0),
-                    0
-                  )
-                ).toFixed(2)}
+                {isDonation
+                  ? subTotal.toFixed(2)
+                  : (
+                      subTotal +
+                      (shippingFee || 0) +
+                      orderLines.reduce(
+                        (sum, line) =>
+                          sum +
+                          (line.totalDeliveryFee && line.totalDeliveryFee !== 0
+                            ? line.totalDeliveryFee
+                            : 0),
+                        0
+                      )
+                    ).toFixed(2)}
               </p>
             </div>
           </div>

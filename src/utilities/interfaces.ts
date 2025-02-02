@@ -108,7 +108,8 @@ export interface CreatorsElProps {
 
 export interface SummaryProps {
   subTotal: number;
-  shippingFee: number;
+  shippingFee?: number;
+  isDonation?: boolean;
 }
 
 export interface SummaryCheckoutProps {

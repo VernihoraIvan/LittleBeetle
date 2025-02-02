@@ -11,28 +11,42 @@ import GooglePayEl from "./PaymentEl/GooglePayEl";
 import ApplePayEl from "./PaymentEl/ApplePayEl";
 // import { useNavigate } from "react-router-dom";
 import { sentData } from "@/api/connection";
-import { useOrderLines } from "@/zustand/orderLinesStore";
+import { OrderLine, useOrderLines } from "@/zustand/orderLinesStore";
+import { useStage } from "@/zustand/stageStore";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
   // const navigate = useNavigate();
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
+  const orderLinesRef = useOrderLines((state) => state.orderLines);
+  console.log("orderLinesRef", orderLinesRef);
+  const [orderLines, setOrderLines] = useState<OrderLine[]>(orderLinesRef);
+
+  useEffect(() => {
+    setOrderLines(orderLinesRef);
+  }, [orderLinesRef]);
 
   console.log("products", products);
 
-  const { orderLines } = useOrderLines();
-
-  const totalFee = orderLines.reduce(
+  const totalFee = products.reduce(
+    (sum, product) => sum + product.price * product.quantity,
+    0
+  );
+  const deliveryFee = orderLines.reduce(
     (sum, line) => sum + (line.totalDeliveryFee || 0),
     0
   );
+  console.log("totalFee", deliveryFee);
   console.log("orderLines", orderLines);
 
   const handleSubmit = async () => {
     if (isPaymentSuccess) {
       console.log("Payment success");
       sentData(products);
+      useOrderLines.getState().clearOrderLines();
+      useCart.getState().clearCart();
+      useStage.getState().setStage(0);
     } else {
       console.log("Payment failed");
     }
@@ -192,7 +206,7 @@ const PaymentSection = () => {
           </button> */}
         </div>
       </div>
-      <SummaryUniversal subTotal={totalFee} shippingFee={totalFee} />
+      <SummaryUniversal subTotal={totalFee} />
     </section>
   );
 };

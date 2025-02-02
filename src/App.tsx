@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import SharedLayout from "./components/SharedLayout";
 // import Home from "./pages/Home";
@@ -15,8 +15,14 @@ import CheckoutWO from "./pages/CheckoutWO";
 import CheckoutWOSection from "./components/CheckoutSectionsWithoutProduct/CheckoutWOSection";
 import DonationComplete from "./components/DonationComplete";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   return (
     <>
       <Routes>
