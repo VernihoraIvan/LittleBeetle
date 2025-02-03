@@ -13,7 +13,7 @@ const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
             <div className="flex justify-between  text-linkS text-primPurple ">
               <p className="font-secondaryBold">Total</p>
               <p className="font-secondaryRegular text-inputPink">
-                £{subTotal + shippingFee}
+                £{subTotal + (shippingFee || 0)}
               </p>
             </div>
           </div>
