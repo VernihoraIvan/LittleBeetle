@@ -121,7 +121,10 @@ const PaymentSectionWO = () => {
         <div className="flex flex-col gap-5">
           <div className="">
             {isActive === 1 && (
-              <StripeElement setIsPaymentSuccess={setIsPaymentSuccess} />
+              <StripeElement
+                setIsPaymentSuccess={setIsPaymentSuccess}
+                isDonation={true}
+              />
             )}
             {isActive === 2 && <GooglePayEl />}
             {isActive === 3 && <ApplePayEl />}

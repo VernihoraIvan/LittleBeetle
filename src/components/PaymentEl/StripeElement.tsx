@@ -8,9 +8,12 @@ import { toast } from "react-toastify";
 
 interface PaymentComponentProps {
   setIsPaymentSuccess: (value: boolean) => void;
+  isDonation?: boolean;
 }
-const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
-  const cart = useCart((state) => state.items);
+const PaymentComponent = ({
+  setIsPaymentSuccess,
+  isDonation,
+}: PaymentComponentProps) => {
   const donations = useDonation((state) => state.items);
   const orderLines = useOrderLines((state) => state.orderLines);
   const totalDeliveryFee = orderLines.reduce(
@@ -18,24 +21,25 @@ const PaymentComponent = ({ setIsPaymentSuccess }: PaymentComponentProps) => {
     0
   );
 
+  const products = useCart((state) => state.items);
+
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("");
 
-  const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = products.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
   let totalFee: number;
 
-  if (totalQty === 0) {
+  if (isDonation) {
     totalFee = donations.reduce(
       (acc, product) => acc + product.price * product.quantity,
       0
     );
   } else {
-    totalFee = orderLines.reduce(
-      (sum, line) => sum + (line.totalDeliveryFee || 0),
-      0
-    );
+    totalFee = totalPrice + totalDeliveryFee;
   }
-  totalFee += totalDeliveryFee;
 
   const stripe = useStripe();
   const elements = useElements();
