@@ -4,11 +4,20 @@ import {
 } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { PaymentRequest } from "@stripe/stripe-js";
+import { Info as InfoIcon } from "lucide-react";
+import { useCart } from "@/zustand/productStore";
 
 const ApplePayEl = () => {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
     null
+  );
+
+  const products = useCart((state) => state.items);
+
+  const totalFee = products.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
   );
 
   useEffect(() => {
@@ -19,7 +28,7 @@ const ApplePayEl = () => {
       currency: "gbp",
       total: {
         label: "Total",
-        amount: 1000, // amount in pence
+        amount: totalFee * 100, // amount in pence
       },
       requestPayerName: true,
       requestPayerEmail: true,
@@ -33,7 +42,12 @@ const ApplePayEl = () => {
   }, [stripe]);
 
   if (!paymentRequest) {
-    return null;
+    return (
+      <div className="flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-sm text-muted-foreground">
+        <InfoIcon className="h-4 w-4" />
+        Apple Pay is not available on this device or browser
+      </div>
+    );
   }
 
   return (

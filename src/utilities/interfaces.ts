@@ -78,7 +78,7 @@ export interface PurchaseElProps {
 }
 
 export interface ButtonToProps {
-  to: string;
+  to?: string;
   title: string;
   style: string;
   onClick?: () => void;

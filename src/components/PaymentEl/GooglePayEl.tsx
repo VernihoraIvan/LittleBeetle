@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+// import { Loader2 } from "lucide-react";
 import {
   PaymentRequestButtonElement,
   useStripe,
@@ -9,12 +10,13 @@ import {
   CanMakePaymentResult,
 } from "@stripe/stripe-js";
 import { useCart } from "@/zustand/productStore";
+import { InfoIcon } from "lucide-react";
 
 const GooglePayEl = () => {
   const stripe = useStripe();
-  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
-    null
-  );
+  const [paymentRequest, setPaymentRequest] = useState<
+    PaymentRequest | null | undefined
+  >(undefined);
 
   const products = useCart((state) => state.items);
 
@@ -60,7 +62,14 @@ const GooglePayEl = () => {
       {paymentRequest && canMakePayment ? (
         <PaymentRequestButtonElement options={{ paymentRequest }} />
       ) : (
-        <p>Google Pay is not available in this browser or device.</p>
+        <div className="flex flex-col items-center gap-2">
+          {!canMakePayment && (
+            <p className="flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-sm text-muted-foreground">
+              <InfoIcon className="h-4 w-4" />
+              Google Pay is not available on this device or browser
+            </p>
+          )}
+        </div>
       )}
     </div>
   );

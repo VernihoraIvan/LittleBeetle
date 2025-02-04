@@ -13,6 +13,7 @@ import ApplePayEl from "../PaymentEl/ApplePayEl";
 import { sentData } from "@/api/connection";
 import { useMainStore } from "@/zustand/mainOrderStore";
 import { toast } from "react-toastify";
+import { useStage } from "@/zustand/stageStore";
 
 const PaymentSectionWO = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -21,10 +22,16 @@ const PaymentSectionWO = () => {
   const donations = useDonation((state) => state.items);
   const setDonationAddress = useDonation((state) => state.addAdress);
 
-  const totalFee = donations.reduce(
-    (acc, product) => acc + product.price * product.quantity,
-    0
-  );
+  const [totalFee, setTotalFee] = useState<number>(0);
+  console.log(donations);
+  useEffect(() => {
+    setTotalFee(
+      donations.reduce(
+        (acc, product) => acc + product.price * product.quantity,
+        0
+      )
+    );
+  }, [donations]);
   const mainShipmentStore = useMainStore((state) => state.shipment);
   useEffect(() => {
     setDonationAddress(mainShipmentStore);
@@ -41,6 +48,7 @@ const PaymentSectionWO = () => {
         );
         toast.success("Donation completed successfully");
         useDonation.getState().clearDonations();
+        useStage.getState().setStage(0);
         navigate("/complete");
       } catch (error) {
         console.error("Payment failed:", error);
@@ -48,6 +56,8 @@ const PaymentSectionWO = () => {
       }
     }
   };
+
+  console.log(totalFee);
 
   return (
     <section className="flex justify-between pt-bookPB sm:flex-col sm:flex-col-reverse sm:pt-0 ">
@@ -88,7 +98,6 @@ const PaymentSectionWO = () => {
                 <img src={visaImg} className="h-full" alt="Visa icon" />
               </div>
             </li>
-            {/* {currentOS === "Android" && ( */}
             <li
               className={clsx(
                 "flex justify-between items-center cursor-pointer font-secondaryBold text-bgPurple border border-bgPurple px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4",
@@ -101,8 +110,6 @@ const PaymentSectionWO = () => {
               </p>
               <img src={gPayImg} className="h-full" alt="Googlepay icon" />
             </li>
-            {/* )} */}
-            {/* {currentOS === "Apple" && ( */}
             <li
               className={clsx(
                 "flex justify-between items-center cursor-pointer  font-secondaryBold text-bgPurple border border-bgPurple  px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4",
@@ -115,7 +122,6 @@ const PaymentSectionWO = () => {
               </p>
               <img src={aPayImg} className="h-full" alt="Applepay icon" />
             </li>
-            {/* )} */}
           </ul>
         </div>
         <div className="flex flex-col gap-5">

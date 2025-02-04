@@ -8,7 +8,8 @@ import SummaryUniversal from "../SummaryUniversal";
 import { useDonation } from "@/zustand/donationStore";
 import DonationOption from "../DonationOption";
 import { nanoid } from "nanoid";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const CheckoutContributionWO = () => {
   const id = nanoid();
 
@@ -20,7 +21,7 @@ const CheckoutContributionWO = () => {
   const addDonation = useDonation((state) => state.addDonation);
   const donations = useDonation((state) => state.items);
   const setStage = useStage((state) => state.setStage);
-
+  const navigate = useNavigate();
   const [totalFeeState, setTotalFee] = useState(0);
 
   const totalFee = donations.reduce(
@@ -40,11 +41,15 @@ const CheckoutContributionWO = () => {
     isChecked: boolean,
     id: string
   ) => {
+    console.log(price);
     if (price > 2) {
       addDonation(title, quantity, price, lang, isChecked, id);
       setPrice(0);
       setStage(2);
       setQuantity(1);
+      navigate("/checkout-donation/details");
+    } else {
+      toast.error("Minimum donation is 3 GBP");
     }
   };
 
@@ -86,21 +91,6 @@ const CheckoutContributionWO = () => {
         />
       </div>
       <CartIncludedWidget />
-      {/* <ButtonTo
-        onClick={() =>
-          handleAddProduct(
-            "Donation",
-            price as number,
-            quantity,
-            lang as string,
-            isChecked,
-            id
-          )
-        }
-        to="/checkout-donation/details"
-        title="CONTINUE TO NEXT"
-        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]"
-      /> */}
       <ButtonTo
         onClick={() =>
           handleAddProduct(
@@ -112,7 +102,7 @@ const CheckoutContributionWO = () => {
             id
           )
         }
-        to="/checkout-donation/details"
+        to={price >= 3 ? "/checkout-donation/details" : ""}
         title="NEXT STEP"
         style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
           xl:text-[20px]

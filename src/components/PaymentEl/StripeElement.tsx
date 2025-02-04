@@ -1,8 +1,10 @@
 import { proceedToPayment } from "@/api/connection";
+import { cn } from "@/lib/utils";
 import { useDonation } from "@/zustand/donationStore";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 import { useCart } from "@/zustand/productStore";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { Loader2 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -176,19 +178,16 @@ const PaymentComponent = ({
               <CardElement options={cardElementOptions} id="card-element" />
             </div>
           </div>
-          {!isProcessing && (
-            <button
-              className="mt-4 uppercase bg-primPurple text-primWhite font-secondaryBold text-[24px] flex justify-center items-center cursor-pointer w-full py-4 px-[110px]
-              xl:text-[20px]
-              lg:text-[18px]
-              smd:text-[18px]"
-            >
-              Donate
-            </button>
-          )}
+          <button
+            className={cn(
+              "mt-4 uppercase bg-primPurple text-primWhite font-secondaryBold text-[24px] flex justify-center items-center cursor-pointer w-full py-4 px-[110px] xl:text-[20px] lg:text-[18px] smd:text-[18px]",
+              paymentStatus === "succeeded" && "opacity-50 cursor-not-allowed"
+            )}
+            disabled={paymentStatus === "succeeded"}
+          >
+            {isProcessing ? <Loader2 className="animate-spin" /> : "Donate"}
+          </button>
         </div>
-        {/* {isProcessing && <div>Processing...</div>}
-          {!isProcessing && paymentStatus && <div>Status: {paymentStatus}</div>} */}
       </form>
     </div>
   );
