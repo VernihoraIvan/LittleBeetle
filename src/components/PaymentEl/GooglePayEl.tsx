@@ -12,6 +12,7 @@ import {
 import { useCart } from "@/zustand/productStore";
 import { InfoIcon } from "lucide-react";
 import { useDonation } from "@/zustand/donationStore";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 
 const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
   const stripe = useStripe();
@@ -21,6 +22,8 @@ const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
 
   const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
+  const orderLines = useOrderLines((state) => state.orderLines);
+
   let totalFee = 0;
   useEffect(() => {
     if (isDonation) {
@@ -29,12 +32,17 @@ const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
         0
       );
     } else {
-      totalFee = products.reduce(
+      const totalDeliveryFee = orderLines.reduce(
+        (sum, line) => sum + (line.totalDeliveryFee || 0),
+        0
+      );
+      const price = products.reduce(
         (acc, product) => acc + product.price * product.quantity,
         0
       );
+      totalFee = price + totalDeliveryFee;
     }
-  }, [isDonation, donations, products]);
+  }, [isDonation, donations, products, orderLines]);
   const [canMakePayment, setCanMakePayment] =
     useState<CanMakePaymentResult | null>(null);
 

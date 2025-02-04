@@ -7,6 +7,7 @@ import { PaymentRequest } from "@stripe/stripe-js";
 import { Info as InfoIcon } from "lucide-react";
 import { useCart } from "@/zustand/productStore";
 import { useDonation } from "@/zustand/donationStore";
+import { useOrderLines } from "@/zustand/orderLinesStore";
 
 const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
   const stripe = useStripe();
@@ -16,6 +17,8 @@ const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
 
   const products = useCart((state) => state.items);
   const donations = useDonation((state) => state.items);
+  const orderLines = useOrderLines((state) => state.orderLines);
+
   let totalFee = 0;
   useEffect(() => {
     if (isDonation) {
@@ -24,16 +27,21 @@ const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
         0
       );
     } else {
-      totalFee = products.reduce(
+      const totalDeliveryFee = orderLines.reduce(
+        (sum, line) => sum + (line.totalDeliveryFee || 0),
+        0
+      );
+      const price = products.reduce(
         (acc, product) => acc + product.price * product.quantity,
         0
       );
+      totalFee = price + totalDeliveryFee;
     }
-  }, [isDonation, donations, products]);
+  }, [isDonation, donations, products, orderLines]);
+
   useEffect(() => {
     if (!stripe) return;
 
-    console.log(totalFee);
     const pr = stripe.paymentRequest({
       country: "GB",
       currency: "gbp",
@@ -50,7 +58,7 @@ const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
         setPaymentRequest(pr);
       }
     });
-  }, [stripe]);
+  }, [stripe, totalFee]);
 
   if (!paymentRequest) {
     return (
