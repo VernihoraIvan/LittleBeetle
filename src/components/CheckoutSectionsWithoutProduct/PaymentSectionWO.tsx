@@ -132,8 +132,8 @@ const PaymentSectionWO = () => {
                 isDonation={true}
               />
             )}
-            {isActive === 2 && <GooglePayEl />}
-            {isActive === 3 && <ApplePayEl />}
+            {isActive === 2 && <GooglePayEl isDonation={true} />}
+            {isActive === 3 && <ApplePayEl isDonation={true} />}
           </div>
 
           <button

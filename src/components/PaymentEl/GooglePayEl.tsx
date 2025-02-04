@@ -11,23 +11,35 @@ import {
 } from "@stripe/stripe-js";
 import { useCart } from "@/zustand/productStore";
 import { InfoIcon } from "lucide-react";
+import { useDonation } from "@/zustand/donationStore";
 
-const GooglePayEl = () => {
+const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
   const stripe = useStripe();
-  const [paymentRequest, setPaymentRequest] = useState<
-    PaymentRequest | null | undefined
-  >(undefined);
+  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
+    null
+  );
 
   const products = useCart((state) => state.items);
-
-  const totalFee = products.reduce(
-    (acc, product) => acc + product.price * product.quantity,
-    0
-  );
+  const donations = useDonation((state) => state.items);
+  let totalFee = 0;
+  useEffect(() => {
+    if (isDonation) {
+      totalFee = donations.reduce(
+        (acc, product) => acc + product.price * product.quantity,
+        0
+      );
+    } else {
+      totalFee = products.reduce(
+        (acc, product) => acc + product.price * product.quantity,
+        0
+      );
+    }
+  }, [isDonation, donations, products]);
   const [canMakePayment, setCanMakePayment] =
     useState<CanMakePaymentResult | null>(null);
 
   useEffect(() => {
+    if (!stripe) return;
     if (stripe) {
       const paymentRequestOptions: PaymentRequestOptions = {
         country: "GB",

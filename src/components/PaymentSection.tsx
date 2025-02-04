@@ -145,8 +145,8 @@ const PaymentSection = () => {
             {isActive === 1 && (
               <StripeElement setIsPaymentSuccess={setIsPaymentSuccess} />
             )}
-            {isActive === 2 && <GooglePayEl />}
-            {isActive === 3 && <ApplePayEl />}
+            {isActive === 2 && <GooglePayEl isDonation={false} />}
+            {isActive === 3 && <ApplePayEl isDonation={false} />}
           </div>
 
           <button
