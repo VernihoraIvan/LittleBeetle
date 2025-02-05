@@ -16,7 +16,7 @@ const ProductElOptional = ({
         src={imgPath[0]}
         alt="image of a book"
       />
-      <h3 className=" mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold ">
+      <h3 className="text-center mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold ">
         {title}
       </h3>
       <div className=" mt-9">

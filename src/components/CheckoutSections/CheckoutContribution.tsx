@@ -33,14 +33,14 @@ const CheckoutContribution = () => {
     setStage(2);
   };
   return (
-    <div>
+    <div className="">
       <div
         className={clsx(
-          "flex gap-10  pt-5 smd:flex-col smd:pt-0  smd:gap-0",
+          "flex gap-10  pt-10 smd:flex-col smd:pt-0  smd:gap-0",
           products.length > 0 ? "justify-between" : "justify-between"
         )}
       >
-        <div className="w-full xxl:pl-10 md:pt-[140px]">
+        <div className="w-full xxl:pl-10 md:pt-[140px] smd:flex smd:flex-col smd:items-center smd:justify-center">
           {products.length > 0 ? (
             <div className="max-w-full ">
               <TitleBar />
@@ -63,7 +63,7 @@ const CheckoutContribution = () => {
                 ))}
             </div>
           ) : (
-            <div className="flex justify-begin">
+            <div className="flex justify-begin h-full">
               <EmptyCart />
             </div>
           )}
@@ -83,7 +83,7 @@ const CheckoutContribution = () => {
           xl:text-[20px]
           lg:text-[18px]
           smd:text-[18px] 
-          sm:w-full sm:px-0 sm:block"
+          sm:w-full sm:px-0 sm:block "
           />
         </>
       )}

@@ -55,8 +55,8 @@ const CheckoutContributionWO = () => {
 
   return (
     <>
-      <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0 gap-10  smd:gap-0">
-        <div className="smd:pt-[80px] md:pl-[40px] ">
+      <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0 gap-10  smd:gap-0 ">
+        <div className="md:pt-10  md:pl-[40px] ">
           {donations.length > 0 ? (
             donations.map((product) => (
               <CheckoutContributionEl

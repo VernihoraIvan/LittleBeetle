@@ -43,6 +43,10 @@
   border: 1px solid #ddd; /* Optional: Add a border */
   background-color: #ffff; /* Optional: Add a background color */
 }
+#root {
+  height: 100vh;
+  background-color: rgb(255 252 243);
+}
 /* body {
   font-family: Pretendard;
 } */

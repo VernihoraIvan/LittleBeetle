@@ -19,7 +19,7 @@ const FormEl = ({
           id={element}
           name={element}
           className={clsx(
-            "w-1/2 smd:w-full outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]",
+            "w-full smd:w-full outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink text-[24px] font-secondaryRegular xl:text-[18px]  xl:py-3 lg:text-[14px] lg:px-2 smd2:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]",
             errors && isRequired && touched.first_name && "border-red-500"
           )}
         />

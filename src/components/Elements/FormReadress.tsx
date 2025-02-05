@@ -32,13 +32,13 @@ const FormReadress = ({
 
   return (
     <section
-      className="pt-buttonP flex text-[24px]
+      className="pt-buttonP flex text-[24px] w-full 
       xl:text-[18px]
       lg:text-[16px]
       smd:text-[16px]"
     >
       <Formik
-        className="w-[50%] "
+        className="smd2:w-[1000px]"
         innerRef={(instance) => {
           formikRef.current = instance;
           onSubmitRef(instance!);
@@ -54,7 +54,7 @@ const FormReadress = ({
         }}
       >
         {({ errors, touched }) => (
-          <Form className=" ">
+          <Form className="w-full ">
             <ul className="flex flex-col gap-9">
               <FormEl
                 errors={errors.first_name}
@@ -102,7 +102,7 @@ const FormReadress = ({
                     formikRef.current?.handleChange(e);
                   }}
                   className={clsx(
-                    "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4 xl:py-3 lg:text-[14px] lg:px-2 lg:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
+                    "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4  lg:text-[14px] lg:px-2 smd2:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
                   )}
                 >
                   <option className="text-[24px]" value="" label="Select" />

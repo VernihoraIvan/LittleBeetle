@@ -40,7 +40,9 @@ export default {
         min: { min: "761px" },
         // => @media (min-width: 761px) { ... }
         smd: { max: "1023px" },
-        // => @media (min-width: 640px and max-width: 767px) { ... }
+        // => @media (min-width: 1024px ) { ... }
+        smd2: { min: "1024px" },
+        // => @media (min-width: 1024px ) { ... }
         md: { min: "760px", max: "1023px" },
         // => @media (min-width: 768px and max-width: 1023px) { ... }
         lg: { min: "1024px", max: "1279px" },

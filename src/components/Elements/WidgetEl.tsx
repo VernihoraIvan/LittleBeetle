@@ -9,7 +9,7 @@ const WidgetEl = ({ title, imgPath }: ProductElProps) => {
         alt={title}
       />
       <h4
-        className="mt-3 text-secBlack text-xl font-secondarySBold
+        className="mt-3 text-secBlack text-xl text-center font-secondarySBold
           xl:text-[18px]
           lg:text-[16px]
           smd:text-[14px]"

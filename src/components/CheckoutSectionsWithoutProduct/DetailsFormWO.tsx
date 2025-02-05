@@ -34,7 +34,7 @@ const DetailsFormWO = () => {
   const id = nanoid();
 
   return (
-    <section className="pt-buttonP ">
+    <section className="md:pt-buttonP xxs:pt-10">
       <Formik
         initialValues={defaultValues}
         validationSchema={SubmitSchemaWO}

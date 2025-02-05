@@ -4,14 +4,16 @@ import Footer from "./Footer";
 
 const SharedLayout = () => {
   return (
-    <div className="">
-      <div>
+    <div className="min-h-screen flex flex-col justify-between flex-col items-center w-screen bg-primBeige">
+      <div className="w-full">
         <Header />
-        <main>
-          <Outlet />
-        </main>
+        <div className="flex flex-col items-center">
+          <main className="max-w-[1564px] flex flex-col items-center  ">
+            <Outlet />
+          </main>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };

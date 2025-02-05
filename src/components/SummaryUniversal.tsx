@@ -9,12 +9,16 @@ const SummaryUniversal = ({
   const { orderLines } = useOrderLines();
 
   return (
-    <div className="flex flex-col gap-prodMar smd:pt-[40px] ">
+    <div className="smd:flex  smd2:w-[350px] smd:flex-col min:min-w-[300px] smd:mx-auto smd:w-full gap-prodMar smd:pt-[40px] max-w-[708px] xxs:w-full ">
       <div
-        className="w-[420px] border border-primPurple
-        xl:w-[285px] 
-        lg:w-[230px]
-        smd:w-full"
+        className="w-full border border-primPurple ml-auto md:w-full
+
+
+        
+        lg:w-[300px]
+        xxs:w-full
+        smd2:w-[350px]
+        "
       >
         <div
           className="px-prodMar py-4 font-secondaryBold text-[24px] text-primWhite bg-primPurple 

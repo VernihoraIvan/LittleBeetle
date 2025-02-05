@@ -60,7 +60,7 @@ const PaymentSectionWO = () => {
   console.log(totalFee);
 
   return (
-    <section className="flex justify-between pt-bookPB sm:flex-col sm:flex-col-reverse sm:pt-0 ">
+    <section className="flex justify-between pt-10 sm:flex-col sm:flex-col-reverse sm:pt-0 ">
       <div
         className="w-[580px]
       xl:w-[510px] 

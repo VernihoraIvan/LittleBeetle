@@ -22,7 +22,7 @@ const ShipmentEl = ({
 }: ShipmentElProps) => {
   const [isMyAdress, setIsMyAdress] = useState(true);
   return (
-    <div className="smd:w-[310px]">
+    <div className="w-full xsm:w-full md:w-[310px] ">
       <div className="mt-8">
         {imgPath && (
           <img
