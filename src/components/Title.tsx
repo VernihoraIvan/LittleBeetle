@@ -2,7 +2,7 @@ import { TitleProps } from "@/utilities/interfaces";
 
 const Title = ({ title }: TitleProps) => {
   return (
-    <section className="flex justify-center bg-primPurple py-12  w-screen  xs:py-[40px]">
+    <section className="flex justify-center bg-primPurple py-12  w-full  xs:py-[40px]">
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD  sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         {title && (
           <h2

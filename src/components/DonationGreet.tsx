@@ -1,7 +1,9 @@
+import UnionSVG from "@/assets/icons/arrow-down.svg?react";
+
 const DonationGreet = () => {
   return (
     <section
-      className="custom-min-height flex justify-center pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  h-screen bg-donation-bg
+      className=" relative custom-min-height flex justify-center min:pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  h-screen bg-donation-bg
     smd:h-auto smd:pb-6 smd:px-8"
     >
       <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
@@ -30,6 +32,9 @@ const DonationGreet = () => {
           will listen to the lullaby and explore the world we embodied in this
           beautiful illustrated book.
         </p>
+      </div>
+      <div className="absolute bottom-[5%] left-[50%] translate-x-[-50%]">
+        <UnionSVG />
       </div>
     </section>
   );
