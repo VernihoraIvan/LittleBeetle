@@ -4,7 +4,7 @@ import ProductElOptional from "./Elements/ProductElOptional";
 const ProductsIncluded = () => {
   return (
     <section
-      className="flex justify-center bg-primBeige pt-bookPT pb-prodPB 
+      className="flex justify-center bg-primBeige pt-bookPT xs:pt-16   pb-prodPB 
     xl:pb-[200px]
       lg:pb-[120px]
     smd:pb-[60px]  smd:px-8"

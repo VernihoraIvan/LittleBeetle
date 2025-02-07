@@ -1,6 +1,6 @@
-import book1 from "../assets/images/book1.png";
-import book2 from "../assets/images/book2.png";
-import book3 from "../assets/images/book3.png";
+import book1 from "../assets/images/book-open1-min.png";
+import book2 from "../assets/images/digital-book.png";
+import book3 from "../assets/images/lullaby.png";
 import ButtonTo from "./ButtonTo";
 
 const BooksSection = () => {

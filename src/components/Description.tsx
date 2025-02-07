@@ -20,8 +20,8 @@ const Description = () => {
           playsInline
           preload="auto"
           className="absolute w-full h-full object-cover object-[center_40%]
-            sm:object-[80%_40%] /* Adjust first value (60%) to move video left/right on mobile */
-            md:object-[center_40%]"
+            object-[80%_40%] /* Adjust first value (60%) to move video left/right on mobile */
+            "
         >
           <source
             src={

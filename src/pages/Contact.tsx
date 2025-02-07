@@ -8,7 +8,7 @@ const Contact = () => {
     <>
       <section className="bg-gradient-to-b from-primPurple to-primPurple xxs:overflow-x-hidden">
         <div className="relative custom-min-height flex justify-center pt-headerPad w-screen smd:py-16 smd:px-8 pb-[100px]">
-          <div className="absolute inset-0 mix-blend-luminosity object-fit bg-cover bg-custom-50-150 bg-no-repeat  bg-contacts-bg" />
+          <div className="absolute inset-0 mix-blend-luminosity  object-[80%_40%] bg-cover bg-custom-50-150 bg-no-repeat  bg-contacts-bg" />
           <div className="relative z-9">
             <div className="flex flex-col justify-between">
               <TitleNDescription

@@ -8,7 +8,7 @@ import postcard2 from "@/assets/images/compressed/postcard-open2-min.jpg";
 import postcard3 from "@/assets/images/compressed/postcard-open3-min.jpg";
 import book1 from "@/assets/images/compressed/book-open1-min.jpg";
 import book2 from "@/assets/images/compressed/book-open2-min.jpg";
-import book3 from "@/assets/images/compressed/book-open3-min.jpg";
+
 import certificate from "@/assets/images/certificate.png";
 
 export const includedProducts = [
@@ -47,7 +47,7 @@ export const extraProducts = [
     element: "book",
     description:
       "one sentence description one sentence description one sentence description one sentence description.",
-    imagePath: [book1, book2, book3],
+    imagePath: [book1, book2],
     to: "/donation/book",
     weight: 2,
   },
@@ -83,12 +83,6 @@ export const creatorsData = [
     location: "Poland",
     description:
       "is a n illustrator living in Poland. She's been drawing and creating art professionally for about 10 years. Through her illustrations, she aims to inspire both children and adults to see the world in a new and magical way.",
-  },
-  {
-    name: "ENG SINGER",
-    location: "london, UK",
-    description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.",
   },
   {
     name: "Inna Ishchenko",

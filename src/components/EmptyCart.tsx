@@ -15,7 +15,7 @@ const EmptyCart = () => {
         </h1>
         <ButtonTo
           to="/donation"
-          title="View Store"
+          title="View our Donation Store"
           style="uppercase hover:bg-purpleHover big-responsive-text text-center transition duration-300 xxl:px-imgSW  font-secondarySBold text-primWhite  bg-primPurple py-3 px-14
           "
         />
