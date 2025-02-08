@@ -47,7 +47,7 @@ const SubDonation = ({
     id: string,
     weight: number
   ) => {
-    if (price > 2 && quantity >= 1) {
+    if (price >= 3 && quantity >= 1) {
       addProduct(title, quantity, price, lang, false, id, weight * quantity);
       setIsOverlayPrice(false);
       setFee(id, price, quantity);
@@ -71,7 +71,7 @@ const SubDonation = ({
     id: string,
     weight: number
   ) => {
-    if (price > 2 && quantity >= 1) {
+    if (price >= 3 && quantity >= 1) {
       handleAddProduct(title, price, quantity, lang, id, weight);
       navigate("/checkout/contribution");
     } else {
@@ -80,6 +80,8 @@ const SubDonation = ({
   };
 
   const handleOnCustomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
     const value = event.target.value;
     setCustomPrice(value === "" ? 0 : Number(value));
     const newPrice = value === "" ? 0 : Number(value);
@@ -162,7 +164,6 @@ const SubDonation = ({
                             autoComplete="off"
                             className="w-40 sm:w-20 sm:py-1 px-3 h-8 border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             type="number"
-                            inputMode="numeric"
                             pattern="[0-9]*"
                             name="priceInput"
                             placeholder="£"
