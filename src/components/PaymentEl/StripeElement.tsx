@@ -136,7 +136,8 @@ const PaymentComponent = ({
             smd:mb-5"
           >
             <p className="text-red-5004242 4242 4242 4242">
-              test card number: 4242 4242 4242 4242
+              test card number: <br />
+              4242 4242 4242 4242
             </p>
 
             <label

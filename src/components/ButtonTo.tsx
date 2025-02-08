@@ -6,7 +6,7 @@ const ButtonTo = ({ to, title, style, onClick }: ButtonToProps) => {
     <Link
       onClick={onClick}
       to={to || ""}
-      className={`${style} responsive-heading`}
+      className={`${style} big-responsive-text`}
     >
       {title}
     </Link>

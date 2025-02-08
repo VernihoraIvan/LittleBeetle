@@ -3,12 +3,12 @@ import UnionSVG from "@/assets/icons/arrow-down.svg?react";
 const DonationGreet = () => {
   return (
     <section
-      className=" relative custom-min-height flex justify-center min:pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen  h-screen bg-donation-bg
+      className=" relative custom-min-height flex justify-center min:pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen h-screen bg-donation-bg before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-b before:from-black/20 before:to-black/30
     smd:h-auto smd:pb-6 smd:px-8"
     >
       <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         <h2
-          className="font-primaryBold text-primWhite  text-titleS
+          className="font-primaryBold text-primWhite  text-titleS z-10
         xl:text-[28px]
         lg:text-[22px]
         smd:text-[22px]"
@@ -16,7 +16,7 @@ const DonationGreet = () => {
           Why Donate?
         </h2>
         <p
-          className="leading-relaxed text-primWhiteFaint h-purchImgH text-[24px] font-secondaryRegular
+          className="leading-relaxed text-primWhiteFaint h-purchImgH text-[24px] font-secondaryRegular z-10
         xl:text-[20px]
         lg:text-[16px]
         smd:text-[16px] smd:h-auto"

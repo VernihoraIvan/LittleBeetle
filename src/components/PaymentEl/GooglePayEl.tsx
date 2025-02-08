@@ -65,9 +65,7 @@ const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
           setCanMakePayment(result);
           setPaymentRequest(pr);
         } else {
-          console.warn(
-            "Google Pay is not available on this device or browser."
-          );
+          console.warn("Google Pay is not available.");
         }
       });
 
@@ -82,11 +80,11 @@ const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
       {paymentRequest && canMakePayment ? (
         <PaymentRequestButtonElement options={{ paymentRequest }} />
       ) : (
-        <div className="flex flex-col items-center gap-2">
+        <div className="">
           {!canMakePayment && (
             <p className="flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-sm text-muted-foreground">
               <InfoIcon className="h-4 w-4" />
-              Google Pay is not available on this device or browser
+              Google Pay is not available.
             </p>
           )}
         </div>

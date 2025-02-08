@@ -30,6 +30,7 @@ const CreatorsEl = ({ name, location, description, link }: CreatorsElProps) => {
         </div>
         <Link
           to={link}
+          target="_blank"
           className="h-fit-content cursor-pointer flex justify-center items-center gap-2 border border-primWhiteFaintM py-3  w-60 
         smd:w-[50%] smd:py-2"
         >

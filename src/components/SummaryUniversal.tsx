@@ -9,7 +9,7 @@ const SummaryUniversal = ({
   const { orderLines } = useOrderLines();
 
   return (
-    <div className="smd:flex  smd2:w-[350px] smd:flex-col min:min-w-[300px] smd:mx-auto smd:w-full gap-prodMar smd:pt-[40px] max-w-[708px] xxs:w-full ">
+    <div className="smd:flex  smd2:w-[350px] smd:flex-col min:min-w-[300px] smd:mx-auto smd:w-[300px] gap-prodMar smd:pt-[40px] max-w-[708px] xxs:w-full ">
       <div
         className="w-full border border-primPurple ml-auto md:w-full
 

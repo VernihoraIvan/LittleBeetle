@@ -64,7 +64,7 @@ const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
     return (
       <div className="flex items-center gap-2 rounded-md bg-muted px-3 py-2 text-sm text-muted-foreground">
         <InfoIcon className="h-4 w-4" />
-        Apple Pay is not available on this device or browser
+        Apple Pay is not available.
       </div>
     );
   }
