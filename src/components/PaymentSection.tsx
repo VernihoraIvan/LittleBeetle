@@ -14,6 +14,8 @@ import { useOrderLines } from "@/zustand/orderLinesStore";
 import { useStage } from "@/zustand/stageStore";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Resend } from "resend";
+import { useShipment } from "@/zustand/shipmentStore";
 
 const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
@@ -26,10 +28,36 @@ const PaymentSection = () => {
   //   setOrderLines(orderLinesRef);
   // }, [orderLinesRef]);
 
+  const shipping = useShipment((state) => state.shipment);
+  console.log(shipping);
+
   const totalFee = products.reduce(
     (sum, product) => sum + product.price * product.quantity,
     0
   );
+
+  const handleSendEmail = async () => {
+    const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
+    resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: shipping.email,
+      subject: "Thank You for Your Donation",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h1 style="font-size: 24px; line-height: 1.2; color: #333;">
+            Dear ${shipping.first_name},
+          </h1>
+          <p style="font-size: 16px; line-height: 1.6; color: #333;">
+            Your donation supports psychological rehabilitation for children affected by war in Ukraine. 
+            Over 15 creative professionals from around the world volunteered their time and skills to create this project.
+          </p>
+          <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 20px;">
+            We thank you for your support.
+          </p>
+        </div>
+      `,
+    });
+  };
 
   const handleSubmit = async () => {
     if (isPaymentSuccess) {
@@ -38,6 +66,7 @@ const PaymentSection = () => {
       useCart.getState().clearCart();
       useStage.getState().setStage(0);
       toast.success("Donation completed successfully");
+      handleSendEmail();
     } else {
       toast.error("Payment failed");
     }
