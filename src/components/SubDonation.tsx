@@ -32,6 +32,7 @@ const SubDonation = ({
   const navigate = useNavigate();
 
   const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
+  const [isCustomPrice, setIsCustomPrice] = useState<boolean>(false);
 
   const priceRef = useRef<number>(0);
   const [price, setPrice] = useState<number>(0);
@@ -127,7 +128,14 @@ const SubDonation = ({
               <div className="flex flex-col justify-between mt-2 ">
                 <div className="relative w-full big-responsive-text">
                   <Select
-                    onValueChange={(value) => handleSetPrice(Number(value))}
+                    onValueChange={(value) => {
+                      if (value === "custom") {
+                        setIsCustomPrice(true);
+                      } else {
+                        setIsCustomPrice(false);
+                        handleSetPrice(Number(value));
+                      }
+                    }}
                   >
                     <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
                       <SelectValue placeholder={priceToShow} />
@@ -151,55 +159,43 @@ const SubDonation = ({
                       >
                         10 £
                       </SelectItem>
-                      <div className="flex  justify-between gap-2 px-2 hover:bg-dropHover transition duration-300 ">
-                        <label
-                          htmlFor="customPrice"
-                          className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        >
-                          Enter your own amount
-                        </label>
-                        <div className=" py-1">
-                          <input
-                            id="customPrice"
-                            autoComplete="off"
-                            className="w-40 sm:w-20 sm:py-1 px-3 h-8 border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            type="number"
-                            inputMode="numeric"
-                            pattern="[0-9]*"
-                            name="priceInput"
-                            placeholder="£"
-                            value={customPrice || ""}
-                            onChange={(e) => handleOnCustomChange(e)}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onTouchStart={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onMouseDown={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                            onFocus={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                            }}
-                          />
-                          <div className="flex items-center gap-1">
-                            <Alert className="w-4 h-4 text-inputPink" />
-                            <p className="text-sm text-inputPink min:block hidden">
-                              Minimum Donation: £3
-                            </p>
-                            <p className="text-sm text-inputPink block min:hidden">
-                              Min. Don.: £3
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      <SelectItem
+                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
+                        value="custom"
+                      >
+                        Enter custom amount
+                      </SelectItem>
                     </SelectContent>
                   </Select>
+
+                  {/* Custom price input appears below the select when custom option is chosen */}
+                  {isCustomPrice && (
+                    <div className="mt-2">
+                      <div className="flex items-center gap-2">
+                        <input
+                          id="customPrice"
+                          autoComplete="off"
+                          className="w-full px-3 h-[45px] border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          type="number"
+                          inputMode="numeric"
+                          pattern="[0-9]*"
+                          name="priceInput"
+                          placeholder="Enter amount (£)"
+                          value={customPrice || ""}
+                          onChange={(e) => handleOnCustomChange(e)}
+                        />
+                      </div>
+                      <div className="flex items-center gap-1 mt-1">
+                        <Alert className="w-4 h-4 text-inputPink" />
+                        <p className="text-sm text-inputPink min:block hidden">
+                          Minimum Donation: £3
+                        </p>
+                        <p className="text-sm text-inputPink block min:hidden">
+                          Min. Don.: £3
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="relative w-full mt-[10px] big-responsive-text">
                   <Select onValueChange={(value) => setLang(value)}>
