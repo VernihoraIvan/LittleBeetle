@@ -6,8 +6,8 @@ const Products = () => {
     <section className="flex justify-center bg-primBeige pt-bookPT pb-[125px] smd:pb-6 smd:px-8 smd:pt-[60px]">
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         <h2
-          className="font-primaryBold mb-6 text-primPurple text-center
-        responsive-heading"
+          className="font-primaryBold mb-6 text-primPurple 
+        responsive-heading uppercase"
         >
           Included with every donation
         </h2>

@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Description = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  // const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
 
   return (
     <section
@@ -23,7 +23,7 @@ const Description = () => {
             object-[80%_40%] 
             "
         >
-          <source
+          {/* <source
             src={
               isMobile
                 ? "/animatedIntro-xs.webm"
@@ -32,6 +32,14 @@ const Description = () => {
                 : "/animatedIntro-xl.webm"
             }
             type="video/webm"
+          /> */}
+          <source
+            src={
+              isMobile
+                ? "/animatedIntro-mobile.mp4"
+                : "/animatedIntro-tablet.mp4"
+            }
+            type="video/mp4"
           />
         </video>
       </div>

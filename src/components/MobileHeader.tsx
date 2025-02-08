@@ -34,7 +34,7 @@ const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
             to={"/donation"}
             className={({ isActive }) => (isActive ? "text-hovYellow" : "")}
           >
-            Shop / Donation
+            Donation Store
           </NavLink>
         </li>
         <li className="cursor-pointer">

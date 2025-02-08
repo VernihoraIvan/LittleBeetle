@@ -2,7 +2,7 @@ import ButtonTo from "./ButtonTo";
 
 const DonationLink = () => {
   return (
-    <section className="flex justify-center bg-primBeige xxs:px-8">
+    <section className="flex justify-center bg-primBeige xxs:px-8 xs:mt-10">
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:max-w-contWXSS">
         <div
           className=" flex flex-col items-center border border-primPurple 

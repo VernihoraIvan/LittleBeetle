@@ -8,7 +8,7 @@ const DonationGreet = () => {
     >
       <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         <h2
-          className="font-primaryBold text-primWhite  text-titleS z-10
+          className="font-primaryBold text-primWhite  text-titleS z-[1]
         xl:text-[28px]
         lg:text-[22px]
         smd:text-[22px]"
@@ -16,7 +16,7 @@ const DonationGreet = () => {
           Why Donate?
         </h2>
         <p
-          className="leading-relaxed text-primWhiteFaint h-purchImgH text-[24px] font-secondaryRegular z-10
+          className="leading-relaxed text-primWhiteFaint h-purchImgH text-[24px] font-secondaryRegular z-[1]
         xl:text-[20px]
         lg:text-[16px]
         smd:text-[16px] smd:h-auto"

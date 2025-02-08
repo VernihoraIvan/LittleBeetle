@@ -16,11 +16,11 @@ const ProductElOptional = ({
   return (
     <li className="flex-1">
       <img
-        className="h-imgH2 w-full object-cover smd:h-[165px] sm:h-[135px] xs:h-[320px] lg:h-[290px] "
+        className="h-imgH2 w-full object-cover sm:h-[165px] md:h-[165px]  xs:h-[240px] lg:h-[290px] "
         src={imgPath[0]}
         alt="image of a book"
       />
-      <h3 className="text-center mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold ">
+      <h3 className="mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold ">
         {title}
       </h3>
       <div className=" mt-9">
