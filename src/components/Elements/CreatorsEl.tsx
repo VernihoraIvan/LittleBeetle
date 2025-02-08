@@ -1,7 +1,8 @@
 import { CreatorsElProps } from "@/utilities/interfaces";
-import Link from "@/assets/icons/external-link.svg?react";
+import LinkIcon from "@/assets/icons/external-link.svg?react";
+import { Link } from "react-router-dom";
 
-const CreatorsEl = ({ name, location, description }: CreatorsElProps) => {
+const CreatorsEl = ({ name, location, description, link }: CreatorsElProps) => {
   return (
     <div className="py-CreatorsElP  border-b border-primWhiteFaint">
       <div className="flex flex justify-between gap-3">
@@ -27,7 +28,8 @@ const CreatorsEl = ({ name, location, description }: CreatorsElProps) => {
             {location}
           </p>
         </div>
-        <div
+        <Link
+          to={link}
           className="h-fit-content cursor-pointer flex justify-center items-center gap-2 border border-primWhiteFaintM py-3  w-60 
         smd:w-[50%] smd:py-2"
         >
@@ -41,8 +43,8 @@ const CreatorsEl = ({ name, location, description }: CreatorsElProps) => {
           >
             Website
           </p>
-          <Link />
-        </div>
+          <LinkIcon />
+        </Link>
       </div>
       <p
         className="py-2 text-primWhite text-linkS font-secondaryRegular xl:text-[16px]

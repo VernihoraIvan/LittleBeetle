@@ -24,6 +24,7 @@ const ProductsIncluded = () => {
                     description={product.description}
                     imgPath={product.imagePath}
                     weight={product.weight}
+                    size={product.size}
                   />
                 ))}
             </ul>

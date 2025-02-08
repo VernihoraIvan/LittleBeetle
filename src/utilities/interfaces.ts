@@ -44,6 +44,7 @@ export interface ProductElOptionalProps {
   description: string;
   imgPath: string[];
   weight: number;
+  size: string;
 }
 
 export interface SubDonationProps {
@@ -51,6 +52,8 @@ export interface SubDonationProps {
   description: string;
   imagePath: string[];
   weight: number;
+  size: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface TitleProps {
@@ -103,6 +106,7 @@ export interface CreatorsElProps {
   name: string;
   location: string;
   description: string;
+  link: string;
 }
 
 export interface SummaryProps {

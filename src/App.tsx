@@ -7,7 +7,7 @@ import Creators from "./pages/Creators";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
-import SubDonationPage from "./pages/SubDonationPage";
+// import SubDonationPage from "./pages/SubDonationPage";
 import Checkout from "./pages/Checkout";
 import CheckoutSection from "./components/CheckoutSection";
 import CheckoutWO from "./pages/CheckoutWO";
@@ -29,7 +29,7 @@ function App() {
           <Route index path="/" element={<About />} />
           <Route path="/complete" element={<DonationComplete />} />
           <Route path="/donation" element={<Donation />} />
-          <Route path="/donation/:product" element={<SubDonationPage />} />
+          {/* <Route path="/donation/:product" element={<SubDonationPage />} /> */}
           <Route path="/creators" element={<Creators />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />

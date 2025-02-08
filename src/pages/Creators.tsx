@@ -23,6 +23,7 @@ const Creators = () => {
               name={el.name}
               location={el.location}
               description={el.description}
+              link={el.link}
             />
           ))}
           <div className="mt-20 mb-purchElH smd:mb-[80px]">

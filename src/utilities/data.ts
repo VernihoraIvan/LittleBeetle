@@ -46,28 +46,31 @@ export const extraProducts = [
     title: "Printed Book",
     element: "book",
     description:
-      "one sentence description one sentence description one sentence description one sentence description.",
+      "A printed copy of our digital illustrated book, perfect for bringing stories of hope, joy and adventure to your home.",
     imagePath: [book1, book2],
     to: "/donation/book",
     weight: 2,
+    size: "21.0 x 29.7 cm",
   },
   {
     title: "Poster",
     element: "poster",
     description:
-      "one sentence description one sentence description one sentence description one sentence description.",
+      "A poster featuring an illustration from our project, filled with adventure and creativity.",
     imagePath: [poster, poster1],
     to: "/donation/poster",
     weight: 2,
+    size: "42 x 29.7 cm",
   },
   {
     title: "Postcards",
     element: "postcards",
     description:
-      "one sentence description one sentence description one sentence description one sentence description.",
+      "A set of seven postcards reflecting the spirit of our project, perfect for sending messages of kindness.",
     imagePath: [postcard, postcard1, postcard2, postcard3],
     to: "/donation/postcards",
     weight: 0.375,
+    size: "14.8 x 10.5 cm",
   },
 ];
 
@@ -76,49 +79,57 @@ export const creatorsData = [
     name: "Afrika Fuentes",
     location: "Manchester, UK",
     description:
-      "is a Soul and R&B singer, songwriter and keyboard player. After winning the 'BBC New Talent Award' for new songwriters in 2008, she launched her so ngwriting career under the mentorship of Cathy Dennis; hit songwriter for Britney Spears and Kylie Minogue. In 2012 Afrika signed a publishing deal with Sony ATV and released her acclaimed single D'Rainbow', which was well received in her native Spain. Currently she writes for pop artists and labels worldwide. Her song “Ay Dios Mío” was recorded by Spanish girl band Sweet California, peaking at number one in the Spanish album charts in 2017 with their album “3”.",
+      'is a Soul and R&B singer, songwriter and keyboard player. After winning the ‘BBC New Talent Award’ for new songwriters in 2008, she launched her songwriting career under the mentorship of Cathy Dennis; hit songwriter for Britney Spears and Kylie Minogue. In 2012 Afrika signed a publishing deal with Sony ATV and released her acclaimed single "Rainbow", which was well received in her native Spain. Currently she writes for pop artists and labels worldwide. Her song “Ay Dios Mío” was recorded by Spanish girl band Sweet California, peaking at number one in the Spanish album charts in 2017 with their album “3”.',
+    link: "https://www.linkedin.com/in/afrika-fuentes-84133a3b/?originalSubdomain=uk",
   },
   {
     name: "Ksenia Urban",
     location: "Poland",
     description:
       "is a n illustrator living in Poland. She's been drawing and creating art professionally for about 10 years. Through her illustrations, she aims to inspire both children and adults to see the world in a new and magical way.",
+    link: "https://www.behance.net/kseniaurban",
   },
   {
-    name: "Inna Ishchenko",
+    name: "Inna Solodniuk (Ishchenko)",
     location: "Kiev, Ukraine",
     description:
       "is a bandurist, indie-soul singer, and songwriter, also known as Solo Inna. She is a super-finalist on 'Voice of the Country 6' and also participated in 'X-Factor.' In 2016, she performed the song 'Plyne Kacha' on 'Voice of the Country,' which garnered 9 million views. Currently, Inna is dedicated to supporting the moral and psychological well-being of the military and promoting Ukrainian culture. The Voice Ukraine ('Holos Krainy') is part of the international syndication The Voice.",
+    link: "https://www.youtube.com/@inna.solodniuk",
   },
   {
     name: "Teo Nalani",
     location: "Brooklyn, NY, US",
     description:
       "is a 2d animator and Illustrator based in Brooklyn, NY, US. His art is influenced strongly by personal memory, forces of nature and storms, boxing, and fashion. He believes in instincts and imagination, and is always looking for things that are hard to find.",
+    link: "https://www.teonalani.com/",
   },
   {
     name: "Danbi Kim",
     location: "Berlin, Germany",
     description:
       "is a UX/UI designer and trilingual calligrapher with a rich multicultural background and a genuine curiosity about the world. Her diverse experiences and unique perspectives infuse her work with vibrant and varied designs. She is dedicated to creating meaningful experiences for diverse audiences through her design approach.",
+    link: "https://danbikim.studio.site/",
   },
   {
-    name: "Ivan",
+    name: "Ivan Vernihora",
     location: "Berlin, Germany",
     description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available. ",
+      "He's a fullstack developer with a strong passion for building scalable and efficient applications. As a student at 42 Berlin, he's constantly honing his problem-solving skills and diving deep into software development. Beyond coding, he loves the thrill of snowboarding, enjoying the mountains and the adrenaline rush. Whether it's tackling complex algorithms or carving through fresh powder, he's always up for a challenge!",
+    link: "https://www.linkedin.com/in/ivan-vernihora",
   },
   {
-    name: "Propeller",
+    name: "Propeller Studios",
     location: "Kiev, Ukraine",
     description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available. ",
+      "is a sound production company based in Kyiv, Ukraine. Their team comprises highly qualified sound designers, audio engineers, music composers, and producers. Propeller Studios collaborates with top musicians, actors, and voice talents. With years of professional experience, they consistently create high-quality audio products alongside their clients.",
+    link: "https://www.propeller.com.ua/ ",
   },
   {
-    name: "Printing House",
-    location: "Location",
+    name: "Fyodor Stepanov",
+    location: "Berlin, Germany",
     description:
-      "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available. ",
+      "is a sound artist and composer. His creative output is driven by notions of transience, non-linearity, and ambiguity intrinsic to sound. The approach he has developed over the past decade combines generative algorithms with bits of radio broadcasts, field recordings, and electromagnetic listening to produce eerie acousmatic soundscapes.",
+    link: "https://fyodor-st.bandcamp.com/music",
   },
 ];
 

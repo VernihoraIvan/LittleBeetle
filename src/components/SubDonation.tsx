@@ -23,6 +23,8 @@ const SubDonation = ({
   description,
   imagePath,
   weight,
+  size,
+  setOpen,
 }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
   const setFee = useShipment((state) => state.setFee);
@@ -51,6 +53,7 @@ const SubDonation = ({
       setFee(id, price, quantity);
       setQuantity(1);
       toast.success("Added to cart successfully!");
+      setOpen(false);
     } else {
       if (price < 3) {
         toast.error("Please select a valid amount (minimum £3)");
@@ -117,7 +120,7 @@ const SubDonation = ({
                 {description}
               </p>
               <p className="small-responsive-text font-secondaryRegular  mt-1">
-                Size: 21.0 x 29.7 cm
+                Size: {size}
               </p>
               <div className="flex flex-col justify-between mt-2 ">
                 <div className="relative w-full big-responsive-text">

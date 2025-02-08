@@ -2,13 +2,17 @@ import { ProductElOptionalProps } from "@/utilities/interfaces";
 import "reactjs-popup/dist/index.css";
 import SubDonation from "../SubDonation";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { useState } from "react";
 
 const ProductElOptional = ({
   title,
   imgPath,
   description,
   weight,
+  size,
 }: ProductElOptionalProps) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <li className="flex-1">
       <img
@@ -21,7 +25,7 @@ const ProductElOptional = ({
       </h3>
       <div className=" mt-9">
         <div className="bg-primBeige">
-          <Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
             <SheetTitle className="sr-only">{title}</SheetTitle>
             <SheetTrigger className="hover:bg-whiteHover transition duration-300 w-full responsive-heading font-secondarySBold border border-primPurple text-primPurple py-3 block text-center">
               Learn more
@@ -35,6 +39,8 @@ const ProductElOptional = ({
                 description={description}
                 imagePath={imgPath}
                 weight={weight}
+                size={size}
+                setOpen={setOpen}
               />
             </SheetContent>
           </Sheet>
