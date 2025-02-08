@@ -164,11 +164,28 @@ const SubDonation = ({
                             autoComplete="off"
                             className="w-40 sm:w-20 sm:py-1 px-3 h-8 border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             type="number"
+                            inputMode="numeric"
                             pattern="[0-9]*"
                             name="priceInput"
                             placeholder="£"
                             value={customPrice || ""}
                             onChange={(e) => handleOnCustomChange(e)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                            }}
+                            onTouchStart={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                            }}
+                            onMouseDown={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                            }}
+                            onFocus={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                            }}
                           />
                           <div className="flex items-center gap-1">
                             <Alert className="w-4 h-4 text-inputPink" />
