@@ -1,6 +1,7 @@
 import LinkedInLogo from "@/assets/icons/linkedIn.svg?react";
 import InstagramLogo from "@/assets/icons/instagram.svg?react";
 import MailLogo from "@/assets/icons/mail.svg?react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -32,12 +33,21 @@ const Footer = () => {
               </a>
             </div>
             <div className="flex flex-col gap-2 text-copyS lg:text-[14px] smd:text-[12px] ">
-              <p className=" font-secondaryRegular text-primWhiteFaint">
+              {/* <p className=" font-secondaryRegular text-primWhiteFaint">
                 Terms and conditions
-              </p>
-              <p className=" font-secondaryRegular text-primWhiteFaint">
+              </p> */}
+              <Link
+                className=" font-secondaryRegular text-primWhiteFaint"
+                to="/terms-and-conditions"
+              >
+                Terms and conditions
+              </Link>
+              <Link
+                className=" font-secondaryRegular text-primWhiteFaint"
+                to="/privacy-policy"
+              >
                 Privacy policy
-              </p>
+              </Link>
             </div>
           </div>
         </div>

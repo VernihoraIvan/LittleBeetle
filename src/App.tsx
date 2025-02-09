@@ -12,10 +12,11 @@ import Checkout from "./pages/Checkout";
 import CheckoutSection from "./components/CheckoutSection";
 import CheckoutWO from "./pages/CheckoutWO";
 import CheckoutWOSection from "./components/CheckoutSectionsWithoutProduct/CheckoutWOSection";
-import DonationComplete from "./components/DonationComplete";
+import DonationComplete from "./pages/DonationComplete";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
-
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 function App() {
   const location = useLocation();
 
@@ -28,8 +29,12 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index path="/" element={<About />} />
           <Route path="/complete" element={<DonationComplete />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
           <Route path="/donation" element={<Donation />} />
-          {/* <Route path="/donation/:product" element={<SubDonationPage />} /> */}
           <Route path="/creators" element={<Creators />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
