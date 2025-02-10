@@ -45,13 +45,13 @@ const Description = () => {
       </div>
 
       {/* Optional overlay for better text visibility */}
-      <div className="absolute inset-0 bg-black/30 z-[1]"></div>
+      <div className="absolute inset-0  z-[1]"></div>
 
-      <div className="absolute flex gap-2 justify-center align-center flex-col z-[2] xxl:w-contWXL xl:w-contWXL xl:px-[30px] lg:w-contWLG md:w-contWMD xsm:w-[400px] sm:w-contWSM xxs:w-contWXSS">
+      <div className="absolute top-[50%] xs:top-[30%] translate-y-[-50%] flex gap-2 justify-center align-center flex-col z-[2] xxl:w-contWXL xl:w-contWXL xl:px-[30px] lg:w-contWLG md:w-contWMD xsm:w-[400px] sm:w-contWSM xxs:w-contWXSS">
         <img
           src={titleImg}
           alt="a book title"
-          className="max-w-titleW mb-8 smd2: mt-mainTitleM 
+          className="max-w-titleW mb-8 smd2: 
           
           xl:w-[500px] xl:mb-6
           lg:w-[360px] lg:mb-4

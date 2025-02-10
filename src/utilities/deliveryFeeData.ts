@@ -2,6 +2,11 @@ import { DeliveryFeeData } from "./interfaces";
 
 export const deliveryFeeData: DeliveryFeeData[] = [
   {
+    countries: ["United Kingdom"],
+    fee: 0,
+    duration: 0,
+  },
+  {
     countries: [
       "Republic of Ireland",
       "Germany",

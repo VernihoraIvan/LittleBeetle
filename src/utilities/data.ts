@@ -429,6 +429,7 @@ export const availableCountries = [
   "Tuvalu",
   "US Samoa",
   "Ukraine",
+  "United Kingdom",
   "United States of America",
   "Uzbekistan",
   "Vatican City State",

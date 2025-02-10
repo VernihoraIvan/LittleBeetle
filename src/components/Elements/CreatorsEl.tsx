@@ -42,7 +42,7 @@ const CreatorsEl = ({ name, location, description, link }: CreatorsElProps) => {
           md:text-[14px]
           smd:text-[14px]"
           >
-            Website
+            Learn more
           </p>
           <LinkIcon />
         </Link>

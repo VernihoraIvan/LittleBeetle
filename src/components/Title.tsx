@@ -6,7 +6,7 @@ const Title = ({ title }: TitleProps) => {
       <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD  sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
         {title && (
           <h2
-            className="mt-16 text-titleS font-primaryBold text-primWhite 
+            className="mt-16 text-titleS font-primaryBold text-primWhite  relative
           xl:text-[28px]
           xl:mt-10
           lg:text-[22px]

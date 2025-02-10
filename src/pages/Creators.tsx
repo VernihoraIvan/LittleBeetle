@@ -33,7 +33,7 @@ const Creators = () => {
             lg:text-[22px]
             smd:text-[18px]"
             >
-              Acknowledgments
+              To Our Supporters Behind the Scenes
             </h3>
             <p
               className="font-secondaryRegular text-[24px] text-primWhiteFaint
@@ -41,11 +41,10 @@ const Creators = () => {
             lg:text-[16px]
             smd:text-[14px]"
             >
-              Thank you texts for creators staying Incognito In publishing and
-              graphic design, Lorem ipsum is a placeholder text commonly used to
-              demonstrate the visual form of a document or a typeface without
-              relying on meaningful content. Lorem ipsum may be used as a
-              placeholder before the final copy is available.
+              We want to express our deepest gratitude to the remarkable
+              volunteers whose behind-the-scenes contributions have been vital
+              in making this project a reality. We are truly humbled by their
+              generosity and the lasting impact they will have on young lives.
             </p>
           </div>
         </div>
