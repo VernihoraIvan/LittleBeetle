@@ -1,6 +1,8 @@
 import { SummaryProps } from "@/utilities/interfaces";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
+const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
+
 const SummaryUniversal = ({
   subTotal,
   shippingFee,
@@ -12,9 +14,6 @@ const SummaryUniversal = ({
     <div className="smd:flex  smd2:w-[350px] smd:flex-col min:min-w-[300px] smd:mx-auto smd:w-[300px] gap-prodMar smd:pt-[40px] max-w-[708px] xxs:w-full ">
       <div
         className="w-full border border-primPurple ml-auto md:w-full
-
-
-        
         lg:w-[300px]
         xxs:w-full
         smd2:w-[350px]
@@ -84,7 +83,11 @@ const SummaryUniversal = ({
                           Delivery to {orderLine.address.country}
                         </p>
                         <p className="font-secondaryRegular text-inputPink">
-                          £{orderLine.totalDeliveryFee?.toFixed(2)}
+                          £
+                          {(
+                            (orderLine.totalDeliveryFee || 0) *
+                            deliverCoefficient
+                          ).toFixed(2)}
                         </p>
                       </div>
                     )
@@ -106,7 +109,7 @@ const SummaryUniversal = ({
               <p className="font-secondaryRegular text-inputPink">
                 £
                 {isDonation
-                  ? subTotal.toFixed(2)
+                  ? (subTotal * deliverCoefficient).toFixed(2)
                   : (
                       subTotal +
                       (shippingFee || 0) +
@@ -117,7 +120,8 @@ const SummaryUniversal = ({
                             ? line.totalDeliveryFee
                             : 0),
                         0
-                      )
+                      ) *
+                        deliverCoefficient
                     ).toFixed(2)}
               </p>
             </div>

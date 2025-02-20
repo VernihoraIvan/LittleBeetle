@@ -27,13 +27,21 @@ const Goal = () => {
                   md:text-[16px] 
                 "
                 >
-                  100% of donations from this project will be redirected to the
-                  Voices of Children Charitable Foundation. This organization
-                  focuses on providing psychological support to children who
-                  have suffered from hostilities and traumatic events in eastern
-                  Ukraine. Their mission is that no child should be left alone
-                  with the experience of war, and we are committed to supporting
-                  this cause together.
+                  100% of donations from this project will be directed to the
+                  Voices of Children charity fund, which has been providing
+                  psychological and psychosocial support, as well as
+                  humanitarian aid, to children and families affected by war
+                  since 2015. Since the full-scale invasion, the fund has helped
+                  over 105,000 children and parents.
+                  <br />
+                  <br />
+                  With 11 centers and mobile teams offering psychological
+                  assistance across Ukraine, the fund also equips children's
+                  spaces in remote communities—creating sensory rooms and
+                  playgrounds where children in difficult conditions can feel
+                  safe and supported. Their mission is that no child in Ukraine
+                  should be left alone with the trauma of war, and we are
+                  committed to supporting this cause together.
                 </p>
                 <div
                   className="smd:hidden hover:bg-whiteHover transition duration-300 border border-white py-3.5  flex justify-center inline-flex mt-10 w-[400px]

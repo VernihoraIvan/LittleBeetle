@@ -410,7 +410,6 @@ export const availableCountries = [
   "Republic of Ireland",
   "Republic of Singapore",
   "Romania",
-  "Russia",
   "San Marino",
   "Serbia",
   "Slovakia",

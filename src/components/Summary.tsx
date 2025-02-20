@@ -1,6 +1,8 @@
 import { SummaryProps } from "@/utilities/interfaces";
 import ButtonTo from "./ButtonTo";
 
+const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
+
 const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
   return (
     <div className="flex flex-col gap-prodMar">
@@ -13,7 +15,7 @@ const Summary = ({ subTotal, shippingFee }: SummaryProps) => {
             <div className="flex justify-between  text-linkS text-primPurple ">
               <p className="font-secondaryBold">Total</p>
               <p className="font-secondaryRegular text-inputPink">
-                £{subTotal + (shippingFee || 0)}
+                £{subTotal + (shippingFee || 0 * deliverCoefficient)}
               </p>
             </div>
           </div>

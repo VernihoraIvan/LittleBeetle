@@ -21,15 +21,9 @@ const PaymentSection = () => {
   const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
-  // const orderLinesRef = useOrderLines((state) => state.orderLines);
-  // const [orderLines, setOrderLines] = useState<OrderLine[]>(orderLinesRef);
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   setOrderLines(orderLinesRef);
-  // }, [orderLinesRef]);
 
   const shipping = useShipment((state) => state.shipment);
-  console.log(shipping);
 
   const totalFee = products.reduce(
     (sum, product) => sum + product.price * product.quantity,
@@ -72,37 +66,6 @@ const PaymentSection = () => {
     }
     navigate("/complete");
   };
-
-  // const checkEachDeliveryFee = (product: itemProps) => {
-  //   // Find the order line containing this product
-  //   const orderLine = orderLines.find((line) =>
-  //     line.products.some((p) => p.id === product.id)
-  //   );
-
-  //   if (!orderLine) {
-  //     console.warn(`No order line found for product ${product.id}`);
-  //     return false;
-  //   }
-
-  //   // Compare the fees
-  //   const productFee = product.shipment?.delivery_fee || 0;
-  //   const orderLineFee = orderLine.totalDeliveryFee || 0;
-
-  //   if (productFee !== orderLineFee) {
-  //     console.warn(
-  //       `Delivery fee mismatch for product ${product.id}: Product fee ${productFee} != Order line fee ${orderLineFee}`
-  //     );
-  //     return false;
-  //   }
-
-  //   return true;
-  // };
-
-  // useEffect(() => {
-  //   products.forEach((product) => {
-  //     console.log(checkEachDeliveryFee(product));
-  //   });
-  // }, [products]);
 
   return (
     <section className="flex justify-between pt-10 sm:flex-col sm:flex-col-reverse sm:pt-0 md:gap-5 smd2:gap-10">
