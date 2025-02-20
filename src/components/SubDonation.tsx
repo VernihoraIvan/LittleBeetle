@@ -18,14 +18,7 @@ import Alert from "@/assets/icons/alert-circle.svg?react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SubDonation = ({
-  title,
-  description,
-  imagePath,
-  weight,
-  size,
-  setOpen,
-}: SubDonationProps) => {
+const SubDonation = ({ product, setOpen }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
   const setFee = useShipment((state) => state.setFee);
   const id = nanoid();
@@ -114,16 +107,16 @@ const SubDonation = ({
             className="  flex smd:gap-0 gap-10 w-full
         smd:flex-col  "
           >
-            <Carousel images={imagePath} />
+            <Carousel images={product.imagePath} />
             <div className="    xl:flex xl:flex-col xl:justify-between xxl:flex xxl:flex-col xxl:justify-between   ">
               <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold">
-                {title}
+                {product.title}
               </h3>
               <p className="responsive-text font-secondaryRegular ">
-                {description}
+                {product.description}
               </p>
               <p className="small-responsive-text font-secondaryRegular  mt-1">
-                Size: {size}
+                Size: {product.size}
               </p>
               <div className="flex flex-col justify-between mt-2 ">
                 <div className="relative w-full big-responsive-text">
@@ -141,24 +134,15 @@ const SubDonation = ({
                       <SelectValue placeholder={priceToShow} />
                     </SelectTrigger>
                     <SelectContent className="w-full bg-white cursor-pointer">
-                      <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        value="3"
-                      >
-                        3 £
-                      </SelectItem>
-                      <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        value="5"
-                      >
-                        5 £
-                      </SelectItem>
-                      <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        value="10"
-                      >
-                        10 £
-                      </SelectItem>
+                      {product.prices.map((price) => (
+                        <SelectItem
+                          className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
+                          value={price.toString()}
+                        >
+                          {price} £
+                        </SelectItem>
+                      ))}
+
                       <SelectItem
                         className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
                         value="custom"
@@ -241,12 +225,12 @@ const SubDonation = ({
                   <button
                     onClick={() =>
                       handleAddProduct(
-                        title,
+                        product.title,
                         price as number,
                         quantity,
                         lang as string,
                         id,
-                        weight
+                        product.weight
                       )
                     }
                     className="hover:bg-whiteHover h-fit-content transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple responsive-heading bg-primWhite py-3 smd:py-1  lg:px-0  xl:py-2"
@@ -257,7 +241,14 @@ const SubDonation = ({
                   <button
                     className="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  lg:px-0 xl:py-2 responsive-heading"
                     onClick={() =>
-                      handleToCheckout(title, price, quantity, lang, id, weight)
+                      handleToCheckout(
+                        product.title,
+                        price,
+                        quantity,
+                        lang,
+                        id,
+                        product.weight
+                      )
                     }
                   >
                     Checkout

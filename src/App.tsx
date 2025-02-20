@@ -7,7 +7,6 @@ import Creators from "./pages/Creators";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import PageNotFound from "./pages/PageNotFound";
-// import SubDonationPage from "./pages/SubDonationPage";
 import Checkout from "./pages/Checkout";
 import CheckoutSection from "./components/CheckoutSection";
 import CheckoutWO from "./pages/CheckoutWO";

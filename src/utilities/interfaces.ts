@@ -39,20 +39,22 @@ export interface ProductElProps {
   imgPath: string[];
 }
 
-export interface ProductElOptionalProps {
-  title: string;
-  description: string;
-  imgPath: string[];
-  weight: number;
-  size: string;
-}
-
-export interface SubDonationProps {
+export interface ProductEl {
   title: string;
   description: string;
   imagePath: string[];
   weight: number;
   size: string;
+  prices: number[];
+  element: string;
+  to: string;
+}
+export interface ProductElOptionalProps {
+  product: ProductEl;
+}
+
+export interface SubDonationProps {
+  product: ProductEl;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

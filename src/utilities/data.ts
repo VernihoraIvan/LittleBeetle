@@ -1,3 +1,4 @@
+import { ProductEl } from "./interfaces";
 import digitalBook from "@/assets/images/compressed/digital-book.jpg";
 import lullaby from "@/assets/images/compressed/lullaby.jpg";
 import poster from "@/assets/images/compressed/poster.jpg";
@@ -8,7 +9,6 @@ import postcard2 from "@/assets/images/compressed/postcard-open2-min.jpg";
 import postcard3 from "@/assets/images/compressed/postcard-open3-min.jpg";
 import book1 from "@/assets/images/compressed/book-open1-min.jpg";
 import book2 from "@/assets/images/compressed/book-open2-min.jpg";
-
 import certificate from "@/assets/images/certificate.png";
 
 export const includedProducts = [
@@ -41,7 +41,7 @@ export const includedProducts = [
   },
 ];
 
-export const extraProducts = [
+export const extraProducts: ProductEl[] = [
   {
     title: "Printed Book",
     element: "book",
@@ -51,6 +51,7 @@ export const extraProducts = [
     to: "/donation/book",
     weight: 2,
     size: "21.0 x 29.7 cm",
+    prices: [15, 20, 25],
   },
   {
     title: "Poster",
@@ -61,6 +62,7 @@ export const extraProducts = [
     to: "/donation/poster",
     weight: 2,
     size: "42 x 29.7 cm",
+    prices: [10, 15, 20],
   },
   {
     title: "Postcards",
@@ -71,6 +73,7 @@ export const extraProducts = [
     to: "/donation/postcards",
     weight: 0.375,
     size: "14.8 x 10.5 cm",
+    prices: [6, 12, 18],
   },
 ];
 

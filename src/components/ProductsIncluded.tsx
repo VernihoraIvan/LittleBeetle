@@ -18,14 +18,7 @@ const ProductsIncluded = () => {
             <ul className="flex gap-5 xl:gap-5 xs:flex-col">
               {extraProducts &&
                 extraProducts.map((product) => (
-                  <ProductElOptional
-                    key={product.title}
-                    title={product.title}
-                    description={product.description}
-                    imgPath={product.imagePath}
-                    weight={product.weight}
-                    size={product.size}
-                  />
+                  <ProductElOptional product={product} />
                 ))}
             </ul>
           </div>
