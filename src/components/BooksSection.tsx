@@ -1,7 +1,5 @@
-import book1 from "../assets/images/book-open1-min.png";
-import book2 from "../assets/images/digital-book.png";
-import book3 from "../assets/images/lullaby.png";
 import ButtonTo from "./ButtonTo";
+import { includedProducts } from "@/utilities/data";
 
 const BooksSection = () => {
   return (
@@ -32,16 +30,17 @@ const BooksSection = () => {
           and raise crucial funds for the organisation delivering this vital
           care.
         </p>
-        <ul className="flex justify-between mt-14 gap-5 xs:flex-col">
-          <li>
-            <img loading="lazy" src={book1} alt="image of a book" />
-          </li>
-          <li>
-            <img loading="lazy" src={book2} alt="little girl holds a book" />
-          </li>
-          <li>
-            <img loading="lazy" src={book3} alt="little girl reads a book" />
-          </li>
+        <ul className="grid xs:grid-cols-1 grid-cols-3 gap-5 mt-14">
+          {includedProducts.map((product) => (
+            <li key={product.title} className="aspect-[4/3]">
+              <img
+                loading="lazy"
+                src={product.imagePath[0]}
+                alt={product.title}
+                className="w-full h-full object-cover"
+              />
+            </li>
+          ))}
         </ul>
         <div className="flex justify-center mt-20">
           <ButtonTo

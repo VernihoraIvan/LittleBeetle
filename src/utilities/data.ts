@@ -7,9 +7,9 @@ import postcard from "@/assets/images/compressed/postcard.jpg";
 import postcard1 from "@/assets/images/compressed/postcard-open1-min.jpg";
 import postcard2 from "@/assets/images/compressed/postcard-open2-min.jpg";
 import postcard3 from "@/assets/images/compressed/postcard-open3-min.jpg";
-import book1 from "@/assets/images/compressed/book-open1-min.jpg";
+import book1 from "@/assets/images/compressed/book-new.jpeg";
 import book2 from "@/assets/images/compressed/book-open2-min.jpg";
-import certificate from "@/assets/images/certificate.png";
+import certificate from "@/assets/images/compressed/certificate.jpeg";
 
 export const includedProducts = [
   {
