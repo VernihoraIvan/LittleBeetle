@@ -14,6 +14,8 @@ import { InfoIcon } from "lucide-react";
 import { useDonation } from "@/zustand/donationStore";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
+const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
+
 const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
@@ -40,7 +42,7 @@ const GooglePayEl = ({ isDonation }: { isDonation: boolean }) => {
         (acc, product) => acc + product.price * product.quantity,
         0
       );
-      totalFee = price + totalDeliveryFee;
+      totalFee = price + totalDeliveryFee * deliverCoefficient;
     }
   }, [isDonation, donations, products, orderLines]);
   const [canMakePayment, setCanMakePayment] =

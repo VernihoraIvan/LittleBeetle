@@ -115,7 +115,7 @@ const PurchaseEl = ({
               <label
                 className="font-secondaryRegular text-[20px] hover:cursor-pointer
               xl:text-[16px]
-              lg:text-[14px]
+              lg:text-[14px]  lg:mt-16
               smd:text-[14px]"
                 htmlFor={id}
               >

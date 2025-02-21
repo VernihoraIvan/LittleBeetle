@@ -8,6 +8,8 @@ import { Loader2 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
+
 interface PaymentComponentProps {
   setIsPaymentSuccess: (value: boolean) => void;
   isDonation?: boolean;
@@ -40,7 +42,7 @@ const PaymentComponent = ({
       0
     );
   } else {
-    totalFee = totalPrice + totalDeliveryFee;
+    totalFee = totalPrice + totalDeliveryFee * deliverCoefficient;
   }
 
   const stripe = useStripe();

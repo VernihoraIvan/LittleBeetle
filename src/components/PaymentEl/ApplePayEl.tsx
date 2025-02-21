@@ -9,6 +9,8 @@ import { useCart } from "@/zustand/productStore";
 import { useDonation } from "@/zustand/donationStore";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
+const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
+
 const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
   const stripe = useStripe();
   const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
@@ -35,7 +37,7 @@ const ApplePayEl = ({ isDonation }: { isDonation: boolean }) => {
         (acc, product) => acc + product.price * product.quantity,
         0
       );
-      totalFee = price + totalDeliveryFee;
+      totalFee = price + totalDeliveryFee * deliverCoefficient;
     }
   }, [isDonation, donations, products, orderLines]);
 

@@ -11,7 +11,7 @@ const Description = () => {
     smd:h-auto smd:pb-6 smd:px-8"
     >
       {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-0 bg-primPurple">
         <video
           autoPlay
           muted
@@ -24,9 +24,7 @@ const Description = () => {
         >
           <source
             src={
-              isMobile
-                ? "/animatedIntro-mobile.mp4"
-                : "/animatedIntro-tablet.mp4"
+              isMobile ? "/anIntro-improved.mp4" : "/anIntro-improved-desk.mp4"
             }
             type="video/mp4"
           />
@@ -36,19 +34,21 @@ const Description = () => {
       {/* Optional overlay for better text visibility */}
       <div className="absolute inset-0  z-[1]"></div>
 
-      <div className="absolute top-[50%] xs:top-[30%] translate-y-[-50%] flex gap-2 justify-center align-center flex-col z-[2] xxl:w-contWXL xl:w-contWXL xl:px-[30px] lg:w-contWLG md:w-contWMD xsm:w-[400px] sm:w-contWSM xxs:w-contWXSS">
+      <div
+        className="absolute top-[50%] smd:top-[40%] xs:top-[30%] translate-y-[-50%] flex gap-2 
+      justify-center align-center flex-col z-[2] xxl:w-contWXL xl:w-contWXL xl:px-[30px] 
+      lg:w-contWLG md:w-contWMD xsm:w-[400px] sm:w-contWSM xxs:w-contWXSS"
+      >
         <MainTitle
           className="max-w-titleW mb-8 smd2: 
-          
+          w-full h-full
           xl:w-[500px] xl:mb-6
           lg:w-[360px] lg:mb-4
           md:w-[380px] md:mb-4"
         />
         <h2
-          className="font-secondaryRegular text-primWhiteFaint text-linkS
-        xl:text-[18px]
-        lg:text-[16px]
-        md:text-[16px]"
+          className="font-secondaryRegular text-primWhiteFaint text-linkS big-responsive-text
+        "
         >
           This project is a reflection of teamwork and kindness.
         </h2>
