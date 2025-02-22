@@ -3,7 +3,7 @@ import CheckoutContributionEl from "../Elements/CheckoutContributionEl";
 import CartIncludedWidget from "../CartIncludedWidget";
 import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SummaryUniversal from "../SummaryUniversal";
 import { useDonation } from "@/zustand/donationStore";
 import DonationOption from "../DonationOption";
@@ -22,17 +22,12 @@ const CheckoutContributionWO = () => {
   const donations = useDonation((state) => state.items);
   const setStage = useStage((state) => state.setStage);
   const navigate = useNavigate();
-  const [totalFeeState, setTotalFee] = useState(0);
 
-  const totalFee = donations.reduce(
-    (acc, product) => acc + product.price * product.quantity,
-    0
-  );
-
-  useEffect(() => {
-    setTotalFee(totalFee + (price as number));
-  }, [price, totalFee]);
-  console.log(totalFee, price);
+  const totalFee =
+    donations.reduce(
+      (acc, product) => acc + product.price * product.quantity,
+      0
+    ) + price;
 
   const handleAddProduct = (
     title: string,
@@ -43,12 +38,14 @@ const CheckoutContributionWO = () => {
     id: string,
     weight: number
   ) => {
-    console.log(price);
-    if (price > 2) {
+    if (price >= 3) {
       addDonation(title, quantity, price, lang, isChecked, id, weight);
       setPrice(0);
       setStage(2);
       setQuantity(1);
+      // navigate("/checkout-donation/details");
+    } else if (price < 3 && totalFee >= 3) {
+      setStage(2);
       navigate("/checkout-donation/details");
     } else {
       toast.error("Minimum donation is 3 GBP");
@@ -87,7 +84,7 @@ const CheckoutContributionWO = () => {
           )}
         </div>
         <SummaryUniversal
-          subTotal={totalFeeState}
+          subTotal={totalFee}
           shippingFee={0}
           isDonation={true}
         />
@@ -105,7 +102,7 @@ const CheckoutContributionWO = () => {
             0
           )
         }
-        to={price >= 3 ? "/checkout-donation/details" : ""}
+        to={price >= 3 || totalFee >= 3 ? "/checkout-donation/details" : ""}
         title="NEXT STEP"
         style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
           xl:text-[20px]

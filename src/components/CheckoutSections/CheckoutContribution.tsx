@@ -32,6 +32,7 @@ const CheckoutContribution = () => {
   const handleOnClick = () => {
     setStage(2);
   };
+
   return (
     <div className="">
       <div

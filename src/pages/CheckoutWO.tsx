@@ -6,7 +6,7 @@ const CheckoutWO = () => {
   return (
     <div className="flex flex-col overflow-x-hidden">
       <Title title="Checkout" />
-      <div className="px-[120px] xxl:px-[175px] lg:px-[60px] smd:px-[20px] bg-primBeige">
+      <div className="px-[120px] py-10 xxl:px-[175px] lg:px-[60px] smd:px-[20px] bg-primBeige">
         <ProgressBarWO />
         <Outlet />
       </div>

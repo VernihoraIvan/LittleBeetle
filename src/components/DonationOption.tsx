@@ -113,7 +113,7 @@ const DonationOption = ({
         <div className="relative w-full mt-[10px] big-responsive-text">
           <Select onValueChange={(value) => setLang(value)}>
             <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
-              <SelectValue placeholder="Language" />
+              <SelectValue placeholder="English" />
             </SelectTrigger>
             <SelectContent className="w-full bg-white ">
               <SelectItem

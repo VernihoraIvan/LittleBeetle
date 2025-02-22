@@ -57,7 +57,10 @@ const PaymentSection = () => {
   };
 
   return (
-    <section className="flex justify-between pt-10 sm:flex-col sm:flex-col-reverse sm:pt-0 md:gap-5 smd2:gap-10">
+    <section
+      className="flex justify-between pt-10 sm:flex-col sm:flex-col-reverse sm:pt-0 md:gap-5 smd2:gap-10
+    flex-col-reverse justify-center items-center gap-10"
+    >
       <div
         className="w-[580px]
       xl:w-[510px] 
