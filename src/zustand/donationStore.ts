@@ -10,6 +10,7 @@ export interface DonationState {
     product_language: string;
     isAGift: boolean;
     id: string;
+    weight: number;
     shipment: ShipmentDetails;
   }[];
   addDonation: (
@@ -18,7 +19,8 @@ export interface DonationState {
     price: number,
     product_language: string,
     isAGift: boolean,
-    id: string
+    id: string,
+    weight: number
   ) => void;
   removeDonation: (id: string) => void;
   increaseQuantity: (id: string) => void;
@@ -69,7 +71,8 @@ export const useDonation = create(
         price: number,
         product_language: string,
         isAGift: boolean,
-        id: string
+        id: string,
+        weight: number
       ) => {
         set((state: DonationState) => ({
           items: state.items.some(
@@ -89,6 +92,7 @@ export const useDonation = create(
                   product_language,
                   id,
                   isAGift,
+                  weight,
                   shipment: {
                     first_name: "",
                     last_name: "",

@@ -1,63 +1,36 @@
 import SummaryUniversal from "../SummaryUniversal";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import clsx from "clsx";
-import mCardImg from "@/assets/images/mCard.png";
-import visaImg from "@/assets/images/visa.png";
-import gPayImg from "@/assets/images/gPay.png";
-import aPayImg from "@/assets/images/aPay.png";
 import { useDonation } from "@/zustand/donationStore";
-import { useNavigate } from "react-router-dom";
-import StripeElement from "../PaymentEl/StripeElement";
-import GooglePayEl from "../PaymentEl/GooglePayEl";
-import ApplePayEl from "../PaymentEl/ApplePayEl";
-import { sentData } from "@/api/connection";
 import { useMainStore } from "@/zustand/mainOrderStore";
-import { toast } from "react-toastify";
-import { useStage } from "@/zustand/stageStore";
+import { sentData } from "@/api/connection";
+import { proceedToPayment } from "@/api/connection";
 
 const PaymentSectionWO = () => {
-  const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const [isActive, setIsActive] = useState<number>(0);
   const donations = useDonation((state) => state.items);
   const setDonationAddress = useDonation((state) => state.addAdress);
 
-  const [totalFee, setTotalFee] = useState<number>(0);
-  console.log(donations);
-  useEffect(() => {
-    setTotalFee(
-      donations.reduce(
-        (acc, product) => acc + product.price * product.quantity,
-        0
-      )
-    );
-  }, [donations]);
+  const totalFee = donations.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
   const mainShipmentStore = useMainStore((state) => state.shipment);
   useEffect(() => {
     setDonationAddress(mainShipmentStore);
   }, [mainShipmentStore, setDonationAddress]);
 
   const handleSubmit = async () => {
-    if (isPaymentSuccess) {
-      try {
-        await sentData(
-          donations.map((donation) => ({
-            ...donation,
-            weight: 0, // or calculate based on product_name if needed
-          }))
-        );
-        toast.success("Donation completed successfully");
-        useDonation.getState().clearDonations();
-        useStage.getState().setStage(0);
-        navigate("/complete");
-      } catch (error) {
-        console.error("Payment failed:", error);
-        toast.error("Payment failed");
-      }
+    const res = await proceedToPayment(totalFee, "gbp");
+    if (res) {
+      const donationToSend = donations.map((donation) => ({
+        ...donation,
+      }));
+      const res2 = await sentData(donationToSend);
+      console.log(res2);
+
+      window.location.replace(res.data);
     }
   };
-
-  console.log(totalFee);
 
   return (
     <section className="flex justify-between pt-10 sm:flex-col sm:flex-col-reverse sm:pt-0 ">
@@ -68,7 +41,7 @@ const PaymentSectionWO = () => {
       md:w-[380px]
       sm:w-full sm:pt-8"
       >
-        <h2
+        {/* <h2
           className="mb-9 font-secondaryBold text-buttonS
         xl:text-[24px]
               lg:text-[22px]
@@ -123,9 +96,9 @@ const PaymentSectionWO = () => {
               <img src={aPayImg} className="h-full" alt="Applepay icon" />
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-5">
-          <div className="">
+          {/* <div className="">
             {isActive === 1 && (
               <StripeElement
                 setIsPaymentSuccess={setIsPaymentSuccess}
@@ -134,16 +107,16 @@ const PaymentSectionWO = () => {
             )}
             {isActive === 2 && <GooglePayEl isDonation={true} />}
             {isActive === 3 && <ApplePayEl isDonation={true} />}
-          </div>
+          </div> */}
 
           <button
             onClick={handleSubmit}
             className={clsx(
-              " uppercase py-4  font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px]",
-              isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
-              !isPaymentSuccess && "bg-pinkBar text-primWhite "
+              " uppercase py-4  font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer"
+              // isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
+              // !isPaymentSuccess && "bg-pinkBar text-primWhite "
             )}
-            disabled={!isPaymentSuccess}
+            // disabled={!isPaymentSuccess}
           >
             complete donation
           </button>

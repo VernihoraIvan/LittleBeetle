@@ -8,6 +8,7 @@ import axios from "axios";
 // const BASE_URL = "https://secure-woodland-90867-0bbf625dd335.herokuapp.com/";
 const BASE_URL =
   "https://littlebeetle-backend-nestjs-production.up.railway.app";
+
 axios.defaults.baseURL = BASE_URL;
 
 export const postDonation = async (data: MyFormValues) => {
@@ -29,11 +30,14 @@ export const sentData = async (data: itemProps[]) => {
     id: item.id,
     shipment: item.shipment,
   }));
+  let response;
   try {
-    await axios.post("/data", productArray);
+    response = await axios.post("/data", productArray);
+    // console.log(response);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
+  return response;
 };
 
 export const updateDonation = async (data: MyFormValues) => {

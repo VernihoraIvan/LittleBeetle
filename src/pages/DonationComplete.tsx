@@ -1,6 +1,12 @@
 import Title from "../components/Title";
+import { useCart } from "../zustand/productStore";
+import { useEffect } from "react";
 
 const DonationComplete = () => {
+  const clearCart = useCart((state) => state.clearCart);
+  useEffect(() => {
+    clearCart();
+  }, []);
   return (
     <>
       <Title title="" />

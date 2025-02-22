@@ -32,6 +32,7 @@ const CheckoutContributionWO = () => {
   useEffect(() => {
     setTotalFee(totalFee + (price as number));
   }, [price, totalFee]);
+  console.log(totalFee, price);
 
   const handleAddProduct = (
     title: string,
@@ -39,11 +40,12 @@ const CheckoutContributionWO = () => {
     quantity: number,
     lang: string,
     isChecked: boolean,
-    id: string
+    id: string,
+    weight: number
   ) => {
     console.log(price);
     if (price > 2) {
-      addDonation(title, quantity, price, lang, isChecked, id);
+      addDonation(title, quantity, price, lang, isChecked, id, weight);
       setPrice(0);
       setStage(2);
       setQuantity(1);
@@ -99,7 +101,8 @@ const CheckoutContributionWO = () => {
             quantity,
             lang as string,
             isChecked,
-            id
+            id,
+            0
           )
         }
         to={price >= 3 ? "/checkout-donation/details" : ""}

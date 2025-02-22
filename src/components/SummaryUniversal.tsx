@@ -109,7 +109,7 @@ const SummaryUniversal = ({
               <p className="font-secondaryRegular text-inputPink">
                 £
                 {isDonation
-                  ? (subTotal * deliverCoefficient).toFixed(2)
+                  ? subTotal.toFixed(2)
                   : (
                       subTotal +
                       (shippingFee || 0) +

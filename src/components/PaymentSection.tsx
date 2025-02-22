@@ -1,70 +1,59 @@
 import SummaryUniversal from "./SummaryUniversal";
-import { useState } from "react";
 import clsx from "clsx";
-import mCardImg from "@/assets/images/mCard.png";
-import visaImg from "@/assets/images/visa.png";
-import gPayImg from "@/assets/images/gPay.png";
-import aPayImg from "@/assets/images/aPay.png";
 import { useCart } from "@/zustand/productStore";
-import StripeElement from "./PaymentEl/StripeElement";
-import GooglePayEl from "./PaymentEl/GooglePayEl";
-import ApplePayEl from "./PaymentEl/ApplePayEl";
 import { sentData } from "@/api/connection";
+import { proceedToPayment } from "@/api/connection";
 import { useOrderLines } from "@/zustand/orderLinesStore";
-import { useStage } from "@/zustand/stageStore";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { Resend } from "resend";
-import { useShipment } from "@/zustand/shipmentStore";
+
+const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
 
 const PaymentSection = () => {
-  const [isPaymentSuccess, setIsPaymentSuccess] = useState<boolean>(false);
-  const [isActive, setIsActive] = useState<number>(0);
   const products = useCart((state) => state.items);
-  const navigate = useNavigate();
 
-  const shipping = useShipment((state) => state.shipment);
-
-  const totalFee = products.reduce(
-    (sum, product) => sum + product.price * product.quantity,
+  const orderLines = useOrderLines((state) => state.orderLines);
+  const totalDeliveryFee = orderLines.reduce(
+    (sum, line) => sum + (line.totalDeliveryFee || 0),
     0
   );
 
-  const handleSendEmail = async () => {
-    const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
-    resend.emails.send({
-      from: "littlebeetle920@gmail.com",
-      to: shipping.email,
-      subject: "Thank You for Your Donation",
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h1 style="font-size: 24px; line-height: 1.2; color: #333;">
-            Dear ${shipping.first_name},
-          </h1>
-          <p style="font-size: 16px; line-height: 1.6; color: #333;">
-            Your donation supports psychological rehabilitation for children affected by war in Ukraine. 
-            Over 15 creative professionals from around the world volunteered their time and skills to create this project.
-          </p>
-          <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 20px;">
-            We thank you for your support.
-          </p>
-        </div>
-      `,
-    });
-  };
+  const totalPrice = products.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  const totalFee = totalPrice + totalDeliveryFee * deliverCoefficient;
+
+  // const handleSendEmail = async () => {
+  //   const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
+  //   resend.emails.send({
+  //     from: "littlebeetle920@gmail.com",
+  //     to: shipping.email,
+  //     subject: "Thank You for Your Donation",
+  //     html: `
+  //       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+  //         <h1 style="font-size: 24px; line-height: 1.2; color: #333;">
+  //           Dear ${shipping.first_name},
+  //         </h1>
+  //         <p style="font-size: 16px; line-height: 1.6; color: #333;">
+  //           Your donation supports psychological rehabilitation for children affected by war in Ukraine.
+  //           Over 15 creative professionals from around the world volunteered their time and skills to create this project.
+  //         </p>
+  //         <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 20px;">
+  //           We thank you for your support.
+  //         </p>
+  //       </div>
+  //     `,
+  //   });
+  // };
 
   const handleSubmit = async () => {
-    if (isPaymentSuccess) {
-      sentData(products);
-      useOrderLines.getState().clearOrderLines();
-      useCart.getState().clearCart();
-      useStage.getState().setStage(0);
-      toast.success("Donation completed successfully");
-      handleSendEmail();
-    } else {
-      toast.error("Payment failed");
+    const res = await proceedToPayment(totalFee, "gbp");
+    if (res) {
+      const res2 = await sentData(products);
+      console.log(res2);
+
+      window.location.replace(res.data);
     }
-    navigate("/complete");
   };
 
   return (
@@ -76,7 +65,7 @@ const PaymentSection = () => {
       md:w-[380px]
       sm:w-full sm:pt-8"
       >
-        <h2
+        {/* <h2
           className="mb-9 font-secondaryBold text-buttonS
         xl:text-[24px]
               lg:text-[22px]
@@ -84,8 +73,8 @@ const PaymentSection = () => {
               sm:text-[22px]"
         >
           Payment method
-        </h2>
-        <div className="mb-navPad">
+        </h2> */}
+        {/* <div className="mb-navPad">
           <ul className="flex flex-col gap-5   ">
             <li
               className={clsx(
@@ -131,24 +120,24 @@ const PaymentSection = () => {
               <img src={aPayImg} className="h-full" alt="Applepay icon" />
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-5">
-          <div className="">
+          {/* <div className="">
             {isActive === 1 && (
               <StripeElement setIsPaymentSuccess={setIsPaymentSuccess} />
             )}
             {isActive === 2 && <GooglePayEl isDonation={false} />}
             {isActive === 3 && <ApplePayEl isDonation={false} />}
-          </div>
+          </div> */}
 
           <button
             onClick={handleSubmit}
             className={clsx(
-              " uppercase py-4  font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px]",
-              isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
-              !isPaymentSuccess && "bg-pinkBar text-primWhite "
+              " uppercase py-4  font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer"
+              // isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
+              // !isPaymentSuccess && "bg-pinkBar text-primWhite "
             )}
-            disabled={!isPaymentSuccess}
+            // disabled={!isPaymentSuccess}
           >
             complete donation
           </button>
