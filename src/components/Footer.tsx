@@ -25,7 +25,7 @@ const Footer = () => {
                 <InstagramLogo />
               </a>
               <a
-                href="mailto:maria@creativebranch.org"
+                href="mailto:info@littlebeetle.org"
                 target="_blank"
                 rel="noreferrer"
               >

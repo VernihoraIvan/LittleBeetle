@@ -124,9 +124,7 @@ const PrivacyPolicy = () => {
             If you have any questions or requests regarding this Privacy Policy,
             please contact us at{" "}
             <span className="text-blue-700">
-              <a href="mailto:maria@creativebranch.org">
-                maria@creativebranch.org
-              </a>
+              <a href="mailto:info@littlebeetle.org ">info@littlebeetle.org</a>
             </span>
             .
           </p>

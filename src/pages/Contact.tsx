@@ -86,7 +86,7 @@ const Contact = () => {
                   </div>
                 </a>
                 <a
-                  href="mailto:maria@creativebranch.org"
+                  href="mailto:info@littlebeetle.org "
                   target="_blank"
                   rel="noreferrer"
                   className="flex-1 bg-pinkGrey rounded-12px flex justify-center items-center
