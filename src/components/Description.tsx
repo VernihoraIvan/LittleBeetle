@@ -46,12 +46,12 @@ const Description = () => {
           lg:w-[360px] lg:mb-4
           md:w-[380px] md:mb-4"
         />
-        <h2
+        {/* <h2
           className="font-secondaryRegular text-primWhiteFaint text-linkS big-responsive-text
         "
         >
           This project is a reflection of teamwork and kindness.
-        </h2>
+        </h2> */}
       </div>
 
       <div className="absolute bottom-[5%] left-[50%] translate-x-[-50%] z-10">
