@@ -41,7 +41,7 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
     id: string,
     weight: number
   ) => {
-    if (price >= 3 && quantity >= 1) {
+    if (price >= product.prices[0] && quantity >= 1) {
       addProduct(title, quantity, price, lang, false, id, weight * quantity);
       setIsOverlayPrice(false);
       setFee(id, price, quantity);
@@ -49,8 +49,10 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
       toast.success("Added to cart successfully!");
       setOpen(false);
     } else {
-      if (price < 3) {
-        toast.error("Please select a valid amount (minimum £3)");
+      if (price < product.prices[0]) {
+        toast.error(
+          `Please select a valid amount (minimum £${product.prices[0]})`
+        );
       } else {
         toast.error("Please select a valid quantity");
       }
@@ -65,11 +67,13 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
     id: string,
     weight: number
   ) => {
-    if (price >= 3 && quantity >= 1) {
+    if (price >= product.prices[0] && quantity >= 1) {
       handleAddProduct(title, price, quantity, lang, id, weight);
       navigate("/checkout/contribution");
     } else {
-      toast.error("Please select a valid amount (minimum £3)");
+      toast.error(
+        `Please select a valid amount (minimum £${product.prices[0]})`
+      );
     }
   };
 
@@ -172,10 +176,10 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
                       <div className="flex items-center gap-1 mt-1">
                         <Alert className="w-4 h-4 text-inputPink" />
                         <p className="text-sm text-inputPink min:block hidden">
-                          Minimum Donation: £3
+                          Minimum Donation: £{product.prices[0]}
                         </p>
                         <p className="text-sm text-inputPink block min:hidden">
-                          Min. Don.: £3
+                          Min. Don.: £{product.prices[0]}
                         </p>
                       </div>
                     </div>
