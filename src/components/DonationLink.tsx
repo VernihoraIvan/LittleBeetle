@@ -17,11 +17,10 @@ const DonationLink = () => {
             className="font-secondaryRegular text-linkS mb-9 text-center 
         responsive-text"
           >
-            Each donation of any size includes access to our Digital Gift
-            Package: Digital Illustrated Book, a Lullaby recording, and a
-            personalised Digital Donation Certificate. You can now choose to
-            complete your donation or add extra items to your cart from our
-            Printed Collection. Please select an option below to proceed.
+            Every donation, regardless of size, now includes access to our
+            Digital Gift Package: a digital illustrated book, a lullaby
+            recording, and a personalized digital donation certificate. You can
+            now choose to complete your donation.
           </p>
           <ButtonTo
             to="/checkout-donation/contribution"

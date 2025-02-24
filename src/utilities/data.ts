@@ -117,7 +117,7 @@ export const creatorsData = [
     name: "Ivan Vernihora",
     location: "Berlin, Germany",
     description:
-      "He's a fullstack developer with a strong passion for building scalable and efficient applications. As a student at 42 Berlin, he's constantly honing his problem-solving skills and diving deep into software development. Beyond coding, he loves the thrill of snowboarding, enjoying the mountains and the adrenaline rush. Whether it's tackling complex algorithms or carving through fresh powder, he's always up for a challenge!",
+      "is a fullstack developer with a strong passion for building scalable and efficient applications. As a student at 42 Berlin, he's constantly honing his problem-solving skills and diving deep into software development. Beyond coding, he loves the thrill of snowboarding, enjoying the mountains and the adrenaline rush. Whether it's tackling complex algorithms or carving through fresh powder, he's always up for a challenge!",
     link: "https://www.linkedin.com/in/ivan-vernihora",
   },
   {

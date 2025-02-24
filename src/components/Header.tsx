@@ -52,7 +52,7 @@ const Header = () => {
             className="mr-10 fill-primWhite w-6 h-6
           smd:w-5 smd:h-5"
           >
-            <NavLink to={"/checkout/contribution"}>
+            <NavLink to={"/checkout-donation/contribution"}>
               {({ isActive }) => (isActive ? <ActiveCartLogo /> : <CartLogo />)}
             </NavLink>
           </li>

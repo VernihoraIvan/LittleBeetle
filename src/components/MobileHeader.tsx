@@ -58,7 +58,7 @@ const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
            "
         >
           <div>
-            <NavLink to={"/checkout/contribution"}>
+            <NavLink to={"/checkout-donation/contribution"}>
               {({ isActive }) =>
                 isActive ? (
                   <div className="flex items-center gap-2">
