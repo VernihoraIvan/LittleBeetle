@@ -9,15 +9,21 @@ const DonationComplete = () => {
   const clearDonation = useDonation((state) => state.clearDonations);
   const donations = useDonation((state) => state.items);
 
-  const sendDonationData = async () => {
-    const donationToSend = donations.map((donation) => ({
-      ...donation,
-    }));
-    console.log(donationToSend);
-    await sentData(donationToSend);
-  };
+  // const sendDonationData = async () => {
+  //   const donationToSend = donations.map((donation) => ({
+  //     ...donation,
+  //   }));
+  //   console.log(donationToSend);
+  //   await sentData(donationToSend);
+  // };
 
   useEffect(() => {
+    const sendDonationData = async () => {
+      const donationToSend = donations.map((donation) => ({
+        ...donation,
+      }));
+      await sentData(donationToSend);
+    };
     sendDonationData();
     clearCart();
     clearDonation();
