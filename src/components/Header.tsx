@@ -27,7 +27,7 @@ const Header = () => {
               to={"/donation"}
               className={({ isActive }) => (isActive ? "text-hovYellow" : "")}
             >
-              Donation Store
+              Donate
             </NavLink>
           </li>
           <li>
