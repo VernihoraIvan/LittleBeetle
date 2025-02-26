@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import Test from "./pages/Test";
 function App() {
   const location = useLocation();
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/creators" element={<Creators />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/test" element={<Test />} />
           <Route path="/checkout" element={<Checkout />}>
             <Route path=":step" element={<CheckoutSection />} />
           </Route>
