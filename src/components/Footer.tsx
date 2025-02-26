@@ -57,7 +57,7 @@ const Footer = () => {
           smd:text-[10px]
           "
         >
-          copyright © 2024 A Great Journey of a Little Beetle. all rights
+          copyright © 2024 The Great Journey of a Little Beetle. all rights
           reserved
         </p>
       </div>
