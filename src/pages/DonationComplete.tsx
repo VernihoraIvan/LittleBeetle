@@ -13,6 +13,7 @@ const DonationComplete = () => {
     const donationToSend = donations.map((donation) => ({
       ...donation,
     }));
+    console.log(donationToSend);
     await sentData(donationToSend);
   };
 
