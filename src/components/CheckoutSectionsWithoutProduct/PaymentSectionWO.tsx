@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import clsx from "clsx";
 import { useDonation } from "@/zustand/donationStore";
 import { useMainStore } from "@/zustand/mainOrderStore";
-import { sentData } from "@/api/connection";
+// import { sentData } from "@/api/connection";
 import { proceedToPayment } from "@/api/connection";
 
 const PaymentSectionWO = () => {
@@ -22,11 +22,11 @@ const PaymentSectionWO = () => {
   const handleSubmit = async () => {
     const res = await proceedToPayment(totalFee, "gbp");
     if (res) {
-      const donationToSend = donations.map((donation) => ({
-        ...donation,
-      }));
-      const res2 = await sentData(donationToSend);
-      console.log(res2);
+      // const donationToSend = donations.map((donation) => ({
+      //   ...donation,
+      // }));
+      // const res2 = await sentData(donationToSend);
+      // console.log(res2);
 
       window.location.replace(res.data);
     }
