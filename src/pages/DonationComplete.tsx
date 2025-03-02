@@ -1,7 +1,7 @@
 import Title from "../components/Title";
 import { useCart } from "../zustand/productStore";
 import { useEffect } from "react";
-import { sentData, sendEmail } from "../api/connection";
+import { sentData, sendDonationConfirmation } from "../api/connection";
 import { useDonation } from "@/zustand/donationStore";
 
 const DonationComplete = () => {
@@ -9,30 +9,14 @@ const DonationComplete = () => {
   const clearDonation = useDonation((state) => state.clearDonations);
   const donations = useDonation((state) => state.items);
 
-  // const sendDonationData = async () => {
-  //   const donationToSend = donations.map((donation) => ({
-  //     ...donation,
-  //   }));
-  //   console.log(donationToSend);
-  //   await sentData(donationToSend);
-  // };
-
-  // console.log("donations", donations);
-
   useEffect(() => {
     const sendDonationData = async () => {
       const donationToSend = donations.map((donation) => ({
         ...donation,
       }));
-      // console.log("donationToSend", donationToSend);
       await sentData(donationToSend);
-      // console.log(
-      //   "email credentials",
-      //   donations[0].shipment.email,
-      //   donations[0].shipment.first_name + " " + donations[0].shipment.last_name
-      // );
       const lang = donations[0].product_language === "English" ? "en" : "ua";
-      await sendEmail(
+      await sendDonationConfirmation(
         donations[0].shipment.email,
         donations[0].shipment.first_name +
           " " +
@@ -44,6 +28,7 @@ const DonationComplete = () => {
     clearCart();
     clearDonation();
   }, []);
+
   return (
     <>
       <Title title="" />

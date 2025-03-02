@@ -106,7 +106,7 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
   return (
     <>
       <section className=" ">
-        <section className="flex flex-grow justify-center smd:pt-6 bg-primBeige  ">
+        <section className="flex flex-grow justify-center smd:pt-6 bg-primBeige max-h-[90vh] overflow-y-auto ">
           <div
             className="  flex smd:gap-0 gap-10 w-full
         smd:flex-col  "
@@ -163,7 +163,7 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
                         <input
                           id="customPrice"
                           autoComplete="off"
-                          className="w-full px-3 h-[45px] border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                          className="w-full px-3 xl:h-[45px] xxl:h-[63px] border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           type="number"
                           inputMode="numeric"
                           pattern="[0-9]*"
@@ -210,7 +210,7 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
                   className="flex gap-6 mt-[10px]  select-none
               xl:mt-[18px] xxl:mt-[18px]"
                 >
-                  <p className="font-secondaryRegular responsive-heading text-inputPink ">
+                  <p className="font-secondaryRegular responsive-text text-inputPink ">
                     Quantity
                   </p>
                   <QuantityAdjuster

@@ -3,9 +3,6 @@ import { itemProps } from "@/zustand/productStore";
 import axios from "axios";
 
 // const BASE_URL = "http://localhost:3001";
-// const BASE_URL = "https://little-beetle-backend-d16f76890ac7.herokuapp.com/";
-// const BASE_URL = "https://littlebeetle-backend-nestjs.onrender.com";
-// const BASE_URL = "https://secure-woodland-90867-0bbf625dd335.herokuapp.com/";
 const BASE_URL =
   "https://littlebeetle-backend-nestjs-production.up.railway.app";
 
@@ -33,9 +30,8 @@ export const sentData = async (data: itemProps[]) => {
   let response;
   try {
     response = await axios.post("/data", productArray);
-    // console.log(response);
   } catch (error) {
-    // console.error(error);
+    console.error(error);
   }
   return response;
 };
@@ -62,7 +58,7 @@ export const proceedToPayment = async (amount: number, currency: string) => {
   }
 };
 
-export const sendEmail = async (
+export const sendDonationConfirmation = async (
   email: string,
   name: string,
   lang: "en" | "ua"

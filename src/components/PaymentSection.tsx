@@ -23,7 +23,7 @@ const PaymentSection = () => {
 
   const totalFee = totalPrice + totalDeliveryFee * deliverCoefficient;
 
-  // const handleSendEmail = async () => {
+  // const handlesendDonationConfirmation = async () => {
   //   const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
   //   resend.emails.send({
   //     from: "littlebeetle920@gmail.com",

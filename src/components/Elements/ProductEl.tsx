@@ -4,7 +4,7 @@ const ProductEl = ({ title, imgPath, description }: ProductElProps) => {
   return (
     <li className="flex-1 flex flex-col sm:gap-5 xs:justify-center items-center ">
       <img
-        className="w-full h-imgH2 object-cover lg:h-[290px] smd:h-[220px] sm:w-[240px] sm:h-[180px]"
+        className="w-full h-imgH2 object-cover lg:h-[240px] smd:h-[180px] sm:w-[290px] sm:h-[220px]"
         src={imgPath[0]}
         alt="image of a book"
       />
