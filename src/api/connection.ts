@@ -61,3 +61,17 @@ export const proceedToPayment = async (amount: number, currency: string) => {
     console.error(error);
   }
 };
+
+export const sendEmail = async (
+  email: string,
+  name: string,
+  lang: "en" | "ua"
+) => {
+  console.log(email, name);
+  try {
+    const response = await axios.post("/mail/send", { to: email, name, lang });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
