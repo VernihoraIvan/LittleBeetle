@@ -24,7 +24,9 @@ const DonationComplete = () => {
         lang
       );
     };
-    sendDonationData();
+    if (donations.length > 0) {
+      sendDonationData();
+    }
     clearCart();
     clearDonation();
   }, []);
