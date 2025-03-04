@@ -1,9 +1,9 @@
 import UnionSVG from "@/assets/icons/arrow-down.svg?react";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import MainTitle from "@/assets/icons/main-title.svg?react";
 
 const Description = () => {
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  // const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
     <section
@@ -18,16 +18,11 @@ const Description = () => {
           loop
           playsInline
           preload="auto"
-          className="absolute w-full h-full object-cover
+          className="absolute w-full h-full object-cover 
             object-[80%_40%] 
             "
         >
-          <source
-            src={
-              isMobile ? "/anIntro-improved.mp4" : "/anIntro-improved-desk.mp4"
-            }
-            type="video/mp4"
-          />
+          <source src="/anIntro-improved-desk.mp4" type="video/mp4" />
         </video>
       </div>
 

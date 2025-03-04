@@ -40,9 +40,9 @@ const DonationComplete = () => {
             Thank you! Your donation is complete.
           </h2>
           <p className="font-secondaryRegular text-linkS text-center big-responsive-text">
-            We sent an email with the access to the digital products included to
-            the address you provided. We hope the book and lullaby we've created
-            bring you some joy and a touch of magic.
+            We've sent an email with access to the digital products included, to
+            the address you provided. We hope the book and lullaby we created
+            bring you joy and a touch of magic.
           </p>
         </div>
       </div>
