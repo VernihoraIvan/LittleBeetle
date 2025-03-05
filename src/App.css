@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+:root {
+  height: 100dvh;
+}
+
 [role="tooltip"].popup-content {
   width: 100%; /* Fixed size for large screens */
 }
