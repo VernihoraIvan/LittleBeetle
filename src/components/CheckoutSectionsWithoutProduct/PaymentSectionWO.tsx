@@ -1,12 +1,14 @@
 import SummaryUniversal from "../SummaryUniversal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useDonation } from "@/zustand/donationStore";
 import { useMainStore } from "@/zustand/mainOrderStore";
 // import { sentData } from "@/api/connection";
 import { proceedToPayment } from "@/api/connection";
+import { Loader2 } from "lucide-react";
 
 const PaymentSectionWO = () => {
+  const [isProcessing, setIsProcessing] = useState(false);
   const donations = useDonation((state) => state.items);
   const setDonationAddress = useDonation((state) => state.addAdress);
 
@@ -20,15 +22,16 @@ const PaymentSectionWO = () => {
   }, [mainShipmentStore, setDonationAddress]);
 
   const handleSubmit = async () => {
-    const res = await proceedToPayment(totalFee, "gbp");
-    if (res) {
-      // const donationToSend = donations.map((donation) => ({
-      //   ...donation,
-      // }));
-      // const res2 = await sentData(donationToSend);
-      // console.log(res2);
-
-      window.location.replace(res.data);
+    setIsProcessing(true);
+    try {
+      const res = await proceedToPayment(totalFee, "gbp");
+      if (res) {
+        window.location.replace(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -115,13 +118,17 @@ const PaymentSectionWO = () => {
           <button
             onClick={handleSubmit}
             className={clsx(
-              " uppercase py-4  font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer"
+              " uppercase py-4 flex justify-center items-center font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer hover:bg-purpleHover transition duration-300"
               // isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
               // !isPaymentSuccess && "bg-pinkBar text-primWhite "
             )}
             // disabled={!isPaymentSuccess}
           >
-            complete donation
+            {isProcessing ? (
+              <Loader2 className="animate-spin " />
+            ) : (
+              "complete donation"
+            )}
           </button>
         </div>
       </div>
