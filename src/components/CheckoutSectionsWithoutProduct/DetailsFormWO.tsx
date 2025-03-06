@@ -8,6 +8,7 @@ import { useMainStore } from "@/zustand/mainOrderStore";
 import { nanoid } from "nanoid";
 import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
 import { useDonation } from "@/zustand/donationStore";
+import { useState } from "react";
 
 const DetailsFormWO = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const DetailsFormWO = () => {
   const adressStore = useShipment((state) => state.shipment);
   const setStage = useStage((state) => state.setStage);
   const resetShipmentsMain = useShipment((state) => state.resetShipments);
+  const [emailConsent, setEmailConsent] = useState(false);
 
   const defaultValues: ShipmentDetails = {
     first_name: adressStore.first_name,
@@ -73,6 +75,8 @@ const DetailsFormWO = () => {
                 title="Email Address"
                 element="email"
                 isRequired={true}
+                setEmailConsent={setEmailConsent}
+                emailConsent={emailConsent}
               />
               <FormEl
                 errors={errors.phone}
@@ -91,7 +95,7 @@ const DetailsFormWO = () => {
               type="submit"
               onClick={() => setStage(4)}
             >
-              CONTINUE TO NEXT
+              next step
             </button>
           </Form>
         )}

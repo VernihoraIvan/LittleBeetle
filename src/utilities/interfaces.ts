@@ -152,6 +152,8 @@ export interface FormElProps {
   title: string;
   element: string;
   isRequired?: boolean;
+  setEmailConsent?: React.Dispatch<React.SetStateAction<boolean>>;
+  emailConsent?: boolean;
 }
 
 export interface DonationOptionProps {

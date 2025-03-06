@@ -23,7 +23,8 @@ const CartIncludedWidget = () => {
           <div className="flex gap-gapS mt-7">
             <Alert />
             <p className="font-secondaryRegular responsive-heading text-primPurple ">
-              You can download digital files immediately after payment.
+              You’ll receive your digital files via email immediately after
+              payment.
             </p>
           </div>
         </div>

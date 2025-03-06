@@ -8,6 +8,8 @@ const FormEl = ({
   title,
   element,
   isRequired,
+  setEmailConsent,
+  emailConsent,
 }: FormElProps) => {
   return (
     <li className="flex flex-col ">
@@ -34,6 +36,39 @@ const FormEl = ({
           </div>
         ) : null}
       </div>
+      {setEmailConsent && (
+        <div className="flex items-start gap-2 mt-2 ">
+          <div
+            className="relative w-5 h-5 cursor-pointer border border-primPurpleFaintM rounded flex items-center justify-center"
+            onClick={() => setEmailConsent && setEmailConsent(!emailConsent)}
+            role="checkbox"
+            aria-checked={!!emailConsent}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setEmailConsent && setEmailConsent(!emailConsent);
+              }
+            }}
+          >
+            {emailConsent && (
+              <div className="w-3 h-3 bg-primPurpleFaintM rounded-sm"></div>
+            )}
+          </div>
+          <p className="font-secondaryRegular text-primPurpleFaintM text-sm w-[80%] max-w-[800px]">
+            I agree to receive emails containing my Digital Gift Package,
+            project updates, and other relevant information. I understand that
+            my personal details will be used in accordance with the{" "}
+            <a
+              href="/privacy-policy"
+              className="underline text-primPurple hover:text-blue-700 font-secondaryBold"
+            >
+              Privacy Policy
+            </a>{" "}
+            and that I can unsubscribe at any time.
+          </p>
+        </div>
+      )}
     </li>
   );
 };
