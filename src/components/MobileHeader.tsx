@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import CartLogo from "@/assets/icons/shopping-cart.svg?react";
-import ActiveCartLogo from "@/assets/icons/shopping-cart-active.svg?react";
 
 import CrossIcon from "@/assets/icons/burger-cross.svg?react";
 

@@ -1,7 +1,5 @@
 // / <reference types="vite-plugin-svgr/client" />
 import { NavLink } from "react-router-dom";
-import CartLogo from "@/assets/icons/shopping-cart.svg?react";
-import ActiveCartLogo from "@/assets/icons/shopping-cart-active.svg?react";
 import BurgerMenu from "./BurgerMenu";
 
 const Header = () => {
