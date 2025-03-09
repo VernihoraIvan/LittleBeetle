@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 const CheckoutWO = () => {
   return (
     <div className="flex flex-col overflow-x-hidden">
-      <Title title="Checkout" />
+      <Title title="Donate now" />
       <div className="px-[120px] py-10 xxl:px-[175px] lg:px-[60px] smd:px-[20px] bg-primBeige">
         <ProgressBarWO />
         <Outlet />

@@ -27,7 +27,7 @@ const Header = () => {
               to={"/donation"}
               className={({ isActive }) => (isActive ? "text-hovYellow" : "")}
             >
-              Donate
+              Your Support
             </NavLink>
           </li>
           <li>
@@ -49,11 +49,16 @@ const Header = () => {
         </ul>
         <ul className="flex flex-row xs:justify-end">
           <li
-            className="mr-10 fill-primWhite w-6 h-6
-          smd:w-5 smd:h-5"
+            className="mr-4 fill-primWhite  whitespace-nowrap
+         "
           >
-            <NavLink to={"/checkout-donation/contribution"}>
-              {({ isActive }) => (isActive ? <ActiveCartLogo /> : <CartLogo />)}
+            <NavLink
+              to={"/checkout-donation/contribution"}
+              className={({ isActive }: { isActive: boolean }) =>
+                isActive ? "text-hovYellow " : "text-primWhite"
+              }
+            >
+              Donate now
             </NavLink>
           </li>
           <li>

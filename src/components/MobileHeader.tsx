@@ -34,7 +34,7 @@ const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
             to={"/donation"}
             className={({ isActive }) => (isActive ? "text-hovYellow" : "")}
           >
-            Donate
+            Your Support
           </NavLink>
         </li>
         <li className="cursor-pointer">
@@ -58,7 +58,7 @@ const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
            "
         >
           <div>
-            <NavLink to={"/checkout-donation/contribution"}>
+            {/* <NavLink to={"/checkout-donation/contribution"}>
               {({ isActive }) =>
                 isActive ? (
                   <div className="flex items-center gap-2">
@@ -78,6 +78,14 @@ const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
                   </div>
                 )
               }
+            </NavLink> */}
+            <NavLink
+              to={"/checkout-donation/contribution"}
+              className={({ isActive }: { isActive: boolean }) =>
+                isActive ? "text-hovYellow " : "text-primWhite"
+              }
+            >
+              Donate now
             </NavLink>
           </div>
         </li>
