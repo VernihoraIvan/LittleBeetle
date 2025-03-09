@@ -14,6 +14,7 @@ export interface ShipmentDetails {
   default_delivery_fee?: number;
   duration?: number;
   delivery_fee?: number;
+  email_consent?: boolean;
 }
 
 interface Fee {

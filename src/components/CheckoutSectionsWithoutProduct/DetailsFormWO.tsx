@@ -1,4 +1,4 @@
-import { Formik, Form, FormikHelpers } from "formik";
+import { Formik, Form, FormikHelpers, Field } from "formik";
 import PrivacySec from "@/components/PrivacySec";
 import { useNavigate } from "react-router-dom";
 import FormEl from "@/components/Elements/FormEl";
@@ -8,7 +8,6 @@ import { useMainStore } from "@/zustand/mainOrderStore";
 import { nanoid } from "nanoid";
 import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
 import { useDonation } from "@/zustand/donationStore";
-import { useState } from "react";
 
 const DetailsFormWO = () => {
   const navigate = useNavigate();
@@ -17,7 +16,6 @@ const DetailsFormWO = () => {
   const adressStore = useShipment((state) => state.shipment);
   const setStage = useStage((state) => state.setStage);
   const resetShipmentsMain = useShipment((state) => state.resetShipments);
-  const [emailConsent, setEmailConsent] = useState(false);
 
   const defaultValues: ShipmentDetails = {
     first_name: adressStore.first_name,
@@ -27,6 +25,7 @@ const DetailsFormWO = () => {
     default_delivery_fee: 0,
     duration: 0,
     delivery_fee: 0,
+    email_consent: false,
     country: adressStore.country || "",
     street_adress: adressStore.street_adress || "",
     street_adress2: adressStore.street_adress2 || "",
@@ -44,17 +43,17 @@ const DetailsFormWO = () => {
           values: ShipmentDetails,
           { setSubmitting }: FormikHelpers<ShipmentDetails>
         ) => {
+          console.log(values, "values");
           resetShipmentsMain();
           submitShipment(values, id);
           addAdress(values);
           setSubmitting(false);
           navigate("/checkout-donation/payment");
-          navigate("/checkout-donation/payment");
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values, setFieldValue }) => (
           <Form className=" ">
-            <ul className="flex flex-col gap-9">
+            <ul className="flex flex-col gap-9 ">
               <FormEl
                 errors={errors.first_name}
                 touched={touched}
@@ -75,9 +74,63 @@ const DetailsFormWO = () => {
                 title="Email Address"
                 element="email"
                 isRequired={true}
-                setEmailConsent={setEmailConsent}
-                emailConsent={emailConsent}
               />
+              <Field
+                type="checkbox"
+                name="email_consent"
+                className="w-5 h-5 border border-primPurpleFaintM rounded-sm"
+              >
+                {() => (
+                  <div className="flex flex-col">
+                    <div className="flex items-start gap-2 mt-2 ">
+                      <div
+                        className={`relative w-5 h-5 cursor-pointer border ${
+                          errors.email_consent && touched.email_consent
+                            ? "border-red-500"
+                            : "border-primPurpleFaintM"
+                        } rounded flex items-center justify-center`}
+                        onClick={() =>
+                          setFieldValue("email_consent", !values.email_consent)
+                        }
+                        role="checkbox"
+                        aria-checked={!!values.email_consent}
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setFieldValue(
+                              "email_consent",
+                              !values.email_consent
+                            );
+                          }
+                        }}
+                      >
+                        {values.email_consent && (
+                          <div className="w-3 h-3 bg-primPurpleFaintM rounded-sm"></div>
+                        )}
+                      </div>
+                      <p className="font-secondaryRegular text-primPurpleFaintM text-sm w-[80%] max-w-[800px]">
+                        I agree to receive emails containing my Digital Gift
+                        Package, project updates, and other relevant
+                        information. I understand that my personal details will
+                        be used in accordance with the{" "}
+                        <a
+                          href="/privacy-policy"
+                          className="underline text-primPurple hover:text-blue-700 font-secondaryBold"
+                        >
+                          Privacy Policy
+                        </a>{" "}
+                        and that I can unsubscribe at any time.
+                      </p>
+                    </div>
+                    {errors.email_consent && touched.email_consent && (
+                      <div className="text-red-500 text-sm mt-1 ml-7">
+                        {errors.email_consent}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Field>
               <FormEl
                 errors={errors.phone}
                 touched={touched}

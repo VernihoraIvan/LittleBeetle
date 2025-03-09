@@ -20,5 +20,6 @@ export const SubmitSchemaWO = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email")
     .required("This field is required."),
+  email_consent: Yup.boolean().oneOf([true], "Email consent is required"),
   phone: Yup.string(),
 });
