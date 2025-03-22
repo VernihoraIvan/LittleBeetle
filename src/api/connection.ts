@@ -58,6 +58,16 @@ export const proceedToPayment = async (amount: number, currency: string) => {
   }
 };
 
+export const verifyStripePayment = async (sessionId: string) => {
+  try {
+    const response = await axios.get(
+      `/donation/verify?session_id=${sessionId}`
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
 export const sendDonationConfirmation = async (
   email: string,
   name: string,
