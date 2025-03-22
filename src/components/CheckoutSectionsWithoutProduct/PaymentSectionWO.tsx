@@ -17,6 +17,7 @@ const PaymentSectionWO = () => {
     0
   );
   const mainShipmentStore = useMainStore((state) => state.shipment);
+
   useEffect(() => {
     setDonationAddress(mainShipmentStore);
   }, [mainShipmentStore, setDonationAddress]);
@@ -24,7 +25,7 @@ const PaymentSectionWO = () => {
   const handleSubmit = async () => {
     setIsProcessing(true);
     try {
-      const res = await proceedToPayment(totalFee, "gbp");
+      const res = await proceedToPayment(totalFee, "gbp", false);
       if (res) {
         window.location.replace(res.data);
       }

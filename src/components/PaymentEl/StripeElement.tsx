@@ -68,7 +68,7 @@ const PaymentComponent = ({
     setIsProcessing(true);
 
     try {
-      const res = await proceedToPayment(totalFee, "gbp");
+      const res = await proceedToPayment(totalFee, "gbp", false);
       if (!res) {
         setPaymentStatus("Payment failed!");
         setIsProcessing(false);

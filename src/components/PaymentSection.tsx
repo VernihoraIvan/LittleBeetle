@@ -1,14 +1,16 @@
 import SummaryUniversal from "./SummaryUniversal";
 import clsx from "clsx";
 import { useCart } from "@/zustand/productStore";
-import { sentData } from "@/api/connection";
 import { proceedToPayment } from "@/api/connection";
 import { useOrderLines } from "@/zustand/orderLinesStore";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
 
 const PaymentSection = () => {
   const products = useCart((state) => state.items);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const orderLines = useOrderLines((state) => state.orderLines);
   const totalDeliveryFee = orderLines.reduce(
@@ -47,12 +49,16 @@ const PaymentSection = () => {
   // };
 
   const handleSubmit = async () => {
-    const res = await proceedToPayment(totalFee, "gbp");
-    if (res) {
-      const res2 = await sentData(products);
-      console.log(res2);
-
-      window.location.replace(res.data);
+    setIsProcessing(true);
+    try {
+      const res = await proceedToPayment(totalFee, "gbp", true);
+      if (res) {
+        window.location.replace(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -136,17 +142,21 @@ const PaymentSection = () => {
           <button
             onClick={handleSubmit}
             className={clsx(
-              " uppercase py-4  font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer"
+              " uppercase py-4 flex justify-center items-center font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer hover:bg-purpleHover transition duration-300"
               // isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
               // !isPaymentSuccess && "bg-pinkBar text-primWhite "
             )}
             // disabled={!isPaymentSuccess}
           >
-            complete donation
+            {isProcessing ? (
+              <Loader2 className="animate-spin " />
+            ) : (
+              "complete donation"
+            )}
           </button>
         </div>
       </div>
-      <SummaryUniversal subTotal={totalFee} />
+      <SummaryUniversal subTotal={totalPrice} />
     </section>
   );
 };

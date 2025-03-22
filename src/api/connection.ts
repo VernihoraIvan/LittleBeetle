@@ -45,11 +45,16 @@ export const updateDonation = async (data: MyFormValues) => {
   }
 };
 
-export const proceedToPayment = async (amount: number, currency: string) => {
+export const proceedToPayment = async (
+  amount: number,
+  currency: string,
+  isProduct: boolean
+) => {
   try {
     const response = await axios.post("donation", {
       amount: amount * 100,
       currency,
+      isProduct,
     });
 
     return response;

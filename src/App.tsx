@@ -17,6 +17,8 @@ import { useEffect } from "react";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import Test from "./pages/Test";
+import ProductComplete from "./pages/ProductComplete";
+
 function App() {
   const location = useLocation();
 
@@ -29,6 +31,7 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index path="/" element={<About />} />
           <Route path="/complete" element={<DonationComplete />} />
+          <Route path="/product-complete" element={<ProductComplete />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route
             path="/terms-and-conditions"

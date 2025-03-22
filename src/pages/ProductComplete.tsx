@@ -10,10 +10,11 @@ import { useDonation } from "@/zustand/donationStore";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const DonationComplete = () => {
+const ProductComplete = () => {
   const clearCart = useCart((state) => state.clearCart);
   const clearDonation = useDonation((state) => state.clearDonations);
-  const donations = useDonation((state) => state.items);
+  //   const donations = useDonation((state) => state.items);
+  const product = useCart((state) => state.items);
 
   const [paymentVerified, setPaymentVerified] = useState(false);
   // const [loading, setLoading] = useState(true);
@@ -57,14 +58,14 @@ const DonationComplete = () => {
   }, [location, navigate]);
 
   const sendDonationData = async () => {
-    const donationToSend = donations.map((donation) => ({
-      ...donation,
+    const donationToSend = product.map((product) => ({
+      ...product,
     }));
     await sentData(donationToSend);
-    const lang = donations[0].product_language === "English" ? "en" : "ua";
+    const lang = product[0].product_language === "English" ? "en" : "ua";
     await sendDonationConfirmation(
-      donations[0].shipment.email,
-      donations[0].shipment.first_name + " " + donations[0].shipment.last_name,
+      product[0].shipment.email,
+      product[0].shipment.first_name + " " + product[0].shipment.last_name,
       lang
     );
     clearCart();
@@ -72,7 +73,7 @@ const DonationComplete = () => {
   };
 
   useEffect(() => {
-    if (donations.length > 0) {
+    if (product.length > 0) {
       if (paymentVerified) {
         sendDonationData();
       }
@@ -98,4 +99,4 @@ const DonationComplete = () => {
   );
 };
 
-export default DonationComplete;
+export default ProductComplete;
