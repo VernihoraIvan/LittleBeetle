@@ -37,7 +37,7 @@ const CheckoutContribution = () => {
     <div className="">
       <div
         className={clsx(
-          "flex gap-10  pt-10 smd:flex-col smd:pt-0  smd:gap-0",
+          "flex gap-10  pt-10 flex-col smd2:flex-row smd:pt-0  smd:gap-0",
           products.length > 0 ? "justify-between" : "justify-between"
         )}
       >

@@ -137,10 +137,10 @@ const PurchaseEl = ({
           <QuantityAdjuster id={id} />
         </div>
       </div>
-      <ul className="flex items-center justify-between select-none sm:hidden">
+      <ul className="flex items-center justify-between select-none sm:hidden gap-[120px] xl:gap-16 lg:gap-[75px] md:gap-[80px]">
         <li
-          className="flex gap-gapS mr-[95px] items-center 
-        xl:mr-[40px] lg:mr-[40px] smd:mr-[40px] "
+          className="flex gap-gapS  items-center 
+        "
         >
           <p
             className="xl:text-[16px]

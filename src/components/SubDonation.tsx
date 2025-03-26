@@ -237,13 +237,13 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
                         product.weight
                       )
                     }
-                    className="hover:bg-whiteHover h-fit-content transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple responsive-heading bg-primWhite py-3 smd:py-1  lg:px-0  xl:py-2"
+                    className="hover:bg-whiteHover min-w-fit px-2 h-fit-content transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple responsive-heading bg-primWhite py-3 smd:py-1   xl:py-2"
                   >
-                    Add to Cart
+                    Include this Gift
                   </button>
 
                   <button
-                    className="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  lg:px-0 xl:py-2 responsive-heading"
+                    className="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  px-2 min-w-fit xl:py-2 responsive-heading"
                     onClick={() =>
                       handleToCheckout(
                         product.title,
@@ -255,7 +255,7 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
                       )
                     }
                   >
-                    Checkout
+                    Donate Now
                   </button>
                 </div>
               </div>

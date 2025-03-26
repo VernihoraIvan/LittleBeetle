@@ -37,7 +37,7 @@ const ProgressBar = () => {
             md:text-[14px] md:-left-[50%] 
             sm:text-[12px] "
             >
-              Your Contribution
+              Your Donation Cart
             </p>
           </li>
           <li className="relative">
@@ -99,11 +99,11 @@ const ProgressBar = () => {
             </NavLink>
             <p
               className={clsx(
-                "absolute w-max -left-1/3 mt-4 xl:text-copyS xl:-left-[25%] lg:text-copyS lg:-left-[60%] smd:w-[90px] md:text-[14px] md:-left-[60%] sm:text-[12px]",
+                "absolute w-max mt-4 xxl:-left-[125%] xl:text-copyS xl:-left-[130%] lg:text-copyS lg:-right-[200%] smd:w-[90px] md:text-[14px] md:-left-[60%] sm:text-[12px]",
                 stage > 2 ? "text-bgPurple" : "text-barGrey"
               )}
             >
-              Payment
+              Complete Donation
             </p>
           </li>
         </ul>
