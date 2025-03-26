@@ -38,7 +38,7 @@ const DetailsForm = () => {
           navigate("/checkout/shipment");
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values, setFieldValue }) => (
           <Form className=" px-20 smd:px-0">
             <ul className="flex flex-col gap-10 xl:gap-8 lg:gap-5 smd:gap-4 ">
               <FormEl
@@ -62,6 +62,62 @@ const DetailsForm = () => {
                 element="email"
                 isRequired={true}
               />
+              <Field
+                type="checkbox"
+                name="email_consent"
+                className="w-5 h-5 border border-primPurpleFaintM rounded-sm"
+              >
+                {() => (
+                  <div className="flex flex-col">
+                    <div className="flex items-start gap-2 mt-2 ">
+                      <div
+                        className={`relative w-5 h-5 cursor-pointer border ${
+                          errors.email_consent && touched.email_consent
+                            ? "border-red-500"
+                            : "border-primPurpleFaintM"
+                        } rounded flex items-center justify-center`}
+                        onClick={() =>
+                          setFieldValue("email_consent", !values.email_consent)
+                        }
+                        role="checkbox"
+                        aria-checked={!!values.email_consent}
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setFieldValue(
+                              "email_consent",
+                              !values.email_consent
+                            );
+                          }
+                        }}
+                      >
+                        {values.email_consent && (
+                          <div className="w-3 h-3 bg-primPurpleFaintM rounded-sm"></div>
+                        )}
+                      </div>
+                      <p className="font-secondaryRegular text-primPurpleFaintM text-sm w-[80%] max-w-[800px]">
+                        I agree to receive emails containing my Digital Gift
+                        Package, project updates, and other relevant
+                        information. I understand that my personal details will
+                        be used in accordance with the{" "}
+                        <a
+                          href="/privacy-policy"
+                          className="underline text-primPurple hover:text-blue-700 font-secondaryBold"
+                        >
+                          Privacy Policy
+                        </a>{" "}
+                        and that I can unsubscribe at any time.
+                      </p>
+                    </div>
+                    {errors.email_consent && touched.email_consent && (
+                      <div className="text-red-500 text-sm mt-1 ml-7">
+                        {errors.email_consent}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Field>
               <FormEl
                 errors={errors.phone}
                 touched={touched}

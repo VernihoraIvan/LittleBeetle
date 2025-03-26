@@ -12,6 +12,7 @@ export const SubmitSchema = Yup.object().shape({
   phone: Yup.string(),
   city: Yup.string().required("This field is required."),
   postal_code: Yup.string().required("This field is required."),
+  email_consent: Yup.boolean().oneOf([true], "Email consent is required"),
 });
 
 export const SubmitSchemaWO = Yup.object().shape({
