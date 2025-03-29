@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-
+import { useCart } from "@/zustand/productStore";
 import CrossIcon from "@/assets/icons/burger-cross.svg?react";
 
 interface MobileHeaderProps {
@@ -7,6 +7,7 @@ interface MobileHeaderProps {
 }
 
 const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
+  const products = useCart((state) => state.items);
   return (
     <div className="absolute bg-primPurple h-screen top-0 w-[240px] right-0 pl-[30px] pt-[90px]">
       <div
@@ -78,7 +79,11 @@ const MobileHeader = ({ onClickHandler }: MobileHeaderProps) => {
               }
             </NavLink> */}
             <NavLink
-              to={"/checkout-donation/contribution"}
+              to={
+                products.length > 0
+                  ? "/checkout/contribution"
+                  : "/checkout-donation/contribution"
+              }
               className={({ isActive }: { isActive: boolean }) =>
                 isActive ? "text-hovYellow " : "text-primWhite"
               }
