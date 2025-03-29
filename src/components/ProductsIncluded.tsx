@@ -8,7 +8,10 @@ const ProductsIncluded = () => {
  
     smd:px-8"
     >
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
+      <div
+        id="optional-printed-gifts"
+        className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS"
+      >
         <h2 className="font-primaryBold mb-6  text-primPurple responsive-heading uppercase">
           Optional Printed Gifts
         </h2>

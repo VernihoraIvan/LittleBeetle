@@ -99,7 +99,7 @@ const ProgressBar = () => {
             </NavLink>
             <p
               className={clsx(
-                "absolute w-max mt-4 xxl:-left-[125%] xl:text-copyS xl:-left-[130%] lg:text-copyS lg:-right-[200%] smd:w-[90px] md:text-[14px] md:-left-[60%] sm:text-[12px]",
+                "absolute w-max mt-4 xxl:-left-[125%] xl:text-copyS xl:-left-[130%] lg:text-copyS lg:-right-[100%] smd:w-[90px] md:text-[14px] md:-left-[60%] sm:text-[12px]",
                 stage > 2 ? "text-bgPurple" : "text-barGrey"
               )}
             >

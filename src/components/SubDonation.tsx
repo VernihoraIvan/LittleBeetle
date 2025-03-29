@@ -39,7 +39,8 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
     quantity: number,
     lang: string,
     id: string,
-    weight: number
+    weight: number,
+    isCheckout?: boolean
   ) => {
     if (price >= product.prices[0] && quantity >= 1) {
       addProduct(title, quantity, price, lang, false, id, weight * quantity);
@@ -49,7 +50,9 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
       toast.success("Added to cart successfully!");
       setOpen(false);
     } else {
-      if (price < product.prices[0]) {
+      if (isCheckout) {
+        return;
+      } else if (price < product.prices[0]) {
         toast.error(
           `Please select a valid amount (minimum £${product.prices[0]})`
         );
@@ -67,14 +70,14 @@ const SubDonation = ({ product, setOpen }: SubDonationProps) => {
     id: string,
     weight: number
   ) => {
-    if (price >= product.prices[0] && quantity >= 1) {
-      handleAddProduct(title, price, quantity, lang, id, weight);
-      navigate("/checkout/contribution");
-    } else {
-      toast.error(
-        `Please select a valid amount (minimum £${product.prices[0]})`
-      );
-    }
+    // if (price >= product.prices[0] && quantity >= 1) {
+    handleAddProduct(title, price, quantity, lang, id, weight, true);
+    navigate("/checkout/contribution");
+    // } else {
+    //   toast.error(
+    //     `Please select a valid amount (minimum £${product.prices[0]})`
+    //   );
+    // }
   };
 
   const handleOnCustomChange = (event: React.ChangeEvent<HTMLInputElement>) => {

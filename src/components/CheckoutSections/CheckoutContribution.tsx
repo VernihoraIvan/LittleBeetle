@@ -37,13 +37,13 @@ const CheckoutContribution = () => {
     <div className="">
       <div
         className={clsx(
-          "flex gap-10  pt-10 flex-col smd2:flex-row smd:pt-0  smd:gap-0",
+          "flex gap-10  pt-10 flex-col px-[40px] smd2:flex-row smd:pt-0  smd:gap-0",
           products.length > 0 ? "justify-between" : "justify-between"
         )}
       >
-        <div className="w-full xxl:pl-10 md:pt-[140px] smd:flex smd:flex-col smd:items-center smd:justify-center">
+        <div className="w-fit xxl:pl-10 md:pt-[40px] smd:flex smd:flex-col smd:items-center smd:justify-center">
           {products.length > 0 ? (
-            <div className="max-w-full ">
+            <div className=" ">
               <TitleBar />
               {products.length > 0 &&
                 products.map((product) => (

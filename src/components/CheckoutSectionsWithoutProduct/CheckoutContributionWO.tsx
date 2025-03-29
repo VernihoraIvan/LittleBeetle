@@ -10,6 +10,7 @@ import DonationOption from "../DonationOption";
 import { nanoid } from "nanoid";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 const CheckoutContributionWO = () => {
   const id = nanoid();
 
@@ -52,6 +53,18 @@ const CheckoutContributionWO = () => {
     }
   };
 
+  // Function to handle navigation with scrolling
+  const handleNavigateToGifts = () => {
+    navigate("/donation#optional-printed-gifts");
+    // Add a small delay to ensure the component is loaded before scrolling
+    setTimeout(() => {
+      const element = document.getElementById("optional-printed-gifts");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   return (
     <>
       <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0 gap-10  smd:gap-0 ">
@@ -90,26 +103,34 @@ const CheckoutContributionWO = () => {
         />
       </div>
       <CartIncludedWidget />
-      <ButtonTo
-        onClick={() =>
-          handleAddProduct(
-            "Donation",
-            price as number,
-            quantity,
-            lang as string,
-            isChecked,
-            id,
-            0
-          )
-        }
-        to={price >= 3 || totalFee >= 3 ? "/checkout-donation/details" : ""}
-        title="NEXT STEP"
-        style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
+      <div className="flex flex-col smd2:flex-row gap-4 items-center gap-x-10">
+        <ButtonTo
+          onClick={() =>
+            handleAddProduct(
+              "Donation",
+              price as number,
+              quantity,
+              lang as string,
+              isChecked,
+              id,
+              0
+            )
+          }
+          to={price >= 3 || totalFee >= 3 ? "/checkout-donation/details" : ""}
+          title="NEXT STEP"
+          style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
           xl:text-[20px]
           lg:text-[18px]
           smd:text-[18px] 
           sm:w-full sm:px-0 sm:block"
-      />
+        />
+        <button
+          onClick={handleNavigateToGifts}
+          className="text-copyS mt-4 smd2:mt-0 hover:text-purpleHover transition duration-300"
+        >
+          View Optional Printed Gifts
+        </button>
+      </div>
     </>
   );
 };

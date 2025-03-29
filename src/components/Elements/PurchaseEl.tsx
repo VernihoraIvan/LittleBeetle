@@ -138,7 +138,7 @@ const PurchaseEl = ({
         </div>
       </div>
       <ul className="flex items-center justify-between select-none sm:hidden gap-[120px] xl:gap-16 lg:gap-[75px] md:gap-[80px]">
-        <li
+        {/* <li
           className="flex gap-gapS  items-center 
         "
         >
@@ -149,7 +149,7 @@ const PurchaseEl = ({
           >
             £{price}
           </p>
-        </li>
+        </li> */}
         <li className="relative sm:hidden">
           <QuantityAdjuster id={id} />
         </li>

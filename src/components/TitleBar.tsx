@@ -12,10 +12,11 @@ const TitleBar = () => {
       xl:text-[20px]
       lg:text-[16px]
       smd:text-[16px]
-      sm:hidden"
+      sm:hidden
+      smd2:min-w-[620px]"
       >
         <ul className="flex gap-[120px] xl:gap-16 lg:gap-[75px] md:gap-[80px]">
-          <li>Price</li>
+          {/* <li>Price</li> */}
           <li>Qty</li>
           <li>Donation Amount</li>
         </ul>
