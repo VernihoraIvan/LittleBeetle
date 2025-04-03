@@ -9,10 +9,25 @@ import EmptyCart from "../EmptyCart";
 import SummaryUniversal from "../SummaryUniversal";
 import PurchaseEl from "../Elements/PurchaseEl";
 import TitleBar from "../TitleBar";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutContribution = () => {
   const [totalFeeState, setTotalFee] = useState(0);
   const products = useCart((state) => state.items);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (products.length === 0) {
+      navigate("/donation#optional-printed-gifts");
+      // Add a small delay to ensure the component is loaded before scrolling
+      setTimeout(() => {
+        const element = document.getElementById("optional-printed-gifts");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [products]);
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
