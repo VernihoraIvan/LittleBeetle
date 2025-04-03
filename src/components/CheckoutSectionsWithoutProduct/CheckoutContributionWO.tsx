@@ -128,7 +128,7 @@ const CheckoutContributionWO = () => {
           onClick={handleNavigateToGifts}
           className="text-copyS mt-4 smd2:mt-0 hover:text-purpleHover transition duration-300"
         >
-          View Optional Printed Gifts
+          or View Optional Printed Gifts
         </button>
       </div>
     </>

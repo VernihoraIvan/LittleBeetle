@@ -14,7 +14,7 @@ smd:h-auto smd:pb-6 smd:px-8"
    lg:text-[22px]
    smd:text-[22px]"
           >
-            Your Support.
+            Your Support
           </h2>
           <p
             className="leading-relaxed text-primWhiteFaint h-purchImgH text-[24px] font-secondaryRegular z-[1]
