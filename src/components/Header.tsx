@@ -1,11 +1,8 @@
 // / <reference types="vite-plugin-svgr/client" />
 import { NavLink } from "react-router-dom";
 import BurgerMenu from "./BurgerMenu";
-import { useCart } from "@/zustand/productStore";
 
 const Header = () => {
-  const products = useCart((state) => state.items);
-
   return (
     <header className="font-primaryBold   z-10 flex flex-center justify-center absolute w-screen py-10  ">
       <nav
@@ -54,11 +51,7 @@ const Header = () => {
          "
           >
             <NavLink
-              to={
-                products.length > 0
-                  ? "/checkout/contribution"
-                  : "/checkout-donation/contribution"
-              }
+              to={"/checkout-donation/contribution"}
               className={({ isActive }: { isActive: boolean }) =>
                 isActive ? "text-hovYellow " : "text-primWhite"
               }
