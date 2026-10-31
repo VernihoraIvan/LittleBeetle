@@ -1,102 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
-  safelist: ["w-1/3", "w-2/3"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    // Three layouts only: mobile (default), tablet (md), desktop (lg)
+    screens: {
+      md: "768px",
+      lg: "1024px",
+    },
     extend: {
-      userSelect: {
-        none: "none",
-      },
-      borderRadius: {
-        "12px": "12px",
-      },
-      height: {
-        "fit-content": "fit-content",
-      },
       fontFamily: {
-        primaryRegular: ["mRegular"],
-        primarySBold: ["mSBold"],
-        primaryBold: ["mBold"],
-        secondaryRegular: ["pRegular"],
-        secondarySBold: ["pSBold"],
-        secondaryBold: ["pBold"],
-      },
-      screens: {
-        xxs: { max: "460px" },
-        // => @media (max-width: 460px) { ... }
-        xs: { max: "640px" },
-        // => @media (max-width: 639px) { ... }
-        xsm: { min: "460px", max: "760px" },
-        // => @media (min-width: 460px and max-width: 760px) { ... }
-        sm: { max: "760px" },
-        // => @media (max-width: 1023px) { ... }
-        min: { min: "761px" },
-        // => @media (min-width: 761px) { ... }
-        smd: { max: "1023px" },
-        // => @media (min-width: 1024px ) { ... }
-        smd2: { min: "1024px" },
-        // => @media (min-width: 1024px ) { ... }
-        md: { min: "760px", max: "1023px" },
-        // => @media (min-width: 768px and max-width: 1023px) { ... }
-        lg: { min: "1024px", max: "1279px" },
-        // => @media (min-width: 1024px and max-width: 1279px) { ... }
-        xl: { min: "1280px", max: "1563px" },
-        // => @media (min-width: 1280px and max-width: 1563px) { ... }
-        xxl: { min: "1564px" },
-        // => @media (min-width: 1564px ) { ... }
-      },
-      width: {
-        fit: "fit-content",
-      },
-      spacing: {
-        contWXXL: "1564px",
-        contWXL: "1200px",
-        contWLG: "900px",
-        contWMD: "708px",
-        contWSM: "580px",
-        contWXSS: "320px",
-        cartCont: "1024px",
-        secH: "980px",
-        prodW: "740px",
-        payW: "680px",
-        titleW: "600px",
-        imgH: "520px",
-        secH2: "500px",
-        priceL: "470px",
-        sumW: "455px",
-        prodPB: "430px",
-        contactH: "320px",
-        imgH2: "350px",
-        imgW: "300px",
-        imgSW: "240px",
-        purchElH: "200px",
-        mainTitleM: "184px",
-        purchImgH: "176px",
-        titleM: "160px",
-        headerPad: "160px",
-        buttonP: "140px",
-        bookPT: "110px",
-        bookPB: "85px",
-        navPad: "70px",
-        CreatorsElP: "50px",
-        prodMar: "30px",
-        gapS: "10px",
-        customPosition: "10% 60%",
-        navMar: "25%",
-      },
-      fontSize: {
-        titleS: "38px",
-        buttonS: "28px",
-        addCartS: "26px",
-        linkS: "22px",
-        copyS: "18px",
+        primaryRegular: ["mRegular", "system-ui", "sans-serif"],
+        primarySBold: ["mSBold", "system-ui", "sans-serif"],
+        primaryBold: ["mBold", "system-ui", "sans-serif"],
+        secondaryRegular: ["pRegular", "system-ui", "sans-serif"],
+        secondarySBold: ["pSBold", "system-ui", "sans-serif"],
+        secondaryBold: ["pBold", "system-ui", "sans-serif"],
       },
       colors: {
         primWhite: "#FFFFFF",
@@ -106,40 +24,53 @@ export default {
         primPurple: "#300B50",
         primPurpleFaint: "rgba(48, 11, 80, 0.8)",
         primPurpleFaintM: "rgba(48, 11, 80, 0.5)",
-        secPink: "rgba(158, 126, 183, 0.5)",
-        pinkGrey: "rgba(255, 252, 243, 0.7)",
         hovYellow: "#FFD036",
         textYellow: "#FCC513",
         bgPink: "#9E7EB7",
-        bgPurple: "#300B50",
-        secBlack: "#000000",
         inputPink: "#666",
-        dropHover: "#F0F0F0",
         whiteHover: "rgba(190, 158, 217, 0.30)",
         purpleHover: "#711EB8",
         pinkBar: "#D9D9D9",
-        barGrey: "#8C8C8C",
-        alertRed: "#F00",
-        adrButton: "#711EB8",
-        payButtonActive: "#BE9ED9",
+        alertRed: "#D00",
+        lilac: "#BE9ED9",
       },
-      borderWidth: {
-        3: "3px",
+      maxWidth: {
+        page: "1280px",
+        prose: "68ch",
       },
-      animation: {},
-      mixBlendMode: {
-        luminosity: "luminosity",
+      boxShadow: {
+        card: "0 1px 2px rgba(48, 11, 80, 0.04), 0 8px 24px -8px rgba(48, 11, 80, 0.12)",
+        lift: "0 2px 4px rgba(48, 11, 80, 0.06), 0 16px 40px -12px rgba(48, 11, 80, 0.22)",
+      },
+      transitionTimingFunction: {
+        out: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      keyframes: {
+        "fade-in": { from: { opacity: "0" }, to: { opacity: "1" } },
+        "pop-in": {
+          from: { opacity: "0", transform: "translate(-50%, -48%) scale(0.98)" },
+          to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
+        },
+        "sheet-up": {
+          from: { transform: "translateY(100%)" },
+          to: { transform: "translateY(0)" },
+        },
+        "slide-in-right": {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 200ms ease-out",
+        "pop-in": "pop-in 280ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "sheet-up": "sheet-up 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "slide-in-right": "slide-in-right 320ms cubic-bezier(0.22, 1, 0.36, 1)",
       },
       backgroundImage: {
-        "home-bg": "url('/src/assets/images/compressed/home-bg.jpg')",
-        "about-bg": "url('/src/assets/images/compressed/about-bg.jpg')",
         "about-bg2": "url('/src/assets/images/compressed/about-bg2.jpg')",
         "donation-bg": "url('/src/assets/images/compressed/donation-bg.jpg')",
         "contacts-bg": "url('/src/assets/images/compressed/contacts-bg.jpg')",
         "creators-bg": "url('/src/assets/images/compressed/creators-bg.jpg')",
-      },
-      backgroundPosition: {
-        "custom-50-150": "50% 50%",
       },
     },
   },

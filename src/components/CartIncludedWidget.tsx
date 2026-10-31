@@ -1,34 +1,29 @@
 import { includedProducts } from "@/utilities/data";
-import WidgetEl from "./Elements/WidgetEl";
-import Alert from "@/assets/icons/alert-circle.svg?react";
+import { Mail } from "lucide-react";
 
 const CartIncludedWidget = () => {
   return (
-    <section className="flex justify-center bg-primBeige py-20">
-      <div className="flex justify-start xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-full  xxs:w-contWXSS">
-        <div className=" p-10 border border-bgPurple xxl:w-cartCont">
-          <h3 className="text-primPurple text-center responsive-heading font-secondaryBold uppercase mb-6">
-            Included with every donation
-          </h3>
-          <ul className="flex justify-between gap-5 xxs:flex-col xxs:gap-3">
-            {includedProducts &&
-              includedProducts.map((item) => (
-                <WidgetEl
-                  key={item.element}
-                  title={item.title}
-                  imgPath={item.imagePath}
-                />
-              ))}
-          </ul>
-          <div className="flex gap-gapS mt-7">
-            <Alert />
-            <p className="font-secondaryRegular responsive-heading text-primPurple ">
-              You’ll receive your digital files via email immediately after
-              payment.
-            </p>
-          </div>
-        </div>
-      </div>
+    <section className="rounded-2xl border border-dashed border-primPurple/25 p-5">
+      <h3 className="font-secondaryBold text-[15px]">
+        Included with every donation
+      </h3>
+      <ul className="mt-4 flex flex-col gap-3">
+        {includedProducts.map((item) => (
+          <li key={item.element} className="flex items-center gap-3">
+            <img
+              className="h-11 w-14 shrink-0 rounded-lg object-cover"
+              src={item.imagePath[0]}
+              alt=""
+              loading="lazy"
+            />
+            <span className="body">{item.title}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-4 flex gap-2 caption text-primPurple/70">
+        <Mail className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+        You’ll receive your digital files via email immediately after payment.
+      </p>
     </section>
   );
 };

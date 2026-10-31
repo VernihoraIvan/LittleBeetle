@@ -1,63 +1,28 @@
 import { CreatorsElProps } from "@/utilities/interfaces";
-import LinkIcon from "@/assets/icons/external-link.svg?react";
-import { Link } from "react-router-dom";
+import { ExternalLink, MapPin } from "lucide-react";
 
 const CreatorsEl = ({ name, location, description, link }: CreatorsElProps) => {
   return (
-    <div className="py-CreatorsElP  border-b border-primWhiteFaint">
-      <div className="flex flex justify-between gap-3">
-        <div className="flex flex-col gap-gapS smd:w-[50%]">
-          <h3
-            className="font-secondaryBold text-buttonS text-primWhite xl:text-linkS
-          xl:text-[22px] 
-          lg:text-[18px] 
-          sm:text-[16px] 
-          md:text-[16px]
-          smd:text-[16px]"
-          >
-            {name}
-          </h3>
-          <p
-            className="text-secondaryRegular text-[24px] text-primWhiteFaint xl:text-copyS
-          xl:text-[20px] 
-          lg:text-[16px] 
-          sm:text-[16px] 
-          md:text-[14px]
-          smd:text-[14px]"
-          >
-            {location}
-          </p>
-        </div>
-        <Link
-          to={link}
-          target="_blank"
-          className="h-fit-content cursor-pointer flex justify-center items-center gap-2 border border-primWhiteFaintM py-3  w-60 
-        smd:w-[50%] smd:py-2"
-        >
-          <p
-            className="text-linkS font-primaryRegular text-primWhite xl:text-[16px]
-          xl:text-[20px] 
-          lg:text-[16px] 
-          sm:text-[16px] 
-          md:text-[14px]
-          smd:text-[14px]"
-          >
-            Learn more
-          </p>
-          <LinkIcon />
-        </Link>
-      </div>
-      <p
-        className="py-2 text-primWhite text-linkS font-secondaryRegular xl:text-[16px]
-          xl:text-[20px] 
-          lg:text-[16px] 
-          sm:text-[16px] 
-          md:text-[14px]
-          smd:text-[14px]"
-      >
-        {description}
+    <li className="flex flex-col rounded-2xl bg-primWhite/[0.06] p-6 ring-1 ring-primWhite/10 md:p-8">
+      <h3 className="heading-3 text-primWhite">{name}</h3>
+      <p className="mt-1 flex items-center gap-1.5 caption text-primWhiteFaintM">
+        <MapPin className="h-4 w-4" aria-hidden="true" />
+        {location}
       </p>
-    </div>
+      <p className="body mt-4 text-primWhiteFaint">
+        {name} {description}
+      </p>
+      <a
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-auto inline-flex items-center gap-2 self-start pt-5 font-secondarySBold text-hovYellow underline-offset-4 hover:underline"
+      >
+        Learn more
+        <span className="sr-only"> about {name}</span>
+        <ExternalLink className="h-4 w-4" aria-hidden="true" />
+      </a>
+    </li>
   );
 };
 export default CreatorsEl;

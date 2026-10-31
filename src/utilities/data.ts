@@ -89,7 +89,7 @@ export const creatorsData = [
     name: "Ksenia Urban",
     location: "Poland",
     description:
-      "is a n illustrator living in Poland. She's been drawing and creating art professionally for about 10 years. Through her illustrations, she aims to inspire both children and adults to see the world in a new and magical way.",
+      "is an illustrator living in Poland. She's been drawing and creating art professionally for about 10 years. Through her illustrations, she aims to inspire both children and adults to see the world in a new and magical way.",
     link: "https://www.behance.net/kseniaurban",
   },
   {

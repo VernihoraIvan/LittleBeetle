@@ -1,109 +1,87 @@
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Plus } from "lucide-react";
 import { useCart } from "@/zustand/productStore";
+import { useStage } from "@/zustand/stageStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
 import CartIncludedWidget from "../CartIncludedWidget";
-import ButtonTo from "../ButtonTo";
-import clsx from "clsx";
-import { useStage } from "@/zustand/stageStore";
-import { useEffect, useState } from "react";
 import EmptyCart from "../EmptyCart";
 import SummaryUniversal from "../SummaryUniversal";
 import PurchaseEl from "../Elements/PurchaseEl";
-import TitleBar from "../TitleBar";
-import { useNavigate } from "react-router-dom";
+import { CheckoutGrid, StepHeading } from "../CheckoutShared";
+import { useGoToGifts } from "@/lib/useGoToGifts";
+
+const productToDisplay = includedProducts.concat(extraProducts);
 
 const CheckoutContribution = () => {
-  const [totalFeeState, setTotalFee] = useState(0);
   const products = useCart((state) => state.items);
-  const navigate = useNavigate();
+  const setStage = useStage((state) => state.setStage);
+  const goToGifts = useGoToGifts();
 
   useEffect(() => {
     if (products.length === 0) {
-      navigate("/donation#optional-printed-gifts");
-      // Add a small delay to ensure the component is loaded before scrolling
-      setTimeout(() => {
-        const element = document.getElementById("optional-printed-gifts");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
+      setStage(1);
+      goToGifts();
     }
-  }, [products]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products.length]);
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
   );
-  const setStage = useStage((state) => state.setStage);
 
-  useEffect(() => {
-    setTotalFee(totalFee);
-    if (products.length === 0) {
-      setStage(1);
-    }
-  }, [products, setStage, totalFee]);
-
-  const productToDisplay = includedProducts.concat(extraProducts);
-
-  const handleOnClick = () => {
-    setStage(2);
-  };
+  if (products.length === 0) {
+    return <EmptyCart />;
+  }
 
   return (
-    <div className="">
-      <div
-        className={clsx(
-          "flex gap-10  pt-10 flex-col px-[40px] smd2:flex-row smd:pt-0  smd:gap-0",
-          products.length > 0 ? "justify-between" : "justify-between"
-        )}
-      >
-        <div className="w-fit xxl:pl-10 md:pt-[40px] smd:flex smd:flex-col smd:items-center smd:justify-center">
-          {products.length > 0 ? (
-            <div className=" ">
-              <TitleBar />
-              {products.length > 0 &&
-                products.map((product) => (
-                  <PurchaseEl
-                    key={product.id}
-                    language={product.product_language}
-                    name={product.product_name}
-                    price={product.price}
-                    quantity={product.quantity}
-                    total={product.price * product.quantity}
-                    imgPath={
-                      productToDisplay.find(
-                        (p) => p.title === product.product_name
-                      )?.imagePath
-                    }
-                    id={product.id}
-                  />
-                ))}
-            </div>
-          ) : (
-            <div className="flex justify-begin h-full">
-              <EmptyCart />
-            </div>
-          )}
-        </div>
-        {products.length > 0 && (
-          <SummaryUniversal subTotal={totalFeeState} shippingFee={0} />
-        )}
-      </div>
-      {products.length > 0 && (
+    <CheckoutGrid
+      aside={
         <>
+          <SummaryUniversal subTotal={totalFee} shippingFee={0}>
+            <Link
+              to="/checkout/details"
+              onClick={() => setStage(2)}
+              className="btn-primary btn-lg w-full"
+            >
+              Continue
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <p className="caption text-center text-primPurple/60">
+              Delivery is calculated after you add your address.
+            </p>
+          </SummaryUniversal>
           <CartIncludedWidget />
-          <ButtonTo
-            onClick={handleOnClick}
-            to="/checkout/details"
-            title="NEXT STEP"
-            style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
-          xl:text-[20px]
-          lg:text-[18px]
-          smd:text-[18px] 
-          sm:w-full sm:px-0 sm:block "
-          />
         </>
-      )}
-    </div>
+      }
+    >
+      <StepHeading
+        title="Your cart"
+        description="Tick “It's a gift” for anything you'd like sent to a different address."
+      />
+      <ul className="flex flex-col gap-4">
+        {products.map((product) => (
+          <PurchaseEl
+            key={product.id}
+            language={product.product_language}
+            name={product.product_name}
+            price={product.price}
+            quantity={product.quantity}
+            total={product.price * product.quantity}
+            imgPath={
+              productToDisplay.find((p) => p.title === product.product_name)
+                ?.imagePath
+            }
+            id={product.id}
+          />
+        ))}
+      </ul>
+      <button type="button" onClick={goToGifts} className="btn-ghost mt-4">
+        <Plus className="h-4 w-4" />
+        Add another printed gift
+      </button>
+    </CheckoutGrid>
   );
 };
 

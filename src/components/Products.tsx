@@ -3,30 +3,19 @@ import { includedProducts } from "@/utilities/data";
 
 const Products = () => {
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT pb-[125px] smd:pb-6 smd:px-8 smd:pt-[60px]">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
-        <h2
-          className="font-primaryBold mb-6 text-primPurple 
-        responsive-heading uppercase"
-        >
-          Included with every donation
-        </h2>
-        <div className="flex flex-col justify-between items-center">
-          {/* <div> */}
-          <ul className="flex gap-5 xs:flex-col xs:gap-10">
-            {includedProducts &&
-              includedProducts.map((product) => (
-                <ProductEl
-                  key={product.title}
-                  to={product.to}
-                  title={product.title}
-                  description={product.description}
-                  imgPath={product.imagePath}
-                />
-              ))}
-          </ul>
-          {/* </div> */}
-        </div>
+    <section id="included" className="section scroll-mt-4 bg-primBeige pb-10 md:pb-12 lg:pb-16">
+      <div className="page-container">
+        <h2 className="heading-1 mb-8 md:mb-10">Included with every donation</h2>
+        <ul className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-5 lg:gap-8">
+          {includedProducts.map((product) => (
+            <ProductEl
+              key={product.title}
+              title={product.title}
+              description={product.description}
+              imgPath={product.imagePath}
+            />
+          ))}
+        </ul>
       </div>
     </section>
   );

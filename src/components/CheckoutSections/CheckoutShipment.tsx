@@ -1,13 +1,16 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FormikProps } from "formik";
+import { toast } from "react-toastify";
+import { ArrowRight, Loader2 } from "lucide-react";
 import ShipmentEl from "../Elements/ShipmentEl";
+import SummaryUniversal from "../SummaryUniversal";
+import { BackLink, CheckoutGrid, StepHeading } from "../CheckoutShared";
 import { itemProps, useCart } from "@/zustand/productStore";
 import { extraProducts, includedProducts } from "@/utilities/data";
-import ButtonTo from "../ButtonTo";
 import { useStage } from "@/zustand/stageStore";
-import { FormikProps } from "formik";
-import SummaryUniversal from "../SummaryUniversal";
 import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { deliveryFeeData } from "@/utilities/deliveryFeeData";
-import { useRef, useEffect, useState } from "react";
 import { useOrderLines } from "@/zustand/orderLinesStore";
 
 interface DeliveryInfo {
@@ -44,7 +47,6 @@ function getDeliveryInfoByCountry(countryName: string): DeliveryInfo | null {
   );
 
   if (!deliveryInfo) {
-    console.log(`No delivery info found for country: ${countryName}`);
     return null;
   }
 
@@ -115,251 +117,180 @@ function groupProductsByAddress(products: itemProps[]): OrderLine[] {
   return Object.values(orderLines);
 }
 
-const CheckoutShipment = () => {
-  const [isCountryChanged, setIsCountryChanged] = useState(false);
-  const products = useCart((state) => state.items);
+const productToDisplay = includedProducts.concat(extraProducts);
 
+const CheckoutShipment = () => {
+  const products = useCart((state) => state.items);
   const setShipmentDeliveryFee = useCart(
     (state) => state.setShipmentDeliveryFee
   );
-  const { setOrderLines } = useOrderLines();
   const setDeliveryFee = useCart((state) => state.setDeliveryFee);
+  const { setOrderLines } = useOrderLines();
+  const setStage = useStage((state) => state.setStage);
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (isCountryChanged) {
-      subFormsRefs.current.forEach((formik) => formik.submitForm());
-      setIsCountryChanged(false);
-    }
-  }, [isCountryChanged]);
+  // Formik instances of the "different address" forms currently on screen
+  const subForms = useRef(new Map<string, FormikProps<ShipmentDetails>>());
+  const registerSubForm = useCallback(
+    (id: string, instance: FormikProps<ShipmentDetails> | null) => {
+      if (instance) subForms.current.set(id, instance);
+      else subForms.current.delete(id);
+    },
+    []
+  );
 
-  const calculateDeliveryFee = (product: itemProps) => {
-    const deliveryInfo = getDeliveryInfoByCountry(
-      product.shipment?.country || ""
-    );
-    if (deliveryInfo) {
-      return deliveryInfo.fee;
-    }
-    return 0;
-  };
-
-  useEffect(() => {
-    if (products.length === 0) {
-      setOrderLines([]);
-      return;
-    }
-
-    // Create a map of current delivery fees to check if update is needed
-    const currentFees = new Map(
-      products.map((product) => [
-        product.id,
-        {
-          fee: product.shipment?.delivery_fee,
-          duration: product.shipment?.duration,
-        },
-      ])
-    );
-
-    const calculatedOrderLines = groupProductsByAddress(products);
-
-    const orderLinesWithFees = calculatedOrderLines.map((orderLine) => {
-      const baseDeliveryInfo = getDeliveryInfoByCountry(
-        orderLine.address.country
-      );
-
-      if (!baseDeliveryInfo) {
-        console.log("No delivery info found for address:", orderLine.address);
-        return {
-          ...orderLine,
-          totalDeliveryFee: 0,
-          deliveryDuration: 0,
-        };
+  const recalculateDelivery = useCallback(
+    (items: itemProps[]) => {
+      if (items.length === 0) {
+        setOrderLines([]);
+        return;
       }
 
-      const totalDeliveryFee = calculateDeliveryFeeByWeight(
-        baseDeliveryInfo.fee,
-        orderLine.totalWeight
+      const orderLinesWithFees = groupProductsByAddress(items).map(
+        (orderLine) => {
+          const baseDeliveryInfo = getDeliveryInfoByCountry(
+            orderLine.address.country
+          );
+          if (!baseDeliveryInfo) {
+            return { ...orderLine, totalDeliveryFee: 0, deliveryDuration: 0 };
+          }
+
+          const totalDeliveryFee = calculateDeliveryFeeByWeight(
+            baseDeliveryInfo.fee,
+            orderLine.totalWeight
+          );
+
+          orderLine.products.forEach((product) => {
+            const current = items.find((item) => item.id === product.id);
+            if (
+              current?.shipment?.delivery_fee !== totalDeliveryFee ||
+              current?.shipment?.duration !== baseDeliveryInfo.duration
+            ) {
+              setShipmentDeliveryFee(
+                product.id,
+                totalDeliveryFee,
+                baseDeliveryInfo.duration
+              );
+              setDeliveryFee(product.id, totalDeliveryFee);
+            }
+          });
+
+          return {
+            ...orderLine,
+            totalDeliveryFee,
+            deliveryDuration: baseDeliveryInfo.duration,
+          };
+        }
       );
 
-      // Update individual product fees
-      orderLine.products.forEach((product) => {
-        const currentFee = currentFees.get(product.id);
-        if (
-          !currentFee ||
-          currentFee.fee !== totalDeliveryFee ||
-          currentFee.duration !== baseDeliveryInfo.duration
-        ) {
-          setShipmentDeliveryFee(
-            product.id,
-            totalDeliveryFee,
-            baseDeliveryInfo.duration
-          );
-          setDeliveryFee(product.id, totalDeliveryFee);
-        }
-      });
+      setOrderLines(orderLinesWithFees);
+    },
+    [setOrderLines, setShipmentDeliveryFee, setDeliveryFee]
+  );
 
-      return {
-        ...orderLine,
-        totalDeliveryFee: totalDeliveryFee,
-        deliveryDuration: baseDeliveryInfo.duration,
-      };
-    });
-
-    setOrderLines(orderLinesWithFees);
-    setIsCountryChanged(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [products, setOrderLines, isCountryChanged]);
+  // keep the summary in sync while addresses are being edited
+  useEffect(() => {
+    recalculateDelivery(products);
+  }, [products, recalculateDelivery]);
 
   const totalFee = products.reduce(
     (acc, product) => acc + product.price * product.quantity,
     0
   );
 
-  const setStage = useStage((state) => state.setStage);
-  const productToDisplay = includedProducts.concat(extraProducts);
-  const filteredForMyself = products.filter(
-    (product) => product.isAGift === false
-  );
+  const filteredForMyself = products.filter((product) => !product.isAGift);
+  const filteredAsGift = products.filter((product) => product.isAGift);
 
-  const filteredAsGift = products.filter((product) => product.isAGift === true);
-  const subFormsRefs = useRef<FormikProps<ShipmentDetails>[]>([]);
+  const handleSubmitAllForms = async () => {
+    setIsSubmitting(true);
+    try {
+      const forms = [...subForms.current.values()];
+      const results = await Promise.all(
+        forms.map(async (formik) => {
+          const errors = await formik.validateForm();
+          await formik.submitForm();
+          return Object.keys(errors).length === 0;
+        })
+      );
+      if (!results.every(Boolean)) {
+        toast.error("Please complete the highlighted address fields.");
+        return;
+      }
 
-  const handleAddSubFormRef = (ref: FormikProps<ShipmentDetails>) => {
-    if (ref && !subFormsRefs.current.includes(ref)) {
-      subFormsRefs.current.push(ref);
+      // read the store directly: the submits above just updated it
+      const items = useCart.getState().items;
+      recalculateDelivery(items);
+      items.forEach((product) => {
+        const info = getDeliveryInfoByCountry(product.shipment?.country || "");
+        setShipmentDeliveryFee(
+          product.id,
+          info?.fee || 0,
+          info?.duration || product.shipment?.duration || 0
+        );
+      });
+
+      setStage(4);
+      navigate("/checkout/payment");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const handleSubmitAllForms = async () => {
-    // Wait for all forms to submit
-    await Promise.all(
-      subFormsRefs.current.map((formik) => formik.submitForm())
+  const renderGroup = (title: string, items: itemProps[]) =>
+    items.length > 0 && (
+      <section>
+        <h3 className="mb-3 font-secondaryBold text-primPurple/70">{title}</h3>
+        <ul className="flex flex-col gap-4">
+          {items.map((product) => (
+            <ShipmentEl
+              key={product.id}
+              onSubmitRef={registerSubForm}
+              id={product.id}
+              title={product.product_name}
+              shipment={product.shipment}
+              imgPath={
+                productToDisplay.find((p) => p.title === product.product_name)
+                  ?.imagePath
+              }
+            />
+          ))}
+        </ul>
+      </section>
     );
 
-    // Update delivery fees after form submission
-    products.forEach((product) => {
-      const fee = calculateDeliveryFee(product);
-      setShipmentDeliveryFee(
-        product.id,
-        fee || 0,
-        product.shipment?.duration || 0
-      );
-    });
-
-    setStage(4);
-  };
-
   return (
-    <section className="py-10 flex flex-col ">
-      <div className="flex justify-between w-full xs:flex-col xs:gap-20 smd:gap-10 md:pt-[80px]">
-        <div className=" flex flex-col gap-[110px]">
-          {/* {orderLines.map((orderLine, index) => (
-            <div key={index} className="mb-8 p-4 border rounded">
-              <div className="mb-4">
-                <h3 className="font-secondaryBold text-lg">
-                  Shipping Address {index + 1}
-                </h3>
-                <p>{orderLine.address.street}</p>
-                <p>
-                  {orderLine.address.city}, {orderLine.address.postal_code}
-                </p>
-                <p>{orderLine.address.country}</p>
-              </div>
-
-              <div className="mb-4">
-                <h4 className="font-secondaryBold">Products:</h4>
-                {orderLine.products.map((product) => (
-                  <div key={product.id} className="ml-4">
-                    <p>
-                      {product.product_name} x{product.quantity} (
-                      {product.weight}kg)
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-2">
-                <p className="font-secondaryBold">
-                  Total Weight: {orderLine.totalWeight.toFixed(3)}kg
-                </p>
-                <p className="font-secondaryBold">
-                  Delivery Fee: €{orderLine.totalDeliveryFee?.toFixed(2)}
-                </p>
-                <p>Estimated Delivery: {orderLine.deliveryDuration} days</p>
-              </div>
-            </div>
-          ))} */}
-          <div className="flex flex-col">
-            {filteredForMyself.length > 0 && (
-              <h2
-                className="font-secondaryBold text-[28px]
-              xl:text-[24px]
-              lg:text-[22px]
-              md:text-[22px]
-              sm:text-[22px]"
-              >
-                For myself
-              </h2>
+    <CheckoutGrid
+      aside={
+        <SummaryUniversal subTotal={totalFee}>
+          <button
+            type="button"
+            onClick={handleSubmitAllForms}
+            disabled={isSubmitting}
+            className="btn-primary btn-lg w-full"
+          >
+            {isSubmitting ? (
+              <Loader2 className="h-5 w-5 animate-spin" aria-label="Saving" />
+            ) : (
+              <>
+                Continue to payment
+                <ArrowRight className="h-5 w-5" />
+              </>
             )}
-            {filteredForMyself.length > 0 &&
-              filteredForMyself.map((product) => (
-                <ShipmentEl
-                  key={product.id}
-                  onSubmitRef={handleAddSubFormRef}
-                  id={product.id}
-                  title={product.product_name}
-                  shipment={product.shipment}
-                  imgPath={
-                    productToDisplay.find(
-                      (p) => p.title === product.product_name
-                    )?.imagePath
-                  }
-                  setIsCountryChanged={setIsCountryChanged}
-                />
-              ))}
-          </div>
-          <div>
-            {filteredAsGift.length > 0 && (
-              <h2
-                className="font-secondaryBold text-buttonS
-              xl:text-[24px]
-              lg:text-[22px]
-              md:text-[22px]
-              sm:text-[22px]"
-              >
-                As a gift
-              </h2>
-            )}
-            {filteredAsGift.length > 0 &&
-              filteredAsGift.map((product) => (
-                <ShipmentEl
-                  key={product.id}
-                  onSubmitRef={handleAddSubFormRef}
-                  id={product.id}
-                  title={product.product_name}
-                  shipment={product.shipment}
-                  imgPath={
-                    productToDisplay.find(
-                      (p) => p.title === product.product_name
-                    )?.imagePath
-                  }
-                  setIsCountryChanged={setIsCountryChanged}
-                />
-              ))}
-          </div>
-        </div>
-        <SummaryUniversal subTotal={totalFee} />
-      </div>
-      <ButtonTo
-        onClick={handleSubmitAllForms}
-        to="/checkout/payment"
-        title="NEXT STEP"
-        style="w-fit xs:mt-10 text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-[110px] text-[24px]
-          xl:text-[20px]
-          lg:text-[18px]
-          smd:text-[18px]
-          sm:w-full sm:px-0 sm:block"
+          </button>
+          <BackLink to="/checkout/details" />
+        </SummaryUniversal>
+      }
+    >
+      <StepHeading
+        title="Shipment"
+        description="Choose where each printed gift should be delivered."
       />
-    </section>
+      <div className="flex flex-col gap-8">
+        {renderGroup("For myself", filteredForMyself)}
+        {renderGroup("As a gift", filteredAsGift)}
+      </div>
+    </CheckoutGrid>
   );
 };
 

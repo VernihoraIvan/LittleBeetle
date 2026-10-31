@@ -1,17 +1,16 @@
-import ProgressBarWO from "@/components/CheckoutSectionsWithoutProduct/ProgressBarWO";
-import Title from "@/components/Title";
 import { Outlet } from "react-router-dom";
+import { CheckoutShell } from "@/components/CheckoutShared";
 
-const CheckoutWO = () => {
-  return (
-    <div className="flex flex-col overflow-x-hidden">
-      <Title title="Donate now" />
-      <div className="px-[120px] py-10 xxl:px-[175px] lg:px-[60px] smd:px-[20px] bg-primBeige">
-        <ProgressBarWO />
-        <Outlet />
-      </div>
-    </div>
-  );
-};
+const steps = [
+  { path: "contribution", label: "Your donation" },
+  { path: "details", label: "Your details" },
+  { path: "payment", label: "Payment" },
+];
+
+const CheckoutWO = () => (
+  <CheckoutShell steps={steps}>
+    <Outlet />
+  </CheckoutShell>
+);
 
 export default CheckoutWO;

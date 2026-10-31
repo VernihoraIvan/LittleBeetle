@@ -1,21 +1,30 @@
-import { Formik, Form, FormikHelpers, Field } from "formik";
-import PrivacySec from "@/components/PrivacySec";
+import { Formik, Form } from "formik";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import FormEl from "@/components/Elements/FormEl";
+import { nanoid } from "nanoid";
+import PrivacySec from "@/components/PrivacySec";
+import FormEl, { ConsentField, FocusFirstError } from "@/components/Elements/FormEl";
+import SummaryUniversal from "@/components/SummaryUniversal";
+import { BackLink, CheckoutGrid, StepHeading } from "@/components/CheckoutShared";
 import { SubmitSchemaWO } from "@/utilities/FormSchema";
 import { useStage } from "@/zustand/stageStore";
 import { useMainStore } from "@/zustand/mainOrderStore";
-import { nanoid } from "nanoid";
 import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
 import { useDonation } from "@/zustand/donationStore";
 
 const DetailsFormWO = () => {
   const navigate = useNavigate();
   const addAdress = useDonation((state) => state.addAdress);
+  const donations = useDonation((state) => state.items);
   const submitShipment = useMainStore((state) => state.submitForm);
   const adressStore = useShipment((state) => state.shipment);
   const setStage = useStage((state) => state.setStage);
   const resetShipmentsMain = useShipment((state) => state.resetShipments);
+
+  const totalFee = donations.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   const defaultValues: ShipmentDetails = {
     first_name: adressStore.first_name,
@@ -32,128 +41,75 @@ const DetailsFormWO = () => {
     city: adressStore.city || "",
     postal_code: adressStore.postal_code || "",
   };
-  const id = nanoid();
 
   return (
-    <section className="md:pt-buttonP xxs:pt-10">
+    <CheckoutGrid
+      aside={
+        <>
+          <SummaryUniversal subTotal={totalFee} shippingFee={0} isDonation>
+            <button
+              type="submit"
+              form="details-form"
+              className="btn-primary btn-lg w-full"
+            >
+              Continue to payment
+              <ArrowRight className="h-5 w-5" />
+            </button>
+            <BackLink to="/checkout-donation/contribution" />
+          </SummaryUniversal>
+          <PrivacySec />
+        </>
+      }
+    >
+      <StepHeading
+        title="Your details"
+        description="We'll email your Digital Gift Package and donation certificate to this address."
+      />
       <Formik
         initialValues={defaultValues}
         validationSchema={SubmitSchemaWO}
-        onSubmit={async (
-          values: ShipmentDetails,
-          { setSubmitting }: FormikHelpers<ShipmentDetails>
-        ) => {
-          console.log(values, "values");
+        onSubmit={(values: ShipmentDetails, { setSubmitting }) => {
           resetShipmentsMain();
-          submitShipment(values, id);
+          submitShipment(values, nanoid());
           addAdress(values);
           setSubmitting(false);
+          setStage(4);
           navigate("/checkout-donation/payment");
         }}
       >
-        {({ errors, touched, values, setFieldValue }) => (
-          <Form className=" ">
-            <ul className="flex flex-col gap-9 ">
-              <FormEl
-                errors={errors.first_name}
-                touched={touched}
-                title="First name"
-                element="first_name"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.last_name}
-                touched={touched}
-                title="Last name"
-                element="last_name"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.email}
-                touched={touched}
-                title="Email Address"
-                element="email"
-                isRequired={true}
-              />
-              <Field
-                type="checkbox"
-                name="email_consent"
-                className="w-5 h-5 border border-primPurpleFaintM rounded-sm"
-              >
-                {() => (
-                  <div className="flex flex-col">
-                    <div className="flex items-start gap-2 mt-2 ">
-                      <div
-                        className={`relative w-5 h-5 cursor-pointer border ${
-                          errors.email_consent && touched.email_consent
-                            ? "border-red-500"
-                            : "border-primPurpleFaintM"
-                        } rounded flex items-center justify-center`}
-                        onClick={() =>
-                          setFieldValue("email_consent", !values.email_consent)
-                        }
-                        role="checkbox"
-                        aria-checked={!!values.email_consent}
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setFieldValue(
-                              "email_consent",
-                              !values.email_consent
-                            );
-                          }
-                        }}
-                      >
-                        {values.email_consent && (
-                          <div className="w-3 h-3 bg-primPurpleFaintM rounded-sm"></div>
-                        )}
-                      </div>
-                      <p className="font-secondaryRegular text-primPurpleFaintM text-sm w-[80%] max-w-[800px]">
-                        I agree to receive emails containing my Digital Gift
-                        Package, project updates, and other relevant
-                        information. I understand that my personal details will
-                        be used in accordance with the{" "}
-                        <a
-                          href="/privacy-policy"
-                          className="underline text-primPurple hover:text-blue-700 font-secondaryBold"
-                        >
-                          Privacy Policy
-                        </a>{" "}
-                        and that I can unsubscribe at any time.
-                      </p>
-                    </div>
-                    {errors.email_consent && touched.email_consent && (
-                      <div className="text-red-500 text-sm mt-1 ml-7">
-                        {errors.email_consent}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Field>
-              <FormEl
-                errors={errors.phone}
-                touched={touched}
-                title="Mobile phone"
-                element="phone"
-              />
-            </ul>
-            <PrivacySec />
-            <button
-              className="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
-          xl:text-[20px]
-          lg:text-[18px]
-          smd:text-[18px] 
-          sm:w-full sm:px-0 sm:block"
-              type="submit"
-              onClick={() => setStage(4)}
-            >
-              next step
-            </button>
-          </Form>
-        )}
+        <Form id="details-form" noValidate className="card p-5 md:p-8">
+          <FocusFirstError />
+          <div className="grid gap-5 md:grid-cols-2">
+            <FormEl
+              title="First name"
+              element="first_name"
+              autoComplete="given-name"
+              isRequired
+            />
+            <FormEl
+              title="Last name"
+              element="last_name"
+              autoComplete="family-name"
+              isRequired
+            />
+            <FormEl
+              title="Email address"
+              element="email"
+              type="email"
+              autoComplete="email"
+              isRequired
+            />
+            <FormEl
+              title="Mobile phone"
+              element="phone"
+              type="tel"
+              autoComplete="tel"
+            />
+            <ConsentField />
+          </div>
+        </Form>
       </Formik>
-    </section>
+    </CheckoutGrid>
   );
 };
 

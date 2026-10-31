@@ -4,13 +4,13 @@ const TermsAndConditions = () => {
   return (
     <>
       <Title title="Terms and Conditions" />
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <p className="text-left text-sm text-gray-600 mb-8">
+      <div className="prose-legal page-container max-w-3xl py-12 md:py-16">
+        <p className="caption text-primPurple/60">
           Last updated: 26th February 2025
         </p>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">1. Introduction</h2>
+        <section>
+          <h2>1. Introduction</h2>
           <p className="mb-4">
             Welcome to our website. These Terms and Conditions govern your use
             of our platform, including access to our digital products,
@@ -30,9 +30,9 @@ const TermsAndConditions = () => {
           </p>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">2. Donations and Products</h2>
-          <ul className="list-disc pl-5 space-y-2">
+        <section>
+          <h2>2. Donations and Products</h2>
+          <ul>
             <li>
               All digital products available on our website, including lullaby
               recordings, books, and certificates, are offered as a gift to
@@ -50,9 +50,9 @@ const TermsAndConditions = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">3. Digital Products</h2>
-          <ul className="list-disc pl-5 space-y-2">
+        <section>
+          <h2>3. Digital Products</h2>
+          <ul>
             <li>
               Digital materials, including lullaby recordings, books, and
               certificates, are provided as downloadable files.
@@ -64,11 +64,11 @@ const TermsAndConditions = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">
+        <section>
+          <h2>
             4. Donations and Redirection to Voices of Children
           </h2>
-          <ul className="list-disc pl-5 space-y-2">
+          <ul>
             <li>
               Donations made through our platform are processed via a Stripe
               account registered to Maria Shumeiko, the producer of the project.
@@ -94,9 +94,9 @@ const TermsAndConditions = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">5. Intellectual Property</h2>
-          <ul className="list-disc pl-5 space-y-2">
+        <section>
+          <h2>5. Intellectual Property</h2>
+          <ul>
             <li>
               All content on this website, including the lullaby, illustrations,
               recordings, and text, is protected by copyright laws.
@@ -108,9 +108,9 @@ const TermsAndConditions = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">6. Limitation of Liability</h2>
-          <ul className="list-disc pl-5 space-y-2">
+        <section>
+          <h2>6. Limitation of Liability</h2>
+          <ul>
             <li>
               We provide our website and content "as is" without warranties of
               any kind.
@@ -123,16 +123,16 @@ const TermsAndConditions = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">7. Changes to These Terms</h2>
+        <section>
+          <h2>7. Changes to These Terms</h2>
           <p>
             We reserve the right to update these Terms and Conditions at any
             time. Any changes will be posted on this page with the updated date.
           </p>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-bold mb-3">8. Contact Us</h2>
+        <section>
+          <h2>8. Contact Us</h2>
           <p>
             If you have any questions about these Terms and Conditions, please
             reach out to us at{" "}
@@ -140,8 +140,8 @@ const TermsAndConditions = () => {
               href="mailto:info@littlebeetle.com"
               target="_blank"
               rel="noreferrer"
-              className="text-blue-500 hover:text-blue-700"
-            >
+              className="text-purpleHover"
+           >
               info@littlebeetle.com
             </a>
           </p>

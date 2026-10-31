@@ -1,153 +1,101 @@
-import {
-  Formik,
-  Form,
-  Field,
-  FormikHelpers,
-  ErrorMessage,
-  FormikProps,
-} from "formik";
-import { availableCountries } from "@/utilities/data";
-
-import FormEl from "@/components/Elements/FormEl";
+import { ChangeEvent } from "react";
+import { Formik, Form, FormikProps } from "formik";
+import FormEl, { CountryField } from "@/components/Elements/FormEl";
 import { SubmitSchema } from "@/utilities/FormSchema";
-import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
-import { useRef } from "react";
+import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { useMainStore } from "@/zustand/mainOrderStore";
-import clsx from "clsx";
 
 interface FormReadressProps {
   id: string;
-  onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
-  setIsCountryChanged: (value: boolean) => void;
+  initialValues: ShipmentDetails;
+  onSubmitRef: (instance: FormikProps<ShipmentDetails> | null) => void;
 }
 
-const FormReadress = ({
-  id,
-  onSubmitRef,
-  setIsCountryChanged,
-}: FormReadressProps) => {
+const FormReadress = ({ id, initialValues, onSubmitRef }: FormReadressProps) => {
   const addShipment = useMainStore((state) => state.addShipment);
-  const formikRef = useRef<FormikProps<ShipmentDetails> | null>(null);
-  const shipmentStore = useShipment((state) => state.shipment);
 
   return (
-    <section
-      className="pt-buttonP flex text-[24px] w-full 
-      xl:text-[18px]
-      lg:text-[16px]
-      smd:text-[16px]"
+    <Formik
+      innerRef={onSubmitRef}
+      initialValues={initialValues}
+      validationSchema={SubmitSchema}
+      onSubmit={(values: ShipmentDetails, { setSubmitting }) => {
+        addShipment(values, id);
+        setSubmitting(false);
+      }}
     >
-      <Formik
-        className="smd2:w-[1000px]"
-        innerRef={(instance) => {
-          formikRef.current = instance;
-          onSubmitRef(instance!);
-        }}
-        initialValues={shipmentStore}
-        validationSchema={SubmitSchema}
-        onSubmit={(
-          values: ShipmentDetails,
-          { setSubmitting }: FormikHelpers<ShipmentDetails>
-        ) => {
-          addShipment(values, id);
-          setSubmitting(false);
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form className="w-full ">
-            <ul className="flex flex-col gap-9">
-              <FormEl
-                errors={errors.first_name}
-                touched={touched}
-                title="First name"
-                element="first_name"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.last_name}
-                touched={touched}
-                title="Last name"
-                element="last_name"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.email}
-                touched={touched}
-                title="Email Address"
-                element="email"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.phone}
-                touched={touched}
-                title="Mobile phone"
-                element="phone"
-              />
-              <li className="flex flex-col ">
-                <label
-                  className="font-secondaryBold text-[24px]
-                  xl:text-[18px]
-                  lg:text-[16px]
-                  smd:text-[16px]"
-                  htmlFor="country"
-                >
-                  Country <span className="text-red-500">*</span>
-                </label>
-                <Field
-                  as="select"
-                  name="country"
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                    setIsCountryChanged(true);
-                    // Need to call Formik's handleChange as well
-                    formikRef.current?.handleChange(e);
-                  }}
-                  className={clsx(
-                    "cursor-pointer outline-none border border-primPurpleFaintM py-3 px-4 text-inputPink  font-secondaryRegular mt-4 xl:mt-3 lg:mt-2 smd:mt-2 xl:text-[18px] xl:px-4  lg:text-[14px] lg:px-2 smd2:py-[6px] smd:text-[14px] smd:px-2 smd:py-[6px]"
-                  )}
-                >
-                  <option className="text-[24px]" value="" label="Select" />
-                  {availableCountries.map((country) => (
-                    <option key={country} value={country} label={country} />
-                  ))}
-                </Field>
-                <ErrorMessage
-                  name="country"
-                  component="div"
-                  className="text-red-500"
-                />
-              </li>
-              <FormEl
-                errors={errors.street_adress}
-                touched={touched}
-                title="Street address"
-                element="street_adress"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.street_adress2}
-                touched={touched}
-                title="Street address line 2"
-                element="street_adress2"
-              />
-              <FormEl
-                errors={errors.city}
-                touched={touched}
-                title="Town/City"
-                element="city"
-                isRequired={true}
-              />
-              <FormEl
-                errors={errors.postal_code}
-                touched={touched}
-                title="Postal code"
-                element="postal_code"
-                isRequired={true}
-              />
-            </ul>
-          </Form>
-        )}
-      </Formik>
-    </section>
+      {({ values, handleChange }) => (
+        <Form noValidate className="mt-5 grid gap-5 md:grid-cols-2">
+          <FormEl
+            title="First name"
+            element="first_name"
+            autoComplete="off"
+            isRequired
+            idPrefix={id}
+          />
+          <FormEl
+            title="Last name"
+            element="last_name"
+            autoComplete="off"
+            isRequired
+            idPrefix={id}
+          />
+          <FormEl
+            title="Email address"
+            element="email"
+            type="email"
+            autoComplete="off"
+            isRequired
+            idPrefix={id}
+          />
+          <FormEl
+            title="Mobile phone"
+            element="phone"
+            idPrefix={id}
+            type="tel"
+            autoComplete="off"
+          />
+          <CountryField
+            idPrefix={id}
+            className="md:col-span-2"
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+              handleChange(e);
+              // update the delivery estimate as soon as the country changes
+              addShipment({ ...values, country: e.target.value }, id);
+            }}
+          />
+          <FormEl
+            title="Street address"
+            element="street_adress"
+            autoComplete="off"
+            isRequired
+            idPrefix={id}
+            className="md:col-span-2"
+          />
+          <FormEl
+            title="Street address line 2"
+            element="street_adress2"
+            idPrefix={id}
+            autoComplete="off"
+            className="md:col-span-2"
+          />
+          <FormEl
+            title="Town/City"
+            element="city"
+            autoComplete="off"
+            isRequired
+            idPrefix={id}
+          />
+          <FormEl
+            title="Postal code"
+            element="postal_code"
+            autoComplete="off"
+            isRequired
+            idPrefix={id}
+          />
+        </Form>
+      )}
+    </Formik>
   );
 };
 

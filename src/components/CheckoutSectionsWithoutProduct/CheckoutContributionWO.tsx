@@ -1,28 +1,27 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { nanoid } from "nanoid";
+import { toast } from "react-toastify";
+import { ArrowRight, Gift } from "lucide-react";
 import { extraProducts } from "@/utilities/data";
 import CheckoutContributionEl from "../Elements/CheckoutContributionEl";
 import CartIncludedWidget from "../CartIncludedWidget";
-import ButtonTo from "../ButtonTo";
-import { useStage } from "@/zustand/stageStore";
-import { useState } from "react";
 import SummaryUniversal from "../SummaryUniversal";
+import DonationOption, { MIN_DONATION } from "../DonationOption";
+import { CheckoutGrid, StepHeading } from "../CheckoutShared";
+import { useGoToGifts } from "@/lib/useGoToGifts";
+import { useStage } from "@/zustand/stageStore";
 import { useDonation } from "@/zustand/donationStore";
-import DonationOption from "../DonationOption";
-import { nanoid } from "nanoid";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const CheckoutContributionWO = () => {
-  const id = nanoid();
-
   const [price, setPrice] = useState<number>(0);
   const [lang, setLang] = useState<string>("English");
-  const [quantity, setQuantity] = useState<number>(1);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const addDonation = useDonation((state) => state.addDonation);
   const donations = useDonation((state) => state.items);
   const setStage = useStage((state) => state.setStage);
   const navigate = useNavigate();
+  const goToGifts = useGoToGifts();
 
   const totalFee =
     donations.reduce(
@@ -30,108 +29,84 @@ const CheckoutContributionWO = () => {
       0
     ) + price;
 
-  const handleAddProduct = (
-    title: string,
-    price: number,
-    quantity: number,
-    lang: string,
-    isChecked: boolean,
-    id: string,
-    weight: number
-  ) => {
-    if (price >= 3) {
-      addDonation(title, quantity, price, lang, isChecked, id, weight);
+  const handleNext = () => {
+    if (price >= MIN_DONATION) {
+      addDonation("Donation", 1, price, lang, false, nanoid(), 0);
       setPrice(0);
-      setStage(2);
-      setQuantity(1);
-      // navigate("/checkout-donation/details");
-    } else if (price < 3 && totalFee >= 3) {
-      setStage(2);
-      navigate("/checkout-donation/details");
-    } else {
-      toast.error("Minimum donation is 3 GBP");
+    } else if (totalFee < MIN_DONATION) {
+      toast.error(`Please choose an amount of at least £${MIN_DONATION}`);
+      return;
     }
-  };
-
-  // Function to handle navigation with scrolling
-  const handleNavigateToGifts = () => {
-    navigate("/donation#optional-printed-gifts");
-    // Add a small delay to ensure the component is loaded before scrolling
-    setTimeout(() => {
-      const element = document.getElementById("optional-printed-gifts");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
+    setStage(2);
+    navigate("/checkout-donation/details");
   };
 
   return (
-    <>
-      <div className="flex  pt-bookPT justify-between smd:flex-col smd:pt-0 gap-10  smd:gap-0 ">
-        <div className="md:pt-10  md:pl-[40px] ">
-          {donations.length > 0 ? (
-            donations.map((product) => (
-              <CheckoutContributionEl
-                key={product.id}
-                id={product.id}
-                name={product.product_name}
-                quantity={product.quantity}
-                total={product.price * product.quantity}
-                language={product.product_language}
-                imgPath={
-                  extraProducts.find((p) => p.title === product.product_name)
-                    ?.imagePath
-                }
-              />
-            ))
-          ) : (
-            <>
-              <DonationOption
-                price={price}
-                setLang={setLang}
-                setPrice={setPrice}
-                setIsChecked={setIsChecked}
-                checkboxIsHidden={true}
-              />
-            </>
-          )}
-        </div>
-        <SummaryUniversal
-          subTotal={totalFee}
-          shippingFee={0}
-          isDonation={true}
+    <CheckoutGrid
+      aside={
+        <>
+          <SummaryUniversal subTotal={totalFee} shippingFee={0} isDonation>
+            <button
+              type="button"
+              onClick={handleNext}
+              className="btn-primary btn-lg w-full"
+            >
+              Continue
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          </SummaryUniversal>
+          <CartIncludedWidget />
+        </>
+      }
+    >
+      <StepHeading
+        title="Your donation"
+        description="Please select your donation amount and the language for the products included in your donation package."
+      />
+      {donations.length > 0 ? (
+        <ul className="flex flex-col gap-4">
+          {donations.map((product) => (
+            <CheckoutContributionEl
+              key={product.id}
+              id={product.id}
+              name={product.product_name}
+              quantity={product.quantity}
+              total={product.price * product.quantity}
+              language={product.product_language}
+              imgPath={
+                extraProducts.find((p) => p.title === product.product_name)
+                  ?.imagePath
+              }
+            />
+          ))}
+        </ul>
+      ) : (
+        <DonationOption
+          price={price}
+          setPrice={setPrice}
+          lang={lang}
+          setLang={setLang}
         />
-      </div>
-      <CartIncludedWidget />
-      <div className="flex flex-col smd2:flex-row gap-4 items-center gap-x-10">
-        <ButtonTo
-          onClick={() =>
-            handleAddProduct(
-              "Donation",
-              price as number,
-              quantity,
-              lang as string,
-              isChecked,
-              id,
-              0
-            )
-          }
-          to={price >= 3 || totalFee >= 3 ? "/checkout-donation/details" : ""}
-          title="NEXT STEP"
-          style="text-center uppercase hover:bg-purpleHover transition duration-300 font-secondarySBold bg-primPurple text-primWhite py-4 px-bookPT text-[24px]
-          xl:text-[20px]
-          lg:text-[18px]
-          smd:text-[18px] 
-          sm:w-full sm:px-0 sm:block"
-        />
-        <button
-          onClick={handleNavigateToGifts}
-          className="text-copyS mt-4 smd2:mt-0 hover:text-purpleHover transition duration-300"
-        >
-          or View Optional Printed Gifts
-        </button>
-      </div>
-    </>
+      )}
+      <button
+        type="button"
+        onClick={goToGifts}
+        className="mt-6 flex w-full items-center gap-4 rounded-2xl border border-primPurple/15 p-4 text-left transition-colors duration-200 hover:border-primPurple/40 hover:bg-primWhite"
+      >
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-lilac/30">
+          <Gift className="h-5 w-5" aria-hidden="true" />
+        </span>
+        <span className="flex-1">
+          <span className="block font-secondarySBold">
+            View optional printed gifts
+          </span>
+          <span className="caption text-primPurple/60">
+            A printed book, poster or postcards
+          </span>
+        </span>
+        <ArrowRight className="h-5 w-5 text-primPurple/50" aria-hidden="true" />
+      </button>
+    </CheckoutGrid>
   );
 };
 

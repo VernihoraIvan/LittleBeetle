@@ -4,53 +4,241 @@
 
 @font-face {
   font-family: "pRegular";
+  font-display: swap;
   src: local("Pretendard-Regular"),
     url("./assets/fonts/Pretendard-Regular.otf") format("opentype");
 }
 
 @font-face {
   font-family: "pSBold";
+  font-display: swap;
   src: local("Pretendard-SemiBold"),
     url("./assets/fonts/Pretendard-SemiBold.otf") format("opentype");
 }
 
 @font-face {
   font-family: "pBold";
+  font-display: swap;
   src: local("Pretendard-Bold"),
     url("./assets/fonts/Pretendard-Bold.otf") format("opentype");
 }
 
 @font-face {
   font-family: "mRegular";
+  font-display: swap;
   src: local("Montserrat-Regular"),
     url("./assets/fonts/Montserrat-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "mSBold";
+  font-display: swap;
   src: local("Montserrat-SemiBold"),
     url("./assets/fonts/Montserrat-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "mBold";
+  font-display: swap;
   src: local("Montserrat-Bold"),
     url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");
 }
 
-.card-element-wrapper {
-  padding: 12px 14px; /* Padding around the Stripe Element */
-  border: 1px solid #ddd; /* Optional: Add a border */
-  background-color: #ffff; /* Optional: Add a background color */
-}
-#root {
-  height: 100vh;
-  background-color: rgb(255 252 243);
-}
-/* body {
-  font-family: Pretendard;
-} */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
 
-/* header {
-  font-family: Montserrat;
-} */
+  body {
+    @apply bg-primBeige font-secondaryRegular text-primPurple antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-hovYellow text-primPurple;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-hovYellow ring-offset-2 ring-offset-primPurple;
+  }
+
+  .surface-light :focus-visible,
+  main :focus-visible {
+    @apply ring-purpleHover ring-offset-primBeige;
+  }
+
+  .surface-dark :focus-visible {
+    @apply ring-hovYellow ring-offset-primPurple;
+  }
+
+  input,
+  select,
+  textarea {
+    caret-color: theme("colors.purpleHover");
+  }
+
+  /* hide number spinners */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Layout */
+  .page-container {
+    @apply mx-auto w-full max-w-page px-5 md:px-8 lg:px-12;
+  }
+
+  .section {
+    @apply py-16 md:py-20 lg:py-28;
+  }
+
+  /* Type scale */
+  .heading-display {
+    @apply font-primaryBold text-[2rem] leading-[1.1] tracking-[-0.02em] md:text-[2.75rem] lg:text-[3.5rem];
+  }
+
+  .heading-1 {
+    @apply font-primaryBold text-[1.75rem] leading-tight tracking-[-0.02em] md:text-[2.25rem] lg:text-[2.75rem];
+  }
+
+  .heading-2 {
+    @apply font-primaryBold text-[1.375rem] leading-snug tracking-[-0.01em] md:text-[1.625rem] lg:text-[2rem];
+  }
+
+  .heading-3 {
+    @apply font-secondaryBold text-lg leading-snug md:text-xl;
+  }
+
+  .body-lg {
+    @apply font-secondaryRegular text-base leading-relaxed md:text-lg lg:text-xl;
+  }
+
+  .body {
+    @apply font-secondaryRegular text-[15px] leading-relaxed md:text-base;
+  }
+
+  .caption {
+    @apply font-secondaryRegular text-sm leading-normal;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-7 py-3 text-center font-secondarySBold text-base leading-none transition-[background-color,color,box-shadow,transform] duration-200 ease-out active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 md:text-[17px];
+  }
+
+  .btn-lg {
+    @apply min-h-[56px] px-9 text-[17px] md:text-lg;
+  }
+
+  .btn-primary {
+    @apply btn bg-primPurple text-primWhite shadow-card hover:bg-purpleHover hover:shadow-lift;
+  }
+
+  .btn-accent {
+    @apply btn bg-hovYellow text-primPurple shadow-card hover:bg-textYellow hover:shadow-lift;
+  }
+
+  .btn-outline {
+    @apply btn border border-primPurple/30 bg-primWhite text-primPurple hover:border-primPurple hover:bg-whiteHover;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-primWhite/50 text-primWhite hover:border-primWhite hover:bg-primWhite/10;
+  }
+
+  .btn-ghost {
+    @apply inline-flex min-h-[44px] items-center gap-2 rounded-full px-3 font-secondarySBold text-primPurpleFaint transition-colors duration-200 hover:bg-whiteHover hover:text-primPurple;
+  }
+
+  .icon-btn {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-primPurple transition-colors duration-200 hover:bg-whiteHover;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-2xl bg-primWhite shadow-card;
+  }
+
+  /* Forms */
+  .field-label {
+    @apply mb-2 block font-secondarySBold text-[15px] text-primPurple;
+  }
+
+  .field-input {
+    @apply block h-12 w-full rounded-xl border border-primPurple/20 bg-primWhite px-4 font-secondaryRegular text-base text-primPurple shadow-[inset_0_1px_2px_rgba(48,11,80,0.04)] transition-[border-color,box-shadow] duration-200 placeholder:text-primPurple/45 hover:border-primPurple/40 focus:border-purpleHover focus:outline-none focus:ring-4 focus:ring-lilac/40;
+  }
+
+  .field-input-error {
+    @apply border-alertRed focus:border-alertRed focus:ring-alertRed/15;
+  }
+
+  .field-error {
+    @apply mt-1.5 flex items-center gap-1.5 text-sm text-alertRed;
+  }
+
+  .field-select {
+    @apply field-input cursor-pointer appearance-none bg-no-repeat pr-11;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23300B50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-position: right 1rem center;
+    background-size: 1.1em;
+  }
+
+  .checkbox {
+    @apply mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded border-primPurple/40 accent-primPurple;
+  }
+
+  /* Choice chips (amounts, languages) */
+  .chip {
+    @apply inline-flex min-h-[48px] cursor-pointer items-center justify-center rounded-xl border border-primPurple/20 bg-primWhite px-4 font-secondarySBold text-base text-primPurple transition-[background-color,border-color,color,box-shadow] duration-200 hover:border-primPurple/50;
+  }
+
+  .chip-active {
+    @apply border-primPurple bg-primPurple text-primWhite shadow-card hover:border-primPurple;
+  }
+
+  .prose-legal h2 {
+    @apply heading-3 mb-3 mt-10;
+  }
+  .prose-legal p,
+  .prose-legal li {
+    @apply body mb-3 text-primPurpleFaint;
+  }
+  .prose-legal ul {
+    @apply mb-4 list-disc pl-6;
+  }
+  .prose-legal a {
+    @apply underline underline-offset-4 hover:text-purpleHover;
+  }
+}
+
+/* Toasts in brand style */
+.Toastify .Toastify__toast {
+  @apply rounded-xl font-secondaryRegular text-primPurple shadow-lift;
+}

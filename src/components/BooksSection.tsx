@@ -1,57 +1,50 @@
-import ButtonTo from "./ButtonTo";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import { includedProducts } from "@/utilities/data";
 
 const BooksSection = () => {
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT smd:pt-20 sm:pt-10  pb-bookPB smd:px-8">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
-        <h2
-          className="font-primaryBold mb-2 text-primPurple  text-titleS
-         xl:text-[28px]
-         lg:text-[22px]
-         md:text-[22px]
-         sm:text-[22px]"
-        >
-          About the project
-        </h2>
-        <p
-          className="leading-relaxed text-primPurpleFaint text-[24px] font-secondaryRegular
-          xl:text-[20px]
-          lg:text-[16px]
-          md:text-[16px]
-          sm:text-[16px]"
-        >
-          Over 15 creative professionals from around the world have come
-          together to craft a lullaby and an illustrated book, offered
-          exclusively on a donation basis, along with several other products.
-          Every item is designed to bring some comfort and joy, while
-          channelling all proceeds to support children affected by the war in
-          Ukraine. Our mission is to help provide psychological rehabilitation
-          and raise crucial funds for the organisation delivering this vital
-          care.
-        </p>
-        <ul className="grid xs:grid-cols-1 grid-cols-3 gap-5 mt-14">
+    <section id="about-project" className="section scroll-mt-4 bg-primBeige">
+      <div className="page-container">
+        <div className="max-w-prose">
+          <h2 className="heading-1 mb-5">About the project</h2>
+          <p className="body-lg text-primPurpleFaint">
+            Over 15 creative professionals from around the world have come
+            together to craft a lullaby and an illustrated book, offered
+            exclusively on a donation basis, along with several other products.
+            Every item is designed to bring some comfort and joy, while
+            channelling all proceeds to support children affected by the war in
+            Ukraine. Our mission is to help provide psychological rehabilitation
+            and raise crucial funds for the organisation delivering this vital
+            care.
+          </p>
+        </div>
+        <ul className="mt-10 grid grid-cols-1 gap-4 md:mt-14 md:grid-cols-3 md:gap-5 lg:gap-6">
           {includedProducts.map((product) => (
-            <li key={product.title} className="aspect-[4/3]">
+            <li
+              key={product.title}
+              className="group aspect-[4/3] overflow-hidden rounded-2xl shadow-card"
+            >
               <img
                 loading="lazy"
                 src={product.imagePath[0]}
                 alt={product.title}
-                className="w-full h-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
             </li>
           ))}
         </ul>
-        <div className="flex justify-center mt-20">
-          <ButtonTo
-            to={"/creators"}
-            title="Creators"
-            style="text-primPurple text-center text-buttonS font-primarySBold hover:bg-whiteHover transition duration-300 border border-primPurple py-5 px-buttonP 
-            xl:text-[22px] xl:py-[14px] xl:px-[96px]
-            lg:text-[22px] lg:py-[8px] lg:px-[75px]
-            md:text-[18px] md:py-[8px] md:px-[60px] md:w-[260px]
-            smd:text-[18px] smd:py-[8px] smd:px-[90px] "
-          />
+        <div className="mt-12 flex flex-col items-center gap-3 md:mt-16 md:flex-row md:justify-center">
+          <Link to="/creators" className="btn-outline btn-lg w-full md:w-auto">
+            Meet the creators
+          </Link>
+          <Link
+            to="/donation"
+            className="btn-primary btn-lg w-full md:w-auto"
+          >
+            Support the project
+            <ArrowRight className="h-5 w-5" />
+          </Link>
         </div>
       </div>
     </section>

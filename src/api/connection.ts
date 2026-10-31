@@ -2,11 +2,7 @@ import { MyFormValues } from "@/utilities/interfaces";
 import { itemProps } from "@/zustand/productStore";
 import axios from "axios";
 
-// const BASE_URL = "http://localhost:3001";
-const BASE_URL =
-  "https://littlebeetle-backend-nestjs-production.up.railway.app";
-
-axios.defaults.baseURL = BASE_URL;
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const postDonation = async (data: MyFormValues) => {
   try {

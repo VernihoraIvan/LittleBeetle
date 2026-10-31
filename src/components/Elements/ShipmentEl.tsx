@@ -1,81 +1,112 @@
 import clsx from "clsx";
 import { useState } from "react";
-import FormReadress from "./FormReadress";
-import { ShipmentDetails } from "@/zustand/shipmentStore";
 import { FormikProps } from "formik";
+import FormReadress from "./FormReadress";
+import { ShipmentDetails, useShipment } from "@/zustand/shipmentStore";
+import { useMainStore } from "@/zustand/mainOrderStore";
 
 export interface ShipmentElProps {
   title: string;
   imgPath?: string[];
   id: string;
   shipment?: ShipmentDetails;
-  onSubmitRef: (instance: FormikProps<ShipmentDetails>) => void;
-  setIsCountryChanged: (value: boolean) => void;
+  onSubmitRef: (id: string, instance: FormikProps<ShipmentDetails> | null) => void;
 }
+
+const sameAddress = (a: ShipmentDetails, b: ShipmentDetails) =>
+  (
+    [
+      "first_name",
+      "last_name",
+      "country",
+      "street_adress",
+      "city",
+      "postal_code",
+    ] as const
+  ).every((key) => (a[key] || "") === (b[key] || ""));
 
 const ShipmentEl = ({
   title,
   imgPath,
   id,
+  shipment,
   onSubmitRef,
-  setIsCountryChanged,
 }: ShipmentElProps) => {
-  const [isMyAdress, setIsMyAdress] = useState(true);
+  const mainAddress = useShipment((state) => state.shipment);
+  const [isMyAdress, setIsMyAdress] = useState(
+    () => !shipment || sameAddress(shipment, mainAddress)
+  );
+  const addShipment = useMainStore((state) => state.addShipment);
+
+  const useMyAddress = () => {
+    setIsMyAdress(true);
+    // drop any alternative address entered earlier
+    addShipment(mainAddress, id);
+  };
+
+  const options = [
+    { label: "Use my address", active: isMyAdress, onClick: useMyAddress },
+    {
+      label: "Use a different address",
+      active: !isMyAdress,
+      onClick: () => setIsMyAdress(false),
+    },
+  ];
+
   return (
-    <div className="w-full xsm:w-full md:w-[310px] ">
-      <div className="mt-8">
+    <li className="card p-4 md:p-6">
+      <div className="flex items-center gap-4">
         {imgPath && (
           <img
-            className="h-purchImgH mr-12 w-imgSW "
+            className="h-16 w-16 shrink-0 rounded-xl object-cover md:h-20 md:w-24"
             src={imgPath[0]}
-            alt="image of a book"
+            alt=""
           />
         )}
-        <h3
-          className="text-xl font-secondarySBold mt-2
-          xl:text-[20px]
-          lg:text-[16px]
-          md:text-[16px]
-          sm:text-[16px]"
-        >
-          {title}
-        </h3>
-        <div
-          className="w-imgH flex gap-5 mt-9 border border-primPurpleFaintM p-2
-        smd:w-full smd:gap-2 smd:p-1"
-        >
-          <button
-            onClick={() => setIsMyAdress(true)}
-            className={clsx(
-              "bg-adrButton py-gapS px-2 w-1/2 text-[20px] xl:text-[20px] lg:text-[16px] md:text-[14px] sm:text-[14px] smd:px-1 smd:py-[6px]",
-              isMyAdress === true
-                ? "bg-adrButton text-primWhite"
-                : "bg-primBeige text-primPurple"
-            )}
-          >
-            Use my address
-          </button>
-          <button
-            onClick={() => setIsMyAdress(false)}
-            className={clsx(
-              "bg-adrButton py-gapS px-2  w-1/2 text-[20px] xl:text-[20px] lg:text-[16px] md:text-[14px] sm:text-[14px] smd:px-1 smd:py-[6px]",
-              isMyAdress === true
-                ? "bg-primBeige text-primPurple"
-                : "bg-adrButton text-primWhite"
-            )}
-          >
-            Use different address
-          </button>
+        <div className="min-w-0">
+          <h3 className="heading-3">{title}</h3>
+          {isMyAdress && shipment?.street_adress && (
+            <p className="caption truncate text-primPurple/60">
+              To {shipment.street_adress}, {shipment.city},{" "}
+              {shipment.country}
+            </p>
+          )}
         </div>
       </div>
-      {isMyAdress === false && (
+      <div
+        className="mt-4 grid grid-cols-2 gap-1 rounded-xl bg-primPurple/[0.06] p-1"
+        role="group"
+        aria-label={`Delivery address for ${title}`}
+      >
+        {options.map((option) => (
+          <button
+            key={option.label}
+            type="button"
+            aria-pressed={option.active}
+            onClick={option.onClick}
+            className={clsx(
+              "min-h-[44px] rounded-lg px-2 font-secondarySBold text-sm transition-[background-color,color,box-shadow] duration-200 md:text-[15px]",
+              option.active
+                ? "bg-primWhite text-primPurple shadow-card"
+                : "text-primPurple/60 hover:text-primPurple"
+            )}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+      {!isMyAdress && (
         <FormReadress
-          onSubmitRef={onSubmitRef}
           id={id}
-          setIsCountryChanged={setIsCountryChanged}
+          initialValues={
+            shipment && !sameAddress(shipment, mainAddress)
+              ? shipment
+              : mainAddress
+          }
+          onSubmitRef={(instance) => onSubmitRef(id, instance)}
         />
       )}
-    </div>
+    </li>
   );
 };
 

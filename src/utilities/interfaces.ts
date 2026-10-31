@@ -1,37 +1,3 @@
-import { FormikTouched } from "formik";
-
-export interface OverlayProps {
-  isOverlay: boolean;
-  setPrice: (price: number) => void;
-  handleOverlay: () => void;
-  price: number;
-  setOverlay: (isOverlay: boolean) => void;
-}
-
-export interface OverlayLangProps {
-  isOverlayLang: boolean;
-  setLang: (price: string) => void;
-  handleOverlayLang: () => void;
-  lang: string;
-  setIsOverlayLang: (isOverlay: boolean) => void;
-}
-
-export interface PopUpPriceProps {
-  handleOverlay: () => void;
-  price: number;
-  isOverlay: boolean;
-  setPrice: React.Dispatch<React.SetStateAction<number>>;
-  setIsOverlay: React.Dispatch<React.SetStateAction<boolean>>;
-  isOverlayLang: boolean;
-}
-export interface PopUpLangProps {
-  handleOverlayLang: () => void;
-  lang: string;
-  isOverlayLang: boolean;
-  setLang: React.Dispatch<React.SetStateAction<string>>;
-  setIsOverlayLang: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 export interface ProductElProps {
   title: string;
   description?: string;
@@ -66,12 +32,6 @@ export interface QuantityAdjusterProps {
   isOverlay?: boolean;
   id: string;
 }
-export interface QuantityAdjusterWStateProps {
-  price: number;
-  isOverlay?: boolean;
-  quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
-}
 export interface PurchaseElProps {
   name: string;
   price: number;
@@ -80,13 +40,6 @@ export interface PurchaseElProps {
   imgPath?: string[];
   id: string;
   language: string;
-}
-
-export interface ButtonToProps {
-  to?: string;
-  title: string;
-  style: string;
-  onClick?: () => void;
 }
 
 export interface CheckoutContributionElProps {
@@ -117,11 +70,6 @@ export interface SummaryProps {
   isDonation?: boolean;
 }
 
-export interface SummaryCheckoutProps {
-  subTotal: number;
-  shippingFee?: number;
-}
-
 export interface CarouselProps {
   images: string[];
 }
@@ -147,19 +95,20 @@ export interface PersonalData {
 }
 
 export interface FormElProps {
-  errors?: string;
-  touched: FormikTouched<MyFormValues>;
   title: string;
   element: string;
   isRequired?: boolean;
+  type?: string;
+  autoComplete?: string;
+  className?: string;
+  idPrefix?: string;
 }
 
 export interface DonationOptionProps {
   price: number;
+  lang: string;
   setLang: (value: string) => void;
   setPrice: (value: number) => void;
-  setIsChecked: (value: boolean) => void;
-  checkboxIsHidden?: boolean;
 }
 
 export interface DeliveryFeeData {

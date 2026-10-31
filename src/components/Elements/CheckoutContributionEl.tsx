@@ -1,7 +1,6 @@
+import { Trash2 } from "lucide-react";
 import { CheckoutContributionElProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
-import { useEffect, useState } from "react";
-import CrossLogo from "@/assets/icons/cross.svg?react";
 import { useStage } from "@/zustand/stageStore";
 import { useDonation } from "@/zustand/donationStore";
 
@@ -11,105 +10,44 @@ const CheckoutContributionEl = ({
   imgPath,
   language,
   id,
-  isGiftpossible,
 }: CheckoutContributionElProps) => {
-  const [isChecked, setIsChecked] = useState<boolean>(false);
-  const { setAGift } = useCart();
-  const product = useCart((state) => state.items);
-  const setStage = useStage((state) => state.setStage);
-  const [productState, setProductState] = useState(product);
   const removeProduct = useCart((state) => state.removeFromCart);
-
-  useEffect(() => {
-    const gift = product.find((item) => item.id === id);
-    if (gift) {
-      setIsChecked(gift.isAGift);
-    }
-  }, [product, id, productState]);
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = event.target.checked;
-    setIsChecked(checked);
-    setAGift(id, checked);
-  };
-
   const removeDonation = useDonation((state) => state.removeDonation);
-  const removeProductHandler = (id: string) => {
+  const setStage = useStage((state) => state.setStage);
+
+  const removeProductHandler = () => {
     removeDonation(id);
     removeProduct(id);
     setStage(1);
-    setProductState((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
-    <div className="relative mt-10 mb-prodMar flex justify-between w-full pr-6 ">
-      <CrossLogo
-        className="cursor-pointer absolute left-[-60px]
-        xl:left-[-40px]
-        lg:left-[-40px]
-        md:left-[-30px]
-        smd:hidden
-        "
-        onClick={() => removeProductHandler(id)}
-      />
-      <CrossLogo
-        className="hidden smd:block cursor-pointer hidden absolute right-[20px]
-        sm:block"
-        onClick={() => removeProductHandler(id)}
-      />
-      <div className="flex items-center">
-        {imgPath && (
-          <img
-            className="h-purchImgH mr-12 w-imgSW
-            "
-            src={imgPath[0]}
-            alt="image of a book"
-          />
+    <li className="card flex items-center gap-4 p-4 md:gap-6 md:p-5">
+      {imgPath && (
+        <img
+          className="h-20 w-20 shrink-0 rounded-xl object-cover md:h-24 md:w-32"
+          src={imgPath[0]}
+          alt=""
+        />
+      )}
+      <div className="min-w-0 flex-1">
+        <h3 className="heading-3">{name}</h3>
+        {name !== "Postcards" && (
+          <p className="caption text-primPurple/60">Language: {language}</p>
         )}
-        <div className="flex gap-20">
-          <div className="flex flex-col">
-            <h3
-              className="w-[180px] text-secBlack text-linkS font-secondarySBold
-            xl:text-copyS
-            lg:text-copyS"
-            >
-              {name}
-            </h3>
-            {name !== "Postcards" && (
-              <h4
-                className="mb-2 text-inputPink text-base font-secondaryRegular 
-              xl:text-[12px]
-              lg:text-[12px]"
-              >
-                Language: {language}
-              </h4>
-            )}
-            <p className="items-center w-10 text-copyS font-secondarySBold">
-              £{total}
-            </p>
-          </div>
-          {isGiftpossible && (
-            <div className="flex items-center ml-8 ">
-              <label
-                className="font-secondaryRegular text-xl hover:cursor-pointer"
-                htmlFor={id}
-              >
-                <input
-                  className="mr-2 hover:cursor-pointer "
-                  type="checkbox"
-                  id={id}
-                  name="option"
-                  value={id}
-                  checked={isChecked}
-                  onChange={(e) => handleCheckboxChange(e)}
-                />
-                it's a gift
-              </label>
-            </div>
-          )}
-        </div>
       </div>
-    </div>
+      <p className="font-secondaryBold text-lg tabular-nums">
+        £{total.toFixed(2)}
+      </p>
+      <button
+        type="button"
+        onClick={removeProductHandler}
+        aria-label={`Remove ${name}`}
+        className="icon-btn text-primPurple/50 hover:text-alertRed"
+      >
+        <Trash2 className="h-5 w-5" />
+      </button>
+    </li>
   );
 };
 

@@ -1,25 +1,20 @@
-import emptyCartIMG from "@/assets/images/cartEmpty.png";
-import ButtonTo from "./ButtonTo";
+import { useGoToGifts } from "@/lib/useGoToGifts";
+import { ShoppingBag } from "lucide-react";
 
 const EmptyCart = () => {
+  const goToGifts = useGoToGifts();
   return (
-    <section className="flex-grow h-full flex flex-1 justify-center pt-[10px] pb-[10px]">
-      <div className="flex flex-col items-center">
-        <img
-          className="w-[130px] sm:w-[80px] md:w-[100px]"
-          src={emptyCartIMG}
-          alt="empty cart icon mb-[14px]"
-        />
-        <h1 className="mb-[42px] font-secondarySBold responsive-heading">
-          Your cart is empty
-        </h1>
-        <ButtonTo
-          to="/donation"
-          title="View our Donation Store"
-          style="uppercase hover:bg-purpleHover big-responsive-text text-center transition duration-300 xxl:px-imgSW  font-secondarySBold text-primWhite  bg-primPurple py-3 px-14
-          "
-        />
-      </div>
+    <section className="card flex flex-col items-center px-6 py-14 text-center">
+      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-lilac/30">
+        <ShoppingBag className="h-7 w-7" aria-hidden="true" />
+      </span>
+      <h2 className="heading-3 mt-5">Your cart is empty</h2>
+      <p className="body mt-2 max-w-sm text-primPurple/70">
+        Browse our printed gifts, or make a donation without one.
+      </p>
+      <button type="button" onClick={goToGifts} className="btn-primary mt-6">
+        View our Donation Store
+      </button>
     </section>
   );
 };

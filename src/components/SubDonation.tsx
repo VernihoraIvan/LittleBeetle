@@ -1,272 +1,127 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { SubDonationProps } from "@/utilities/interfaces";
 import { useCart } from "@/zustand/productStore";
-import clsx from "clsx";
-import QuantityAdjuster from "./QuantityAdjusterWState";
 import Carousel from "./Carousel";
 import { useShipment } from "@/zustand/shipmentStore";
 import { nanoid } from "nanoid";
-import {
-  Select,
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-} from "./ui/select";
 import { useNavigate } from "react-router-dom";
-import Alert from "@/assets/icons/alert-circle.svg?react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+  AmountPicker,
+  LanguagePicker,
+  QuantityStepper,
+} from "./Elements/ChoiceControls";
 
 const SubDonation = ({ product, setOpen }: SubDonationProps) => {
   const addProduct = useCart((state) => state.addToCart);
+  const cartItems = useCart((state) => state.items);
   const setFee = useShipment((state) => state.setFee);
-  const id = nanoid();
   const navigate = useNavigate();
 
-  const [isOverlayPrice, setIsOverlayPrice] = useState<boolean>(false);
-  const [isCustomPrice, setIsCustomPrice] = useState<boolean>(false);
-
-  const priceRef = useRef<number>(0);
-  const [price, setPrice] = useState<number>(0);
-  const [customPrice, setCustomPrice] = useState<number | null>(null);
+  const minPrice = product.prices[0];
+  const [price, setPrice] = useState<number>(minPrice);
   const [lang, setLang] = useState<string>("English");
   const [quantity, setQuantity] = useState<number>(1);
+  const hasLanguage = product.title !== "Postcards";
 
-  const handleAddProduct = (
-    title: string,
-    price: number,
-    quantity: number,
-    lang: string,
-    id: string,
-    weight: number,
-    isCheckout?: boolean
-  ) => {
-    if (price >= product.prices[0] && quantity >= 1) {
-      addProduct(title, quantity, price, lang, false, id, weight * quantity);
-      setIsOverlayPrice(false);
+  /** Returns true when the item was added to the cart. */
+  const handleAddProduct = (silent = false) => {
+    if (price >= minPrice && quantity >= 1) {
+      const id = nanoid();
+      addProduct(
+        product.title,
+        quantity,
+        price,
+        lang,
+        false,
+        id,
+        product.weight * quantity
+      );
       setFee(id, price, quantity);
       setQuantity(1);
-      toast.success("Added to cart successfully!");
+      if (!silent) toast.success(`${product.title} added to your cart`);
       setOpen(false);
+      return true;
+    }
+    toast.error(
+      price < minPrice
+        ? `Please select a valid amount (minimum £${minPrice})`
+        : "Please select a valid quantity"
+    );
+    return false;
+  };
+
+  const handleToCheckout = () => {
+    const added = price >= minPrice ? handleAddProduct(true) : false;
+    if (added || cartItems.length > 0) {
+      setOpen(false);
+      navigate("/checkout/contribution");
     } else {
-      if (isCheckout) {
-        return;
-      } else if (price < product.prices[0]) {
-        toast.error(
-          `Please select a valid amount (minimum £${product.prices[0]})`
-        );
-      } else {
-        toast.error("Please select a valid quantity");
-      }
+      toast.error(`Please select a valid amount (minimum £${minPrice})`);
     }
   };
 
-  const handleToCheckout = (
-    title: string,
-    price: number,
-    quantity: number,
-    lang: string,
-    id: string,
-    weight: number
-  ) => {
-    // if (price >= product.prices[0] && quantity >= 1) {
-    handleAddProduct(title, price, quantity, lang, id, weight, true);
-    navigate("/checkout/contribution");
-    // } else {
-    //   toast.error(
-    //     `Please select a valid amount (minimum £${product.prices[0]})`
-    //   );
-    // }
-  };
-
-  const handleOnCustomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const value = event.target.value;
-    setCustomPrice(value === "" ? 0 : Number(value));
-    const newPrice = value === "" ? 0 : Number(value);
-    setPrice(newPrice);
-    priceRef.current = newPrice;
-  };
-
-  const handleSetPrice = (price: number) => {
-    setPrice(price);
-    setCustomPrice(0);
-    priceRef.current = price;
-  };
-
-  useEffect(() => {
-    if (customPrice) {
-      setPrice(customPrice);
-      priceRef.current = customPrice;
-    }
-  }, [customPrice]);
-
-  const priceToShow =
-    priceRef.current > 0 ? `${priceRef.current} £` : "Donation Amount";
+  const lineTotal = price >= minPrice ? price * quantity : 0;
 
   return (
-    <>
-      <section className=" ">
-        <section className="flex flex-grow justify-center smd:pt-6 bg-primBeige max-h-[90vh] overflow-y-auto ">
-          <div
-            className="  flex smd:gap-0 gap-10 w-full
-        smd:flex-col  "
-          >
-            <Carousel images={product.imagePath} />
-            <div className="    xl:flex xl:flex-col xl:justify-between xxl:flex xxl:flex-col xxl:justify-between   ">
-              <h3 className="border-b border-primPurple mt-prodMar leading-relaxed text-secBlack responsive-heading font-secondaryBold">
-                {product.title}
-              </h3>
-              <p className="responsive-text font-secondaryRegular ">
-                {product.description}
-              </p>
-              <p className="small-responsive-text font-secondaryRegular  mt-1">
-                Size: {product.size}
-              </p>
-              <div className="flex flex-col justify-between mt-2 ">
-                <div className="relative w-full big-responsive-text">
-                  <Select
-                    onValueChange={(value) => {
-                      if (value === "custom") {
-                        setIsCustomPrice(true);
-                      } else {
-                        setIsCustomPrice(false);
-                        handleSetPrice(Number(value));
-                      }
-                    }}
-                  >
-                    <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
-                      <SelectValue placeholder={priceToShow} />
-                    </SelectTrigger>
-                    <SelectContent className="w-full bg-white cursor-pointer">
-                      {product.prices.map((price) => (
-                        <SelectItem
-                          className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                          value={price.toString()}
-                        >
-                          {price} £
-                        </SelectItem>
-                      ))}
+    <div className="grid md:grid-cols-[1.1fr_1fr]">
+      <Carousel images={product.imagePath} />
+      <div className="flex flex-col gap-6 p-5 pb-8 md:p-8 lg:p-10">
+        <div>
+          <h2 className="heading-2 pr-10">{product.title}</h2>
+          <p className="body mt-3 text-primPurpleFaint">
+            {product.description}
+          </p>
+          <p className="caption mt-2 text-primPurple/60">
+            Size: {product.size}
+          </p>
+        </div>
 
-                      <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        value="custom"
-                      >
-                        Enter custom amount
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
+        <AmountPicker
+          amounts={product.prices}
+          min={minPrice}
+          value={price}
+          onChange={setPrice}
+        />
 
-                  {/* Custom price input appears below the select when custom option is chosen */}
-                  {isCustomPrice && (
-                    <div className="mt-2">
-                      <div className="flex items-center gap-2">
-                        <input
-                          id="customPrice"
-                          autoComplete="off"
-                          className="w-full px-3 xl:h-[45px] xxl:h-[63px] border border-primPurpleFaintM [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                          type="number"
-                          inputMode="numeric"
-                          pattern="[0-9]*"
-                          name="priceInput"
-                          placeholder="Enter amount (£)"
-                          value={customPrice || ""}
-                          onChange={(e) => handleOnCustomChange(e)}
-                        />
-                      </div>
-                      <div className="flex items-center gap-1 mt-1">
-                        <Alert className="w-4 h-4 text-inputPink" />
-                        <p className="text-sm text-inputPink min:block hidden">
-                          Minimum Donation: £{product.prices[0]}
-                        </p>
-                        <p className="text-sm text-inputPink block min:hidden">
-                          Min. Don.: £{product.prices[0]}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="relative w-full mt-[10px] big-responsive-text">
-                  <Select onValueChange={(value) => setLang(value)}>
-                    <SelectTrigger className="w-full bg-white xl:h-[45px] xxl:h-[63px] ">
-                      <SelectValue placeholder="English" />
-                    </SelectTrigger>
-                    <SelectContent className="w-full bg-white ">
-                      <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        value="English"
-                      >
-                        English
-                      </SelectItem>
-                      <SelectItem
-                        className="cursor-pointer xl:h-[45px] xxl:h-[63px] hover:bg-dropHover transition duration-300"
-                        value="Ukrainian"
-                      >
-                        Ukrainian
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div
-                  className="flex gap-6 mt-[10px]  select-none
-              xl:mt-[18px] xxl:mt-[18px]"
-                >
-                  <p className="font-secondaryRegular responsive-text text-inputPink ">
-                    Quantity
-                  </p>
-                  <QuantityAdjuster
-                    isOverlay={isOverlayPrice}
-                    price={price as number}
-                    quantity={quantity}
-                    setQuantity={setQuantity}
-                  />
-                </div>
-                <div
-                  className={clsx(
-                    "flex gap-5 mt-[10px] xl:mt-4 xxl:mt-4",
-                    isOverlayPrice ? "" : "relative"
-                  )}
-                >
-                  <button
-                    onClick={() =>
-                      handleAddProduct(
-                        product.title,
-                        price as number,
-                        quantity,
-                        lang as string,
-                        id,
-                        product.weight
-                      )
-                    }
-                    className="hover:bg-whiteHover min-w-fit px-2 h-fit-content transition duration-300 w-full font-secondarySBold text-primPurple border border-primPurple responsive-heading bg-primWhite py-3 smd:py-1   xl:py-2"
-                  >
-                    Include this Gift
-                  </button>
+        {hasLanguage && <LanguagePicker value={lang} onChange={setLang} />}
 
-                  <button
-                    className="hover:bg-purpleHover h-fit-content text-center transition duration-300 w-full  font-secondarySBold text-primWhite  bg-primPurple py-3 smd:py-1  px-2 min-w-fit xl:py-2 responsive-heading"
-                    onClick={() =>
-                      handleToCheckout(
-                        product.title,
-                        price,
-                        quantity,
-                        lang,
-                        id,
-                        product.weight
-                      )
-                    }
-                  >
-                    Donate Now
-                  </button>
-                </div>
-              </div>
-            </div>
+        <div className="flex items-center justify-between">
+          <span className="field-label mb-0">Quantity</span>
+          <QuantityStepper
+            value={quantity}
+            decrementDisabled={quantity <= 1}
+            onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
+            onIncrement={() => setQuantity((q) => q + 1)}
+          />
+        </div>
+
+        <div className="mt-auto border-t border-primPurple/10 pt-5">
+          <div className="mb-4 flex items-baseline justify-between">
+            <span className="body text-primPurple/70">Your donation</span>
+            <span className="font-primaryBold text-2xl tabular-nums">
+              £{lineTotal}
+            </span>
           </div>
-        </section>
-      </section>
-    </>
+          <div className="grid gap-3 md:grid-cols-2">
+            <button
+              type="button"
+              onClick={() => handleAddProduct()}
+              className="btn-outline"
+            >
+              Include this gift
+            </button>
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={handleToCheckout}
+            >
+              Donate now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

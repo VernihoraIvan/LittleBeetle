@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import SharedLayout from "./components/SharedLayout";
 import About from "./pages/About";
 import Donation from "./pages/Donation";
@@ -54,10 +54,8 @@ function App() {
       <ToastContainer
         position="bottom-right"
         autoClose={3000}
-        hideProgressBar={true}
-        newestOnTop={false}
+        hideProgressBar
         closeOnClick
-        rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover

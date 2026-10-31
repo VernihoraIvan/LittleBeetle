@@ -4,13 +4,11 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Title title="Privacy Policy" />
-      <div className="max-w-3xl mx-auto p-6">
-        {/* <h1 className="text-2xl font-bold mb-4">Privacy Policy</h1> */}
-        {/* <h1 className="text-2xl font-bold mb-4">Privacy Policy</h1> */}
-        <p className="text-sm mb-4">Last updated: 9th February 2025</p>
+      <div className="prose-legal page-container max-w-3xl py-12 md:py-16">
+        <p className="caption text-primPurple/60">Last updated: 9th February 2025</p>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
+        <section>
+          <h2>1. Introduction</h2>
           <p>
             This Privacy Policy explains how we collect, use, and protect your
             personal information when you visit our website, make a donation, or
@@ -22,15 +20,15 @@ const PrivacyPolicy = () => {
           </p>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">
+        <section>
+          <h2>
             2. Information We Collect
           </h2>
           <p>
             When you interact with our website, we may collect the following
             information:
           </p>
-          <ul className="list-disc pl-6 mt-2">
+          <ul>
             <li>
               Personal Information: When making a donation or requesting a
               product, you may provide your name, email address, and shipping
@@ -49,12 +47,12 @@ const PrivacyPolicy = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">
+        <section>
+          <h2>
             3. How We Use Your Information
           </h2>
           <p>We use the information we collect for the following purposes:</p>
-          <ul className="list-disc pl-6 mt-2">
+          <ul>
             <li>
               To process and fulfill donations and deliver digital and physical
               products.
@@ -69,15 +67,15 @@ const PrivacyPolicy = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">
+        <section>
+          <h2>
             4. Sharing Your Information
           </h2>
           <p>
             We do not sell or rent your personal information. However, we may
             share your information in the following cases:
           </p>
-          <ul className="list-disc pl-6 mt-2">
+          <ul>
             <li>
               With service providers who assist with payment processing and
               delivery.
@@ -86,8 +84,8 @@ const PrivacyPolicy = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">5. Data Security</h2>
+        <section>
+          <h2>5. Data Security</h2>
           <p>
             We take appropriate measures to protect your personal information
             from unauthorized access or misuse. However, no online platform can
@@ -95,12 +93,12 @@ const PrivacyPolicy = () => {
           </p>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">
+        <section>
+          <h2>
             6. Your Rights and Choices
           </h2>
           <p>You have the right to:</p>
-          <ul className="list-disc pl-6 mt-2">
+          <ul>
             <li>
               Request access to, update, or delete your personal information.
             </li>
@@ -108,8 +106,8 @@ const PrivacyPolicy = () => {
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">
+        <section>
+          <h2>
             7. Changes to This Policy
           </h2>
           <p>
@@ -118,12 +116,12 @@ const PrivacyPolicy = () => {
           </p>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">8. Contact Us</h2>
+        <section>
+          <h2>8. Contact Us</h2>
           <p>
             If you have any questions or requests regarding this Privacy Policy,
             please contact us at{" "}
-            <span className="text-blue-700">
+            <span className="font-secondarySBold text-purpleHover">
               <a href="mailto:info@littlebeetle.org ">info@littlebeetle.org</a>
             </span>
             .

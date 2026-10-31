@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import CheckoutContributionWO from "./CheckoutContributionWO";
-import CheckoutDetailsWO from "./CheckoutDetailsWO";
+import DetailsFormWO from "./DetailsFormWO";
 import PaymentSectionWO from "./PaymentSectionWO";
 
 const CheckoutWOSection = () => {
@@ -10,7 +10,7 @@ const CheckoutWOSection = () => {
       case "contribution":
         return <CheckoutContributionWO />;
       case "details":
-        return <CheckoutDetailsWO />;
+        return <DetailsFormWO />;
       case "payment":
         return <PaymentSectionWO />;
       default:
@@ -18,9 +18,7 @@ const CheckoutWOSection = () => {
     }
   };
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT pb-purchElH xxs:py-10 xsm:py-10 md:py-[40px]">
-      <div className="lg:px-[60px] md:px-[40px] w-full">{renderStep()}</div>
-    </section>
+    <section>{renderStep()}</section>
   );
 };
 

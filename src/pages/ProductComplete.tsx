@@ -7,8 +7,8 @@ import {
   verifyStripePayment,
 } from "../api/connection";
 import { useDonation } from "@/zustand/donationStore";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Heart } from "lucide-react";
 
 const ProductComplete = () => {
   const clearCart = useCart((state) => state.clearCart);
@@ -23,7 +23,6 @@ const ProductComplete = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("inside useEffect");
     const verifyPayment = async () => {
       try {
         // Get session_id from URL query parameters
@@ -83,20 +82,23 @@ const ProductComplete = () => {
   return (
     <>
       <Title title="" />
-      <div className=" flex justify-center items-center  h-[calc(100vh-40px)] px-10">
-        <div className="flex flex-col gap-[18px] items-center max-w-[600px]">
-          <h2 className="font-secondaryBold text-buttonS text-center responsive-heading">
-            Thank you! Your donation is complete.
-          </h2>
-          <p className="font-secondaryRegular text-linkS text-center big-responsive-text">
+      <section className="page-container flex min-h-[60vh] items-center justify-center py-16 md:py-24">
+        <div className="card flex max-w-xl flex-col items-center gap-4 px-6 py-12 text-center md:px-12">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-hovYellow">
+            <Heart className="h-7 w-7" aria-hidden="true" />
+          </span>
+          <h2 className="heading-2">Thank you! Your donation is complete.</h2>
+          <p className="body-lg text-primPurple/75">
             We've sent an email with access to the digital products included, to
             the address you provided. We hope the book and lullaby we created
             bring you joy and a touch of magic.
           </p>
+          <Link to="/" className="btn-primary mt-4">
+            Back to home
+          </Link>
         </div>
-      </div>
+      </section>
     </>
   );
 };
-
 export default ProductComplete;

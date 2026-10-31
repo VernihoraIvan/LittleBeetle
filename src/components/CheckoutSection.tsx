@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import CheckoutContribution from "./CheckoutSections/CheckoutContribution";
-import CheckoutDetails from "./CheckoutSections/CheckoutDetails";
+import DetailsForm from "./DetailsForm";
 import CheckoutShipment from "./CheckoutSections/CheckoutShipment";
-import CheckoutPayment from "./CheckoutSections/CheckoutPayment";
+import PaymentSection from "./PaymentSection";
 
 const CheckoutSection = () => {
   const { step } = useParams();
@@ -11,19 +11,17 @@ const CheckoutSection = () => {
       case "contribution":
         return <CheckoutContribution />;
       case "details":
-        return <CheckoutDetails />;
+        return <DetailsForm />;
       case "shipment":
         return <CheckoutShipment />;
       case "payment":
-        return <CheckoutPayment />;
+        return <PaymentSection />;
       default:
         return <CheckoutContribution />;
     }
   };
   return (
-    <section className="flex justify-center bg-primBeige pt-bookPT xxs:py-0 xsm:py-10  ">
-      <div className="  lg:px-[60px] md:px-[40px] w-full">{renderStep()}</div>
-    </section>
+    <section>{renderStep()}</section>
   );
 };
 

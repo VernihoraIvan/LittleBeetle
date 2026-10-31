@@ -1,23 +1,11 @@
 import { TitleProps } from "@/utilities/interfaces";
 
+/** Purple page band that sits under the absolute header. */
 const Title = ({ title }: TitleProps) => {
   return (
-    <section className="flex justify-center bg-primPurple py-12  w-full  xs:py-[40px]">
-      <div className="xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD  sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
-        {title && (
-          <h2
-            className="mt-16 text-titleS font-primaryBold text-primWhite  relative
-          xl:text-[28px]
-          xl:mt-10
-          lg:text-[22px]
-          lg:mt-8
-          md:text-[22px]
-          smd:mt-6
-          sm:text-[22px]"
-          >
-            {title}
-          </h2>
-        )}
+    <section className="surface-dark bg-primPurple pb-10 pt-28 md:pb-14 md:pt-36 lg:pb-16 lg:pt-40">
+      <div className="page-container">
+        {title && <h1 className="heading-1 text-primWhite">{title}</h1>}
       </div>
     </section>
   );

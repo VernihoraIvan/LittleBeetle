@@ -1,27 +1,13 @@
-import UnionSVG from "@/assets/icons/arrow-down.svg?react";
+import { ChevronDown } from "lucide-react";
 
 const DonationGreet = () => {
   return (
-    <section className="bg-primPurple">
-      <section
-        className=" relative custom-min-height flex justify-center min:pt-headerPad object-fit bg-cover bg-custom-50-150 bg-no-repeat w-screen h-screen bg-donation-bg before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-b before:from-black/20 before:to-black/30
-smd:h-auto smd:pb-6 smd:px-8"
-      >
-        <div className="flex gap-2 justify-center align-center flex-col xxl:w-contWXXL xl:w-contWXL lg:w-contWLG md:w-contWMD sm:w-contWSM xs:w-[360px]  xxs:w-contWXSS">
-          <h2
-            className="font-primaryBold text-primWhite  text-titleS z-[1]
-   xl:text-[28px]
-   lg:text-[22px]
-   smd:text-[22px]"
-          >
-            Your Support
-          </h2>
-          <p
-            className="leading-relaxed text-primWhiteFaint h-purchImgH text-[24px] font-secondaryRegular z-[1]
-   xl:text-[20px]
-   lg:text-[16px]
-   smd:text-[16px] smd:h-auto"
-          >
+    <section className="surface-dark relative flex min-h-[100svh] items-center overflow-hidden bg-primPurple bg-donation-bg bg-cover bg-center">
+      <div className="absolute inset-0 bg-gradient-to-b from-primPurple/60 via-primPurple/40 to-primPurple/70" />
+      <div className="page-container relative py-32">
+        <div className="max-w-3xl">
+          <h1 className="heading-display mb-6 text-primWhite">Your Support</h1>
+          <p className="body-lg text-primWhiteFaint">
             This project was born from a simple philosophy: whether you donate
             your time, attention, or money, we value these contributions
             immensely. We designed this initiative around the idea of resource
@@ -34,10 +20,14 @@ smd:h-auto smd:pb-6 smd:px-8"
             embodied in this beautiful illustrated book.
           </p>
         </div>
-        <div className="absolute bottom-[5%] left-[50%] translate-x-[-50%]">
-          <UnionSVG />
-        </div>
-      </section>
+      </div>
+      <a
+        href="#included"
+        aria-label="Scroll to what's included"
+        className="absolute bottom-6 left-1/2 hidden h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full text-primWhite/80 transition-colors hover:bg-primWhite/10 hover:text-primWhite md:flex md:bottom-10"
+      >
+        <ChevronDown className="h-8 w-8" />
+      </a>
     </section>
   );
 };

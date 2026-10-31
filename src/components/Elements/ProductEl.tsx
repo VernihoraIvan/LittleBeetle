@@ -2,18 +2,19 @@ import { ProductElProps } from "@/utilities/interfaces";
 
 const ProductEl = ({ title, imgPath, description }: ProductElProps) => {
   return (
-    <li className="flex-1 flex flex-col sm:gap-5 xs:justify-center items-center ">
-      <img
-        className="w-full h-imgH2 object-cover lg:h-[240px] smd:h-[180px] sm:w-[290px] sm:h-[220px]"
-        src={imgPath[0]}
-        alt="image of a book"
-      />
-      <div>
-        <h3 className=" mt-prodMar xs:mt-0  leading-relaxed text-secBlack  font-secondaryBold responsive-heading">
-          {title}
-        </h3>
-        <p className="mt-4">{description}</p>
+    <li className="flex flex-col">
+      <div className="aspect-[4/3] overflow-hidden rounded-2xl shadow-card">
+        <img
+          className="h-full w-full object-cover"
+          src={imgPath[0]}
+          alt={title}
+          loading="lazy"
+        />
       </div>
+      <h3 className="heading-3 mt-5">{title}</h3>
+      {description && (
+        <p className="body mt-2 text-primPurpleFaint">{description}</p>
+      )}
     </li>
   );
 };

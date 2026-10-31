@@ -1,132 +1,96 @@
+import { ReactNode } from "react";
 import { SummaryProps } from "@/utilities/interfaces";
 import { useOrderLines } from "@/zustand/orderLinesStore";
+import { DELIVERY_COEFFICIENT } from "@/lib/delivery";
 
-const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
+
+const formatGBP = (value: number) => `£${value.toFixed(2)}`;
+
+export interface SummaryItem {
+  id: string;
+  name: string;
+  detail?: string;
+  amount: number;
+}
 
 const SummaryUniversal = ({
   subTotal,
   shippingFee,
   isDonation,
-}: SummaryProps) => {
+  items,
+  children,
+}: SummaryProps & { items?: SummaryItem[]; children?: ReactNode }) => {
   const { orderLines } = useOrderLines();
+  const showDelivery = orderLines.length > 0 && !isDonation;
+  const deliveryTotal = orderLines.reduce(
+    (sum, line) =>
+      sum +
+      (line.totalDeliveryFee && line.totalDeliveryFee !== 0
+        ? line.totalDeliveryFee
+        : 0),
+    0
+  );
+  const total = isDonation
+    ? subTotal
+    : subTotal + (shippingFee || 0) + deliveryTotal * DELIVERY_COEFFICIENT;
 
   return (
-    <div className="max-w-[350px] mx-auto">
-      <div
-        className="w-full border border-primPurple ml-auto md:w-full
-        lg:w-[300px]
-        xxs:w-full
-        smd2:w-[250px]
-        "
-      >
-        <div
-          className="px-prodMar py-4 font-secondaryBold text-[24px] text-primWhite bg-primPurple 
-          xl:text-[18px]
-          lg:text-[18px]
-          md:text-[16px]
-          sm:text-[16px]"
-        >
-          Summary
-        </div>
-        <div>
-          <div
-            className="px-[30px] py-[36px] 
-            xl:px-[28px] xl:py-[24px]
-            lg:px-[24px] lg:py-[20px]
-            smd:px-[20px] smd:py-[26px]"
-          >
-            {orderLines.length > 0 && !isDonation && (
-              <>
-                {/* Subtotal */}
-                <div
-                  className="flex justify-between text-linkS text-inputPink mb-4
-                xl:text-[18px]
-                lg:text-[18px]
-                md:text-[14px]
-                sm:text-[14px]"
-                >
-                  <p className="font-secondaryBold">Subtotal</p>
-                  <p className="font-secondaryRegular text-inputPink">
-                    £{subTotal.toFixed(2)}
-                  </p>
-                </div>
+    <div className="card overflow-hidden">
+      <h2 className="border-b border-primPurple/10 px-6 py-4 font-secondaryBold text-lg">
+        Summary
+      </h2>
+      <div className="px-6 py-5">
+        {items && items.length > 0 && (
+          <ul className="mb-4 space-y-3 border-b border-primPurple/10 pb-4">
+            {items.map((item) => (
+              <li key={item.id} className="flex justify-between gap-4 body">
+                <span className="min-w-0">
+                  <span className="block truncate font-secondarySBold">
+                    {item.name}
+                  </span>
+                  {item.detail && (
+                    <span className="caption text-primPurple/60">
+                      {item.detail}
+                    </span>
+                  )}
+                </span>
+                <span className="shrink-0 tabular-nums">
+                  {formatGBP(item.amount)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
 
-                {/* Only show shipping fee if it's not 0 */}
-                {/* {shippingFee !== 0 && (
-                  <div
-                    className="flex justify-between text-linkS text-inputPink mb-4
-                  xl:text-[18px]
-                  lg:text-[18px]
-                  md:text-[14px]
-                  sm:text-[14px]"
-                  >
-                    <p className="font-secondaryRegular">Shipping Fee</p>
-                    <p className="font-secondaryRegular text-inputPink">
-                      £{shippingFee.toFixed(2)}
-                    </p>
-                  </div>
-                )} */}
-
-                {/* Delivery fees per order line */}
-                {orderLines.map(
-                  (orderLine, index) =>
-                    orderLine.totalDeliveryFee !== 0 && (
-                      <div
-                        key={index}
-                        className="flex justify-between text-linkS text-inputPink mb-2
-                    xl:text-[18px]
-                    lg:text-[18px]
-                    md:text-[14px]
-                    sm:text-[14px]"
-                      >
-                        <p className="font-secondaryRegular">
-                          Delivery to {orderLine.address.country}
-                        </p>
-                        <p className="font-secondaryRegular text-inputPink">
-                          £
-                          {(
-                            (orderLine.totalDeliveryFee || 0) *
-                            deliverCoefficient
-                          ).toFixed(2)}
-                        </p>
-                      </div>
-                    )
-                )}
-
-                {/* Separator line */}
-                <div className="border-t border-primPurple my-4"></div>
-              </>
-            )}
-            {/* Total */}
-            <div
-              className="flex justify-between text-linkS text-primPurple
-              xl:text-[18px]
-              lg:text-[18px]
-              md:text-[14px]
-              sm:text-[14px]"
-            >
-              <p className="font-secondaryBold smd:mr-[100px]">Total</p>
-              <p className="font-secondaryRegular text-inputPink">
-                £
-                {isDonation
-                  ? subTotal.toFixed(2)
-                  : (
-                      subTotal +
-                      (shippingFee || 0) +
-                      orderLines.reduce(
-                        (sum, line) =>
-                          sum +
-                          (line.totalDeliveryFee && line.totalDeliveryFee !== 0
-                            ? line.totalDeliveryFee
-                            : 0),
-                        0
-                      ) *
-                        deliverCoefficient
-                    ).toFixed(2)}
-              </p>
+        {showDelivery && (
+          <dl className="mb-4 space-y-2 border-b border-primPurple/10 pb-4 body text-primPurple/70">
+            <div className="flex justify-between">
+              <dt>Subtotal</dt>
+              <dd className="tabular-nums">{formatGBP(subTotal)}</dd>
             </div>
-          </div>
+            {orderLines.map(
+              (orderLine, index) =>
+                orderLine.totalDeliveryFee !== 0 && (
+                  <div key={index} className="flex justify-between gap-4">
+                    <dt>Delivery to {orderLine.address.country}</dt>
+                    <dd className="tabular-nums">
+                      {formatGBP(
+                        (orderLine.totalDeliveryFee || 0) * DELIVERY_COEFFICIENT
+                      )}
+                    </dd>
+                  </div>
+                )
+            )}
+          </dl>
+        )}
+
+        <div className="flex items-baseline justify-between">
+          <span className="font-secondaryBold">Total</span>
+          <span className="font-primaryBold text-2xl tabular-nums">
+            {formatGBP(total)}
+          </span>
         </div>
+        {children && <div className="mt-5 flex flex-col gap-3">{children}</div>}
       </div>
     </div>
   );

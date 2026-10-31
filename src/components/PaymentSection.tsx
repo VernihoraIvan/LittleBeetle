@@ -1,52 +1,35 @@
+import { useState } from "react";
+import { toast } from "react-toastify";
 import SummaryUniversal from "./SummaryUniversal";
-import clsx from "clsx";
 import { useCart } from "@/zustand/productStore";
+import { useShipment } from "@/zustand/shipmentStore";
 import { proceedToPayment } from "@/api/connection";
 import { useOrderLines } from "@/zustand/orderLinesStore";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
+import { DELIVERY_COEFFICIENT } from "@/lib/delivery";
+import {
+  BackLink,
+  CheckoutGrid,
+  PayButton,
+  ReviewBlock,
+  StepHeading,
+} from "./CheckoutShared";
 
-const deliverCoefficient = import.meta.env.VITE_DELIVERY_COEFFICIENT;
 
 const PaymentSection = () => {
   const products = useCart((state) => state.items);
+  const contact = useShipment((state) => state.shipment);
+  const orderLines = useOrderLines((state) => state.orderLines);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const orderLines = useOrderLines((state) => state.orderLines);
   const totalDeliveryFee = orderLines.reduce(
     (sum, line) => sum + (line.totalDeliveryFee || 0),
     0
   );
-
   const totalPrice = products.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-
-  const totalFee = totalPrice + totalDeliveryFee * deliverCoefficient;
-
-  // const handlesendDonationConfirmation = async () => {
-  //   const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);
-  //   resend.emails.send({
-  //     from: "littlebeetle920@gmail.com",
-  //     to: shipping.email,
-  //     subject: "Thank You for Your Donation",
-  //     html: `
-  //       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-  //         <h1 style="font-size: 24px; line-height: 1.2; color: #333;">
-  //           Dear ${shipping.first_name},
-  //         </h1>
-  //         <p style="font-size: 16px; line-height: 1.6; color: #333;">
-  //           Your donation supports psychological rehabilitation for children affected by war in Ukraine.
-  //           Over 15 creative professionals from around the world volunteered their time and skills to create this project.
-  //         </p>
-  //         <p style="font-size: 16px; line-height: 1.6; color: #333; margin-top: 20px;">
-  //           We thank you for your support.
-  //         </p>
-  //       </div>
-  //     `,
-  //   });
-  // };
+  const totalFee = totalPrice + totalDeliveryFee * DELIVERY_COEFFICIENT;
 
   const handleSubmit = async () => {
     setIsProcessing(true);
@@ -54,110 +37,69 @@ const PaymentSection = () => {
       const res = await proceedToPayment(totalFee, "gbp", true);
       if (res) {
         window.location.replace(res.data);
+        return;
       }
+      toast.error("We couldn't start the payment. Please try again.");
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsProcessing(false);
+      toast.error("We couldn't start the payment. Please try again.");
     }
+    setIsProcessing(false);
   };
 
   return (
-    <section
-      className="flex justify-between pt-10 sm:flex-col sm:flex-col-reverse sm:pt-0 md:gap-5 smd2:gap-10
-    flex-col-reverse justify-center items-center gap-10"
-    >
-      <div
-        className="w-[580px]
-      xl:w-[510px] 
-      lg:w-[380px]
-      md:w-[380px]
-      sm:w-full sm:pt-8"
-      >
-        {/* <h2
-          className="mb-9 font-secondaryBold text-buttonS
-        xl:text-[24px]
-              lg:text-[22px]
-              md:text-[22px]
-              sm:text-[22px]"
+    <CheckoutGrid
+      aside={
+        <SummaryUniversal
+          subTotal={totalPrice}
+          items={products.map((item) => ({
+            id: item.id,
+            name: item.product_name,
+            detail: `Qty ${item.quantity}${item.isAGift ? " · Gift" : ""}`,
+            amount: item.price * item.quantity,
+          }))}
         >
-          Payment method
-        </h2> */}
-        {/* <div className="mb-navPad">
-          <ul className="flex flex-col gap-5   ">
-            <li
-              className={clsx(
-                "flex justify-between items-center cursor-pointer  font-secondaryBold text-bgPurple border border-bgPurple  px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4 ",
-                isActive === 1 && "bg-payButtonActive"
-              )}
-              onClick={() => setIsActive(1)}
-            >
-              <p className="py-5 text-[24px] xl:text-[18px] lg:text-[16px] smd:text-[16px]">
-                Credit / Debit card
-              </p>
-              <div className="flex items-center gap-3 h-full xl:gap-2 lg:gap-1 smd:gap-1">
-                <img
-                  className=" h-[56px] xl:h-[42px] lg:h-[31px] smd:h-[31px]"
-                  src={mCardImg}
-                  alt="Master card icon"
-                />
-                <img src={visaImg} className="h-full" alt="Visa icon" />
-              </div>
-            </li>
-            <li
-              className={clsx(
-                "flex justify-between items-center cursor-pointer font-secondaryBold text-bgPurple border border-bgPurple px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4",
-                isActive === 2 && "bg-payButtonActive"
-              )}
-              onClick={() => setIsActive(2)}
-            >
-              <p className="py-5 text-[24px] xl:text-[18px] lg:text-[16px] smd:text-[16px]">
-                Google pay
-              </p>
-              <img src={gPayImg} className="h-full" alt="Googlepay icon" />
-            </li>
-            <li
-              className={clsx(
-                "flex justify-between items-center cursor-pointer  font-secondaryBold text-bgPurple border border-bgPurple  px-CreatorsElP h-[80px] xl:h-[60px] xl:px-6 lg:h-[44px] lg:px-4 smd:h-[44px] smd:px-4",
-                isActive === 3 && "bg-payButtonActive"
-              )}
-              onClick={() => setIsActive(3)}
-            >
-              <p className="py-5 text-[24px] xl:text-[18px] lg:text-[16px] smd:text-[16px]">
-                Apple pay
-              </p>
-              <img src={aPayImg} className="h-full" alt="Applepay icon" />
-            </li>
+          <PayButton isProcessing={isProcessing} onClick={handleSubmit} />
+          <BackLink to="/checkout/shipment" />
+        </SummaryUniversal>
+      }
+    >
+      <StepHeading
+        title="Review & pay"
+        description="Check your details before completing your donation."
+      />
+      <div className="flex flex-col gap-4">
+        <ReviewBlock title="Contact" editTo="/checkout/details">
+          <p className="font-secondarySBold text-primPurple">
+            {contact.first_name} {contact.last_name}
+          </p>
+          <p>{contact.email}</p>
+          {contact.phone && <p>{contact.phone}</p>}
+        </ReviewBlock>
+        <ReviewBlock title="Delivery" editTo="/checkout/shipment">
+          <ul className="flex flex-col gap-4">
+            {orderLines.map((line, index) => (
+              <li key={index}>
+                <p className="font-secondarySBold text-primPurple">
+                  {line.products
+                    .map((p) => `${p.product_name} × ${p.quantity}`)
+                    .join(", ")}
+                </p>
+                <p>
+                  {line.address.street}, {line.address.city}{" "}
+                  {line.address.postal_code}, {line.address.country}
+                </p>
+                {!!line.deliveryDuration && (
+                  <p className="caption text-primPurple/60">
+                    Estimated delivery: {line.deliveryDuration} days
+                  </p>
+                )}
+              </li>
+            ))}
           </ul>
-        </div> */}
-        <div className="flex flex-col gap-5">
-          {/* <div className="">
-            {isActive === 1 && (
-              <StripeElement setIsPaymentSuccess={setIsPaymentSuccess} />
-            )}
-            {isActive === 2 && <GooglePayEl isDonation={false} />}
-            {isActive === 3 && <ApplePayEl isDonation={false} />}
-          </div> */}
-
-          <button
-            onClick={handleSubmit}
-            className={clsx(
-              " uppercase py-4 flex justify-center items-center font-secondarySBold text-xl xl:text-[20px] lg:text-[18px] smd:text-[18px] bg-bgPurple text-primWhite cursor-pointer hover:bg-purpleHover transition duration-300"
-              // isPaymentSuccess && "bg-bgPurple text-primWhite cursor-pointer",
-              // !isPaymentSuccess && "bg-pinkBar text-primWhite "
-            )}
-            // disabled={!isPaymentSuccess}
-          >
-            {isProcessing ? (
-              <Loader2 className="animate-spin " />
-            ) : (
-              "complete donation"
-            )}
-          </button>
-        </div>
+        </ReviewBlock>
       </div>
-      <SummaryUniversal subTotal={totalPrice} />
-    </section>
+    </CheckoutGrid>
   );
 };
 
