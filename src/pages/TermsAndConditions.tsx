@@ -6,7 +6,7 @@ const TermsAndConditions = () => {
       <Title title="Terms and Conditions" />
       <div className="prose-legal page-container max-w-3xl py-12 md:py-16">
         <p className="caption text-primPurple/60">
-          Last updated: 26th February 2025
+          Last updated: 26th February {new Date().getFullYear()}
         </p>
 
         <section>

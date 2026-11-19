@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
     <>
       <Title title="Privacy Policy" />
       <div className="prose-legal page-container max-w-3xl py-12 md:py-16">
-        <p className="caption text-primPurple/60">Last updated: 9th February 2025</p>
+        <p className="caption text-primPurple/60">Last updated: 9th February {new Date().getFullYear()}</p>
 
         <section>
           <h2>1. Introduction</h2>
