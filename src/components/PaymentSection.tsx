@@ -29,12 +29,12 @@ const PaymentSection = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const totalFee = totalPrice + totalDeliveryFee * DELIVERY_COEFFICIENT;
+  const deliveryTotal = totalDeliveryFee * DELIVERY_COEFFICIENT;
 
   const handleSubmit = async () => {
     setIsProcessing(true);
     try {
-      const res = await proceedToPayment(totalFee, "gbp", true);
+      const res = await proceedToPayment(products, deliveryTotal, true);
       if (res) {
         window.location.replace(res.data);
         return;

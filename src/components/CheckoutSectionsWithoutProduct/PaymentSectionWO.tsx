@@ -30,7 +30,7 @@ const PaymentSectionWO = () => {
   const handleSubmit = async () => {
     setIsProcessing(true);
     try {
-      const res = await proceedToPayment(totalFee, "gbp", false);
+      const res = await proceedToPayment(donations, 0, false);
       if (res) {
         window.location.replace(res.data);
         return;

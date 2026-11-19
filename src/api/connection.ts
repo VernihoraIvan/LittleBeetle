@@ -13,25 +13,6 @@ export const postDonation = async (data: MyFormValues) => {
   }
 };
 
-export const sentData = async (data: itemProps[]) => {
-  const productArray = data.map((item) => ({
-    product_name: item.product_name,
-    quantity: item.quantity,
-    price: item.price,
-    product_language: item.product_language,
-    isAGift: item.isAGift,
-    id: item.id,
-    shipment: item.shipment,
-  }));
-  let response;
-  try {
-    response = await axios.post("/data", productArray);
-  } catch (error) {
-    console.error(error);
-  }
-  return response;
-};
-
 export const updateDonation = async (data: MyFormValues) => {
   try {
     const response = await axios.put(`/donation/:${data.id}`, data);
@@ -41,15 +22,25 @@ export const updateDonation = async (data: MyFormValues) => {
   }
 };
 
+// Sends the cart to the backend, which saves it and returns the Stripe Checkout
+// URL. The order and confirmation email are created server-side once Stripe
+// confirms the payment.
 export const proceedToPayment = async (
-  amount: number,
-  currency: string,
+  items: itemProps[],
+  deliveryTotal: number,
   isProduct: boolean
 ) => {
   try {
     const response = await axios.post("donation", {
-      amount: amount * 100,
-      currency,
+      items: items.map((item) => ({
+        product_name: item.product_name,
+        quantity: item.quantity,
+        price: item.price,
+        product_language: item.product_language,
+        isAGift: item.isAGift,
+        shipment: item.shipment,
+      })),
+      deliveryTotal,
       isProduct,
     });
 
@@ -64,19 +55,6 @@ export const verifyStripePayment = async (sessionId: string) => {
     const response = await axios.get(
       `/donation/verify?session_id=${sessionId}`
     );
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-};
-export const sendDonationConfirmation = async (
-  email: string,
-  name: string,
-  lang: "en" | "ua"
-) => {
-  console.log(email, name);
-  try {
-    const response = await axios.post("/mail/send", { to: email, name, lang });
     return response;
   } catch (error) {
     console.error(error);

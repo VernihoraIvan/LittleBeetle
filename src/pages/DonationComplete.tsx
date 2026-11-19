@@ -1,11 +1,7 @@
 import Title from "../components/Title";
 import { useCart } from "../zustand/productStore";
 import { useEffect, useState } from "react";
-import {
-  sentData,
-  sendDonationConfirmation,
-  verifyStripePayment,
-} from "../api/connection";
+import { verifyStripePayment } from "../api/connection";
 import { useDonation } from "@/zustand/donationStore";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Heart } from "lucide-react";
@@ -13,7 +9,6 @@ import { Heart } from "lucide-react";
 const DonationComplete = () => {
   const clearCart = useCart((state) => state.clearCart);
   const clearDonation = useDonation((state) => state.clearDonations);
-  const donations = useDonation((state) => state.items);
 
   const [paymentVerified, setPaymentVerified] = useState(false);
   // const [loading, setLoading] = useState(true);
@@ -34,7 +29,7 @@ const DonationComplete = () => {
           return;
         }
 
-        // Call your backend verification endpoint
+        // Ask the backend to confirm the payment with Stripe
         const response = await verifyStripePayment(sessionId);
 
         if (response?.data.verified) {
@@ -55,28 +50,13 @@ const DonationComplete = () => {
     verifyPayment();
   }, [location, navigate]);
 
-  const sendDonationData = async () => {
-    const donationToSend = donations.map((donation) => ({
-      ...donation,
-    }));
-    await sentData(donationToSend);
-    const lang = donations[0].product_language === "English" ? "en" : "ua";
-    await sendDonationConfirmation(
-      donations[0].shipment.email,
-      donations[0].shipment.first_name + " " + donations[0].shipment.last_name,
-      lang
-    );
-    clearCart();
-    clearDonation();
-  };
-
+  // The backend has recorded the order and sent the email; just empty the cart.
   useEffect(() => {
-    if (donations.length > 0) {
-      if (paymentVerified) {
-        sendDonationData();
-      }
+    if (paymentVerified) {
+      clearCart();
+      clearDonation();
     }
-  }, [paymentVerified]);
+  }, [paymentVerified, clearCart, clearDonation]);
 
   return (
     <>
